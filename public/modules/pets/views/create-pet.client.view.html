@@ -1,0 +1,47 @@
+<section data-ng-controller="PetsController">
+    <div class="page-header">
+        <h1>New Pet</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="create()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="Nombre" required>
+                    </div>
+                    <label class="control-label" for="slug">Slug URL</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="slug" id="slug" class="form-control" placeholder="Slug" required>
+                    </div>
+                    <label class="control-label" for="name">Foto</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="picture" id="picture" class="form-control" placeholder="Pic Url" required>
+                    </div>
+                    <label class="control-label" for="color">Color</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="color" id="color" class="form-control" placeholder="Color" required>
+                    </div>
+                    <label class="control-label" for="breed">Raza</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="breed" id="breed" class="form-control" placeholder="Raza" required>
+                    </div>
+                    <label class="control-label" for="yearOfBirth">Fecha de Nac</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
+                    </div>
+                    <label class="control-label" for="neutered">Castrado</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="neutered" id="neutered" class="form-control" placeholder="Si/ No" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>
