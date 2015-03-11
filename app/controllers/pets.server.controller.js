@@ -29,8 +29,10 @@ exports.create = function(req, res) {
 /**
  * Show the current Pet
  */
-exports.read = function(req, res) {
+exports.read = function(req, res, next) {
 	res.jsonp(req.pet);
+
+	next();
 };
 
 /**
