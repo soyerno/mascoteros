@@ -5,6 +5,10 @@ angular.module('pets').config(['$stateProvider',
 	function($stateProvider) {
 		// Pets state routing
 		$stateProvider.
+		state('qr', {
+			url: '/qr',
+			templateUrl: 'modules/pets/views/qr.client.view.html'
+		}).
 		state('listPets', {
 			url: '/pets',
 			templateUrl: 'modules/pets/views/list-pets.client.view.html'

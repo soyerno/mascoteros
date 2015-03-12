@@ -50,7 +50,8 @@ module.exports = {
 		},
 		css: [
 			// 'public/modules/**/css/*.css'
-			'public/application.min.css'
+			'public/application.min.css',
+			'public/modules/pets/css/qr.css'
 		],
 		js: [
 			'public/config.js',
