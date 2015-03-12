@@ -218,7 +218,7 @@
             </targets>
           </GruntMultiTaskState>
         </multi-tasks>
-        <gruntfile-path>$PROJECT_DIR$/gruntfile.js</gruntfile-path>
+        <gruntfile-path>$PROJECT_DIR$/Gruntfile.js</gruntfile-path>
       </GruntfileState>
     </gruntfiles>
     <initial>false</initial>
