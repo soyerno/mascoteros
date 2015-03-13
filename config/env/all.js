@@ -29,6 +29,7 @@ module.exports = {
 				'public/lib/lodash/dist/lodash.js',
         		'public/lib/restangular/dist/restangular.js',
         		'public/lib/angular-ui-utils/ui-utils.js',
+				'public/lib/angular-bootstrap-checkbox-fa/angular-bootstrap-checkbox.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-translate/angular-translate.js',
