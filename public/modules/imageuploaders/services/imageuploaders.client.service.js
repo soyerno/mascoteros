@@ -1,7 +1,7 @@
 'use strict';
 
 //Imageuploaders service used to communicate Imageuploaders REST endpoints
-angular.module('imageuploaders').factory('Upload'['$windows','$q','Restangular','lodash', function ($window, $q, Restangular, lodash) {
+angular.module('imageuploaders').factory('Upload', function ($window, $q) {
   return {
     parse: function (fields) {
 
@@ -18,14 +18,18 @@ angular.module('imageuploaders').factory('Upload'['$windows','$q','Restangular',
           if (fieldData.imageProvider) {
             data.append('imageProvider', fieldData.imageProvider);
           }
+          debugger;
 
-          Restangular
-            .one('upload')
-            .withHttpConfig({transformRequest: angular.identity})
-            .customPOST(data, null, {}, {'Content-Type': undefined})
-            .then(function (file) {
-              fields[field] = file.url;
-              deferred.resolve();
+          $http.post('/api/upload', data, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+          })
+          .success(function(file){
+            fields[field] = file.url;
+            deferred.resolve();
+          })
+          .error(function() {
+
             });
         } else if (fieldData !== null && typeof fieldData === 'object') {
           requests.push(deferred.promise);
@@ -42,4 +46,4 @@ angular.module('imageuploaders').factory('Upload'['$windows','$q','Restangular',
       return result.promise;
     }
   };
-}]);
+});
