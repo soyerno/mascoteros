@@ -1,7 +1,7 @@
 'use strict';
 
 //Imageuploaders service used to communicate Imageuploaders REST endpoints
-angular.module('imageuploaders').factory('Upload'['$windows','$q','Restangular','lodash', function ($window, $q, Restangular, lodash) {
+angular.module('imageuploaders').factory('Upload', ['$window','$q','Restangular', function ($window, $q, Restangular) {
   return {
     parse: function (fields) {
 

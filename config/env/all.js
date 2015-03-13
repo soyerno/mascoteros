@@ -26,8 +26,9 @@ module.exports = {
 				'public/lib/angular-touch/angular-touch.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/ngstorage/ngStorage.js',
-        'public/lib/restangular/dist/restangular.js',
-        'public/lib/angular-ui-utils/ui-utils.js',
+				'public/lib/lodash/dist/lodash.js',
+        		'public/lib/restangular/dist/restangular.js',
+        		'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-translate/angular-translate.js',
@@ -37,9 +38,8 @@ module.exports = {
 				'public/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
 				'public/lib/oclazyload/dist/ocLazyLoad.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angular-loading-bar/build/loading-bar.js',
-        'public/lib/lodash/dist/lodash.js'
-        // 'public/lib/jquery/dist/jquery.js',
+				'public/lib/angular-loading-bar/build/loading-bar.js'
+        		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
 				// 'public/lib/angular-cookies/angular-cookies.js',
