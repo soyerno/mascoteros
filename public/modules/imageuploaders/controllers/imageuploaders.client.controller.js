@@ -6,8 +6,8 @@ angular.module('imageuploaders').controller('ImageuploadersController', [
 	function($scope, $stateParams, $location, Authentication, Upload, $http) {
 		$scope.authentication = Authentication;
     $scope.vm  = {};
-    $scope.vm.file = {};
-    $scope.vm.text = '';
+    $scope.vm.file = null;
+    $scope.vm.text = null;
 
     // Create new Imageuploader
 		$scope.create = function() {
