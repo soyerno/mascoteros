@@ -27,7 +27,7 @@ var PetSchema = new Schema({
 	slug: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet name',
+		required: 'Please fill Slug name',
 		trim: true
 	},
 	picture: {

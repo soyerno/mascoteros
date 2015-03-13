@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
   _ = require('lodash');
 
 cloudinary.config({
-  cloud_name: 'sample',
+  cloud_name: 'hb1bxocye',
   api_key: '869496637818748',
   api_secret: 'ECsv4bAtyqACL3LatYy1D_xu34Q'
 });
@@ -133,19 +133,25 @@ exports.upload =  function (req, res, next) {
           if (process.env.CLOUDINARY_PROXY_CNAME) {
             url = url.replace(/res\.cloudinary\.com/, process.env.CLOUDINARY_PROXY_CNAME);
           }
-          helpers.handleResponse(res, null, {
+          res.jsonp({
             url: url
-          }, next);
+          });
+          /*helpers.handleResponse(res, null, {
+            url: url
+          }, next);*/
         }, options);
       } else if (provider === 'imgur') {
         imgur(fs.readFileSync(req.files[field].path), function (err, url) {
           if (err) {
             console.log(err);
           }
-
+          res.jsonp({
+            url: url
+          });
+/*
           helpers.handleResponse(res, null, {
             url: url
-          }, next);
+          }, next);*/
         });
       }
     });

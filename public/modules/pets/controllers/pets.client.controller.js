@@ -1,26 +1,42 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets',
-	function($scope, $stateParams, $location, Authentication, Pets) {
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets','Upload',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload  ) {
 		$scope.authentication = Authentication;
 
 		// Create new Pet
 		$scope.create = function() {
 			// Create new Pet object
 			var pet = new Pets ({
-				name: this.name
-			});
+				name: this.name,
+        picture: this.picture,
+        slug: this.slug,
+        color: this.color,
+        breed: this.breed,
+        neutered: this.neutered
+      });
+
 
 			// Redirect after save
-			pet.$save(function(response) {
-				$location.path('pets/' + response._id);
+      debugger;
+      Upload.parse(pet).then(function () {
+        debugger;
+        pet.$save(function(response) {
+          $location.path('pets/' + response._id);
+          // Clear form fields
+          $scope.name = '';
+          $scope.picture = '';
+          $scope.slug = '';
+          $scope.color = '';
+          $scope.breed = '';
+          $scope.neutered = '';
+        }, function(errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      });
 
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+
 		};
 
 		// Remove existing Pet

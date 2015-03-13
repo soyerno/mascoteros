@@ -19,7 +19,7 @@ module.exports = function(app) {
 	// Finish by binding the Imageuploader middleware
 	app.param('imageuploaderId', imageuploaders.imageuploaderByID);
 
-  app.route('/api/upload').post(
+  app.route('/upload').post(
     users.requiresLogin,
     multipart,
     imageuploaders.upload);

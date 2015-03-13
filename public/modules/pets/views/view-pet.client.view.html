@@ -2,6 +2,8 @@
 	<div class="page-header">
 		<h1 data-ng-bind="pet.name"></h1>
 		{{pet}}
+        {{ pet.slug  }}
+        <img ng-src="{{ pet.picture }}" alt="{{ pet.name }}"/>
 		<qr pet="pet"></qr>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">
