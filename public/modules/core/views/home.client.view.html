@@ -1,100 +1,115 @@
-<h3>
-   <!-- START Language list-->
-   <div class="pull-right">
-      <div dropdown="" is-open="language.listIsOpen" class="btn-group">
-         <button type="button" dropdown-toggle="" class="btn btn-default">{{language.selected}}
-            <span class="caret"></span>
-         </button>
-         <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInUpShort">
-            <li ng-repeat="(localeId, langName) in language.available"><a ng-click="language.set(localeId, $event)">{{langName}}</a>
-            </li>
-         </ul>
-      </div>
-   </div>
-   <!-- END Language list    -->
-   Home
-   <small>{{ 'dashboard.WELCOME' | translate:{ appName: app.name } }} !</small>
-</h3>
-<section>
-  <div style="height: 300px;">
-    <carousel interval="myInterval">
-      <slide ng-repeat="slide in slides" active="slide.active">
-        <img ng-src="{{slide.image}}" style="margin:auto; width: 100%; height: 300px;">
-        <div class="carousel-caption">
-          <h4>{{slide.title}}</h4>
-          <p>{{slide.text}}</p>
-          <button class="btn btn-lg btn-primary">Entrar</button>
+<header class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 col-md-offset-1">
+        <div class="content">
+          <div class="pull-middle">
+            <h1 class="page-header">Crea el id para tu mascota, Gratis!</h1>
+            <p class="lead">Registrate, Añadí tu mascota y Listo.</p>
+            <button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Facebook</button>
+            <button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Twitter</button>
+          </div>
         </div>
-      </slide>
-    </carousel>
+      </div>
+      <div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
+        <div class="phone">
+          <img class="img-responsive img-rounded" src="http://placemi.com/djlnr/263x480">
+        </div>
+      </div>
+    </div>
   </div>
-  <!--<div class="jumbotron text-center">
-    <div class="text-center">
-      <img alt="MEAN.JS" class="img-responsive center-block" src="modules/core/img/brand/logo-mean.png" />
-    </div>
-    <br>
+</header>
+<section class="section">
+  <div class="container">
     <div class="row">
-      <p class="lead">
-        Open-Source Full-Stack Solution For MEAN Applications
-      </p>
-    </div>
-    <div class="row">
-      <p>
-        <a class="btn btn-primary btn-lg" href="http://meanjs.org" target="_blank">Learn more</a>
-      </p>
-    </div>
-  </div>-->
-  <div>
-    <checkbox
-            ng-model="checkboxModel"
-            ></checkbox>
-    <p>This sample application tracks users and articles.</p>
-    <ul>
-      <li>
-        Click
-        <em>Signup</em>
-        to get started.
-      </li>
-      <li>
-        Configure your app to work with your social accounts, by editing the
-        <em>/config/env/*.js</em>
-        files.
-      </li>
-      <li>
-        Edit your users module.
-      </li>
-      <li>
-        Add new CRUD modules.
-      </li>
-      <li>
-        Have fun...
-      </li>
-    </ul>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <h2>
-        <strong>M</strong>ongoDB
-      </h2>
-      <p><a target="_blank" href="http://mongodb.org/">MongoDB</a> is a database. MongoDB's <a target="_blank" href="http://docs.mongodb.org/manual/">great manual</a> is the place to get started with NoSQL and MongoDB.</p>
-    </div>
-    <div class="col-md-3">
-      <h2>
-        <strong>E</strong>xpress
-      </h2>
-      <p><a target="_blank" href="http://expressjs.com/"> Express</a> is an app server. Check out <a target="_blank" href="http://expressjs.com/guide.html">The Express Guide</a> or <a target="_blank" href="http://stackoverflow.com/questions/8144214/learning-express-for-node-js">StackOverflow</a> for more info.</p>
-    </div>
-    <div class="col-md-3">
-      <h2>
-        <strong>A</strong>ngularJS
-      </h2>
-      <p>AngularJS is web app framework. <a target="_blank" href="http://angularjs.org/">Angular's website</a> offers a lot. The <a target="_blank" href="http://www.thinkster.io/">Thinkster Popular Guide</a> and <a target="_blank" href="https://egghead.io/">Egghead Videos</a> are great resources.</p>
-    </div>
-    <div class="col-md-3">
-      <h2>
-        <strong>N</strong>ode.js
-      </h2>
-      <p><a target="_blank" href="http://nodejs.org/">Node.js</a> is a web server. Node's website and this <a target="_blank" href="http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js">stackOverflow thread</a> offer excellent starting points to get to grasps with node.</p>
+      <div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
+        <div class="phone">
+          <img class="img-responsive img-rounded" src="http://placemi.com/djlnr/263x480">
+        </div>
+      </div>
+      <div class="col-md-5 col-md-offset-1">
+        <div class="content">
+          <div class="pull-middle">
+            <h2 class="h1 page-header">Descubrí la nueva forma de cuidar a tu mascota.</h2>
+            <ul class="media-list">
+              <li class="media">
+                <a class="media-left" href="#">
+                  <span class="fa fa-cloud icon text-success"></span>
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Id para tu mascota.</h3>
+                  <p>Registrate, imprimí y listo. Desde un celular escanea el codigo QR y podes ver el perfil de tu mascota, totalmente gratis.</p>
+                </div>
+              </li>
+              <li class="media">
+                <a class="media-left" href="#">
+                  <span class="fa fa-lock icon text-success"></span>
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Privacidad.</h3>
+                  <p>Si no queres que tus datos sean publicos, podés activar el perfíl cuando lo necesites.(premium)</p>
+                </div>
+              </li>
+              <li class="media">
+                <a class="media-left" href="#">
+                  <span class="fa fa-user icon text-success"></span>
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Geo Localization.</h3>
+                  <p>Si tu perro es escaneado te enviamos un alerta con la posición.</p>
+                </div>
+              </li>
+              <li class="media">
+                <a class="media-left" href="#">
+                  <span class="fa fa-user icon text-success"></span>
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Directorio.</h3>
+                  <p>Buscas entrenadores, veterinarias, amigos, eventos... encontralo acá. </p>
+                </div>
+              </li>
+              <li class="media">
+                <a class="media-left" href="#">
+                  <span class="fa fa-user icon text-success"></span>
+                </a>
+                <div class="media-body">
+                  <h3 class="media-heading">Y más.</h3>
+                  <p>Estamos en desarrollo constantemente, para ofrecerte siempre algo nuevo para vos y tus mascotas. </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+<!--<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 text-right">
+        <div class="content">
+          <div class="pull-middle">
+            <h4><strong>Describe your product.</strong></h4>
+            <p>Proin sapien neque, consequat ac tempus aliquam, gravida in urna. Phasellus et lectus in odio imperdiet tempus. Aenean posuere, nunc a tristique imperdiet, massa dolor dictum eros, sit amet tempor turpis turpis vel tortor.</p>
+            <small>Phasellus feugiat at lorem a tincidunt. Nam hendrerit leo vitae orci pellentesque, nec euismod dolor condimentum.</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-md-offset-1 mt-100 mb-100">
+        <div class="phone">
+          <img class="img-responsive img-rounded" src="http://placemi.com/djlnr/263x480">
+        </div>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <div class="content">
+          <div class="pull-middle">
+            <h4><strong>Even more stuff.</strong></h4>
+            <p>Proin sapien neque, consequat ac tempus aliquam, gravida in urna. Phasellus et lectus in odio imperdiet tempus. Aenean posuere, nunc a tristique imperdiet, massa dolor dictum eros, sit amet tempor turpis turpis vel tortor.</p>
+            <a class="btn btn-success btn-circle" href="#">Sign up for free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>-->

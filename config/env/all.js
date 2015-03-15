@@ -55,6 +55,7 @@ module.exports = {
 		css: [
 			// 'public/modules/**/css/*.css'
 			'public/application.min.css',
+			'public/modules/core/css/landing.css',
 			'public/modules/pets/css/qr.css'
 		],
 		js: [
