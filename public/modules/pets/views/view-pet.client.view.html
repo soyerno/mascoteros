@@ -1,25 +1,80 @@
-<section data-ng-controller="PetsController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1 data-ng-bind="pet.name"></h1>
-		{{pet}}
-        {{ pet.slug  }}
-        <img ng-src="{{ pet.picture }}" alt="{{ pet.name }}"/>
-		<qr pet="pet"></qr>
-	</div>
-	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">
+<h3>
+	<div class="pull-right" data-ng-show="authentication.user._id == pet.user._id">
 		<a class="btn btn-primary" href="/#!/pets/{{pet._id}}/edit">
-			<i class="glyphicon glyphicon-edit"></i>
+			<i class="fa fa-edit"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">
-			<i class="glyphicon glyphicon-trash"></i>
+			<i class="fa fa-trash"></i>
 		</a>
 	</div>
-	<small>
-		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="pet.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="pet.user.displayName"></span>
-		</em>
-	</small>
+	{{pet.name}}
+</h3>
+<section data-ng-init="findOne()">
+	<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">
+		<div class="panel panel-info">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3 col-lg-3 " align="center">
+						<img alt="{{pet.name}}" ng-src="{{pet.picture}}" class="img-circle"></div>
+					<div class=" col-md-9 col-lg-9 ">
+						<table class="table table-user-information">
+							<tbody>
+							<tr>
+								<td>Raza</td>
+								<td>{{pet.breed}}</td>
+							</tr>
+							<tr>
+								<td>Color</td>
+								<td>{{pet.color}}</td>
+							</tr>
+							<tr>
+								<td>Edad Aproximada</td>
+								<td>{{pet.age}}</td>
+							</tr>
+
+							<tr>
+							<tr>
+								<td>Genero</td>
+								<td>{{pet.genre}}</td>
+							</tr>
+							<tr>
+								<td>Castrado</td>
+								<td>{{pet.neutered}}</td>
+							</tr>
+							<tr>
+								<td>Email de contacto</td>
+								<td><a href="mailto:info@support.com">info@support.com</a></td>
+							</tr>
+							<td>Descripcion o Rasgos de la mascota</td>
+							<td>{{pet.description}}</td>
+
+							</tr>
+
+							</tbody>
+						</table>
+
+						<a href="#" class="btn btn-primary">+1 Like</a>
+						<a href="#" class="btn btn-primary">Compartír</a>
+						<a href="#" class="btn btn-primary">Crear ID</a>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="fa fa-envelope"></i> Contactar familia</a>
+        <span class="pull-right">
+          <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Encotrado</a>
+          <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Perdido</a>
+        </span>
+			</div>
+
+		</div>
+		<!--<img ng-src="{{ pet.picture }}" alt="{{ pet.name }}"/>-->
+		<!--<qr pet="pet"></qr>
+        <a class="btn btn-primary" href="/#!/pets/{{pet._id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="remove();">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>-->
+	</div>
 </section>

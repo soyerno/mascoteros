@@ -21,7 +21,9 @@ section.a {
 }
 .pin {
     height: 0.6cm;
-    width: 100%
+    width: 100%;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 .pin .circle {
@@ -32,6 +34,8 @@ section.a {
     border: 2px solid black;
     margin: 0.2cm auto 0;
 }
+
+
 
 .qr {
     width: 100%;
@@ -79,57 +83,56 @@ section.a {
     font-weight: bold;
 }
 
-section.b {
-    clear: both;
-    border: 0.05cm gray dashed;
-    height: 4cm;
-    width: 6.4cm;
-    margin-bottom: 0.5cm;
-}
-
-section.b .page, section.b .tel {
-    color: black;
-}
-
-section.b .name {
-    width: 100%;
-    height: 0.6cm;
-    font-size: 0.5cm;
-    line-height: 0.8cm;
-    font-family: sans-serif;
-    vertical-align: middle;
-    text-align: center;
-    padding: 0.05cm 0 0;
-    color: black;
-    font-weight: 400;
-}
-
 section.c {
     clear: both;
     border: 0.05cm gray dashed;
     height: 3.2cm;
-    width: 4.8cm;
+    width: 4.9cm;
     margin-bottom: 0.5cm;
 }
 
 section.c .id-front-2, section.c .id-back-2{
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
     width: 2cm;
     height: 2.8cm;
     background-color: #76c5f0;
     border: 0.2cm solid black;
     float: left;
-}
+    position: relative;
 
-section.c .qr {
+
+    /*-webkit-box-sizing: border-box;
+    width: 2.37cm;
+    height: 3.13cm;*/
+}
+section.c .qr-container {
     width: 100%;
     height: 1.5cm;
-    background-color: white;
+    background: white;
+}
+section.c .qr {
+    width: 1.5cm;
+    height: 1.5cm;
+    background-color: transparent;
     text-align: center;
+    z-index: 200;
+    position: absolute;
+    left: 0.25cm;
 }
 
 section.c .qr svg {
-    height: 1.5cm;
-    width: 1.5cm;
+    height: 1.5cm !important;
+    width: 1.5cm !important;
+    display: block;
+    -webkit-box-sizing: content-box;
+}
+
+section.c .qr svg path {
+    height: 1.5cm !important;
+    width: 1.5cm !important;
+    -webkit-box-sizing: content-box;
+    display: block;
 }
 
 section.c .page, section.c .tel {
@@ -159,4 +162,14 @@ section.c .name {
     padding: 0.05cm 0 0;
     color: white;
     font-weight: 400;
+    position: absolute;
+    bottom: 0.2cm;
+}
+
+section.c .pet-picture {
+    position: absolute;
+    width: 2cm;
+    height: 1.5cm;
+    z-index: 100;
+    background-color: white;
 }

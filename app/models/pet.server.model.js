@@ -24,6 +24,11 @@ var PetSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
+	description: {
+		type: String,
+		default: '',
+		required: 'Please fill Slug description',
+	},
 	slug: {
 		type: String,
 		default: '',
@@ -33,19 +38,22 @@ var PetSchema = new Schema({
 	picture: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet name',
-		trim: true
+		required: 'Please fill Pet picture',
 	},
 	color: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet name',
-		trim: true
+		required: 'Please fill Pet color',
+	},
+	genre: {
+		type: String,
+		default: '',
+		required: 'Please fill Pet gerne',
 	},
 	breed: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet name',
+		required: 'Please fill Pet breed',
 		trim: true
 	},
 	yearOfBirth: {

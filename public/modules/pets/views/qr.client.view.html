@@ -3,15 +3,18 @@
 		<div class="pin">
 			<div class="circle"></div>
 		</div>
-		<div class="qr" ng-bind-html="svg"></div>
-		<div class="name">Tigre</div>
+		<div class="qr-container">
+			<img class="qr" ng-src="/qr/{{pet.slug}}" alt=""/>
+		</div>
+		<!--<div class="qr" ng-bind-html="svg"></div>-->
+		<div class="name" ng-bind="pet.name"></div>
 	</article>
 	<article class="id-back-2">
 		<div class="pin">
 			<div class="circle"></div>
 		</div>
 		<div class="page">
-			mascoteros.net/ <span>tigre_fw</span>
+			mascoteros.net/ <span ng-bind="pet.slug"></span>
 		</div>
 		<div class="tel">11-5566-7788</div>
 	</article>
