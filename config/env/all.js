@@ -55,8 +55,10 @@ module.exports = {
 		css: [
 			// 'public/modules/**/css/*.css'
 			'public/application.min.css',
+			'public/modules/core/css/core.css',
 			'public/modules/core/css/landing.css',
 			'public/modules/core/css/offsidebar-tab-1.css',
+			'public/modules/pets/css/pet_profile.css',
 			'public/modules/pets/css/qr.css'
 		],
 		js: [

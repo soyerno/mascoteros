@@ -1,22 +1,129 @@
-<section data-ng-controller="PetsController" data-ng-init="findOne()">
+<section data-ng-controller="PetsController"  data-ng-init="findOne()">
     <div class="page-header">
-        <h1>Edit Pet</h1>
+        <h1>{{pet.name}}</h1>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="pet.name" id="name" class="form-control" placeholder="Name" required>
+
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <img ng-show="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture}}" class="img-circle">
+                            <label class="control-label" for="name">Foto</label>
+                            <div class="controls">
+                                <!--<input type="text" data-ng-model="picture" id="picture" class="form-control" placeholder="Pic Url" required>-->
+                                <input type="file"  fileread="picture"  data-ng-model="picture" id="images.name" class="form-control" placeholder="Name" required>
+                            </div>
+                        </div>
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr ng-hide="true">
+                                    <td>
+                                        <label class="control-label" for="name">Nombre</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="hidden" data-ng-model="name" id="name" class="form-control" placeholder="nombre de la mascota" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr ng-hide="true">
+                                    <td>
+                                        <label class="control-label" for="breed">Raza</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="hidden" data-ng-model="pet.breed" id="breed" class="form-control" placeholder="Raza" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="color">Color</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="pet.color" id="color" class="form-control" placeholder="Color" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="control-label" for="yearOfBirth">Edad Aproximada</label></td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="pet.yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                <tr ng-hide="true">
+                                    <td>
+                                        <label class="control-label" for="color">Genero</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="hidden" data-ng-model="pet.genre" id="genre" class="form-control" placeholder="" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="neutered">Castrado</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="text" data-ng-model="pet.neutered" id="neutered" class="form-control" placeholder="Si/ No" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Email de contacto</td>
+                                    <td><a href="mailto:info@support.com">info@support.com</a></td>
+                                </tr>
+                                <td><label class="control-label" for="description">Descripcion o Rasgos de la mascota</label></td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" data-ng-model="pet.description" id="description" class="form-control" placeholder="Mancha pata derecha" required>
+                                    </div>
+                                </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=15+Springfield+Way,+Hythe,+CT21+5SH&aq=t&sll=52.8382,-2.327815&sspn=8.047465,13.666992&ie=UTF8&hq=&hnear=15+Springfield+Way,+Hythe+CT21+5SH,+United+Kingdom&t=m&z=14&ll=51.077429,1.121722&output=embed"></iframe>
+                                    </td>
+                                    <td>
+                                        <h2>Snail mail</h2>
+                                        <address>
+                                            <strong>Hythe Window Cleaning</strong><br>
+                                            15 Springfield Way<br>
+                                            Hythe<br>
+                                            Kent<br>
+                                            United Kingdon<br>
+                                            CT21 5SH<br>
+                                            <abbr title="Phone">P:</abbr> 01234 567 890
+                                        </address>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+            </div>
+
+            <fieldset>
                 <div class="form-group">
-                    <input type="submit" value="Update" class="btn btn-default">
+                    <input type="submit" class="btn btn-default mar-bot-40">
                 </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
             </fieldset>
         </form>
     </div>
