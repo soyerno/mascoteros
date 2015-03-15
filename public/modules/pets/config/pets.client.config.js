@@ -4,8 +4,8 @@
 angular.module('pets').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Pets', 'pets', 'dropdown', '/pets(/create)?');
-		Menus.addSubMenuItem('sidebar', 'pets', 'List Pets', 'pets');
-		Menus.addSubMenuItem('sidebar', 'pets', 'New Pet', 'pets/create');
+		Menus.addMenuItem('sidebar', 'Mascotas', 'pets', 'dropdown', '/pets(/create)?', true, null, null, 'fa fa-paw');
+		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets');*/
+		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create');
 	}
 ]);

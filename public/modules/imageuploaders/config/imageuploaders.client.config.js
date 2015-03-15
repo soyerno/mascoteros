@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 // Configuring the Articles module
@@ -8,4 +9,4 @@ angular.module('imageuploaders').run(['Menus',
 		Menus.addSubMenuItem('sidebar', 'imageuploaders', 'List Imageuploaders', 'imageuploaders');
 		Menus.addSubMenuItem('sidebar', 'imageuploaders', 'New Imageuploader', 'imageuploaders/create');
 	}
-]);
+]);*/
