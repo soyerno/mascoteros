@@ -15,7 +15,24 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-3 col-lg-3 " align="center">
-						<img alt="{{pet.name}}" ng-src="{{pet.picture}}" class="img-circle"></div>
+						<hr/>
+						<div class="row">
+							<div class="col-md-12">
+								<img alt="{{pet.name}}" ng-src="{{pet.picture}}" class="img-circle">
+							</div>
+						</div>
+						<hr/>
+						<div class="row">
+							<div class="col-md-12 pet-actions-container">
+								<button class="btn btn-lg btn-warning">Contactar familia</button>
+								<button class="btn btn-lg btn-success">Encontrado</button>
+								<button class="btn btn-lg btn-danger">Perdido</button>
+								<button class="btn btn-lg btn-primary">+1 Like</button>
+								<button class="btn btn-lg btn-primary">Compartír</button>
+								<button class="btn btn-lg btn-primary">Crear ID</button>
+							</div>
+						</div>
+					</div>
 					<div class=" col-md-9 col-lg-9 ">
 						<table class="table table-user-information">
 							<tbody>
@@ -71,18 +88,11 @@
 							</tbody>
 						</table>
 
-						<a href="#" class="btn btn-primary">+1 Like</a>
-						<a href="#" class="btn btn-primary">Compartír</a>
-						<a href="#" class="btn btn-primary">Crear ID</a>
 					</div>
 				</div>
 			</div>
 			<div class="panel-footer">
-				<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="fa fa-envelope"></i> Contactar familia</a>
-        <span class="pull-right">
-          <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Encontrado</a>
-          <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="fa fa-remove"></i> Perdido</a>
-        </span>
+
 			</div>
 
 		</div>
