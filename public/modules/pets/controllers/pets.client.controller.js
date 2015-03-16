@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets','Upload',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload  ) {
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets','Upload', '$modal',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal  ) {
 		$scope.authentication = Authentication;
 
 		// Create new Pet
@@ -11,7 +11,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 			var pet = new Pets ({
 				name: this.name,
 				picture: this.picture,
-				slug: this.name + $scope.authentication.user.lastname,
+				slug: this.name + '_' + this.breed,
 				color: this.color,
 				breed: this.breed,
 				genre: this.genre,
