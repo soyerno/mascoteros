@@ -65,11 +65,14 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 			$scope.formBusy = true;
 			var pet = $scope.pet;
 
-			pet.$update(function() {
-				$location.path('pets/' + pet._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			Upload.parse(pet).then(function () {
+				pet.$update(function() {
+					$location.path('pets/' + pet._id);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
 			});
+
 		};
 
 		// Find a list of Pets
