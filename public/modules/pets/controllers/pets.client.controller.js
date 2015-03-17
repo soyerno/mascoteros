@@ -1,7 +1,7 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets','Upload', '$modal',
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$modal',
 	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal  ) {
 		$scope.authentication = Authentication;
 
@@ -63,9 +63,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		// Update existing Pet
 		$scope.update = function() {
 			$scope.formBusy = true;
-			var pet = $scope.pet;
 
-			Upload.parse(pet).then(function () {
+			Upload.parse($scope.pet).then(function () {
+				var pet = $scope.pet;
 				pet.$update(function() {
 					$location.path('pets/' + pet._id);
 				}, function(errorResponse) {

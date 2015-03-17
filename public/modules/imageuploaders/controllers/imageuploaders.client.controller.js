@@ -5,18 +5,6 @@ angular.module('imageuploaders').controller('ImageuploadersController', [
   '$scope', '$stateParams', '$location', 'Authentication', 'Upload', '$http',
 	function($scope, $stateParams, $location, Authentication, Upload, $http) {
 		$scope.authentication = Authentication;
-    $scope.vm  = {};
-    $scope.vm.file = null;
-    $scope.vm.text = null;
-
-    // Create new Imageuploader
-		$scope.create = function() {
-			// Create new Imageuploader object
-      Upload.parse($scope.vm).then(function (form) {
-        //ya tengo la url
-      });
-    };
-
 	}
 ]).directive("fileread", [function () {
     return {
