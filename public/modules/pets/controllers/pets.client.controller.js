@@ -21,9 +21,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 
 
 			// Redirect after save
-      debugger;
       Upload.parse(pet).then(function () {
-        debugger;
         pet.$save(function(response) {
           $location.path('pets/' + response._id);
           // Clear form fields
