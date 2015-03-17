@@ -63,10 +63,11 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		// Update existing Pet
 		$scope.update = function() {
 			$scope.formBusy = true;
-			debugger;
-			Upload.parse($scope.pet).then(function () {
-				debugger;
-				var pet = $scope.pet;
+			var pet = $scope.pet;
+			delete pet.$promise;
+			delete pet.$resolved;
+
+			Upload.parse(pet).then(function () {
 				pet.$update(function() {
 					$location.path('pets/' + pet._id);
 				}, function(errorResponse) {
