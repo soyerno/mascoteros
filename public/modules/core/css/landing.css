@@ -1,3 +1,32 @@
+/* ========================================================================
+   Component: Download
+ ========================================================================== */
+.download {
+    padding: 110px 0;
+    text-align: center;
+    color: #fff;
+    /* Background image fallback */
+    background: url('../img/bg-download.jpg') no-repeat center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.download:before{
+    background: url('../img/bg_top.png') no-repeat center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.download:after{
+    background: url('../img/bg_top_bottom.png') no-repeat center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.download h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
 .mt-100 {
     margin-top: 100px;
 }

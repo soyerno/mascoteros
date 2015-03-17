@@ -30,6 +30,12 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
       // templateUrl: helper.basepath('app.html'),
       templateUrl: 'modules/core/views/home.client.view.html'
     })
+    .state('app.timeline', {
+      url: '/timeline',
+      // abstract: true,
+      // templateUrl: helper.basepath('app.html'),
+      templateUrl: 'modules/core/views/timeline.client.view.html'
+    })
     // 
     // CUSTOM RESOLVES
     //   Add your own resolves properties
