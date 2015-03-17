@@ -12,7 +12,7 @@
                             <img ng-if="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture| cloudinaryProfile}}" class="">
                             <label class="control-label" for="name">Foto</label>
                             <div class="controls">
-                                <input type="file"  fileread="picture"  data-ng-model="pet.pictureFile" id="images.name" class="form-control" placeholder="Name" required>
+                                <input type="file"  fileread="pet.picture"  data-ng-model="pet.picture" id="images.name" class="form-control" placeholder="Name" required>
                             </div>
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
