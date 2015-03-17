@@ -25,20 +25,20 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 
 
 			// Redirect after save
-		  Upload.parse(pet).then(function () {
-			pet.$save(function(response) {
-			  $location.path('pets/' + response._id);
-			  // Clear form fields
-			  $scope.name = '';
-			  $scope.picture = '';
-			  $scope.slug = '';
-			  $scope.color = '';
-			  $scope.breed = '';
-			  $scope.neutered = '';
-			}, function(errorResponse) {
-			  $scope.error = errorResponse.data.message;
+			Upload.parse(pet).then(function () {
+				pet.$save(function(response) {
+					$location.path('pets/' + response._id);
+					// Clear form fields
+					$scope.name = '';
+					$scope.picture = '';
+					$scope.slug = '';
+					$scope.color = '';
+					$scope.breed = '';
+					$scope.neutered = '';
+				}, function(errorResponse) {
+				  $scope.error = errorResponse.data.message;
+				});
 			});
-		  });
 
 
 		};
@@ -63,8 +63,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		// Update existing Pet
 		$scope.update = function() {
 			$scope.formBusy = true;
-
+			debugger;
 			Upload.parse($scope.pet).then(function () {
+				debugger;
 				var pet = $scope.pet;
 				pet.$update(function() {
 					$location.path('pets/' + pet._id);
