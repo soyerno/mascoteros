@@ -2,7 +2,7 @@
 <section data-ng-controller="PetsController" data-ng-init="find()">
     <div class="list-group">
         <a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}" class="list-group-item">
-            <div class="well">
+            <div class="">
                 <div class="media">
                     <div class="pull-left">
                         <img class="media-object" ng-src="{{pet.picture |cloudinaryProfile }}">
