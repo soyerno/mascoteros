@@ -1,5 +1,5 @@
 <section id="id-container" class="c">
-	<article class="id-front-2">
+	<article class="id-front-2" ng-class="pet.gerne === 'female' ? 'female' : ''">
 		<div class="pin">
 			<div class="circle"></div>
 		</div>
@@ -9,7 +9,7 @@
 		<!--<div class="qr" ng-bind-html="svg"></div>-->
 		<div class="name" ng-bind="pet.name"></div>
 	</article>
-	<article class="id-back-2">
+	<article class="id-back-2" ng-class="pet.gerne === 'female' ? 'female' : ''">
 		<div class="pin">
 			<div class="circle"></div>
 		</div>

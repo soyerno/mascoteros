@@ -36,6 +36,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 					$scope.breed = '';
 					$scope.neutered = '';
 				}, function(errorResponse) {
+					$scope.formBusy = false;
 				  $scope.error = errorResponse.data.message;
 				});
 			});
