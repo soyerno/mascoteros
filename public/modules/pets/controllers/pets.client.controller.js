@@ -5,7 +5,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal  ) {
 		$scope.authentication = Authentication;
 
-		$scope.formBusy = true;
+
 
 		// Create new Pet
 		$scope.create = function() {
@@ -19,10 +19,12 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				genre: this.genre,
 				description: this.description,
 				neutered: this.neutered
-		  });
+			});
+
+			$scope.formBusy = true;
 
 
-				// Redirect after save
+			// Redirect after save
 		  Upload.parse(pet).then(function () {
 			pet.$save(function(response) {
 			  $location.path('pets/' + response._id);
@@ -60,6 +62,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 
 		// Update existing Pet
 		$scope.update = function() {
+			$scope.formBusy = true;
 			var pet = $scope.pet;
 
 			pet.$update(function() {
