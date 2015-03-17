@@ -5,7 +5,7 @@
             <div class="">
                 <div class="media">
                     <div class="pull-left">
-                        <img class="media-object" ng-src="{{pet.picture |cloudinaryProfile }}">
+                        <img ng-if="pet.picture" class="media-object" ng-src="{{pet.picture |cloudinaryProfile }}">
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading" data-ng-bind="pet.name"></h4>
