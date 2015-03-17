@@ -119,9 +119,10 @@
 
             <fieldset>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-default mar-bot-40">
+                    <input type="submit" ng-disabled="formBusy" class="btn btn-default mar-bot-40">
                 </div>
                 <div data-ng-show="error" class="text-danger">
+                    <i ng-show="formBusy" class="fa fa-cog fa-spin"></i>
                     <strong data-ng-bind="error"></strong>
                 </div>
             </fieldset>

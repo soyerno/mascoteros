@@ -5,6 +5,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal  ) {
 		$scope.authentication = Authentication;
 
+		$scope.formBusy = true;
+
 		// Create new Pet
 		$scope.create = function() {
 			// Create new Pet object
@@ -17,24 +19,24 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				genre: this.genre,
 				description: this.description,
 				neutered: this.neutered
-      });
+		  });
 
 
-			// Redirect after save
-      Upload.parse(pet).then(function () {
-        pet.$save(function(response) {
-          $location.path('pets/' + response._id);
-          // Clear form fields
-          $scope.name = '';
-          $scope.picture = '';
-          $scope.slug = '';
-          $scope.color = '';
-          $scope.breed = '';
-          $scope.neutered = '';
-        }, function(errorResponse) {
-          $scope.error = errorResponse.data.message;
-        });
-      });
+				// Redirect after save
+		  Upload.parse(pet).then(function () {
+			pet.$save(function(response) {
+			  $location.path('pets/' + response._id);
+			  // Clear form fields
+			  $scope.name = '';
+			  $scope.picture = '';
+			  $scope.slug = '';
+			  $scope.color = '';
+			  $scope.breed = '';
+			  $scope.neutered = '';
+			}, function(errorResponse) {
+			  $scope.error = errorResponse.data.message;
+			});
+		  });
 
 
 		};
