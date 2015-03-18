@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/angle',
+	//db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/angle',
+	db: 'mongodb://mascoteros:mascoteros@ds033107.mongolab.com:33107/heroku_app34828065',
 	assets: {
 		lib: {
 			css: [
@@ -24,18 +25,18 @@ module.exports = {
 		js: 'public/dist/application.min.js'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || 'APP_ID',
-		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',
+		clientID: process.env.FACEBOOK_ID || '1414293935539684',
+		clientSecret: process.env.FACEBOOK_SECRET || 'fb7c4444f2362a08c14a72c86773662e',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
-		clientID: process.env.TWITTER_KEY || 'CONSUMER_KEY',
-		clientSecret: process.env.TWITTER_SECRET || 'CONSUMER_SECRET',
+		clientID: process.env.TWITTER_KEY || 'MohmwkWYsvxFfOdoLVBkwbtSa',
+		clientSecret: process.env.TWITTER_SECRET || 'BKRrz647oRuCMDUuJPBMOyAJx0QNGEGnuS44MSMZVca9sw3Dje',
 		callbackURL: '/auth/twitter/callback'
 	},
 	google: {
-		clientID: process.env.GOOGLE_ID || 'APP_ID',
-		clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
+		clientID: process.env.GOOGLE_ID || '554617115302-upv638269ep30agei2t7ljo1nkplujlp.apps.googleusercontent.com',
+		clientSecret: process.env.GOOGLE_SECRET || 'KOVON0RbaOQwLoPlKLEbdRLz',
 		callbackURL: '/auth/google/callback'
 	},
 	linkedin: {
