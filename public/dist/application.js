@@ -5,7 +5,7 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'angleApp';
 	// var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils'];
-	var applicationModuleVendorDependencies = ['ngRoute', 'ngAnimate', 'ngStorage','ngTouch', 'ngCookies', 'pascalprecht.translate', 'ui.bootstrap', 'ui.router', 'oc.lazyLoad', 'cfp.loadingBar', 'ngSanitize', 'ngResource'];
+	var applicationModuleVendorDependencies = ['ngRoute', 'ngAnimate', 'ngStorage','ngTouch', 'ngCookies', 'pascalprecht.translate', 'ui.bootstrap', 'ui.router', 'restangular', 'oc.lazyLoad', 'cfp.loadingBar', 'ngSanitize', 'ngResource', 'ui.utils', 'ui.checkbox', 'imageuploaders' ];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
 		// Create angular module
@@ -21,6 +21,7 @@ var ApplicationConfiguration = (function() {
 		registerModule: registerModule
 	};
 })();
+
 'use strict';
 
 //Start by defining the main module and adding the module dependencies
@@ -84,8 +85,13 @@ angular.module('core').run(["$rootScope", "$state", "$stateParams",  '$window', 
         isFixed: true,
         isCollapsed: false,
         isBoxed: false,
-        isRTL: false
+        isRTL: false,
+        horizontal: false,
+        isFloat: false,
+        asideHover: false
       },
+      useFullLayout: false,
+      hiddenFooter: false,
       viewAnimation: 'ng-fadeInUp'
     };
     $rootScope.user = {
@@ -97,9 +103,16 @@ angular.module('core').run(["$rootScope", "$state", "$stateParams",  '$window', 
 ]);
 'use strict';
 
-// Use application configuration module to register a new module
-ApplicationConfiguration.registerModule('single');
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('events');
+'use strict';
 
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('imageuploaders');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('pets');
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -107,14 +120,16 @@ ApplicationConfiguration.registerModule('users');
 'use strict';
 
 // Configuring the Articles module
+/*
 angular.module('articles').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'Articles', 'articles', 'dropdown', '/articles(/create)?');
-		Menus.addSubMenuItem('topbar', 'articles', 'List Articles', 'articles');
-		Menus.addSubMenuItem('topbar', 'articles', 'New Article', 'articles/create');
+		Menus.addMenuItem('sidebar', 'Articles', 'articles', 'dropdown', '/articles(/.*)?', false, null, 20);
+		Menus.addSubMenuItem('sidebar', 'articles', 'List Articles', 'articles');
+		Menus.addSubMenuItem('sidebar', 'articles', 'New Article', 'articles/create');
 	}
-]);
+]);*/
+
 'use strict';
 
 // Setting up route
@@ -122,19 +137,20 @@ angular.module('articles').config(['$stateProvider',
 	function($stateProvider) {
 		// Articles state routing
 		$stateProvider.
-		state('listArticles', {
+		state('app.listArticles', {
 			url: '/articles',
 			templateUrl: 'modules/articles/views/list-articles.client.view.html'
 		}).
-		state('createArticle', {
+		state('app.createArticle', {
 			url: '/articles/create',
 			templateUrl: 'modules/articles/views/create-article.client.view.html'
 		}).
-		state('viewArticle', {
+		state('app.viewArticle', {
 			url: '/articles/:articleId',
-			templateUrl: 'modules/articles/views/view-article.client.view.html'
+			templateUrl: 'modules/articles/views/view-article.client.view.html',
+			controller: 'ArticlesController'
 		}).
-		state('editArticle', {
+		state('app.editArticle', {
 			url: '/articles/:articleId/edit',
 			templateUrl: 'modules/articles/views/edit-article.client.view.html'
 		});
@@ -212,6 +228,53 @@ angular.module('articles').factory('Articles', ['$resource',
 		});
 	}
 ]);
+'use strict';
+
+// Configuring the Core module
+angular.module('core').run(['Menus',
+  function(Menus) {
+
+    // Add default menu entry
+    Menus.addMenuItem('sidebar', 'Inicio', 'home', null, '/home', true, null, null, 'icon-home');
+
+  }
+]).config(['$ocLazyLoadProvider', 'APP_REQUIRES', function ($ocLazyLoadProvider, APP_REQUIRES) {
+  // Lazy Load modules configuration
+  $ocLazyLoadProvider.config({
+    debug: false,
+    events: true,
+    modules: APP_REQUIRES.modules
+  });
+
+}]).config(['$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
+  function ( $controllerProvider, $compileProvider, $filterProvider, $provide) {
+  // registering components after bootstrap
+  angular.module('core').controller = $controllerProvider.register;
+  angular.module('core').directive  = $compileProvider.directive;
+  angular.module('core').filter     = $filterProvider.register;
+  angular.module('core').factory    = $provide.factory;
+  angular.module('core').service    = $provide.service;
+  angular.module('core').constant   = $provide.constant;
+  angular.module('core').value      = $provide.value;
+
+}]).config(['$translateProvider', function ($translateProvider) {
+
+  $translateProvider.useStaticFilesLoader({
+    prefix : 'modules/core/i18n/',
+    suffix : '.json'
+  });
+  $translateProvider.preferredLanguage('en');
+  $translateProvider.useLocalStorage();
+
+}])
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+
+  cfpLoadingBarProvider.includeBar = true;
+  cfpLoadingBarProvider.includeSpinner = false;
+  cfpLoadingBarProvider.latencyThreshold = 500;
+  cfpLoadingBarProvider.parentSelector = '.wrapper > section';
+}]);
+
 /**=========================================================
  * Module: constants.js
  * Define constants to inject across the application
@@ -250,7 +313,7 @@ angular.module('core')
     },
     // Angular based script (use the right module name)
     modules: [
-      // { name: 'toaster', files: ['vendor/angularjs-toaster/toaster.js','vendor/angularjs-toaster/toaster.css'] }
+      // { name: 'toaster', files: ['/lib/angularjs-toaster/toaster.js','/lib/angularjs-toaster/toaster.css'] }
     ]
 
   })
@@ -260,41 +323,38 @@ angular.module('core')
  * App routes and resources configuration
  =========================================================*/
 
-angular.module('core').config(['$stateProvider','$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', 'APP_REQUIRES', 'RouteHelpersProvider',
-function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider, appRequires, helper) {
+angular.module('core').config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteHelpersProvider',
+function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   'use strict';
 
-  angular.module('core').controller = $controllerProvider.register;
-  angular.module('core').directive  = $compileProvider.directive;
-  angular.module('core').filter     = $filterProvider.register;
-  angular.module('core').factory    = $provide.factory;
-  angular.module('core').service    = $provide.service;
-  angular.module('core').constant   = $provide.constant;
-  angular.module('core').value      = $provide.value;
-
-  // LAZY MODULES
-  // ----------------------------------- 
-
-  $ocLazyLoadProvider.config({
-    debug: true,
-    events: true,
-    modules: appRequires.modules
-  });
-
+  // Set the following to true to enable the HTML5 Mode
+  // You may have to set <base> tag in index and a routing configuration in your server
+  $locationProvider.html5Mode(false);
 
   // default route
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/home');
 
   // 
   // Application Routes
   // -----------------------------------   
   $stateProvider
-    .state('home', {
-      url: '/',
+    .state('app', {
+      // url: '/',
+      abstract: true,
+      template: '<div data-ui-view autoscroll="false" ng-class="app.viewAnimation" class="content-wrapper"></div>',
+      resolve: helper.resolveFor('modernizr', 'icons')
+    })
+    .state('app.home', {
+      url: '/home',
       // abstract: true,
       // templateUrl: helper.basepath('app.html'),
-      templateUrl: 'modules/core/views/home.client.view.html',
-      resolve: helper.resolveFor('modernizr', 'icons')
+      templateUrl: 'modules/core/views/home.client.view.html'
+    })
+    .state('app.timeline', {
+      url: '/timeline',
+      // abstract: true,
+      // templateUrl: helper.basepath('app.html'),
+      templateUrl: 'modules/core/views/timeline.client.view.html'
     })
     // 
     // CUSTOM RESOLVES
@@ -314,23 +374,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     // })
     ;
 
-}]).config(['$translateProvider', function ($translateProvider) {
-    'use strict';
-    $translateProvider.useStaticFilesLoader({
-        prefix : 'app/i18n/',
-        suffix : '.json'
-    });
-    $translateProvider.preferredLanguage('en');
-    $translateProvider.useLocalStorage();
-
-}]).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    'use strict';
-    cfpLoadingBarProvider.includeBar = true;
-    cfpLoadingBarProvider.includeSpinner = false;
-    cfpLoadingBarProvider.latencyThreshold = 500;
-    cfpLoadingBarProvider.parentSelector = '.wrapper > section';
-  }])
-.controller('NullController', function() {});
+}]);
 
 /**=========================================================
  * Module: main.js
@@ -455,11 +499,28 @@ angular.module('core').controller('AppController',
       $event.stopPropagation();
     };
 
+    $scope.myInterval = 5000;
+    $scope.slides = [
+      {
+        image: 'modules/core/img/slides/slide1.jpg',
+        title: "title 1",
+        text: "text 1"
+      },{
+        image: 'modules/core/img/slides/slide2.jpg',
+        title: "title 2",
+        text: "text 2"
+      },{
+        image: 'modules/core/img/slides/slide3.jpg',
+        title: "title 3",
+        text: "text 3"
+      }
+    ];
+
 }]);
 
 'use strict';
 
-angular.module('core').controller('HeaderController123', ['$scope', 'Authentication', 'Menus',
+angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
 	function($scope, Authentication, Menus) {
 		$scope.authentication = Authentication;
 		$scope.isCollapsed = false;
@@ -475,53 +536,23 @@ angular.module('core').controller('HeaderController123', ['$scope', 'Authenticat
 		});
 	}
 ]);
-/**=========================================================
- * Module: sidebar-menu.js
- * Provides a simple way to implement bootstrap collapse plugin using a target 
- * next to the current element (sibling)
- * Targeted elements must have [data-toggle="collapse-next"]
- =========================================================*/
+
+'use strict';
+
 angular.module('core').controller('SidebarController',
-  ['$rootScope', '$scope', '$state', '$location', '$http', '$timeout', 'APP_MEDIAQUERY', 'Authentication', 'Menus',
-  function($rootScope, $scope, $state, $location, $http, $timeout, mq, Authentication, Menus){
-    'use strict';
-    var currentState = $rootScope.$state.current.name;
-    var $win = $(window);
-    var $html = $('html');
-    var $body = $('body');
-
-
+  ['$rootScope', '$scope', '$state', 'Authentication', 'Menus', 'Utils',
+  function($rootScope, $scope, $state,  Authentication, Menus, Utils) {
 
     $scope.authentication = Authentication;
-    $scope.isCollapsed = false;
-    $scope.menu = Menus.getMenu('topbar');
+    $scope.menu = Menus.getMenu('sidebar');
 
-    $scope.toggleCollapsibleMenu = function() {
-      $scope.isCollapsed = !$scope.isCollapsed;
-    };
+    var collapseList = [];
 
-    // Collapsing the menu after navigation
-    $scope.$on('$stateChangeSuccess', function() {
-      $scope.isCollapsed = false;
-    });
-
-
-
-    // Adjustment on route changes
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      currentState = toState.name;
-      // Hide sidebar automatically on mobile
-      $('body.aside-toggled').removeClass('aside-toggled');
-
-      $rootScope.$broadcast('closeSidebarMenu');
-    });
-
-    // Normalize state on resize to avoid multiple checks
-    $win.on('resize', function() {
-      if( isMobile() )
-        $body.removeClass('aside-collapsed');
-      else
-        $body.removeClass('aside-toggled');
+    // demo: when switch from collapse to hover, close all items
+    $rootScope.$watch('app.layout.asideHover', function(oldVal, newVal){
+      if ( newVal === false && oldVal === true) {
+        closeAllBut(-1);
+      }
     });
 
     // Check item and children active state
@@ -548,27 +579,11 @@ angular.module('core').controller('SidebarController',
              (isActive(item) ? ' active' : '') ;
     };
 
-    $scope.loadSidebarMenu = function() {
-
-      var menuJson = 'server/sidebar-menu.json',
-          menuURL  = menuJson + '?v=' + (new Date().getTime()); // jumps cache
-      $http.get(menuURL)
-        .success(function(items) {
-           $rootScope.menuItems = items;
-        })
-        .error(function(data, status, headers, config) {
-          alert('Failure loading menu');
-        });
-     };
-
-     // $scope.loadSidebarMenu();
-
     // Handle sidebar collapse items
     // ----------------------------------- 
-    var collapseList = [];
 
     $scope.addCollapse = function($index, item) {
-      collapseList[$index] = !isActive(item);
+      collapseList[$index] = $rootScope.app.layout.asideHover ? true : !isActive(item);
     };
 
     $scope.isCollapse = function($index) {
@@ -577,8 +592,9 @@ angular.module('core').controller('SidebarController',
 
     $scope.toggleCollapse = function($index, isParentItem) {
 
+
       // collapsed sidebar doesn't toggle drodopwn
-      if( isSidebarCollapsed() && !isMobile() ) return true;
+      if( Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover ) return true;
 
       // make sure the item index exists
       if( angular.isDefined( collapseList[$index] ) ) {
@@ -599,27 +615,19 @@ angular.module('core').controller('SidebarController',
         if(index < 0 || index.indexOf(i) < 0)
           collapseList[i] = true;
       }
-      // angular.forEach(collapseList, function(v, i) {
-      // });
     }
 
-    // Helper checks
-    // ----------------------------------- 
+  }
+]);
 
-    function isMobile() {
-      return $win.width() < mq.tablet;
-    }
-    function isTouch() {
-      return $html.hasClass('touch');
-    }
-    function isSidebarCollapsed() {
-      return $body.hasClass('aside-collapsed');
-    }
-    function isSidebarToggled() {
-      return $body.hasClass('aside-toggled');
-    }
-}]);
+'use strict';
 
+angular.module('core').controller('TimelineController', ['$scope',
+	function($scope) {
+		// Timeline controller logic
+		// ...
+	}
+]);
 /**=========================================================
  * Module: navbar-search.js
  * Navbar search toggler * Auto dismiss on ESC key
@@ -671,13 +679,13 @@ angular.module('core').directive('searchOpen', ['navSearch', function(navSearch)
  =========================================================*/
 
 /* jshint -W026 */
-angular.module('core').directive('sidebar', ['$window', 'APP_MEDIAQUERY', function($window, mq) {
+angular.module('core').directive('sidebar', ['$rootScope', '$window', 'Utils', function($rootScope, $window, Utils) {
   'use strict';
   var $win  = $($window);
-  var $html = $('html');
   var $body = $('body');
   var $scope;
   var $sidebar;
+  var currentState = $rootScope.$state.current.name;
 
   return {
     restrict: 'EA',
@@ -689,14 +697,17 @@ angular.module('core').directive('sidebar', ['$window', 'APP_MEDIAQUERY', functi
       $scope   = scope;
       $sidebar = element;
 
-      var eventName = isTouch() ? 'click' : 'mouseenter' ;
+      var eventName = Utils.isTouch() ? 'click' : 'mouseenter' ;
       var subNav = $();
       $sidebar.on( eventName, '.nav > li', function() {
 
-        if( isSidebarCollapsed() && !isMobile() ) {
+        if( Utils.isSidebarCollapsed() || $rootScope.app.layout.asideHover ) {
 
           subNav.trigger('mouseleave');
           subNav = toggleMenuItem( $(this) );
+
+          // Used to detect click and touch events outside the sidebar          
+          sidebarAddBackdrop();
 
         }
 
@@ -704,11 +715,32 @@ angular.module('core').directive('sidebar', ['$window', 'APP_MEDIAQUERY', functi
 
       scope.$on('closeSidebarMenu', function() {
         removeFloatingNav();
-        $('.sidebar li.open').removeClass('open');
       });
+
+      // Normalize state when resize to mobile
+      $win.on('resize', function() {
+        if( ! Utils.isMobile() )
+          $body.removeClass('aside-toggled');
+      });
+
+      // Adjustment on route changes
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        currentState = toState.name;
+        // Hide sidebar automatically on mobile
+        $('body.aside-toggled').removeClass('aside-toggled');
+
+        $rootScope.$broadcast('closeSidebarMenu');
+      });
+
     }
   };
 
+  function sidebarAddBackdrop() {
+    var $backdrop = $('<div/>', { 'class': 'dropdown-backdrop'} );
+    $backdrop.insertAfter('.aside-inner').on("click mouseenter", function () {
+      removeFloatingNav();
+    });
+  }
 
   // Open the collapse sidebar submenu items when on touch devices 
   // - desktop only opens on hover
@@ -735,8 +767,9 @@ angular.module('core').directive('sidebar', ['$window', 'APP_MEDIAQUERY', functi
     }
 
     var $aside = $('.aside');
-    var mar =  $scope.app.layout.isFixed ?  parseInt( $aside.css('padding-top'), 0) : 0;
-
+    var $asideInner = $('.aside-inner'); // for top offset calculation
+    // float aside uses extra padding on aside
+    var mar = parseInt( $asideInner.css('padding-top'), 0) + parseInt( $aside.css('padding-top'), 0);
     var subNav = ul.clone().appendTo( $aside );
     
     toggleTouchItem($listItem);
@@ -761,21 +794,11 @@ angular.module('core').directive('sidebar', ['$window', 'APP_MEDIAQUERY', functi
   }
 
   function removeFloatingNav() {
+    $('.dropdown-backdrop').remove();
     $('.sidebar-subnav.nav-floating').remove();
+    $('.sidebar li.open').removeClass('open');
   }
 
-  function isTouch() {
-    return $html.hasClass('touch');
-  }
-  function isSidebarCollapsed() {
-    return $body.hasClass('aside-collapsed');
-  }
-  function isSidebarToggled() {
-    return $body.hasClass('aside-toggled');
-  }
-  function isMobile() {
-    return $win.width() < mq.tablet;
-  }
 }]);
 /**=========================================================
  * Module: toggle-state.js
@@ -1030,7 +1053,7 @@ angular.module('core').service('Menus', [
 				position: position || 0,
 				items: [],
 				shouldRender: shouldRender,
-				iconClass: iconClass || 'fa fa-caret-right',
+				iconClass: iconClass || 'fa fa-file-o',
 				translate: translateKey,
 				alert: alert
 			});
@@ -1100,6 +1123,8 @@ angular.module('core').service('Menus', [
 
 		//Adding the topbar menu
 		this.addMenu('topbar');
+		//Adding the sidebar menu
+		this.addMenu('sidebar');
 	}
 ]);
 /**=========================================================
@@ -1264,115 +1289,77 @@ angular.module('core').service('toggleStateService', ['$rootScope', function($ro
 }]);
 /**=========================================================
  * Module: utils.js
- * jQuery Utility functions library 
- * adapted from the core of UIKit
+ * Utility library to use across the theme
  =========================================================*/
 
-/* jshint -W069 */
-/* jshint -W054 */
-(function($, window, doc){
+angular.module('core').service('Utils', ["$window", "APP_MEDIAQUERY", function($window, APP_MEDIAQUERY) {
     'use strict';
     
-    var $html = $("html"), $win = $(window);
+    var $html = angular.element("html"),
+        $win  = angular.element($window),
+        $body = angular.element('body');
 
-    $.support.transition = (function() {
+    return {
+      // DETECTION
+      support: {
+        transition: (function() {
+          var transitionEnd = (function() {
 
-        var transitionEnd = (function() {
-
-            var element = doc.body || doc.documentElement,
-                transEndEventNames = {
-                    WebkitTransition: 'webkitTransitionEnd',
-                    MozTransition: 'transitionend',
-                    OTransition: 'oTransitionEnd otransitionend',
-                    transition: 'transitionend'
-                }, name;
+            var element = document.body || document.documentElement,
+              transEndEventNames = {
+                WebkitTransition: 'webkitTransitionEnd',
+                MozTransition: 'transitionend',
+                OTransition: 'oTransitionEnd otransitionend',
+                transition: 'transitionend'
+              }, name;
 
             for (name in transEndEventNames) {
-                if (element.style[name] !== undefined) return transEndEventNames[name];
+              if (element.style[name] !== undefined) return transEndEventNames[name];
             }
-        }());
+          }());
 
-        return transitionEnd && { end: transitionEnd };
-    })();
+          return transitionEnd && { end: transitionEnd };
+        })(),
+        animation: (function() {
+          var animationEnd = (function() {
 
-    $.support.animation = (function() {
-
-        var animationEnd = (function() {
-
-            var element = doc.body || doc.documentElement,
-                animEndEventNames = {
-                    WebkitAnimation: 'webkitAnimationEnd',
-                    MozAnimation: 'animationend',
-                    OAnimation: 'oAnimationEnd oanimationend',
-                    animation: 'animationend'
-                }, name;
+            var element = document.body || document.documentElement,
+              animEndEventNames = {
+                WebkitAnimation: 'webkitAnimationEnd',
+                MozAnimation: 'animationend',
+                OAnimation: 'oAnimationEnd oanimationend',
+                animation: 'animationend'
+              }, name;
 
             for (name in animEndEventNames) {
-                if (element.style[name] !== undefined) return animEndEventNames[name];
+              if (element.style[name] !== undefined) return animEndEventNames[name];
             }
-        }());
+          }());
 
-        return animationEnd && { end: animationEnd };
-    })();
-
-    $.support.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || window.oRequestAnimationFrame || function(callback){ window.setTimeout(callback, 1000/60); };
-    $.support.touch                 = (
-        ('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/)) ||
-        (window.DocumentTouch && document instanceof window.DocumentTouch)  ||
-        (window.navigator['msPointerEnabled'] && window.navigator['msMaxTouchPoints'] > 0) || //IE 10
-        (window.navigator['pointerEnabled'] && window.navigator['maxTouchPoints'] > 0) || //IE >=11
-        false
-    );
-    $.support.mutationobserver      = (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null);
-
-    $.Utils = {};
-
-    $.Utils.debounce = function(func, wait, immediate) {
-        var timeout;
-        return function() {
-            var context = this, args = arguments;
-            var later = function() {
-                timeout = null;
-                if (!immediate) func.apply(context, args);
-            };
-            var callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
-        };
-    };
-
-    $.Utils.removeCssRules = function(selectorRegEx) {
-        var idx, idxs, stylesheet, _i, _j, _k, _len, _len1, _len2, _ref;
-
-        if(!selectorRegEx) return;
-
-        setTimeout(function(){
-            try {
-              _ref = document.styleSheets;
-              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-                stylesheet = _ref[_i];
-                idxs = [];
-                stylesheet.cssRules = stylesheet.cssRules;
-                for (idx = _j = 0, _len1 = stylesheet.cssRules.length; _j < _len1; idx = ++_j) {
-                  if (stylesheet.cssRules[idx].type === CSSRule.STYLE_RULE && selectorRegEx.test(stylesheet.cssRules[idx].selectorText)) {
-                    idxs.unshift(idx);
-                  }
-                }
-                for (_k = 0, _len2 = idxs.length; _k < _len2; _k++) {
-                  stylesheet.deleteRule(idxs[_k]);
-                }
-              }
-            } catch (_error) {}
-        }, 0);
-    };
-
-    $.Utils.isInView = function(element, options) {
+          return animationEnd && { end: animationEnd };
+        })(),
+        requestAnimationFrame: window.requestAnimationFrame ||
+                               window.webkitRequestAnimationFrame ||
+                               window.mozRequestAnimationFrame ||
+                               window.msRequestAnimationFrame ||
+                               window.oRequestAnimationFrame ||
+                               function(callback){ window.setTimeout(callback, 1000/60); },
+        touch: (
+            ('ontouchstart' in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/)) ||
+            (window.DocumentTouch && document instanceof window.DocumentTouch)  ||
+            (window.navigator.msPointerEnabled && window.navigator.msMaxTouchPoints > 0) || //IE 10
+            (window.navigator.pointerEnabled && window.navigator.maxTouchPoints > 0) || //IE >=11
+            false
+        ),
+        mutationobserver: (window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null)
+      },
+      // UTILITIES
+      isInView: function(element, options) {
 
         var $element = $(element);
 
         if (!$element.is(':visible')) {
-            return false;
+          return false;
         }
 
         var window_left = $win.scrollLeft(),
@@ -1389,82 +1376,442 @@ angular.module('core').service('toggleStateService', ['$rootScope', function($ro
         } else {
           return false;
         }
+      },
+      langdirection: $html.attr("dir") == "rtl" ? "right" : "left",
+      isTouch: function () {
+        return $html.hasClass('touch');
+      },
+      isSidebarCollapsed: function () {
+        return $body.hasClass('aside-collapsed');
+      },
+      isSidebarToggled: function () {
+        return $body.hasClass('aside-toggled');
+      },
+      isMobile: function () {
+        return $win.width() < APP_MEDIAQUERY.tablet;
+      }
     };
-
-    $.Utils.options = function(string) {
-
-        if ($.isPlainObject(string)) return string;
-
-        var start = (string ? string.indexOf("{") : -1), options = {};
-
-        if (start != -1) {
-            try {
-                options = (new Function("", "var json = " + string.substr(start) + "; return JSON.parse(JSON.stringify(json));"))();
-            } catch (e) {}
-        }
-
-        return options;
-    };
-
-    $.Utils.events       = {};
-    $.Utils.events.click = $.support.touch ? 'tap' : 'click';
-
-    $.langdirection = $html.attr("dir") == "rtl" ? "right" : "left";
-
-    $(function(){
-
-        // Check for dom modifications
-        if(!$.support.mutationobserver) return;
-
-        // Install an observer for custom needs of dom changes
-        var observer = new $.support.mutationobserver($.Utils.debounce(function(mutations) {
-            $(doc).trigger("domready");
-        }, 300));
-
-        // pass in the target node, as well as the observer options
-        observer.observe(document.body, { childList: true, subtree: true });
-
-    });
-
-    // add touch identifier class
-    $html.addClass($.support.touch ? "touch" : "no-touch");
-
-}(jQuery, window, document));
+}]);
 'use strict';
 
-// Single module config
-angular.module('single').run(['Menus',
+// Configuring the Articles module
+angular.module('events').run(['Menus',
 	function(Menus) {
-
-    Menus.addMenuItem('topbar', 'Single', 'single', 'dropdown', '', true);
-    Menus.addSubMenuItem('topbar', 'single', 'SubSingle 1', 'single', true);
-    Menus.addSubMenuItem('topbar', 'single', 'SubSingle 2', 'single/sub', true);
-
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Eventos', 'events', 'dropdown', '/events(/create)?', false, null, null, 'fa fa-calendar');
+		/*Menus.addSubMenuItem('sidebar', 'events', 'List Events', 'events');*/
+		Menus.addSubMenuItem('sidebar', 'events', 'Nuevo Evento', 'events/create', false);
 	}
 ]);
+
 'use strict';
 
 //Setting up route
-angular.module('single').config(['$stateProvider',
+angular.module('events').config(['$stateProvider',
 	function($stateProvider) {
-		// Single state routing
+		// Events state routing
 		$stateProvider.
-		state('single', {
-			url: '/single',
-			templateUrl: 'modules/single/views/single.client.view.html'
-		})
-    .state('sub', {
-      url: '/single/sub',
-      templateUrl: 'modules/single/views/singlesub.client.view.html'
-    });
+		state('app.listEvents', {
+			url: '/events',
+			templateUrl: 'modules/events/views/list-events.client.view.html'
+		}).
+		state('app.createEvent', {
+			url: '/events/create',
+			templateUrl: 'modules/events/views/create-event.client.view.html'
+		}).
+		state('app.viewEvent', {
+			url: '/events/:eventId',
+			templateUrl: 'modules/events/views/view-event.client.view.html'
+		}).
+		state('app.editEvent', {
+			url: '/events/:eventId/edit',
+			templateUrl: 'modules/events/views/edit-event.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Events controller
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events',
+	function($scope, $stateParams, $location, Authentication, Events) {
+		$scope.authentication = Authentication;
+
+		// Create new Event
+		$scope.create = function() {
+			// Create new Event object
+			var event = new Events ({
+				name: this.name
+			});
+
+			// Redirect after save
+			event.$save(function(response) {
+				$location.path('events/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Event
+		$scope.remove = function(event) {
+			if ( event ) { 
+				event.$remove();
+
+				for (var i in $scope.events) {
+					if ($scope.events [i] === event) {
+						$scope.events.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.event.$remove(function() {
+					$location.path('events');
+				});
+			}
+		};
+
+		// Update existing Event
+		$scope.update = function() {
+			var event = $scope.event;
+
+			event.$update(function() {
+				$location.path('events/' + event._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Events
+		$scope.find = function() {
+			$scope.events = Events.query();
+		};
+
+		// Find existing Event
+		$scope.findOne = function() {
+			$scope.event = Events.get({ 
+				eventId: $stateParams.eventId
+			});
+		};
 	}
 ]);
 'use strict';
 
-angular.module('single').controller('SingleController', ['$scope',
-	function($scope) {
-		// Controller Logic
-		// ...
+//Events service used to communicate Events REST endpoints
+angular.module('events').factory('Events', ['$resource',
+	function($resource) {
+		return $resource('events/:eventId', { eventId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+/*
+'use strict';
+
+// Configuring the Articles module
+angular.module('imageuploaders').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Imageuploaders', 'imageuploaders', 'dropdown', '/imageuploaders(/create)?');
+		Menus.addSubMenuItem('sidebar', 'imageuploaders', 'List Imageuploaders', 'imageuploaders');
+		Menus.addSubMenuItem('sidebar', 'imageuploaders', 'New Imageuploader', 'imageuploaders/create');
+	}
+]);*/
+
+'use strict';
+
+//Setting up route
+angular.module('imageuploaders').config(['$stateProvider',
+	function($stateProvider) {
+		// Imageuploaders state routing
+		$stateProvider.
+		state('listImageuploaders', {
+			url: '/imageuploaders',
+			templateUrl: 'modules/imageuploaders/views/list-imageuploaders.client.view.html'
+		}).
+		state('createImageuploader', {
+			url: '/imageuploaders/create',
+			templateUrl: 'modules/imageuploaders/views/create-imageuploader.client.view.html'
+		}).
+		state('viewImageuploader', {
+			url: '/imageuploaders/:imageuploaderId',
+			templateUrl: 'modules/imageuploaders/views/view-imageuploader.client.view.html'
+		}).
+		state('editImageuploader', {
+			url: '/imageuploaders/:imageuploaderId/edit',
+			templateUrl: 'modules/imageuploaders/views/edit-imageuploader.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Imageuploaders controller
+angular.module('imageuploaders').controller('ImageuploadersController', [
+  '$scope', '$stateParams', '$location', 'Authentication', 'Upload', '$http',
+	function($scope, $stateParams, $location, Authentication, Upload, $http) {
+		$scope.authentication = Authentication;
+	}
+]).directive("fileread", [function () {
+    return {
+      scope: {
+        fileread: "="
+      },
+      link: function (scope, element, attributes) {
+        element.bind("change", function (changeEvent) {
+          scope.$apply(function () {
+            scope.fileread = changeEvent.target.files[0];
+            // or all selected files:
+            // scope.fileread = changeEvent.target.files;
+          });
+        });
+      }
+    };
+  }]);
+
+'use strict';
+
+angular.module('imageuploaders').filter('cloudinaryProfile', [
+	function() {
+		return function(input) {
+			// Cloudinary directive logic
+			// ...
+			var res = input.split("/upload/");
+			input = res[0]+ '/upload/w_150,h_150,c_thumb/' + res[1];
+			return input;
+		};
+	}
+]);
+
+'use strict';
+
+//Imageuploaders service used to communicate Imageuploaders REST endpoints
+angular.module('imageuploaders').factory('Upload', ['$window','$q','Restangular', function ($window, $q, Restangular) {
+  return {
+    parse: function (fields) {
+
+      var result = $q.defer(),
+        requests = [],
+        that = this;
+
+      angular.forEach(fields, function (fieldData, field) {
+        var deferred = $q.defer(), data;
+        if (fieldData instanceof $window.File) {
+          requests.push(deferred.promise);
+          data = new FormData();
+          data.append('file', fieldData);
+          if (fieldData.imageProvider) {
+            data.append('imageProvider', fieldData.imageProvider);
+          }
+
+          Restangular
+            .one('upload')
+            .withHttpConfig({transformRequest: angular.identity})
+            .customPOST(data, null, {}, {'Content-Type': undefined})
+            .then(function (file) {
+              fields[field] = file.url;
+              deferred.resolve();
+            });
+        } else if (fieldData !== null && typeof fieldData === 'object') {
+          requests.push(deferred.promise);
+          that.parse(fields[field]).then(function () {
+            deferred.resolve();
+          });
+        }
+      });
+
+      $q.all(requests).then(function () {
+        result.resolve();
+      });
+
+      return result.promise;
+    }
+  };
+}]);
+
+'use strict';
+
+// Configuring the Articles module
+angular.module('pets').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Mascotas', 'pets', 'dropdown', '/pets(/create)?', false, null, null, 'fa fa-paw');
+		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets');*/
+		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create', false);
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('pets').config(['$stateProvider',
+	function($stateProvider) {
+		// Pets state routing
+		$stateProvider.
+		state('qr', {
+			url: '/qr',
+			templateUrl: 'modules/pets/views/qr.client.view.html'
+		}).
+		state('app.listPets', {
+			url: '/pets',
+			templateUrl: 'modules/pets/views/list-pets.client.view.html'
+		}).
+		state('app.createPet', {
+			url: '/pets/create',
+			templateUrl: 'modules/pets/views/create-pet.client.view.html'
+		}).
+		state('app.viewPet', {
+			url: '/pets/:petId',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			controller: 'PetsController'
+		}).
+		state('app.editPet', {
+			url: '/pets/:petId/edit',
+			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Pets controller
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$modal',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal  ) {
+		$scope.authentication = Authentication;
+
+
+
+		// Create new Pet
+		$scope.create = function() {
+			// Create new Pet object
+			var pet = new Pets ({
+				name: this.name,
+				picture: this.picture,
+				slug: this.name + '_' + this.breed,
+				color: this.color,
+				breed: this.breed,
+				genre: this.genre,
+				description: this.description,
+				neutered: this.neutered
+			});
+
+			$scope.formBusy = true;
+
+
+			// Redirect after save
+			Upload.parse(pet).then(function () {
+				pet.$save(function(response) {
+					$location.path('pets/' + response._id);
+					// Clear form fields
+					$scope.name = '';
+					$scope.picture = '';
+					$scope.slug = '';
+					$scope.color = '';
+					$scope.breed = '';
+					$scope.neutered = '';
+				}, function(errorResponse) {
+					$scope.formBusy = false;
+				  $scope.error = errorResponse.data.message;
+				});
+			});
+
+
+		};
+
+		// Remove existing Pet
+		$scope.remove = function(pet) {
+			if ( pet ) { 
+				pet.$remove();
+
+				for (var i in $scope.pets) {
+					if ($scope.pets [i] === pet) {
+						$scope.pets.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.pet.$remove(function() {
+					$location.path('pets');
+				});
+			}
+		};
+
+		// Update existing Pet
+		$scope.update = function() {
+			$scope.formBusy = true;
+			var pet = $scope.pet;
+			delete pet.$promise;
+			delete pet.$resolved;
+
+			Upload.parse(pet).then(function () {
+				pet.$update(function() {
+					$location.path('pets/' + pet._id);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			});
+
+		};
+
+		// Find a list of Pets
+		$scope.find = function() {
+			$scope.pets = Pets.query();
+		};
+
+		// Find existing Pet
+		$scope.findOne = function() {
+			$scope.pet = Pets.get({ 
+				petId: $stateParams.petId
+			});
+		};
+	}
+]);
+
+'use strict';
+
+angular.module('pets').directive('qr',[ '$http',
+	function($http) {
+		return {
+			templateUrl: '/modules/pets/views/qr.client.view.html',
+			restrict: 'E',
+			replace: true,
+			scope: {
+				pet: '='
+			},
+			link: function postLink(scope, element, attr) {
+
+				scope.svg = "";
+
+				$http.get('/qr/' + scope.pet.slug).
+					success(function(data, status, headers, config) {
+						// this callback will be called asynchronously
+						// when the response is available
+						scope.svg = data;
+					}).
+					error(function(data, status, headers, config) {
+						// called asynchronously if an error occurs
+						// or server returns response with an error status.
+						console.log('ERROR');
+					});
+			}
+		};
+	}
+]);
+
+'use strict';
+
+//Pets service used to communicate Pets REST endpoints
+angular.module('pets').factory('Pets', ['$resource',
+	function($resource) {
+		return $resource('pets/:petId', { petId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
 	}
 ]);
 'use strict';
@@ -1504,39 +1851,39 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
-		state('profile', {
+		state('app.profile', {
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
 		}).
-		state('password', {
+		state('app.password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
 		}).
-		state('accounts', {
+		state('app.accounts', {
 			url: '/settings/accounts',
 			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html'
 		}).
-		state('signup', {
+		state('app.signup', {
 			url: '/signup',
 			templateUrl: 'modules/users/views/authentication/signup.client.view.html'
 		}).
-		state('signin', {
+		state('app.signin', {
 			url: '/signin',
 			templateUrl: 'modules/users/views/authentication/signin.client.view.html'
 		}).
-		state('forgot', {
+		state('app.forgot', {
 			url: '/password/forgot',
 			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
 		}).
-		state('reset-invalid', {
+		state('app.reset-invalid', {
 			url: '/password/reset/invalid',
 			templateUrl: 'modules/users/views/password/reset-password-invalid.client.view.html'
 		}).
-		state('reset-success', {
+		state('app.reset-success', {
 			url: '/password/reset/success',
 			templateUrl: 'modules/users/views/password/reset-password-success.client.view.html'
 		}).
-		state('reset', {
+		state('app.reset', {
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
 		});
