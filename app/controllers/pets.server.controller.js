@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
  * List of Pets
  */
 exports.list = function(req, res) { 
-	Pet.find().sort('-created').populate('user', 'displayName').exec(function(err, pets) {
+	Pet.find().sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
