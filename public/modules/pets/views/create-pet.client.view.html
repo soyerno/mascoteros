@@ -34,6 +34,16 @@
                                     </tr>
                                     <tr>
                                         <td>
+                                            <label class="control-label" for="name">Tipo de Mascota</label>
+                                        </td>
+                                        <td>
+                                            <div class="controls">
+                                                <pet-type-selector ng-model="type"></pet-type-selector>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                             <label class="control-label" for="breed">Raza</label>
                                         </td>
                                         <td>
@@ -53,7 +63,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><label class="control-label" for="yearOfBirth">Edad Aproximada</label></td>
+                                        <td><label class="control-label" for="yearOfBirth">Fecha de Nac</label></td>
                                         <td>
                                             <div class="controls">
                                                 <input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
@@ -72,7 +82,6 @@
                                                     <option value="male">Macho</option>
                                                     <option value="female">Hembra</option>
                                                 </select>-->
-                                                {{genre}}
                                                 <pet-genre-selector ng-model="genre"></pet-genre-selector>
                                             </div>
                                         </td>

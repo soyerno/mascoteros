@@ -3,13 +3,14 @@
 angular.module('petgenres').directive('petGenreSelector', [ 'Petgenres', '$localStorage',
 	function(Petgenres, $localStorage) {
 		return {
-			template: '<select ng-options="item._id as item.name for item in petgenres"></select>',
+			templateUrl: '/modules/petgenres/views/partials/pet-genre-selector.html',
 			restrict: 'E',
-			link: function postLink(scope, element, attrs) {
-				scope.petgenres = [];
+			replace: true,
+			link: function(scope, element, attrs) {
 				scope.$storage = $localStorage;
 
 				scope.getGenres = function(){
+					console.log('getGenres');
 					if(scope.$storage.petgenres && scope.$storage.petgenres.length){
 						scope.petgenres = scope.$storage.petgenres;
 						console.log('$localStorage', scope.petgenres);
@@ -18,7 +19,8 @@ angular.module('petgenres').directive('petGenreSelector', [ 'Petgenres', '$local
 						scope.$storage.petgenres = scope.petgenres;
 						console.log('else', scope.petgenres);
 					}
-				}
+				};
+
 				scope.getGenres();
 			}
 		};
