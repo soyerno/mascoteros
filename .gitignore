@@ -33,3 +33,5 @@ App.css
 App.css.map
 /doc/
 .idea/workspace.xml
+
+public/lib
