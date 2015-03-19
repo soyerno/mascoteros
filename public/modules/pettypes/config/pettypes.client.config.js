@@ -1,6 +1,7 @@
 'use strict';
 
 // Configuring the Articles module
+/*
 angular.module('pettypes').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
@@ -8,4 +9,4 @@ angular.module('pettypes').run(['Menus',
 		Menus.addSubMenuItem('sidebar', 'pettypes', 'List Pettypes', 'pettypes');
 		Menus.addSubMenuItem('sidebar', 'pettypes', 'New Pettype', 'pettypes/create');
 	}
-]);
+]);*/
