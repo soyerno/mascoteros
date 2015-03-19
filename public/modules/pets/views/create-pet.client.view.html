@@ -113,7 +113,7 @@
 
                                     <tr>
                                         <td>
-                                            <iframe ng-if="pet.address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com.ar/maps/place/"{{pet.address + '&output=embed'}}></iframe>
+                                            <iframe ng-if="address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="https://www.google.com.ar/maps/place/{{address}}&output=embed"></iframe>
                                         </td>
                                         <td>
                                             <label class="control-label" for="description">Dirección</label>
