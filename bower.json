@@ -1,10 +1,10 @@
 {
-  "name": "Angle",
-  "version": "0.0.0",
+  "name": "Mascoteros",
+  "version": "0.0.1",
   "authors": [
     "@themicon_co"
   ],
-  "description": "Bootstrap Admin Theme + Meanjs",
+  "description": "Somos amigos de las mascotas",
   "main": "index.html",
   "keywords": [
     "bootstrap",

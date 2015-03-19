@@ -4,7 +4,7 @@ module.exports = {
 	//db: 'mongodb://localhost/mascoteros-dev',
 	db: 'mongodb://mascoteros:mascoteros@ds033107.mongolab.com:33107/heroku_app34828065',
 	app: {
-		title: 'Mascoteros - Development Environment'
+		title: 'Mascoteros'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || '1414293935539684',
