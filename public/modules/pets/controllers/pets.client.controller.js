@@ -18,7 +18,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				breed: this.breed,
 				genre: this.genre,
 				description: this.description,
-				neutered: this.neutered
+				neutered: this.neutered,
+				email: this.email,
+				address: this.address
 			});
 
 			$scope.formBusy = true;
@@ -35,6 +37,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 					$scope.color = '';
 					$scope.breed = '';
 					$scope.neutered = '';
+					$scope.email = '';
+					$scope.address = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
 				  $scope.error = errorResponse.data.message;
