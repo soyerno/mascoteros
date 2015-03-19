@@ -39,7 +39,8 @@ module.exports = {
 				'public/lib/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
 				'public/lib/oclazyload/dist/ocLazyLoad.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angular-loading-bar/build/loading-bar.js'
+				'public/lib/angular-loading-bar/build/loading-bar.js',
+				'public/lib/ngstorage/ngStorage.js'
         		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',

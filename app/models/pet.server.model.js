@@ -38,6 +38,9 @@ var PetSchema = new Schema({
 		required: 'Please fill Slug name',
 		trim: true
 	},
+	missing: {
+		type: Boolean
+	},
 	picture: {
 		type: String,
 		default: '',

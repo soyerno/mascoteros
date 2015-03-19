@@ -68,10 +68,12 @@
                                         </td>
                                         <td>
                                             <div class="controls">
-                                                <select name="genre" ng-model="genre" class="form-control" id="genre" required>
+                                                <!--<select name="genre" ng-model="genre" class="form-control" id="genre" required>
                                                     <option value="male">Macho</option>
                                                     <option value="female">Hembra</option>
-                                                </select>
+                                                </select>-->
+                                                {{genre}}
+                                                <pet-genre-selector ng-model="genre"></pet-genre-selector>
                                             </div>
                                         </td>
                                     </tr>

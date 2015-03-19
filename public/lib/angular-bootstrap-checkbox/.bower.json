@@ -1,0 +1,43 @@
+{
+  "name": "angular-bootstrap-checkbox-fa",
+  "version": "0.3.2",
+  "authors": [
+    "Sebastian Hammerl, Getslash GmbH",
+    "Guillermo Hernan De Souza"
+  ],
+  "description": "A checkbox for AngularJS styled to fit the Twitter Bootstrap standard design with Font Awesome",
+  "main": "angular-bootstrap-checkbox.js",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "directive",
+    "ui",
+    "bootstrap",
+    "form",
+    "input",
+    "checkbox"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": ">= 1.2.0",
+    "bootstrap": ">= 3.0.0"
+  },
+  "devDependencies": {
+    "angular-scenario": ">= 1.2.0"
+  },
+  "homepage": "https://github.com/H3rN4n/angular-bootstrap-checkbox",
+  "_release": "0.3.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.2",
+    "commit": "a071323de601e924e276d1bb50abe15e9505d041"
+  },
+  "_source": "git://github.com/H3rN4n/angular-bootstrap-checkbox.git",
+  "_target": "~0.3.1",
+  "_originalSource": "H3rN4n/angular-bootstrap-checkbox"
+}
