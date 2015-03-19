@@ -9,9 +9,9 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading" data-ng-bind="pet.name"></h4>
-                        <p class="">{{pet.user.displayName}}</p>
+                        <p>{{pet.user.displayName}}</p>
                         <p ng-bind="pet.description"></p>
-                        <p ng-bind="pet.genre"></p>
+                        <p ng-bind="pet.genre.name"></p>
                         <ul class="list-inline list-unstyled">
                             <li><span am-time-ago="pet.yearOfBirth"><i class="fa fa-calendar"></i></span></li>
                             <li>|</li>
