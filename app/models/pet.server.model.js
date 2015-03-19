@@ -24,6 +24,10 @@ var PetSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	},
+	type: {
+		type: Schema.ObjectId,
+		ref: 'Pettype'
+	},
 	description: {
 		type: String,
 		default: ''
@@ -45,9 +49,8 @@ var PetSchema = new Schema({
 		required: 'Please fill Pet color',
 	},
 	genre: {
-		type: String,
-		default: '',
-		required: 'Please fill Pet gerne',
+		type: Schema.ObjectId,
+		ref: 'Petgenre'
 	},
 	breed: {
 		type: String,
