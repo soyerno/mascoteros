@@ -9,23 +9,23 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading" data-ng-bind="pet.name"></h4>
-                        <p class="text-right" ng-bind="pet.user.displayName">{{pet}}</p>
+                        <p class="">{{pet.user.displayName}}</p>
                         <p ng-bind="pet.description"></p>
                         <p ng-bind="pet.genre"></p>
                         <ul class="list-inline list-unstyled">
-                            <li><span><i class="fa fa-calendar"></i> 2 años</span></li>
+                            <li><span><i class="fa fa-calendar"></i> {{pet.yearOfBirth}}</span></li>
                             <li>|</li>
-                            <span><i class="fa fa-comment"></i> 2 comments</span>
+                            <span> {{pet.breed}}</span>
                             <li>|</li>
                             <span><i class="fa fa-heart-o"></i> 2 Likes</span>
-                            <li>|</li>
-                            <li>
+                            <!--<li>|</li>-->
+                            <!--<li>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star"></span>
                                 <span class="fa fa-star-empty"></span>
-                            </li>
+                            </li>-->
                             <!--<li>|</li>-->
                             <!--<li>
                                 <span><i class="fa fa-facebook-square"></i></span>
