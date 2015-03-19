@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$modal', 'petgenres',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal, petgenres  ) {
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload  ) {
 		$scope.authentication = Authentication;
 
 
