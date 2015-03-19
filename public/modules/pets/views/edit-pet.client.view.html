@@ -51,7 +51,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><label class="control-label" for="yearOfBirth">Edad Aproximada</label></td>
+                                    <td><label class="control-label" for="yearOfBirth">Nació</label></td>
                                     <td>
                                         <div class="controls">
                                             <input type="text" ng-if="pet.yearOfBirth" disabled data-ng-model="pet.yearOfBirth | date:'fullDate'" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
@@ -83,8 +83,7 @@
                                 <tr>
                                     <td>Email de contacto</td>
                                     <td>
-                                        <a ng-if="pet.email" href="mailto:{{pet.email}}">{{pet.email}}</a>
-                                        <input ng-if="!pet.email" type="text" data-ng-model="pet.email" id="email" class="form-control" placeholder="usuario@email.com" required>
+                                        <input ng-if="pet.email" type="text" data-ng-model="pet.email" id="email" class="form-control" placeholder="usuario@email.com" required>
                                     </td>
                                 </tr>
                                 <td><label class="control-label" for="description">Descripcion o Rasgos de la mascota</label></td>
@@ -102,7 +101,7 @@
                                     </td>
                                     <td>
                                         <label class="control-label" for="description">Dirección</label>
-                                        <input type="text" data-ng-model="address" id="address" class="form-control" placeholder="Calle 123 - PB" required>
+                                        <input type="text" data-ng-model="pet.address" id="address" class="form-control" placeholder="Calle 123 - PB" required>
                                     </td>
                                 </tr>
 

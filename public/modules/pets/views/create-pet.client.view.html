@@ -63,10 +63,11 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><label class="control-label" for="yearOfBirth">Fecha de Nac</label></td>
+                                        <td><label class="control-label" for="yearOfBirth">Nació</label></td>
                                         <td>
                                             <div class="controls">
-                                                <input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
+                                                <!--<input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>-->
+                                                <input type="text" pick-a-date="yearOfBirth" class="form-control datepicker" pick-a-date-options="{ format: 'dd-mm-yyyy' }" placeholder="Fecha de Nac" required/>
                                             </div>
                                         </td>
                                     </tr>

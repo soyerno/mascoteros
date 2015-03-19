@@ -44,6 +44,7 @@ module.exports = {
 				'public/lib/moment/moment.js',
 				'public/lib/angular-moment/angular-moment.js',
 				'public/lib/moment/locale/es.js',
+				'public/lib/angular-native-picker/build/angular-datepicker.js',
         		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
@@ -61,9 +62,12 @@ module.exports = {
 			'public/application.min.css',
 			'public/modules/core/css/core.css',
 			'public/modules/core/css/landing.css',
+			'public/modules/core/css/datePicker.css',
 			'public/modules/core/css/offsidebar-tab-1.css',
 			'public/modules/pets/css/pet_profile.css',
-			'public/modules/pets/css/qr.css'
+			'public/modules/pets/css/qr.css',
+			'public/lib/angular-native-picker/build/themes/default.css',
+			'public/lib/angular-native-picker/build/themes/default.date.css'
 		],
 		js: [
 			'public/config.js',

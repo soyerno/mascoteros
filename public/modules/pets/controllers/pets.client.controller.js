@@ -10,6 +10,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		// Create new Pet
 		$scope.create = function() {
 			// Create new Pet object
+
 			var pet = new Pets ({
 				name: this.name,
 				picture: this.picture,
