@@ -40,4 +40,8 @@ angular.module('core')
     ]
 
   })
+  .constant('angularMomentConfig', {
+    //preprocess: 'unix', // optional
+    //timezone: 'Europe/London' // optional
+  })
 ;

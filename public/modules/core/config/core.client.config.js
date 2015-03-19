@@ -43,4 +43,7 @@ angular.module('core').run(['Menus',
   cfpLoadingBarProvider.includeSpinner = false;
   cfpLoadingBarProvider.latencyThreshold = 500;
   cfpLoadingBarProvider.parentSelector = '.wrapper > section';
-}]);
+}])
+.run(function(amMoment){
+  amMoment.changeLocale('es');
+});

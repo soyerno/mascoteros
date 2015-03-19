@@ -13,7 +13,7 @@
                         <p ng-bind="pet.description"></p>
                         <p ng-bind="pet.genre"></p>
                         <ul class="list-inline list-unstyled">
-                            <li><span><i class="fa fa-calendar"></i> {{pet.yearOfBirth}}</span></li>
+                            <li><span am-time-ago="pet.yearOfBirth"><i class="fa fa-calendar"></i></span></li>
                             <li>|</li>
                             <span> {{pet.breed}}</span>
                             <li>|</li>
