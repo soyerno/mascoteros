@@ -1,5 +1,5 @@
-<h3>
-	<div class="pull-right" data-ng-show="authentication.user._id == pet.user._id">
+<h3 data-ng-show="authentication.user._id == pet.user._id">
+	<div class="pull-right">
 		<a class="btn btn-primary" href="/#!/pets/{{pet._id}}/edit">
 			<i class="fa fa-edit"></i>
 		</a>
@@ -9,6 +9,41 @@
 	</div>
 	{{pet.name}}
 </h3>
+<div class="content-wrapper">
+	<div class="unwrap">
+		<div style="background-image: url('{{pet.picture}}')" class="bg-cover">
+			<div class="p-xl text-center text-white">
+				<img ng-if="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture |cloudinaryProfile }}" class="img-thumbnail img-circle thumb128">
+				<h3 class="m0">{{pet.name}}</h3>
+				<p>{{pet.user.displayName}}</p>
+				<p>{{pet.description}}</p>
+			</div>
+		</div>
+		<div class="text-center bg-gray-dark p-lg mb-xl">
+			<div class="row row-table">
+				<div class="col-xs-4 br">
+					<h3 class="m0">400</h3>
+					<p class="m0">
+						<span class="hidden-xs">Profile</span>
+						<span>Views</span>
+					</p>
+				</div>
+				<div class="col-xs-4 br">
+					<h3 class="m0">2000</h3>
+					<p class="m0">Likes</p>
+				</div>
+				<div class="col-xs-4">
+					<h3 class="m0">100</h3>
+					<p class="m0">Following</p>
+				</div>
+			</div>
+		</div>
+		<div class="p-lg">
+
+		</div>
+	</div>
+</div>
+
 <section data-ng-init="findOne()">
 	<!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
 	<div class="">
@@ -16,15 +51,6 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-3 col-lg-3 " align="center">
-						<hr/>
-						<div class="row">
-							<div class="col-md-12">
-								<!--{{ pet.picture |cloudinaryProfile }}-->
-								<!-- w_150,h_150,c_thumb,g_face -->
-								<img ng-if="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture |cloudinaryProfile }}" class="">
-							</div>
-						</div>
-						<hr/>
 						<div class="row">
 							<div class="col-md-12 pet-actions-container">
 								<button ng-if="!authentication.user._id == pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
@@ -46,7 +72,7 @@
 							<qr ng-if="pet" pet="pet"></qr>
 						</div>
 					</div>
-					<div class=" col-md-9 col-lg-9 ">
+					<div class=" col-md-6 col-lg-6 ">
 						<table class="table table-user-information">
 							<tbody>
 							<tr>
@@ -96,6 +122,9 @@
 							</tbody>
 						</table>
 
+					</div>
+					<div class="col-md-3 col-lg-3 " align="center">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0167085495204!2d-58.38157000000004!3d-34.60373899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1426818113475" width="100%" height="450" frameborder="0" style="border:0"></iframe>
 					</div>
 				</div>
 			</div>
