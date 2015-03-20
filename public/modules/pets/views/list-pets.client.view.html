@@ -1,7 +1,7 @@
 <h3>Mascotas</h3>
 <section data-ng-controller="PetsController" data-ng-init="find()" class="row">
     <!--<a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}">-->
-        <div class="col-lg-4" data-ng-repeat="pet in pets">
+        <div class="col-lg-6" data-ng-repeat="pet in pets">
             <!-- START widget-->
             <div class="panel widget">
                 <div style="background-image: url('{{pet.picture}}')" class="panel-body text-center bg-center">
@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">
+                    <!--<a href="#" class="list-group-item">
                         <span class="pull-right">Saliendo a pasear</span>
-                        <em class="fa fa-fw fa-clock-o text-muted"></em>Ultima Actividad</a>
+                        <em class="fa fa-fw fa-clock-o text-muted"></em>Ultima Actividad</a>-->
                     <a href="#" class="list-group-item">
                         <span class="label label-primary pull-right">{{pet.user.displayName}}</span>
                         <em class="fa fa-fw fa-user text-muted"></em>Mejor Amigo</a>
