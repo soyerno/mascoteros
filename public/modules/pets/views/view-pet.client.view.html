@@ -13,7 +13,7 @@
 	<div class="unwrap">
 		<div style="background-image: url('{{pet.picture}}')" class="bg-cover">
 			<div class="p-xl text-center text-white">
-				<img ng-if="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture |cloudinaryProfile }}" class="img-thumbnail img-circle thumb128">
+				<img ng-if="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture |cloudinaryProfile }}" class="img-thumbnail thumb128">
 				<h3 class="m0">{{pet.name}}</h3>
 				<p>{{pet.user.displayName}}</p>
 				<p>{{pet.description}}</p>
