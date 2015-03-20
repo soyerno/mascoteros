@@ -1,16 +1,18 @@
 <h3>Mascotas</h3>
-<section data-ng-controller="PetsController" data-ng-init="find()">
-    <a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}" class="">
-        <div class="col-lg-4">
+<section data-ng-controller="PetsController" data-ng-init="find()" class="row">
+    <!--<a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}">-->
+        <div class="col-lg-4" data-ng-repeat="pet in pets">
             <!-- START widget-->
             <div class="panel widget">
-                <div style="background-image: url('img/bg4.jpg')" class="panel-body text-center bg-center">
+                <div style="background-image: url('{{pet.picture}}')" class="panel-body text-center bg-center">
                     <div class="row row-table">
                         <div class="col-xs-12 text-white">
-                            <img ng-src="{{pet.picture}}" alt="{{pet.name}}" class="img-thumbnail img-circle thumb128">
+                            <a data-ng-href="#!/pets/{{pet._id}}">
+                                <img ng-src="{{pet.picture | cloudinaryProfile}}" alt="{{pet.name}}" class="img-thumbnail thumb128">
+                            </a>
                             <h3 class="m0">{{pet.name}}</h3>
-                            <p class="m0">
-                                <em class="fa fa-paw"></em>{{pet.slug}}</p>
+                            <p class="m0" style="color: white;">
+                                <a data-ng-href="#!/pets/{{pet._id}}"><em class="fa fa-paw"></em>{{pet.slug}}</a></p>
                         </div>
                     </div>
                 </div>
@@ -66,29 +68,10 @@
             </div>
             <!-- END widget-->
         </div>
-    </a>
+    </div>
+    <!--</a>-->
 
     <h4 class="alert alert-purple text-center pv-lg" data-ng-if="pets.$resolved && !pets.length">
         No tienes mascotas creadas, deseas <a href="/#!/pets/create" class="text-yellow">crear una</a>?
     </h4>
 </section>
-<!--<section data-ng-controller="PetsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Pets</h1>
-    </div>
-    <div class="list-group">
-        <a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="pet.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="pet.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="pet.name"></h4>
-            <span>{{pet}}</span>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!pets.$resolved || pets.length">
-    	No Pets yet, why don't you <a href="/#!/pets/create">create one</a>?
-    </div>
-</section>-->

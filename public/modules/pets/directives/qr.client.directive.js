@@ -24,6 +24,7 @@ angular.module('pets').directive('qr',[ '$http',
 						// or server returns response with an error status.
 						console.log('ERROR');
 					});
+
 			}
 		};
 	}
