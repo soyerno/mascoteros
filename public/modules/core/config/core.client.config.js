@@ -44,6 +44,11 @@ angular.module('core').run(['Menus',
   cfpLoadingBarProvider.latencyThreshold = 500;
   cfpLoadingBarProvider.parentSelector = '.wrapper > section';
 }])
+.config(function($locationProvider){
+  $locationProvider.html5Mode(true).hashPrefix('!');
+})
 .run(function(amMoment){
   amMoment.changeLocale('es');
+}).run(function($FB){
+  $FB.init('1414293935539684');
 });

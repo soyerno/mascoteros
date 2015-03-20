@@ -45,6 +45,8 @@ module.exports = {
 				'public/lib/angular-moment/angular-moment.js',
 				'public/lib/moment/locale/es.js',
 				'public/lib/angular-native-picker/build/angular-datepicker.js',
+				'public/lib/angular-socialshare/angular-socialshare.js',
+				'http://platform.twitter.com/widgets.js'
         		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
@@ -67,7 +69,8 @@ module.exports = {
 			'public/modules/pets/css/pet_profile.css',
 			'public/modules/pets/css/qr.css',
 			'public/lib/angular-native-picker/build/themes/default.css',
-			'public/lib/angular-native-picker/build/themes/default.date.css'
+			'public/lib/angular-native-picker/build/themes/default.date.css',
+			'public/lib/angular-socialshare/angular-socialshare.css'
 		],
 		js: [
 			'public/config.js',

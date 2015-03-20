@@ -77,6 +77,12 @@ var PetSchema = new Schema({
 	},
 	neutered: {
 		type: Boolean
+	},
+	profileViews: {
+		type: Number
+	},
+	isPrivate: {
+		type: Boolean
 	}
 });
 
