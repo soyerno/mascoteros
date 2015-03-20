@@ -51,7 +51,8 @@
     "ngmap": "~1.4.2",
     "angular-native-picker": "~1.0.4",
     "angular-bootstrap-checkbox-fa": "~0.3.2",
-    "angular-socialshare": "~0.0.7"
+    "angular-socialshare": "~0.0.7",
+    "ng-print": "~0.1.2"
   },
   "resolutions": {
     "jquery": "2.1.1",
