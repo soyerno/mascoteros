@@ -27,19 +27,19 @@
 						<hr/>
 						<div class="row">
 							<div class="col-md-12 pet-actions-container">
-								<button ng-if="!authentication.user._id == pet.user._id" class="btn btn-lg btn-warning">Contactar familia</button>
-								<button ng-if="pet.missing" class="btn btn-lg btn-success">Encontrado</button>
-								<button ng-if="!pet.missing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger">Perdido</button>
+								<button ng-if="!authentication.user._id == pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
+								<button ng-if="pet.missing" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
+								<button ng-if="!pet.missing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Perdido</button>
 								<!--MAKE A LIKE DIRECTIVE-->
-								<button ng-if="!authentication.user._id == pet.user._id" class="btn btn-lg btn-success">+1 Like</button>
-								<button class="btn btn-lg btn-success" disabled>Likes: 120</button>
+								<button class="btn btn-lg btn-success"><i class="icon-like"></i> Likes: 120</button>
+								<button class="btn btn-lg btn-success" disabled><i class="icon-like"></i> Likes: 120 / Liked</button>
 								<!--MAKE A LIKE DIRECTIVE-->
 
 								<!--MAKE A SHARE DIRECTIVE-->
-								<button class="btn btn-lg btn-primary">Compartír</button>
+								<button class="btn btn-lg btn-primary"><i class="icon-share"></i> Compartír</button>
 								<!--MAKE A SHARE DIRECTIVE-->
 
-								<button class="btn btn-lg btn-primary">Imprimir ID</button>
+								<button class="btn btn-lg btn-primary"><i class="icon-printer"></i> Imprimir ID</button>
 							</div>
 						</div>
 						<div class="row">
