@@ -1,10 +1,10 @@
 <h3>Mascotas</h3>
 <section data-ng-controller="PetsController" data-ng-init="find()" class="row">
     <!--<a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}">-->
-        <div class="col-lg-6" data-ng-repeat="pet in pets">
+        <div class="col-lg-4" data-ng-repeat="pet in pets">
             <!-- START widget-->
             <div class="panel widget">
-                <div style="background-image: url('{{pet.picture}}')" class="panel-body text-center bg-center">
+                <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="panel-body text-center bg-center">
                     <div class="row row-table">
                         <div class="col-xs-12 text-white">
                             <a data-ng-href="#!/pets/{{pet._id}}">
