@@ -11,7 +11,7 @@
 </h3>
 <div class="content-wrapper">
 	<div class="unwrap">
-		<div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
+		<div ng-if="pet.picture" style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
 			<div class="p-xl text-center text-white">
 				<img ng-if="pet.picture" alt="{{pet.name}}" ng-src="{{pet.picture |cloudinaryProfile }}" class="img-thumbnail thumb128">
 				<h3 class="m0">{{pet.name}}</h3>
@@ -52,6 +52,11 @@
 				<div class="row">
 					<div class="col-md-4 col-lg-4 " align="center">
 						<div class="row">
+							<div class="col-md-12">
+								<h2>Acciones disponibles</h2>
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-md-12 pet-actions-container">
 								<button ng-show="authentication.user._id != pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
 								<button ng-show="pet.missing" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
@@ -65,7 +70,7 @@
 								<a facebook class="facebookShare" data-url='http://mascoteros.net/pets/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
 								<a twitter  data-lang="en" data-count='horizontal' data-url='http://mascoteros.net/pets/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
 								<div gplus class="g-plus" data-size="tall" data-annotation="bubble" data-href='http://mascoteros.net/pets/{{pet.slug}}' data-action='share'></div>
-								<button class="btn btn-lg btn-primary"><i class="icon-share"></i> Compartír</button>
+								<!--<button class="btn btn-lg btn-primary"><i class="icon-share"></i> Compartír</button>-->
 								<!--MAKE A SHARE DIRECTIVE-->
 
 								<button class="btn btn-lg btn-primary" ng-show="authentication.user._id == pet.user._id"><i class="icon-printer"></i> Imprimir ID</button>
@@ -76,160 +81,53 @@
 						</div>
 					</div>
 					<div class=" col-md-4 col-lg-4 ">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<div class="panel-title">Latest activities</div>
-							</div>
-							<!-- START list group-->
-							<div class="list-group">
-								<!-- START list group item-->
-								<div class="list-group-item">
-									<div class="media-box">
-										<div class="pull-left">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-purple"></em>
-                                    <em class="fa fa-cloud-upload fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-										</div>
-										<div class="media-box-body clearfix">
-											<small class="text-muted pull-right ml">15m</small>
-											<div class="media-box-heading"><a href="#" class="text-purple m0">NEW FILE</a>
-											</div>
-											<p class="m0">
-												<small><a href="#">Bootstrap.xls</a>
-												</small>
-											</p>
-										</div>
-									</div>
-								</div>
-								<!-- END list group item-->
-								<!-- START list group item-->
-								<div class="list-group-item">
-									<div class="media-box">
-										<div class="pull-left">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-info"></em>
-                                    <em class="fa fa-file-text-o fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-										</div>
-										<div class="media-box-body clearfix">
-											<small class="text-muted pull-right ml">2h</small>
-											<div class="media-box-heading"><a href="#" class="text-info m0">NEW DOCUMENT</a>
-											</div>
-											<p class="m0">
-												<small><a href="#">Bootstrap.doc</a>
-												</small>
-											</p>
-										</div>
-									</div>
-								</div>
-								<!-- END list group item-->
-								<!-- START list group item-->
-								<div class="list-group-item">
-									<div class="media-box">
-										<div class="pull-left">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-danger"></em>
-                                    <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-										</div>
-										<div class="media-box-body clearfix">
-											<small class="text-muted pull-right ml">5h</small>
-											<div class="media-box-heading"><a href="#" class="text-danger m0">BROADCAST</a>
-											</div>
-											<p class="m0"><a href="#">Read</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								<!-- END list group item-->
-								<!-- START list group item-->
-								<div class="list-group-item">
-									<div class="media-box">
-										<div class="pull-left">
-                                 <span class="fa-stack">
-                                    <em class="fa fa-circle fa-stack-2x text-success"></em>
-                                    <em class="fa fa-clock-o fa-stack-1x fa-inverse text-white"></em>
-                                 </span>
-										</div>
-										<div class="media-box-body clearfix">
-											<small class="text-muted pull-right ml">15h</small>
-											<div class="media-box-heading"><a href="#" class="text-success m0">NEW MEETING</a>
-											</div>
-											<p class="m0">
-												<small>On
-													<em>10/12/2015 09:00 am</em>
-												</small>
-											</p>
-										</div>
-									</div>
-								</div>
-								<!-- END list group item-->
-							</div>
-							<!-- END list group-->
-							<!-- START panel footer-->
-							<div class="panel-footer clearfix">
-								<a href="#" class="pull-left">
-									<small>Load more</small>
-								</a>
-							</div>
-							<!-- END panel-footer-->
+						<div class="panel-body bg-inverse">
+							<table class="table table-user-information">
+								<tbody>
+								<h2>Detalles</h2>
+								<tr>
+									<td>Raza</td>
+									<td>{{pet.breed}}</td>
+								</tr>
+								<tr>
+									<td>Color</td>
+									<td>{{pet.color}}</td>
+								</tr>
+								<tr>
+									<td>Nació</td>
+									<td am-time-ago="pet.yearOfBirth"></td>
+								</tr>
+								<tr>
+								<tr>
+									<td>Genero</td>
+									<td>{{pet.genre.name}}</td>
+								</tr>
+								<tr>
+									<td>Castrado</td>
+									<td><i class="fa" ng-class="pet.neutered ? 'fa-check' : 'fa-times'"></i></td>
+								</tr>
+								<tr>
+									<td>Email de contacto</td>
+									<td>
+										<a ng-if="pet.email" href="mailto:{{pet.email}}">{{pet.email}}</a>
+									</td>
+								</tr>
+								<tr>
+									<td>Descripcion o Rasgos de la mascota</td>
+									<td>{{pet.description}}</td>
+								</tr>
+								<tr>
+									<td>Dirección</td>
+									<td>{{pet.address}}</td>
+								</tr>
+
+								</tbody>
+							</table>
 						</div>
-						<table class="table table-user-information">
-							<tbody>
-							<tr>
-								<td>Raza</td>
-								<td>{{pet.breed}}</td>
-							</tr>
-							<tr>
-								<td>Color</td>
-								<td>{{pet.color}}</td>
-							</tr>
-							<tr>
-								<td>Nació</td>
-								<td am-time-ago="pet.yearOfBirth"></td>
-							</tr>
-							<tr>
-							<tr>
-								<td>Genero</td>
-								<td>{{pet.genre.name}}</td>
-							</tr>
-							<tr>
-								<td>Castrado</td>
-								<td><i class="fa" ng-class="pet.neutered ? 'fa-check' : 'fa-times'"></i></td>
-							</tr>
-							<tr>
-								<td>Email de contacto</td>
-								<td>
-									<a ng-if="pet.email" href="mailto:{{pet.email}}">{{pet.email}}</a>
-								</td>
-							</tr>
-							<td>Descripcion o Rasgos de la mascota</td>
-							<td>{{pet.description}}</td>
-
-							</tr>
-
-							</tbody>
-						</table>
-
 					</div>
 					<div class="col-md-4 col-lg-4 ">
 						<div class="panel widget">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3284.0167085495204!2d-58.381569999999996!3d-34.603739!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1ses-419!2sar!4v1426991479614" width="100%" height="300" frameborder="0" style="border:0"></iframe>
-							<div class="panel-body bg-inverse">
-								<div class="row row-table">
-									<div class="col-xs-6">
-										<div class="h2 m0">Contactar!</div>
-									</div>
-									<div class="col-xs-1">
-										<em class="fa fa-map-marker fa-3x"></em>
-									</div>
-									<div class="col-xs-5">
-										<p class="m0">{{pet.address}}</p>
-										<p class="m0">Location, Unknow</p>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
