@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
-
+  URLSlugs = require('mongoose-url-slugs'),
+  Schema = mongoose.Schema;
 /**
  * Pet Schema
  */
@@ -32,34 +32,28 @@ var PetSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	slug: {
-		type: String,
-		default: '',
-		required: 'Please fill Slug name',
-		trim: true
-	},
 	missing: {
 		type: Boolean
 	},
 	picture: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet picture',
+		required: 'Please fill Pet picture'
 	},
 	color: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet color',
+		required: 'Please fill Pet color'
 	},
 	email: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet Email',
+		required: 'Please fill Pet Email'
 	},
 	address: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet Address',
+		required: 'Please fill Pet Address'
 	},
 	genre: {
 		type: Schema.ObjectId,
@@ -83,7 +77,18 @@ var PetSchema = new Schema({
 	},
 	isPrivate: {
 		type: Boolean
-	}
+	},
+  registered: {
+    type: Date,
+    default: Date.now
+  },
+  slug: {
+    type: String,
+    required: 'Please fill slug name'
+  }
 });
 
+PetSchema.plugin(URLSlugs('name', {field: 'slug'}));
+
 mongoose.model('Pet', PetSchema);
+

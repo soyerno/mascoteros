@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
 /**
  * Create a Petgenre
  */
+
 exports.create = function(req, res) {
 	var petgenre = new Petgenre(req.body);
 	petgenre.user = req.user;
