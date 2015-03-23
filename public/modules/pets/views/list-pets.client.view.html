@@ -4,7 +4,7 @@
         <div class="col-lg-4" data-ng-repeat="pet in pets">
             <!-- START widget-->
             <div class="panel widget">
-                <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="panel-body text-center bg-center">
+                <div ng-if="pic.picture" style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="panel-body text-center bg-center">
                     <div class="row row-table">
                         <div class="col-xs-12 text-white">
                             <a data-ng-href="#!/pets/{{pet._id}}">
