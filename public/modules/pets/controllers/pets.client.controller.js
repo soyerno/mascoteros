@@ -21,10 +21,11 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 			var pet = new Pets ({
 				name: this.name,
 				picture: this.picture,
-				slug: this.name + '_' + this.breed,
+				slug: this.slug,
 				color: this.color,
 				breed: this.breed,
 				genre: this.genre,
+        yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
