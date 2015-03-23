@@ -53,67 +53,7 @@
 					<div class="col-md-4 col-lg-4 " align="center">
 						<div class="row">
 							<div class="col-md-12 pet-actions-container">
-
-								<div class="panel widget bg-warning" ng-show="authentication.user._id != pet.user._id">
-									<div class="row row-table">
-										<div class="col-xs-4 text-center bg-warning-dark pv-lg">
-											<em class="icon-share fa-3x"></em>
-										</div>
-										<div class="col-xs-8 pv-lg">
-											<div class="h1 m0 text-bold">Contactar</div>
-											<div class="text-uppercase"></div>
-										</div>
-									</div>
-								</div>
-								<div class="panel widget bg-danger" ng-show="authentication.user._id == pet.user._id">
-									<div class="row row-table">
-										<div class="col-xs-4 text-center bg-danger-dark pv-lg">
-											<em class="icon-share fa-3x"></em>
-										</div>
-										<div class="col-xs-8 pv-lg">
-											<div class="h1 m0 text-bold">Denunciar</div>
-											<div class="text-uppercase">Perdida</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel widget bg-success" ng-show="authentication.user._id !== pet.user._id || pet.missing">
-									<div class="row row-table">
-										<div class="col-xs-4 text-center bg-danger-success pv-lg">
-											<em class="icon-search fa-3x"></em>
-										</div>
-										<div class="col-xs-8 pv-lg">
-											<div class="h1 m0 text-bold">Encontrado</div>
-											<div class="text-uppercase"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel widget bg-success">
-									<div class="row row-table">
-										<div class="col-xs-4 text-center bg-success-dark pv-lg">
-											<em class="icon-share fa-3x"></em>
-										</div>
-										<div class="col-xs-8 pv-lg">
-											<div class="h1 m0 text-bold">150</div>
-											<div class="text-uppercase">Likes / Te gusta</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel widget bg-success">
-									<div class="row row-table">
-										<div class="col-xs-4 text-center bg-success-dark pv-lg">
-											<em class="icon-share fa-3x"></em>
-										</div>
-										<div class="col-xs-8 pv-lg">
-											<div class="h1 m0 text-bold">150</div>
-											<div class="text-uppercase">New connections</div>
-										</div>
-									</div>
-								</div>
-
-								<button ng-show="!authentication.user._id == pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
+								<button ng-show="authentication.user._id != pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
 								<button ng-show="pet.missing" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
 								<button ng-show="!pet.missing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Perdido</button>
 								<!--MAKE A LIKE DIRECTIVE-->
@@ -128,11 +68,11 @@
 								<button class="btn btn-lg btn-primary"><i class="icon-share"></i> Compartír</button>
 								<!--MAKE A SHARE DIRECTIVE-->
 
-								<button class="btn btn-lg btn-primary"><i class="icon-printer"></i> Imprimir ID</button>
+								<button class="btn btn-lg btn-primary" ng-show="authentication.user._id == pet.user._id"><i class="icon-printer"></i> Imprimir ID</button>
 							</div>
 						</div>
 						<div class="row">
-							<qr ng-if="pet" pet="pet"></qr>
+							<qr ng-show="authentication.user._id == pet.user._id" ng-if="pet" pet="pet"></qr>
 						</div>
 					</div>
 					<div class=" col-md-4 col-lg-4 ">

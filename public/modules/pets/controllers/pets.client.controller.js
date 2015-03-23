@@ -6,6 +6,13 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		$scope.authentication = Authentication;
 
 
+		$scope.step = 1;
+
+		$scope.$watch('step', function(step){
+			if(step === 3 && $scope.inviteUserEmail != ''){
+				$scope.email = $scope.inviteUserEmail;
+			}
+		});
 
 		// Create new Pet
 		$scope.create = function() {

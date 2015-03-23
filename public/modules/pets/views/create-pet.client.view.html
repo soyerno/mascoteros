@@ -4,13 +4,57 @@
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <div class="panel panel-info" id="step1">
-
+            <div class="panel-info" id="step1" ng-show="step == 1">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="panel widget" ng-click="step = 3">
+                            <div class="panel-body">
+                                <div class="row row-table">
+                                    <div class="col-xs-12 text-center">
+                                        Registrar mi mascota
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2">
+                        <div class="panel widget" ng-click="step = 2">
+                            <div class="panel-body">
+                                <div class="row row-table">
+                                    <div class="col-xs-12 text-center">
+                                        Registrar una mascota de otra persona
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="panel panel-info" id="step2">
-
+            <div class="" id="step2" ng-show="step == 2">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel widget">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-6 text-center">
+                                        Invitar amigo:
+                                    </div>
+                                    <div class="col-xs-6 text-center">
+                                        <input type="text" data-ng-model="inviteUserEmail" id="inviteUserEmail" class="form-control" placeholder="amigo@email.com" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-lg-btn-primary" ng-click="step = 1"> < atras</button>
+                        <button class="btn btn-lg-btn-primary" ng-click="step = 3"> > siguiente</button>
+                    </div>
+                </div>
             </div>
-            <div class="panel panel-info" id="step3">
+            <div class="panel panel-info" id="step3" ng-show="step == 3">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 " align="center">
@@ -134,8 +178,9 @@
                 </div>
             </div>
 
-            <fieldset>
+            <fieldset ng-show="step == 3">
                 <div class="form-group">
+                    <button class="btn btn-lg-btn-primary" ng-click="step = 1"> < atras</button>
                     <input type="submit" ng-disabled="formBusy" class="btn btn-default mar-bot-40">
                     <i ng-show="formBusy" class="fa fa-cog fa-spin"></i>
                 </div>
