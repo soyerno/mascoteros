@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mascoteros-dev',
-	//db: 'mongodb://mascoteros:mascoteros@ds033107.mongolab.com:33107/heroku_app34828065',
+	//db: 'mongodb://localhost/mascoteros-dev',
+	db: 'mongodb://mascoteros:mascoteros@ds033107.mongolab.com:33107/heroku_app34828065',
 	app: {
 		title: 'Mascoteros'
 	},

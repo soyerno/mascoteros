@@ -75,5 +75,5 @@ angular.module('pets').directive('qr',[ '$http',
       restrict: 'A'
     };
   }
-  angular.module('app').directive('ngPrint', [printDirective]);
+  angular.module('core').directive('ngPrint', [printDirective]);
 }(window.angular));;
