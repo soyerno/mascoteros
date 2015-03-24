@@ -11,6 +11,7 @@
 				<span data-ng-bind="issue.user.displayName"></span>
 			</small>
 			<h4 class="list-group-item-heading" data-ng-bind="issue.title"></h4>
+            <p>{{issue.description}}</p>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!issues.$resolved || issues.length">
