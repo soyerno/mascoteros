@@ -5,7 +5,30 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'angleApp';
 	// var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch',  'ngSanitize',  'ui.router', 'ui.bootstrap', 'ui.utils'];
-	var applicationModuleVendorDependencies = ['ngRoute', 'ngAnimate', 'ngStorage','ngTouch', 'ngCookies', 'pascalprecht.translate', 'ui.bootstrap', 'ui.router', 'restangular', 'oc.lazyLoad', 'cfp.loadingBar', 'ngSanitize', 'ngResource', 'ui.utils', 'ui.checkbox', 'imageuploaders' ];
+	var applicationModuleVendorDependencies = [
+		'ngRoute',
+		'ngAnimate',
+		'ngStorage',
+		'ngTouch',
+		'ngCookies',
+		'pascalprecht.translate',
+		'ui.bootstrap',
+		'ui.router',
+		'restangular',
+		'oc.lazyLoad',
+		'cfp.loadingBar',
+		'ngSanitize',
+		'ngResource',
+		'ui.utils',
+		'ui.checkbox',
+		'imageuploaders',
+		'ngStorage',
+		'petgenres',
+		'pettypes',
+		'angularMoment',
+		'angular-datepicker',
+		'djds4rce.angular-socialshare'
+	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
 		// Create angular module
@@ -78,8 +101,8 @@ angular.module('core').run(["$rootScope", "$state", "$stateParams",  '$window', 
     // Scope Globals
     // ----------------------------------- 
     $rootScope.app = {
-      name: 'Angle',
-      description: 'Angular Bootstrap Admin Template',
+      name: 'Mascoteros',
+      description: 'Somos amigos de las mascotas',
       year: ((new Date()).getFullYear()),
       layout: {
         isFixed: true,
@@ -101,6 +124,7 @@ angular.module('core').run(["$rootScope", "$state", "$stateParams",  '$window', 
     };
   }
 ]);
+
 'use strict';
 
 // Use applicaion configuration module to register a new module
@@ -112,11 +136,39 @@ ApplicationConfiguration.registerModule('imageuploaders');
 'use strict';
 
 // Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('petgenres');
+'use strict';
+
+// Use applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('pets');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('pettypes');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('rescues');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('roles');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('shelters');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('shops');
 'use strict';
 
 // Use Applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('users');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('vets');
 'use strict';
 
 // Configuring the Articles module
@@ -273,6 +325,14 @@ angular.module('core').run(['Menus',
   cfpLoadingBarProvider.includeSpinner = false;
   cfpLoadingBarProvider.latencyThreshold = 500;
   cfpLoadingBarProvider.parentSelector = '.wrapper > section';
+}])
+.config(["$locationProvider", function($locationProvider){
+  $locationProvider.html5Mode(true).hashPrefix('!');
+}])
+.run(["amMoment", function(amMoment){
+  amMoment.changeLocale('es');
+}]).run(["$FB", function($FB){
+  $FB.init('1414293935539684');
 }]);
 
 /**=========================================================
@@ -317,7 +377,12 @@ angular.module('core')
     ]
 
   })
+  .constant('angularMomentConfig', {
+    //preprocess: 'unix', // optional
+    //timezone: 'Europe/London' // optional
+  })
 ;
+
 /**=========================================================
  * Module: config.js
  * App routes and resources configuration
@@ -334,9 +399,9 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   // default route
   $urlRouterProvider.otherwise('/home');
 
-  // 
+  //
   // Application Routes
-  // -----------------------------------   
+  // -----------------------------------
   $stateProvider
     .state('app', {
       // url: '/',
@@ -534,6 +599,27 @@ angular.module('core').controller('HeaderController', ['$scope', 'Authentication
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
 		});
+	}
+]);
+
+'use strict';
+
+angular.module('core').controller('HomeController', ['$scope', '$location', 'Authentication',
+	function($scope, $location, Authentication) {
+		// Home controller logic
+		// ...
+
+		$scope.authentication = Authentication;
+
+		$scope.checkAuthentication = function(){
+			if($scope.authentication && $scope.authentication.user._id){
+				console.log($location);
+				var currentLocation = $location.path();
+				if(currentLocation != '/timeline'){
+					$location.path('/timeline');
+				}
+			}
+		};
 	}
 ]);
 
@@ -1575,17 +1661,31 @@ angular.module('imageuploaders').controller('ImageuploadersController', [
 
 'use strict';
 
-angular.module('imageuploaders').filter('cloudinaryProfile', [
-	function() {
-		return function(input) {
-			// Cloudinary directive logic
-			// ...
-			var res = input.split("/upload/");
-			input = res[0]+ '/upload/w_150,h_150,c_thumb/' + res[1];
-			return input;
-		};
-	}
-]);
+angular.module('imageuploaders')
+	.filter('cloudinaryProfile', [
+		function() {
+			return function(input) {
+				// Cloudinary directive logic
+				// ...
+        if (!input) return;
+				var res = input.split("/upload/");
+				input = res[0]+ '/upload/w_150,h_150,c_thumb/' + res[1];
+				return input;
+			};
+		}
+	])
+	.filter('cloudinaryProfileBlured', [
+		function() {
+			return function(input) {
+				// Cloudinary directive logic
+				// ...
+        if (!input) return;
+				var res = input.split("/upload/");
+				input = res[0]+ '/upload/w_250,h_250,c_thumb,e_blur:500/' + res[1];
+				return input;
+			};
+		}
+	]);
 
 'use strict';
 
@@ -1636,6 +1736,152 @@ angular.module('imageuploaders').factory('Upload', ['$window','$q','Restangular'
 'use strict';
 
 // Configuring the Articles module
+/*
+angular.module('petgenres').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Petgenres', 'petgenres', 'dropdown', '/petgenres(/create)?');
+		Menus.addSubMenuItem('sidebar', 'petgenres', 'List Petgenres', 'petgenres');
+		Menus.addSubMenuItem('sidebar', 'petgenres', 'New Petgenre', 'petgenres/create');
+	}
+]);*/
+
+'use strict';
+
+//Setting up route
+angular.module('petgenres').config(['$stateProvider',
+	function($stateProvider) {
+		// Petgenres state routing
+		$stateProvider.
+		state('listPetgenres', {
+			url: '/petgenres',
+			templateUrl: 'modules/petgenres/views/list-petgenres.client.view.html'
+		}).
+		state('createPetgenre', {
+			url: '/petgenres/create',
+			templateUrl: 'modules/petgenres/views/create-petgenre.client.view.html'
+		}).
+		state('viewPetgenre', {
+			url: '/petgenres/:petgenreId',
+			templateUrl: 'modules/petgenres/views/view-petgenre.client.view.html'
+		}).
+		state('editPetgenre', {
+			url: '/petgenres/:petgenreId/edit',
+			templateUrl: 'modules/petgenres/views/edit-petgenre.client.view.html'
+		});
+	}
+]);
+'use strict';
+
+// Petgenres controller
+angular.module('petgenres').controller('PetgenresController', ['$scope', '$stateParams', '$location', 'Authentication', 'Petgenres',
+	function($scope, $stateParams, $location, Authentication, Petgenres) {
+		$scope.authentication = Authentication;
+
+		// Create new Petgenre
+		$scope.create = function() {
+			// Create new Petgenre object
+			var petgenre = new Petgenres ({
+				name: this.name
+			});
+
+			// Redirect after save
+			petgenre.$save(function(response) {
+				$location.path('petgenres/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Petgenre
+		$scope.remove = function(petgenre) {
+			if ( petgenre ) { 
+				petgenre.$remove();
+
+				for (var i in $scope.petgenres) {
+					if ($scope.petgenres [i] === petgenre) {
+						$scope.petgenres.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.petgenre.$remove(function() {
+					$location.path('petgenres');
+				});
+			}
+		};
+
+		// Update existing Petgenre
+		$scope.update = function() {
+			var petgenre = $scope.petgenre;
+
+			petgenre.$update(function() {
+				$location.path('petgenres/' + petgenre._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Petgenres
+		$scope.find = function() {
+			$scope.petgenres = Petgenres.query();
+		};
+
+		// Find existing Petgenre
+		$scope.findOne = function() {
+			$scope.petgenre = Petgenres.get({ 
+				petgenreId: $stateParams.petgenreId
+			});
+		};
+	}
+]);
+'use strict';
+
+angular.module('petgenres').directive('petGenreSelector', [ 'Petgenres', '$localStorage',
+	function(Petgenres, $localStorage) {
+		return {
+			templateUrl: '/modules/petgenres/views/partials/pet-genre-selector.html',
+			restrict: 'E',
+			replace: true,
+			link: function(scope, element, attrs) {
+				scope.$storage = $localStorage;
+
+				scope.getGenres = function(){
+					console.log('getGenres');
+					if(scope.$storage.petgenres && scope.$storage.petgenres.length){
+						scope.petgenres = scope.$storage.petgenres;
+						console.log('$localStorage', scope.petgenres);
+					} else {
+						scope.petgenres = Petgenres.query();
+						scope.$storage.petgenres = scope.petgenres;
+						console.log('else', scope.petgenres);
+					}
+				};
+
+				scope.getGenres();
+			}
+		};
+	}
+]);
+
+'use strict';
+
+//Petgenres service used to communicate Petgenres REST endpoints
+angular.module('petgenres').factory('Petgenres', ['$resource',
+	function($resource) {
+		return $resource('petgenres/:petgenreId', { petgenreId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
 angular.module('pets').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
@@ -1679,24 +1925,35 @@ angular.module('pets').config(['$stateProvider',
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$modal',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload, $modal  ) {
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload  ) {
 		$scope.authentication = Authentication;
 
 
+		$scope.step = 1;
+
+		$scope.$watch('step', function(step){
+			if(step === 3 && $scope.inviteUserEmail != ''){
+				$scope.email = $scope.inviteUserEmail;
+			}
+		});
 
 		// Create new Pet
 		$scope.create = function() {
 			// Create new Pet object
+
 			var pet = new Pets ({
 				name: this.name,
 				picture: this.picture,
-				slug: this.name + '_' + this.breed,
+				slug: this.slug,
 				color: this.color,
 				breed: this.breed,
 				genre: this.genre,
+        yearOfBirth: this.yearOfBirth,
 				description: this.description,
-				neutered: this.neutered
+				neutered: this.neutered,
+				email: this.email,
+				address: this.address
 			});
 
 			$scope.formBusy = true;
@@ -1713,6 +1970,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 					$scope.color = '';
 					$scope.breed = '';
 					$scope.neutered = '';
+					$scope.email = '';
+					$scope.address = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
 				  $scope.error = errorResponse.data.message;
@@ -1783,7 +2042,17 @@ angular.module('pets').directive('qr',[ '$http',
 			},
 			link: function postLink(scope, element, attr) {
 
-				scope.svg = "";
+        element.bind('click', function() {
+          alert('hola');
+          //var printContents = document.getElementById(divName).innerHTML;
+          var popupWin = window.open('', '_blank', 'width=300,height=300');
+          popupWin.document.open()
+          popupWin.document.write('<html><head></head><body onload="window.print()">' + element.html() + '</html>');
+          popupWin.document.close();
+        });
+
+
+          scope.svg = "";
 
 				$http.get('/qr/' + scope.pet.slug).
 					success(function(data, status, headers, config) {
@@ -1796,10 +2065,49 @@ angular.module('pets').directive('qr',[ '$http',
 						// or server returns response with an error status.
 						console.log('ERROR');
 					});
+
 			}
 		};
 	}
 ]);
+
+(function (angular) {
+  'use strict';
+  function printDirective() {
+    var printSection = document.getElementById('printSection');
+    // if there is no printing section, create one
+    if (!printSection) {
+      printSection = document.createElement('div');
+      printSection.id = 'printSection';
+      document.body.appendChild(printSection);
+    }
+    function link(scope, element, attrs) {
+
+      element.on('click', function () {
+        var elemToPrint = document.getElementById(attrs.printElementId);
+        if (elemToPrint) {
+          printElement(elemToPrint);
+        }
+      });
+      window.onafterprint = function () {
+        // clean the print section before adding new content
+        printSection.innerHTML = '';
+      }
+    }
+    function printElement(elem) {
+      	// clones the element you want to print
+      	var domClone = elem.cloneNode(true);
+
+		printSection.appendChild(domClone);
+      	window.print();
+    }
+    return {
+      link: link,
+      restrict: 'A'
+    };
+  }
+  angular.module('core').directive('ngPrint', [printDirective]);
+}(window.angular));;
 
 'use strict';
 
@@ -1807,6 +2115,608 @@ angular.module('pets').directive('qr',[ '$http',
 angular.module('pets').factory('Pets', ['$resource',
 	function($resource) {
 		return $resource('pets/:petId', { petId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
+/*
+angular.module('pettypes').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Pettypes', 'pettypes', 'dropdown', '/pettypes(/create)?');
+		Menus.addSubMenuItem('sidebar', 'pettypes', 'List Pettypes', 'pettypes');
+		Menus.addSubMenuItem('sidebar', 'pettypes', 'New Pettype', 'pettypes/create');
+	}
+]);*/
+
+'use strict';
+
+//Setting up route
+angular.module('pettypes').config(['$stateProvider',
+	function($stateProvider) {
+		// Pettypes state routing
+		$stateProvider.
+		state('listPettypes', {
+			url: '/pettypes',
+			templateUrl: 'modules/pettypes/views/list-pettypes.client.view.html'
+		}).
+		state('createPettype', {
+			url: '/pettypes/create',
+			templateUrl: 'modules/pettypes/views/create-pettype.client.view.html'
+		}).
+		state('viewPettype', {
+			url: '/pettypes/:pettypeId',
+			templateUrl: 'modules/pettypes/views/view-pettype.client.view.html'
+		}).
+		state('editPettype', {
+			url: '/pettypes/:pettypeId/edit',
+			templateUrl: 'modules/pettypes/views/edit-pettype.client.view.html'
+		});
+	}
+]);
+'use strict';
+
+// Pettypes controller
+angular.module('pettypes').controller('PettypesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pettypes',
+	function($scope, $stateParams, $location, Authentication, Pettypes) {
+		$scope.authentication = Authentication;
+
+		// Create new Pettype
+		$scope.create = function() {
+			// Create new Pettype object
+			var pettype = new Pettypes ({
+				name: this.name
+			});
+
+			// Redirect after save
+			pettype.$save(function(response) {
+				$location.path('pettypes/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Pettype
+		$scope.remove = function(pettype) {
+			if ( pettype ) { 
+				pettype.$remove();
+
+				for (var i in $scope.pettypes) {
+					if ($scope.pettypes [i] === pettype) {
+						$scope.pettypes.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.pettype.$remove(function() {
+					$location.path('pettypes');
+				});
+			}
+		};
+
+		// Update existing Pettype
+		$scope.update = function() {
+			var pettype = $scope.pettype;
+
+			pettype.$update(function() {
+				$location.path('pettypes/' + pettype._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Pettypes
+		$scope.find = function() {
+			$scope.pettypes = Pettypes.query();
+		};
+
+		// Find existing Pettype
+		$scope.findOne = function() {
+			$scope.pettype = Pettypes.get({ 
+				pettypeId: $stateParams.pettypeId
+			});
+		};
+	}
+]);
+'use strict';
+
+angular.module('petgenres').directive('petTypeSelector', [ 'Pettypes', '$localStorage',
+	function(Pettypes, $localStorage) {
+		return {
+			templateUrl: '/modules/pettypes/views/partials/pet-type-selector.html',
+			restrict: 'E',
+			replace: true,
+			link: function(scope, element, attrs) {
+				scope.$storage = $localStorage;
+
+				scope.getTypes = function(){
+					console.log('getTypes');
+					if(scope.$storage.pettypes && scope.$storage.pettypes.length){
+						scope.pettypes = scope.$storage.pettypes;
+						console.log('$localStorage', scope.pettypes);
+					} else {
+						scope.pettypes = Pettypes.query();
+						scope.$storage.pettypes = scope.pettypes;
+						console.log('else', scope.pettypes);
+					}
+				};
+
+				scope.getTypes();
+			}
+		};
+	}
+]);
+
+
+'use strict';
+
+//Pettypes service used to communicate Pettypes REST endpoints
+angular.module('pettypes').factory('Pettypes', ['$resource',
+	function($resource) {
+		return $resource('pettypes/:pettypeId', { pettypeId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
+angular.module('rescues').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Rescatistas', 'rescues', 'dropdown', '/rescues(/create)?', false, null, null, 'fa fa-group');
+		/*Menus.addSubMenuItem('sidebar', 'rescues', 'List Rescues', 'rescues');
+		Menus.addSubMenuItem('sidebar', 'rescues', 'New Rescue', 'rescues/create');*/
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('rescues').config(['$stateProvider',
+	function($stateProvider) {
+		// Rescues state routing
+		$stateProvider.
+		state('app.listRescues', {
+			url: '/rescues',
+			templateUrl: 'modules/rescues/views/list-rescues.client.view.html'
+		}).
+		state('app.createRescue', {
+			url: '/rescues/create',
+			templateUrl: 'modules/rescues/views/create-rescue.client.view.html'
+		}).
+		state('app.viewRescue', {
+			url: '/rescues/:rescueId',
+			templateUrl: 'modules/rescues/views/view-rescue.client.view.html'
+		}).
+		state('app.editRescue', {
+			url: '/rescues/:rescueId/edit',
+			templateUrl: 'modules/rescues/views/edit-rescue.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Rescues controller
+angular.module('rescues').controller('RescuesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Rescues',
+	function($scope, $stateParams, $location, Authentication, Rescues) {
+		$scope.authentication = Authentication;
+
+		// Create new Rescue
+		$scope.create = function() {
+			// Create new Rescue object
+			var rescue = new Rescues ({
+				name: this.name
+			});
+
+			// Redirect after save
+			rescue.$save(function(response) {
+				$location.path('rescues/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Rescue
+		$scope.remove = function(rescue) {
+			if ( rescue ) { 
+				rescue.$remove();
+
+				for (var i in $scope.rescues) {
+					if ($scope.rescues [i] === rescue) {
+						$scope.rescues.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.rescue.$remove(function() {
+					$location.path('rescues');
+				});
+			}
+		};
+
+		// Update existing Rescue
+		$scope.update = function() {
+			var rescue = $scope.rescue;
+
+			rescue.$update(function() {
+				$location.path('rescues/' + rescue._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Rescues
+		$scope.find = function() {
+			$scope.rescues = Rescues.query();
+		};
+
+		// Find existing Rescue
+		$scope.findOne = function() {
+			$scope.rescue = Rescues.get({ 
+				rescueId: $stateParams.rescueId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Rescues service used to communicate Rescues REST endpoints
+angular.module('rescues').factory('Rescues', ['$resource',
+	function($resource) {
+		return $resource('rescues/:rescueId', { rescueId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+//Setting up route
+angular.module('roles').config(['$stateProvider',
+	function($stateProvider) {
+		// Roles state routing
+		$stateProvider.
+		state('listRoles', {
+			url: '/roles',
+			templateUrl: 'modules/roles/views/list-roles.client.view.html'
+		}).
+		state('createRole', {
+			url: '/roles/create',
+			templateUrl: 'modules/roles/views/create-role.client.view.html'
+		}).
+		state('viewRole', {
+			url: '/roles/:roleId',
+			templateUrl: 'modules/roles/views/view-role.client.view.html'
+		}).
+		state('editRole', {
+			url: '/roles/:roleId/edit',
+			templateUrl: 'modules/roles/views/edit-role.client.view.html'
+		});
+	}
+]);
+'use strict';
+
+// Roles controller
+angular.module('roles').controller('RolesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Roles',
+	function($scope, $stateParams, $location, Authentication, Roles) {
+		$scope.authentication = Authentication;
+
+		// Create new Role
+		$scope.create = function() {
+			// Create new Role object
+			var role = new Roles ({
+				name: this.name
+			});
+
+			// Redirect after save
+			role.$save(function(response) {
+				$location.path('roles/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Role
+		$scope.remove = function(role) {
+			if ( role ) { 
+				role.$remove();
+
+				for (var i in $scope.roles) {
+					if ($scope.roles [i] === role) {
+						$scope.roles.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.role.$remove(function() {
+					$location.path('roles');
+				});
+			}
+		};
+
+		// Update existing Role
+		$scope.update = function() {
+			var role = $scope.role;
+
+			role.$update(function() {
+				$location.path('roles/' + role._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Roles
+		$scope.find = function() {
+			$scope.roles = Roles.query();
+		};
+
+		// Find existing Role
+		$scope.findOne = function() {
+			$scope.role = Roles.get({ 
+				roleId: $stateParams.roleId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Roles service used to communicate Roles REST endpoints
+angular.module('roles').factory('Roles', ['$resource',
+	function($resource) {
+		return $resource('roles/:roleId', { roleId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
+angular.module('shelters').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Refugios', 'shelters', 'dropdown', '/shelters(/create)?', false, null, null, 'icon-pointer');
+		/*Menus.addSubMenuItem('sidebar', 'shelters', 'List Shelters', 'shelters');
+		Menus.addSubMenuItem('sidebar', 'shelters', 'New Shelter', 'shelters/create');*/
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('shelters').config(['$stateProvider',
+	function($stateProvider) {
+		// Shelters state routing
+		$stateProvider.
+		state('app.listShelters', {
+			url: '/shelters',
+			templateUrl: 'modules/shelters/views/list-shelters.client.view.html'
+		}).
+		state('app.createShelter', {
+			url: '/shelters/create',
+			templateUrl: 'modules/shelters/views/create-shelter.client.view.html'
+		}).
+		state('app.viewShelter', {
+			url: '/shelters/:shelterId',
+			templateUrl: 'modules/shelters/views/view-shelter.client.view.html'
+		}).
+		state('app.editShelter', {
+			url: '/shelters/:shelterId/edit',
+			templateUrl: 'modules/shelters/views/edit-shelter.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Shelters controller
+angular.module('shelters').controller('SheltersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Shelters',
+	function($scope, $stateParams, $location, Authentication, Shelters) {
+		$scope.authentication = Authentication;
+
+		// Create new Shelter
+		$scope.create = function() {
+			// Create new Shelter object
+			var shelter = new Shelters ({
+				name: this.name
+			});
+
+			// Redirect after save
+			shelter.$save(function(response) {
+				$location.path('shelters/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Shelter
+		$scope.remove = function(shelter) {
+			if ( shelter ) { 
+				shelter.$remove();
+
+				for (var i in $scope.shelters) {
+					if ($scope.shelters [i] === shelter) {
+						$scope.shelters.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.shelter.$remove(function() {
+					$location.path('shelters');
+				});
+			}
+		};
+
+		// Update existing Shelter
+		$scope.update = function() {
+			var shelter = $scope.shelter;
+
+			shelter.$update(function() {
+				$location.path('shelters/' + shelter._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Shelters
+		$scope.find = function() {
+			$scope.shelters = Shelters.query();
+		};
+
+		// Find existing Shelter
+		$scope.findOne = function() {
+			$scope.shelter = Shelters.get({ 
+				shelterId: $stateParams.shelterId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Shelters service used to communicate Shelters REST endpoints
+angular.module('shelters').factory('Shelters', ['$resource',
+	function($resource) {
+		return $resource('shelters/:shelterId', { shelterId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
+angular.module('shops').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Tienda', 'tienda', 'dropdown', '/tienda(/create)?', false, null, null, 'fa fa-shopping-cart');
+		/*Menus.addSubMenuItem('sidebar', 'shops', 'List Shops', 'shops');
+		Menus.addSubMenuItem('sidebar', 'shops', 'New Shop', 'shops/create');*/
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('shops').config(['$stateProvider',
+	function($stateProvider) {
+		// Shops state routing
+		$stateProvider.
+		state('app.listShops', {
+			url: '/tienda',
+			templateUrl: 'modules/shops/views/list-shops.client.view.html'
+		}).
+		state('app.createShop', {
+			url: '/tienda/create',
+			templateUrl: 'modules/shops/views/create-shop.client.view.html'
+		}).
+		state('app.viewShop', {
+			url: '/tienda/:shopId',
+			templateUrl: 'modules/shops/views/view-shop.client.view.html'
+		}).
+		state('app.editShop', {
+			url: '/tienda/:shopId/edit',
+			templateUrl: 'modules/shops/views/edit-shop.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Shops controller
+angular.module('shops').controller('ShopsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Shops',
+	function($scope, $stateParams, $location, Authentication, Shops) {
+		$scope.authentication = Authentication;
+
+		// Create new Shop
+		$scope.create = function() {
+			// Create new Shop object
+			var shop = new Shops ({
+				name: this.name
+			});
+
+			// Redirect after save
+			shop.$save(function(response) {
+				$location.path('shops/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Shop
+		$scope.remove = function(shop) {
+			if ( shop ) { 
+				shop.$remove();
+
+				for (var i in $scope.shops) {
+					if ($scope.shops [i] === shop) {
+						$scope.shops.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.shop.$remove(function() {
+					$location.path('shops');
+				});
+			}
+		};
+
+		// Update existing Shop
+		$scope.update = function() {
+			var shop = $scope.shop;
+
+			shop.$update(function() {
+				$location.path('shops/' + shop._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Shops
+		$scope.find = function() {
+			$scope.shops = Shops.query();
+		};
+
+		// Find existing Shop
+		$scope.findOne = function() {
+			$scope.shop = Shops.get({ 
+				shopId: $stateParams.shopId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Shops service used to communicate Shops REST endpoints
+angular.module('shops').factory('Shops', ['$resource',
+	function($resource) {
+		return $resource('shops/:shopId', { shopId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -2058,6 +2968,123 @@ angular.module('users').factory('Authentication', [
 angular.module('users').factory('Users', ['$resource',
 	function($resource) {
 		return $resource('users', {}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
+angular.module('vets').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Veterinarias', 'vets', 'dropdown', '/vets(/create)?', false, null, null, 'fa fa-medkit');
+		/*Menus.addSubMenuItem('sidebar', 'vets', 'List Vets', 'vets');*/
+		/*Menus.addSubMenuItem('sidebar', 'vets', 'New Vet', 'vets/create');*/
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('vets').config(['$stateProvider',
+	function($stateProvider) {
+		// Vets state routing
+		$stateProvider.
+		state('app.listVets', {
+			url: '/vets',
+			templateUrl: 'modules/vets/views/list-vets.client.view.html'
+		}).
+		state('app.createVet', {
+			url: '/vets/create',
+			templateUrl: 'modules/vets/views/create-vet.client.view.html'
+		}).
+		state('app.viewVet', {
+			url: '/vets/:vetId',
+			templateUrl: 'modules/vets/views/view-vet.client.view.html'
+		}).
+		state('app.editVet', {
+			url: '/vets/:vetId/edit',
+			templateUrl: 'modules/vets/views/edit-vet.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Vets controller
+angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets',
+	function($scope, $stateParams, $location, Authentication, Vets) {
+		$scope.authentication = Authentication;
+
+		// Create new Vet
+		$scope.create = function() {
+			// Create new Vet object
+			var vet = new Vets ({
+				name: this.name
+			});
+
+			// Redirect after save
+			vet.$save(function(response) {
+				$location.path('vets/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Vet
+		$scope.remove = function(vet) {
+			if ( vet ) { 
+				vet.$remove();
+
+				for (var i in $scope.vets) {
+					if ($scope.vets [i] === vet) {
+						$scope.vets.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.vet.$remove(function() {
+					$location.path('vets');
+				});
+			}
+		};
+
+		// Update existing Vet
+		$scope.update = function() {
+			var vet = $scope.vet;
+
+			vet.$update(function() {
+				$location.path('vets/' + vet._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Vets
+		$scope.find = function() {
+			$scope.vets = Vets.query();
+		};
+
+		// Find existing Vet
+		$scope.findOne = function() {
+			$scope.vet = Vets.get({ 
+				vetId: $stateParams.vetId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Vets service used to communicate Vets REST endpoints
+angular.module('vets').factory('Vets', ['$resource',
+	function($resource) {
+		return $resource('vets/:vetId', { vetId: '@_id'
+		}, {
 			update: {
 				method: 'PUT'
 			}

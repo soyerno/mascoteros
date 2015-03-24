@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', '$location', 'Authentication'
+angular.module('core').controller('HomeController', ['$scope', '$location', 'Authentication',
 	function($scope, $location, Authentication) {
 		// Home controller logic
 		// ...
@@ -8,8 +8,12 @@ angular.module('core').controller('HomeController', ['$scope', '$location', 'Aut
 		$scope.authentication = Authentication;
 
 		$scope.checkAuthentication = function(){
-			if($scope.authentication && $scope.authentication.user_id){
-				$location('/timeline');
+			if($scope.authentication && $scope.authentication.user._id){
+				console.log($location);
+				var currentLocation = $location.path();
+				if(currentLocation != '/timeline'){
+					$location.path('/timeline');
+				}
 			}
 		};
 	}
