@@ -5,19 +5,19 @@ angular.module('faqs').config(['$stateProvider',
 	function($stateProvider) {
 		// Faqs state routing
 		$stateProvider.
-		state('listFaqs', {
+		state('app.listFaqs', {
 			url: '/faqs',
 			templateUrl: 'modules/faqs/views/list-faqs.client.view.html'
 		}).
-		state('createFaq', {
+		state('app.createFaq', {
 			url: '/faqs/create',
 			templateUrl: 'modules/faqs/views/create-faq.client.view.html'
 		}).
-		state('viewFaq', {
+		state('app.viewFaq', {
 			url: '/faqs/:faqId',
 			templateUrl: 'modules/faqs/views/view-faq.client.view.html'
 		}).
-		state('editFaq', {
+		state('app.editFaq', {
 			url: '/faqs/:faqId/edit',
 			templateUrl: 'modules/faqs/views/edit-faq.client.view.html'
 		});

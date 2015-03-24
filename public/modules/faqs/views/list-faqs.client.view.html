@@ -1,19 +1,21 @@
+<h3>Preguntas frecuentes</h3>
 <section data-ng-controller="FaqsController" data-ng-init="find()">
-    <div class="page-header">
-        <h1>Faqs</h1>
-    </div>
     <div class="list-group">
         <a data-ng-repeat="faq in faqs" data-ng-href="#!/faqs/{{faq._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="faq.created | date:'medium'"></span>
-				by
-				<span data-ng-bind="faq.user.displayName"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="faq.name"></h4>
+            <div class="well">
+                <div class="media">
+                    <div class="pull-left">
+                        <img class="media-object" ng-src="{{faq.picture}}">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" data-ng-bind="faq.name"></h4>
+                        <p>{{faq.description}}</p>
+                    </div>
+                </div>
+            </div>
         </a>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!faqs.$resolved || faqs.length">
-    	No Faqs yet, why don't you <a href="/#!/faqs/create">create one</a>?
-    </div>
+    <h4 class="alert alert-purple text-center pv-lg" data-ng-if="events.$resolved && !events.length">
+        No hay preguntas frecuentes, deseas <a href="/#!/faqs/create" class="text-yellow">crear una</a>?
+    </h4>
 </section>
