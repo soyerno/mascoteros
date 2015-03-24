@@ -14,9 +14,9 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   // default route
   $urlRouterProvider.otherwise('/home');
 
-  // 
+  //
   // Application Routes
-  // -----------------------------------   
+  // -----------------------------------
   $stateProvider
     .state('app', {
       // url: '/',
