@@ -1,10 +1,9 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload  ) {
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$http',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload, $http) {
 		$scope.authentication = Authentication;
-
 
 		$scope.step = 1;
 
@@ -102,5 +101,16 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				petId: $stateParams.petId
 			});
 		};
+
+    $scope.findOneBySlug = function() {
+      $http.get('/pet/' + $stateParams.petSlug).
+        success(function(data, status, headers, config) {
+          $scope.pet = data;
+        }).
+        error(function(data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
+    };
 	}
 ]);
