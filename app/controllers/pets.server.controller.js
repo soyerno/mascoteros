@@ -96,6 +96,15 @@ exports.petByID = function(req, res, next, id) {
 	});
 };
 
+exports.petBySlug = function(req, res, next, slug) {
+  Pet.findOne({slug: slug}).populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pet) {
+    if (err) return next(err);
+    if (! pet) return next(new Error('Failed to load Pet ' + slug));
+    req.pet = pet;
+    next();
+  });
+};
+
 /**
  * Pet authorization middleware
  */
