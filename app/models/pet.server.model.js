@@ -78,6 +78,9 @@ var PetSchema = new Schema({
 	isPrivate: {
 		type: Boolean
 	},
+	isAdoption: {
+		type: Boolean
+	},
   registered: {
     type: Date,
     default: Date.now

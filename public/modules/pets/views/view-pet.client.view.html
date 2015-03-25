@@ -59,6 +59,7 @@
 						<div class="row">
 							<div class="col-md-12 pet-actions-container">
 								<button ng-show="authentication.user._id != pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
+								<button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
 								<button ng-show="pet.missing" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
 								<button ng-show="!pet.missing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Perdido</button>
 								<!--MAKE A LIKE DIRECTIVE-->
