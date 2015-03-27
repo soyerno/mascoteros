@@ -851,8 +851,8 @@ angular.module('core').controller('HomeController', ['$scope', '$location', 'Aut
 			if($scope.authentication && $scope.authentication.user._id){
 				console.log($location);
 				var currentLocation = $location.path();
-				if(currentLocation != '/timeline'){
-					$location.path('/timeline');
+				if(currentLocation != '/pets'){
+					$location.path('/pets');
 				}
 			}
 		};
@@ -1722,7 +1722,7 @@ angular.module('events').run(['Menus',
 		// Set top bar menu items
 		Menus.addMenuItem('sidebar', 'Eventos', 'events', 'dropdown', '/events(/create)?', false, null, null, 'fa fa-calendar');
 		/*Menus.addSubMenuItem('sidebar', 'events', 'List Events', 'events');*/
-		Menus.addSubMenuItem('sidebar', 'events', 'Nuevo Evento', 'events/create', false);
+		/*Menus.addSubMenuItem('sidebar', 'events', 'Nuevo Evento', 'events/create', false);*/
 	}
 ]);
 
@@ -2505,15 +2505,15 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		};
 
 		// Find a list of Pets
-		/*$scope.find = function() {
-			$scope.pets = Pets.query();
-		};*/
 		$scope.find = function() {
+			$scope.pets = Pets.query();
+		};
+		/*$scope.find = function() {
 			$scope.pets = Pets.get({
 				user: $scope.authentication.user._id
 			});
 			console.log($scope.pets);
-		};
+		};*/
 
 		// Find existing Pet
 		$scope.findOne = function() {
