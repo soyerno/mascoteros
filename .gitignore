@@ -19,7 +19,6 @@ npm-debug.log
 .sass-cache
 
 # build and temp folders
-dist
 .tmp
 
 #Webstorm IDE configuration files
