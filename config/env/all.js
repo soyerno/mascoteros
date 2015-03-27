@@ -27,8 +27,8 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/ngstorage/ngStorage.js',
 				'public/lib/lodash/dist/lodash.js',
-        		'public/lib/restangular/dist/restangular.js',
-        		'public/lib/angular-ui-utils/ui-utils.js',
+        'public/lib/restangular/dist/restangular.js',
+        'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap-checkbox-fa/angular-bootstrap-checkbox.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-resource/angular-resource.js',
@@ -46,8 +46,12 @@ module.exports = {
 				'public/lib/moment/locale/es.js',
 				'public/lib/angular-native-picker/build/angular-datepicker.js',
 				'public/lib/angular-socialshare/angular-socialshare.js',
-				'http://platform.twitter.com/widgets.js'
-        		// 'public/lib/jquery/dist/jquery.js',
+				'http://platform.twitter.com/widgets.js',
+        'http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false'
+
+      /*'public/lib/lodash/dist/lodash.min.js',
+      'public/lib/angular-google-maps/dist/angular-google-maps.min.js'*/
+        // 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
 				// 'public/lib/angular-cookies/angular-cookies.js',

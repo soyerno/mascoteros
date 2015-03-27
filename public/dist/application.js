@@ -27,7 +27,8 @@ var ApplicationConfiguration = (function() {
 		'pettypes',
 		'angularMoment',
 		'angular-datepicker',
-		'djds4rce.angular-socialshare'
+		'djds4rce.angular-socialshare',
+    'ngAutocomplete'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
@@ -2549,7 +2550,6 @@ angular.module('pets').directive('qr',[ '$http',
 			link: function postLink(scope, element, attr) {
 
         element.bind('click', function() {
-          alert('hola');
           //var printContents = document.getElementById(divName).innerHTML;
           var popupWin = window.open('', '_blank', 'width=300,height=300');
           popupWin.document.open();

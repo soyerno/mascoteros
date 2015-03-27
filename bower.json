@@ -52,7 +52,10 @@
     "angular-native-picker": "~1.0.4",
     "angular-bootstrap-checkbox-fa": "~0.3.2",
     "angular-socialshare": "~0.0.7",
-    "ng-print": "~0.1.2"
+    "ng-print": "~0.1.2",
+    "angular-google-maps": "~2.0.18",
+    "ngAutocomplete": "~1.0.0",
+    "ng-autocomplete": "*"
   },
   "resolutions": {
     "jquery": "2.1.1",
