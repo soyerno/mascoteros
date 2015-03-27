@@ -11,8 +11,8 @@ angular.module('core').controller('HomeController', ['$scope', '$location', 'Aut
 			if($scope.authentication && $scope.authentication.user._id){
 				console.log($location);
 				var currentLocation = $location.path();
-				if(currentLocation != '/timeline'){
-					$location.path('/timeline');
+				if(currentLocation != '/pets'){
+					$location.path('/pets');
 				}
 			}
 		};
