@@ -24,7 +24,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				color: this.color,
 				breed: this.breed,
 				genre: this.genre,
-        yearOfBirth: this.yearOfBirth,
+        		yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
@@ -49,7 +49,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 					$scope.address = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
-				  $scope.error = errorResponse.data.message;
+				  	$scope.error = errorResponse.data.message;
 				});
 			});
 
