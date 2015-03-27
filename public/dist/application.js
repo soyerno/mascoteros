@@ -69,6 +69,10 @@ angular.element(document).ready(function() {
 
 // Use Applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('articles');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('comments');
 /*!
  * 
  * Angle - Bootstrap Admin App + AngularJS
@@ -140,6 +144,10 @@ ApplicationConfiguration.registerModule('imageuploaders');
 'use strict';
 
 // Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('issues');
+'use strict';
+
+// Use applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('petgenres');
 'use strict';
 
@@ -165,6 +173,10 @@ ApplicationConfiguration.registerModule('shelters');
 
 // Use applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('shops');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('trainers');
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -277,6 +289,110 @@ angular.module('articles').factory('Articles', ['$resource',
 	function($resource) {
 		return $resource('articles/:articleId', {
 			articleId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+//Setting up route
+angular.module('comments').config(['$stateProvider',
+	function($stateProvider) {
+		// Comments state routing
+		$stateProvider.
+		state('listComments', {
+			url: '/comments',
+			templateUrl: 'modules/comments/views/list-comments.client.view.html'
+		}).
+		state('createComment', {
+			url: '/comments/create',
+			templateUrl: 'modules/comments/views/create-comment.client.view.html'
+		}).
+		state('viewComment', {
+			url: '/comments/:commentId',
+			templateUrl: 'modules/comments/views/view-comment.client.view.html'
+		}).
+		state('editComment', {
+			url: '/comments/:commentId/edit',
+			templateUrl: 'modules/comments/views/edit-comment.client.view.html'
+		});
+	}
+]);
+'use strict';
+
+// Comments controller
+angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Comments',
+	function($scope, $stateParams, $location, Authentication, Comments) {
+		$scope.authentication = Authentication;
+
+		// Create new Comment
+		$scope.create = function() {
+			// Create new Comment object
+			var comment = new Comments ({
+				name: this.name
+			});
+
+			// Redirect after save
+			comment.$save(function(response) {
+				$location.path('comments/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Comment
+		$scope.remove = function(comment) {
+			if ( comment ) { 
+				comment.$remove();
+
+				for (var i in $scope.comments) {
+					if ($scope.comments [i] === comment) {
+						$scope.comments.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.comment.$remove(function() {
+					$location.path('comments');
+				});
+			}
+		};
+
+		// Update existing Comment
+		$scope.update = function() {
+			var comment = $scope.comment;
+
+			comment.$update(function() {
+				$location.path('comments/' + comment._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Comments
+		$scope.find = function() {
+			$scope.comments = Comments.query();
+		};
+
+		// Find existing Comment
+		$scope.findOne = function() {
+			$scope.comment = Comments.get({ 
+				commentId: $stateParams.commentId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Comments service used to communicate Comments REST endpoints
+angular.module('comments').factory('Comments', ['$resource',
+	function($resource) {
+		return $resource('comments/:commentId', { commentId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -1854,6 +1970,137 @@ angular.module('imageuploaders').factory('Upload', ['$window','$q','Restangular'
   };
 }]);
 
+/*
+'use strict';
+
+// Configuring the Articles module
+angular.module('issues').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('offsidebar', 'Issues', 'issues', 'dropdown', '/issues(/create)?');
+		Menus.addSubMenuItem('offsidebar', 'issues', 'List Issues', 'issues');
+		Menus.addSubMenuItem('offsidebar', 'issues', 'New Issue', 'issues/create');
+	}
+]);*/
+
+'use strict';
+
+//Setting up route
+angular.module('issues').config(['$stateProvider',
+	function($stateProvider) {
+		// Issues state routing
+		$stateProvider.
+		state('app.listIssues', {
+			url: '/issues',
+			templateUrl: 'modules/issues/views/list-issues.client.view.html'
+		}).
+		state('app.createIssue', {
+			url: '/issues/create',
+			templateUrl: 'modules/issues/views/create-issue.client.view.html'
+		}).
+		state('app.viewIssue', {
+			url: '/issues/:issueId',
+			templateUrl: 'modules/issues/views/view-issue.client.view.html'
+		}).
+		state('app.editIssue', {
+			url: '/issues/:issueId/edit',
+			templateUrl: 'modules/issues/views/edit-issue.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Issues controller
+angular.module('issues').controller('IssuesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Issues', 'Upload',
+	function($scope, $stateParams, $location, Authentication, Issues, Upload) {
+		$scope.authentication = Authentication;
+
+		// Create new Issue
+		$scope.create = function() {
+			// Create new Issue object
+			var issue = new Issues ({
+				title: this.title,
+				image: this.image,
+				description: this.description
+			});
+
+			$scope.formBusy = true;
+
+			// Redirect after save
+			Upload.parse(issue).then(function () {
+				issue.$save(function(response) {
+					$location.path('issues/' + response._id);
+
+					// Clear form fields
+					$scope.title = '';
+					$scope.image = '';
+					$scope.description = '';
+				}, function(errorResponse) {
+					$scope.formBusy = false;
+					$scope.error = errorResponse.data.message;
+				});
+			});
+
+		};
+
+		// Remove existing Issue
+		$scope.remove = function(issue) {
+			if ( issue ) { 
+				issue.$remove();
+
+				for (var i in $scope.issues) {
+					if ($scope.issues [i] === issue) {
+						$scope.issues.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.issue.$remove(function() {
+					$location.path('issues');
+				});
+			}
+		};
+
+		// Update existing Issue
+		$scope.update = function() {
+			var issue = $scope.issue;
+
+			$scope.formBusy = true;
+			issue.$update(function() {
+				$location.path('issues/' + issue._id);
+			}, function(errorResponse) {
+				$scope.formBusy = false;
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Issues
+		$scope.find = function() {
+			$scope.issues = Issues.query();
+		};
+
+		// Find existing Issue
+		$scope.findOne = function() {
+			$scope.issue = Issues.get({ 
+				issueId: $stateParams.issueId
+			});
+		};
+	}
+]);
+
+'use strict';
+
+//Issues service used to communicate Issues REST endpoints
+angular.module('issues').factory('Issues', ['$resource',
+	function($resource) {
+		return $resource('issues/:issueId', { issueId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
 'use strict';
 
 // Configuring the Articles module
@@ -2007,8 +2254,9 @@ angular.module('pets').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
 		Menus.addMenuItem('sidebar', 'Mascotas', 'pets', 'dropdown', '/pets(/create)?', false, null, null, 'fa fa-paw');
-		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets');*/
-		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create', false);
+		Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets/top', false, null, null, 'icon-user');
+		Menus.addSubMenuItem('sidebar', 'pets', 'Ranking', 'pets/', false, null, null, 'icon-trophy');
+		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create', false, null, null, 'fa-plus-circle');
 	}
 ]);
 
@@ -2074,7 +2322,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				color: this.color,
 				breed: this.breed,
 				genre: this.genre,
-        yearOfBirth: this.yearOfBirth,
+        		yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
@@ -2099,7 +2347,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 					$scope.address = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
-				  $scope.error = errorResponse.data.message;
+				  	$scope.error = errorResponse.data.message;
 				});
 			});
 
@@ -2529,24 +2777,25 @@ angular.module('roles').config(['$stateProvider',
 	function($stateProvider) {
 		// Roles state routing
 		$stateProvider.
-		state('listRoles', {
+		state('app.listRoles', {
 			url: '/roles',
 			templateUrl: 'modules/roles/views/list-roles.client.view.html'
 		}).
-		state('createRole', {
+		state('app.createRole', {
 			url: '/roles/create',
 			templateUrl: 'modules/roles/views/create-role.client.view.html'
 		}).
-		state('viewRole', {
+		state('app.viewRole', {
 			url: '/roles/:roleId',
 			templateUrl: 'modules/roles/views/view-role.client.view.html'
 		}).
-		state('editRole', {
+		state('app.editRole', {
 			url: '/roles/:roleId/edit',
 			templateUrl: 'modules/roles/views/edit-role.client.view.html'
 		});
 	}
 ]);
+
 'use strict';
 
 // Roles controller
@@ -2613,6 +2862,35 @@ angular.module('roles').controller('RolesController', ['$scope', '$stateParams',
 		};
 	}
 ]);
+'use strict';
+
+angular.module('roles').directive('roleUserSelector', [ 'Roles', '$localStorage',
+	function(Petgenres, $localStorage) {
+		return {
+			templateUrl: '/modules/roles/views/partials/role-user-selector.html',
+			restrict: 'E',
+			replace: true,
+			link: function(scope, element, attrs) {
+				scope.$storage = $localStorage;
+
+				scope.getRoleUsers = function(){
+					console.log('roleUser');
+					if(scope.$storage.roleusers && scope.$storage.roleusers.length){
+						scope.roleusers = scope.$storage.roleusers;
+						console.log('$localStorage', scope.roleusers);
+					} else {
+						scope.roleusers = Petgenres.query();
+						scope.$storage.roleusers = scope.roleusers;
+						console.log('else', scope.roleusers);
+					}
+				};
+
+				scope.getRoleUsers();
+			}
+		};
+	}
+]);
+
 'use strict';
 
 //Roles service used to communicate Roles REST endpoints
@@ -2853,6 +3131,123 @@ angular.module('shops').controller('ShopsController', ['$scope', '$stateParams',
 angular.module('shops').factory('Shops', ['$resource',
 	function($resource) {
 		return $resource('shops/:shopId', { shopId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+// Configuring the Articles module
+angular.module('trainers').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Entrenadores', 'trainers', 'dropdown', '/trainers(/create)?', false, null, null, 'fa fa-book');
+		/*Menus.addSubMenuItem('sidebar', 'trainers', 'List Trainers', 'trainers');*/
+		/*Menus.addSubMenuItem('sidebar', 'trainers', 'New Trainer', 'trainers/create');*/
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('trainers').config(['$stateProvider',
+	function($stateProvider) {
+		// Trainers state routing
+		$stateProvider.
+		state('app.listTrainers', {
+			url: '/trainers',
+			templateUrl: 'modules/trainers/views/list-trainers.client.view.html'
+		}).
+		state('app.createTrainer', {
+			url: '/trainers/create',
+			templateUrl: 'modules/trainers/views/create-trainer.client.view.html'
+		}).
+		state('app.viewTrainer', {
+			url: '/trainers/:trainerId',
+			templateUrl: 'modules/trainers/views/view-trainer.client.view.html'
+		}).
+		state('app.editTrainer', {
+			url: '/trainers/:trainerId/edit',
+			templateUrl: 'modules/trainers/views/edit-trainer.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Trainers controller
+angular.module('trainers').controller('TrainersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Trainers',
+	function($scope, $stateParams, $location, Authentication, Trainers) {
+		$scope.authentication = Authentication;
+
+		// Create new Trainer
+		$scope.create = function() {
+			// Create new Trainer object
+			var trainer = new Trainers ({
+				name: this.name
+			});
+
+			// Redirect after save
+			trainer.$save(function(response) {
+				$location.path('trainers/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Trainer
+		$scope.remove = function(trainer) {
+			if ( trainer ) { 
+				trainer.$remove();
+
+				for (var i in $scope.trainers) {
+					if ($scope.trainers [i] === trainer) {
+						$scope.trainers.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.trainer.$remove(function() {
+					$location.path('trainers');
+				});
+			}
+		};
+
+		// Update existing Trainer
+		$scope.update = function() {
+			var trainer = $scope.trainer;
+
+			trainer.$update(function() {
+				$location.path('trainers/' + trainer._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Trainers
+		$scope.find = function() {
+			$scope.trainers = Trainers.query();
+		};
+
+		// Find existing Trainer
+		$scope.findOne = function() {
+			$scope.trainer = Trainers.get({ 
+				trainerId: $stateParams.trainerId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Trainers service used to communicate Trainers REST endpoints
+angular.module('trainers').factory('Trainers', ['$resource',
+	function($resource) {
+		return $resource('trainers/:trainerId', { trainerId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
