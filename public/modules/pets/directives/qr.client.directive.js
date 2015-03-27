@@ -15,7 +15,7 @@ angular.module('pets').directive('qr',[ '$http',
           alert('hola');
           //var printContents = document.getElementById(divName).innerHTML;
           var popupWin = window.open('', '_blank', 'width=300,height=300');
-          popupWin.document.open()
+          popupWin.document.open();
           popupWin.document.write('<html><head></head><body onload="window.print()">' + element.html() + '</html>');
           popupWin.document.close();
         });
@@ -41,7 +41,6 @@ angular.module('pets').directive('qr',[ '$http',
 ]);
 
 (function (angular) {
-  'use strict';
   function printDirective() {
     var printSection = document.getElementById('printSection');
     // if there is no printing section, create one

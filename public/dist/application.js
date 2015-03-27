@@ -73,6 +73,10 @@ ApplicationConfiguration.registerModule('articles');
 
 // Use applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('comments');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('contacts');
 /*!
  * 
  * Angle - Bootstrap Admin App + AngularJS
@@ -393,6 +397,118 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 angular.module('comments').factory('Comments', ['$resource',
 	function($resource) {
 		return $resource('comments/:commentId', { commentId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
+'use strict';
+
+//Setting up route
+angular.module('contacts').config(['$stateProvider',
+	function($stateProvider) {
+		// Contacts state routing
+		$stateProvider.
+		state('app.listContacts', {
+			url: '/contacts',
+			templateUrl: 'modules/contacts/views/list-contacts.client.view.html'
+		}).
+		state('app.createContact', {
+			url: '/contacts/create',
+			templateUrl: 'modules/contacts/views/create-contact.client.view.html'
+		}).
+		state('app.viewContact', {
+			url: '/contacts/:contactId',
+			templateUrl: 'modules/contacts/views/view-contact.client.view.html'
+		}).
+		state('app.editContact', {
+			url: '/contacts/:contactId/edit',
+			templateUrl: 'modules/contacts/views/edit-contact.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Contacts controller
+angular.module('contacts').controller('ContactsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Contacts',
+	function($scope, $stateParams, $location, Authentication, Contacts) {
+		$scope.authentication = Authentication;
+
+		// Create new Contact
+		$scope.create = function() {
+			// Create new Contact object
+			var contact = new Contacts ({
+				name: this.name,
+				role: this.role,
+				tel: this.tel,
+				email: this.email
+			});
+
+			// Redirect after save
+			contact.$save(function(response) {
+				$location.path('contacts/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+				$scope.role = '';
+				$scope.tel = '';
+				$scope.email = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Contact
+		$scope.remove = function(contact) {
+			if ( contact ) { 
+				contact.$remove();
+
+				for (var i in $scope.contacts) {
+					if ($scope.contacts [i] === contact) {
+						$scope.contacts.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.contact.$remove(function() {
+					$location.path('contacts');
+				});
+			}
+		};
+
+		// Update existing Contact
+		$scope.update = function() {
+			var contact = $scope.contact;
+
+			contact.$update(function() {
+				$location.path('contacts/' + contact._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Contacts
+		$scope.find = function() {
+			$scope.contacts = Contacts.query();
+		};
+
+		// Find existing Contact
+		$scope.findOne = function() {
+			$scope.contact = Contacts.get({ 
+				contactId: $stateParams.contactId
+			});
+		};
+	}
+]);
+
+'use strict';
+
+//Contacts service used to communicate Contacts REST endpoints
+angular.module('contacts').factory('Contacts', ['$resource',
+	function($resource) {
+		return $resource('contacts/:contactId', { contactId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -2254,8 +2370,8 @@ angular.module('pets').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
 		Menus.addMenuItem('sidebar', 'Mascotas', 'pets', 'dropdown', '/pets(/create)?', false, null, null, 'fa fa-paw');
-		Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets/top', false, null, null, 'icon-user');
-		Menus.addSubMenuItem('sidebar', 'pets', 'Ranking', 'pets/', false, null, null, 'icon-trophy');
+		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets/top', false, null, null, 'icon-user');*/
+		/*Menus.addSubMenuItem('sidebar', 'pets', 'Ranking', 'pets/', false, null, null, 'icon-trophy');*/
 		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create', false, null, null, 'fa-plus-circle');
 	}
 ]);
@@ -2306,7 +2422,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		$scope.step = 1;
 
 		$scope.$watch('step', function(step){
-			if(step === 3 && $scope.inviteUserEmail != ''){
+			if(step === 3 && $scope.inviteUserEmail !== ''){
 				$scope.email = $scope.inviteUserEmail;
 			}
 		});
@@ -2389,8 +2505,14 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		};
 
 		// Find a list of Pets
-		$scope.find = function() {
+		/*$scope.find = function() {
 			$scope.pets = Pets.query();
+		};*/
+		$scope.find = function() {
+			$scope.pets = Pets.get({
+				user: $scope.authentication.user._id
+			});
+			console.log($scope.pets);
 		};
 
 		// Find existing Pet
@@ -2430,7 +2552,7 @@ angular.module('pets').directive('qr',[ '$http',
           alert('hola');
           //var printContents = document.getElementById(divName).innerHTML;
           var popupWin = window.open('', '_blank', 'width=300,height=300');
-          popupWin.document.open()
+          popupWin.document.open();
           popupWin.document.write('<html><head></head><body onload="window.print()">' + element.html() + '</html>');
           popupWin.document.close();
         });
@@ -2456,7 +2578,6 @@ angular.module('pets').directive('qr',[ '$http',
 ]);
 
 (function (angular) {
-  'use strict';
   function printDirective() {
     var printSection = document.getElementById('printSection');
     // if there is no printing section, create one
@@ -2659,7 +2780,8 @@ angular.module('pettypes').factory('Pettypes', ['$resource',
 angular.module('rescues').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Rescatistas', 'rescues', 'dropdown', '/rescues(/create)?', false, null, null, 'fa fa-group');
+		/*Menus.addMenuItem('sidebar', 'Voluntarios', 'rescues', 'dropdown', '/rescues(/create)?', false, null, null, 'fa fa-group');*/
+		Menus.addMenuItem('sidebar', 'Voluntarios', 'contacts/create', 'dropdown', '/contacts(/create)?', false, null, null, 'fa fa-group');
 		/*Menus.addSubMenuItem('sidebar', 'rescues', 'List Rescues', 'rescues');
 		Menus.addSubMenuItem('sidebar', 'rescues', 'New Rescue', 'rescues/create');*/
 	}
@@ -2910,7 +3032,8 @@ angular.module('roles').factory('Roles', ['$resource',
 angular.module('shelters').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Refugios', 'shelters', 'dropdown', '/shelters(/create)?', false, null, null, 'icon-pointer');
+		/*Menus.addMenuItem('sidebar', 'Refugios', 'shelters', 'dropdown', '/shelters(/create)?', false, null, null, 'icon-pointer');*/
+		Menus.addMenuItem('sidebar', 'Refugios', 'contacts/create', 'dropdown', '/contacts(/create)?', false, null, null, 'icon-pointer');
 		/*Menus.addSubMenuItem('sidebar', 'shelters', 'List Shelters', 'shelters');
 		Menus.addSubMenuItem('sidebar', 'shelters', 'New Shelter', 'shelters/create');*/
 	}
@@ -3027,7 +3150,7 @@ angular.module('shelters').factory('Shelters', ['$resource',
 angular.module('shops').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Tienda', 'tienda', 'dropdown', '/tienda(/create)?', false, null, null, 'fa fa-shopping-cart');
+		/*Menus.addMenuItem('sidebar', 'Tienda', 'tienda', 'dropdown', '/tienda(/create)?', false, null, null, 'fa fa-shopping-cart');*/
 		/*Menus.addSubMenuItem('sidebar', 'shops', 'List Shops', 'shops');
 		Menus.addSubMenuItem('sidebar', 'shops', 'New Shop', 'shops/create');*/
 	}
@@ -3144,7 +3267,8 @@ angular.module('shops').factory('Shops', ['$resource',
 angular.module('trainers').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Entrenadores', 'trainers', 'dropdown', '/trainers(/create)?', false, null, null, 'fa fa-book');
+		/*Menus.addMenuItem('sidebar', 'Entrenadores', 'trainers', 'dropdown', '/trainers(/create)?', false, null, null, 'fa fa-book');*/
+		Menus.addMenuItem('sidebar', 'Entrenadores', 'contacts/create', 'dropdown', '/contacts(/create)?', false, null, null, 'fa fa-book');
 		/*Menus.addSubMenuItem('sidebar', 'trainers', 'List Trainers', 'trainers');*/
 		/*Menus.addSubMenuItem('sidebar', 'trainers', 'New Trainer', 'trainers/create');*/
 	}
@@ -3511,7 +3635,8 @@ angular.module('users').factory('Users', ['$resource',
 angular.module('vets').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('sidebar', 'Veterinarias', 'vets', 'dropdown', '/vets(/create)?', false, null, null, 'fa fa-medkit');
+		/*Menus.addMenuItem('sidebar', 'Veterinarias', 'vets', 'dropdown', '/vets(/create)?', false, null, null, 'fa fa-medkit');*/
+		Menus.addMenuItem('sidebar', 'Veterinarias', 'contacts/create', 'dropdown', '/contacts(/create)?', false, null, null, 'fa fa-medkit');
 		/*Menus.addSubMenuItem('sidebar', 'vets', 'List Vets', 'vets');*/
 		/*Menus.addSubMenuItem('sidebar', 'vets', 'New Vet', 'vets/create');*/
 	}

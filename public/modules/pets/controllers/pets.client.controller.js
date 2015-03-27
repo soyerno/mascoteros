@@ -8,7 +8,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		$scope.step = 1;
 
 		$scope.$watch('step', function(step){
-			if(step === 3 && $scope.inviteUserEmail != ''){
+			if(step === 3 && $scope.inviteUserEmail !== ''){
 				$scope.email = $scope.inviteUserEmail;
 			}
 		});
@@ -94,6 +94,12 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		$scope.find = function() {
 			$scope.pets = Pets.query();
 		};
+		/*$scope.find = function() {
+			$scope.pets = Pets.get({
+				user: $scope.authentication.user._id
+			});
+			console.log($scope.pets);
+		};*/
 
 		// Find existing Pet
 		$scope.findOne = function() {

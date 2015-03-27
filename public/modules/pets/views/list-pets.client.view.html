@@ -7,12 +7,12 @@
                 <div class="panel-body text-center bg-center" style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')">
                     <div class="row row-table">
                         <div class="col-xs-12 text-white">
-                            <a data-ng-href="#!/pets/{{pet._id}}">
+                            <a data-ng-href="#!/pet/{{pet.slug}}">
                                 <img ng-src="{{pet.picture | cloudinaryProfile}}" alt="{{pet.name}}" class="img-thumbnail thumb128">
                             </a>
                             <h3 class="m0">{{pet.name}}</h3>
                             <p class="m0" style="color: white;">
-                                <a data-ng-href="#!/pets/{{pet._id}}"><em class="fa fa-paw"></em>{{pet.slug}}</a></p>
+                                <a data-ng-href="#!/pet/{{pet.slug}}"><em class="fa fa-paw"></em>{{pet.slug}}</a></p>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,8 @@
                         <span class="label label-primary pull-right">300</span>
                         <em class="fa fa-fw fa-folder-open-o text-muted"></em>Fotos</a>-->
                     <a href="#" class="list-group-item">
-                        <span class="label label-success pull-right">Sí</span>
+                        <span ng-show="pet.isPrivate" class="label label-success pull-right">Sí</span>
+                        <span ng-show="!pet.isPrivate" class="label label-success pull-right">No</span>
                         <em class="fa fa-fw fa-user text-muted"></em>Perfil Privado</a>
                 </div>
                 <!--<div class="widget bg-success">

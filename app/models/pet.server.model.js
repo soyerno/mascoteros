@@ -91,7 +91,7 @@ var PetSchema = new Schema({
   }
 });
 
-PetSchema.plugin(URLSlugs('name', {field: 'slug'}));
+PetSchema.plugin(new URLSlugs('name', {field: 'slug'}));
 
 mongoose.model('Pet', PetSchema);
 

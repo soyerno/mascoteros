@@ -72,8 +72,20 @@ exports.delete = function(req, res) {
 /**
  * List of Pets
  */
-exports.list = function(req, res) { 
+/*exports.list = function(req, res) {
 	Pet.find().sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(pets);
+		}
+	});
+};*/
+exports.list = function(req, res) {
+
+	Pet.find({user: req.user._id}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
