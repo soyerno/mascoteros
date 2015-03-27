@@ -132,6 +132,10 @@ ApplicationConfiguration.registerModule('events');
 'use strict';
 
 // Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('faqs');
+'use strict';
+
+// Use applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('imageuploaders');
 'use strict';
 
@@ -1595,6 +1599,123 @@ angular.module('events').factory('Events', ['$resource',
 		});
 	}
 ]);
+'use strict';
+
+// Configuring the Articles module
+angular.module('faqs').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Preguntas frecuentes', 'faqs', 'dropdown', '/faqs(/create)?', true, null, null, 'icon-info');
+		/*Menus.addSubMenuItem('sidebar', 'faqs', 'List Faqs', 'faqs');*/
+		/*Menus.addSubMenuItem('sidebar', 'faqs', 'New Faq', 'faqs/create');*/
+	}
+]);
+
+'use strict';
+
+//Setting up route
+angular.module('faqs').config(['$stateProvider',
+	function($stateProvider) {
+		// Faqs state routing
+		$stateProvider.
+		state('app.listFaqs', {
+			url: '/faqs',
+			templateUrl: 'modules/faqs/views/list-faqs.client.view.html'
+		}).
+		state('app.createFaq', {
+			url: '/faqs/create',
+			templateUrl: 'modules/faqs/views/create-faq.client.view.html'
+		}).
+		state('app.viewFaq', {
+			url: '/faqs/:faqId',
+			templateUrl: 'modules/faqs/views/view-faq.client.view.html'
+		}).
+		state('app.editFaq', {
+			url: '/faqs/:faqId/edit',
+			templateUrl: 'modules/faqs/views/edit-faq.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Faqs controller
+angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Faqs',
+	function($scope, $stateParams, $location, Authentication, Faqs) {
+		$scope.authentication = Authentication;
+
+		// Create new Faq
+		$scope.create = function() {
+			// Create new Faq object
+			var faq = new Faqs ({
+				name: this.name
+			});
+
+			// Redirect after save
+			faq.$save(function(response) {
+				$location.path('faqs/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Faq
+		$scope.remove = function(faq) {
+			if ( faq ) { 
+				faq.$remove();
+
+				for (var i in $scope.faqs) {
+					if ($scope.faqs [i] === faq) {
+						$scope.faqs.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.faq.$remove(function() {
+					$location.path('faqs');
+				});
+			}
+		};
+
+		// Update existing Faq
+		$scope.update = function() {
+			var faq = $scope.faq;
+
+			faq.$update(function() {
+				$location.path('faqs/' + faq._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Faqs
+		$scope.find = function() {
+			$scope.faqs = Faqs.query();
+		};
+
+		// Find existing Faq
+		$scope.findOne = function() {
+			$scope.faq = Faqs.get({ 
+				faqId: $stateParams.faqId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Faqs service used to communicate Faqs REST endpoints
+angular.module('faqs').factory('Faqs', ['$resource',
+	function($resource) {
+		return $resource('faqs/:faqId', { faqId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
 /*
 'use strict';
 
@@ -1902,7 +2023,12 @@ angular.module('pets').config(['$stateProvider',
 			url: '/qr',
 			templateUrl: 'modules/pets/views/qr.client.view.html'
 		}).
-		state('app.listPets', {
+    state('app.viewPet', {
+        url: '/pet/:petSlug',
+        templateUrl: 'modules/pets/views/view-pet.client.view.html',
+        controller: 'PetsController'
+    }).
+    state('app.listPets', {
 			url: '/pets',
 			templateUrl: 'modules/pets/views/list-pets.client.view.html'
 		}).
@@ -1910,9 +2036,9 @@ angular.module('pets').config(['$stateProvider',
 			url: '/pets/create',
 			templateUrl: 'modules/pets/views/create-pet.client.view.html'
 		}).
-		state('app.viewPet', {
+		state('app.viewPets', {
 			url: '/pets/:petId',
-			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			templateUrl: 'modules/pets/views/view-pets.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.editPet', {
@@ -1925,10 +2051,9 @@ angular.module('pets').config(['$stateProvider',
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload  ) {
+angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$http',
+	function($scope, $stateParams, $location, Authentication, Pets, Upload, $http) {
 		$scope.authentication = Authentication;
-
 
 		$scope.step = 1;
 
@@ -2026,6 +2151,17 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 				petId: $stateParams.petId
 			});
 		};
+
+    $scope.findOneBySlug = function() {
+      $http.get('/pet/' + $stateParams.petSlug).
+        success(function(data, status, headers, config) {
+          $scope.pet = data;
+        }).
+        error(function(data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
+    };
 	}
 ]);
 
