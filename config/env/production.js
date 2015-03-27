@@ -41,7 +41,19 @@ module.exports = {
         'http://platform.twitter.com/widgets.js'
 			]
 		},
-		css: 'public/application.min.css',
+		css:  [
+			// 'public/modules/**/css/*.css'
+			'public/application.min.css',
+			'public/modules/core/css/core.css',
+			'public/modules/core/css/landing.css',
+			'public/modules/core/css/datePicker.css',
+			'public/modules/core/css/offsidebar-tab-1.css',
+			'public/modules/pets/css/pet_profile.css',
+			'public/modules/pets/css/qr.css',
+			'public/lib/angular-native-picker/build/themes/default.css',
+			'public/lib/angular-native-picker/build/themes/default.date.css',
+			'public/lib/angular-socialshare/angular-socialshare.css'
+		],
 		js: 'public/dist/application.min.js'
 	},
 	facebook: {
