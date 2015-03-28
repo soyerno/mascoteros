@@ -1,6 +1,9 @@
 <section data-ng-controller="PetsController"  data-ng-init="findOne()">
     <div class="page-header">
         <h1>{{pet.name}}</h1>
+        <a class="btn btn-primary" data-ng-click="remove();">
+            <i class="fa fa-trash"></i>
+        </a>
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
