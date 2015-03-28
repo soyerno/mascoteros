@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -104,8 +104,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
     	$scope.findOneBySlug = function() {
 			var Pet = $resource('/pet/:petSlug', {petSlug:'@slug'});
-			$scope.pet = Pet.get({petSlug:$stateParams.petSlug}, function(data) {
-				//pet.abc = true;
+			$scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function() {
 				pet.get();
 			});
 		};
@@ -114,6 +113,26 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			geolocation.getLocation().then(function(data){
 				$scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
 			});
-		}
+		};
+
+		$scope.sendScanNotif = function() {
+			/* @todo: add this to pet profile options*/
+			var petSendNotification = true;
+			if(petSendNotification){
+				// Create new Notification object
+				var notification = new Notifications ({
+					title: 'Tu perro fue scaneado',
+					pet: $scope.pet._id,
+					geoLocation: $scope.coords
+				});
+
+				// Redirect after save
+				notification.$save(function(response) {
+					console.log(response);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}
+		};
 	}
 ]);
