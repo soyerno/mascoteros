@@ -10,7 +10,8 @@
 				by
 				<span data-ng-bind="notification.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="notification.name"></h4>
+			<h4 class="list-group-item-heading" data-ng-bind="notification.title"></h4>
+            <p>{{notification.geoLocation}}</p>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!notifications.$resolved || notifications.length">

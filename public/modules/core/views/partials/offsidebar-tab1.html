@@ -1,22 +1,10 @@
 <!--<h3 class="text-center text-thin">Tab 1</h3>-->
-<ul class="event-list">
-    <li>
-        <img alt="Independence Day" src="https://farm4.staticflickr.com/3100/2693171833_3545fb852c_q.jpg" />
+<ul class="event-list" data-ng-controller="NotificationsController" data-ng-init="find()">
+    <li data-ng-repeat="notification in notifications" data-ng-href="#!/notifications/{{notification._id}}">
+        <i class="fa fa-qrcode"></i>
         <div class="info">
-            <h2 class="title">Nació mascoteros</h2>
-            <p class="desc"></p>
+            <h2 class="title">{{notification.title}}</h2>
+            <p class="desc">{{notification.geoLocation}}</p>
         </div>
     </li>
-    <!--<li>
-        <time datetime="2014-07-20">
-            <span class="day">9</span>
-            <span class="month">Julio</span>
-            <span class="year">2015</span>
-            <span class="time">00.00</span>
-        </time>
-        <div class="info">
-            <h2 class="title">Día de la independencia</h2>
-            <p class="desc">en Argentina</p>
-        </div>
-    </li>-->
 </ul>
