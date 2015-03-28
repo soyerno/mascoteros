@@ -222,4 +222,8 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+
+	//Heroku Tasks.
+	grunt.registerTask('heroku:development'/*, 'build'*/);
+	grunt.registerTask('heroku:production', 'build');
 };

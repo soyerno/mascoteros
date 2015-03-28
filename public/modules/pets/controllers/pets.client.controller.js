@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$http',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload, $http) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$http',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, $http) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -94,12 +94,6 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		$scope.find = function() {
 			$scope.pets = Pets.query();
 		};
-		/*$scope.find = function() {
-			$scope.pets = Pets.get({
-				user: $scope.authentication.user._id
-			});
-			console.log($scope.pets);
-		};*/
 
 		// Find existing Pet
 		$scope.findOne = function() {
@@ -109,14 +103,23 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		};
 
     $scope.findOneBySlug = function() {
-      $http.get('/pet/' + $stateParams.petSlug).
+		/*$scope.pet = Pets.get({
+			petSlug: $stateParams.petSlug
+		});*/
+		$scope.pet = new Pets;
+		debugger;
+		$scope.pet = function($resource){
+			return $resource('/pet/' + $stateParams.petSlug);
+		};
+
+      /*$http.get('/pet/' + $stateParams.petSlug).
         success(function(data, status, headers, config) {
           $scope.pet = data;
         }).
         error(function(data, status, headers, config) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.
-        });
+        });*/
     };
 	}
 ]);
