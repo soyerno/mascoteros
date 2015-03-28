@@ -46,11 +46,10 @@ module.exports = {
 				'public/lib/moment/locale/es.js',
 				'public/lib/angular-native-picker/build/angular-datepicker.js',
 				'public/lib/angular-socialshare/angular-socialshare.js',
+				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
 				'http://platform.twitter.com/widgets.js',
         'http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false'
 
-      /*'public/lib/lodash/dist/lodash.min.js',
-      'public/lib/angular-google-maps/dist/angular-google-maps.min.js'*/
         // 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',

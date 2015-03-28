@@ -28,6 +28,5 @@ module.exports = function(app) {
 
 	// Finish by binding the Pet middleware
 	app.param('petId', pets.petByID);
-
-  app.param('petSlug', pets.petBySlug);
+    app.param('petSlug', pets.petBySlug);
 };

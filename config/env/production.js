@@ -38,6 +38,7 @@ module.exports = {
         'public/lib/moment/locale/es.js',
         'public/lib/angular-native-picker/build/angular-datepicker.js',
         'public/lib/angular-socialshare/angular-socialshare.js',
+		'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
         'http://platform.twitter.com/widgets.js'
 			]
 		},

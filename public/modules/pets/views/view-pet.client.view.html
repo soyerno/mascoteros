@@ -1,15 +1,12 @@
-<h3 data-ng-show="authentication.user._id == pet.user._id">
+<h3 data-ng-show="authentication.user._id == pet.user._id && pet.name">
     <div class="pull-right">
         <a class="btn btn-primary" href="/#!/pets/{{pet._id}}/edit">
             <i class="fa fa-edit"></i>
         </a>
-        <a class="btn btn-primary" data-ng-click="remove();">
-            <i class="fa fa-trash"></i>
-        </a>
     </div>
     {{pet.name}}
 </h3>
-<div class="content-wrapper">
+<div class="content-wrapper" ng-show="pet.name">
     <div class="unwrap">
         <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
             <div class="p-xl text-center text-white">
@@ -19,12 +16,12 @@
                 <p>{{pet.description}}</p>
             </div>
         </div>
-        <div class="text-center bg-gray-dark p-lg mb-xl">
+        <!--<div class="text-center bg-gray-dark p-lg mb-xl">
             <div class="row row-table">
                 <div class="col-xs-4 br">
                     <h3 class="m0">400</h3>
                     <p class="m0">
-                        <!--<span class="hidden-xs"></span>-->
+                        &lt;!&ndash;<span class="hidden-xs"></span>&ndash;&gt;
                         <span>Visitas</span>
                     </p>
                 </div>
@@ -37,15 +34,19 @@
                     <p class="m0">Puntos</p>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="p-lg">
 
         </div>
     </div>
 </div>
 
-<section data-ng-init="findOneBySlug()">
+<section data-ng-init="findOneBySlug(); getGeoLocalization();" ng-show="pet.name">
     <!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
+    <div class="panel">
+        {{coords}}
+    </div>
+
     <div class="">
         <div class="panel panel-info">
             <div class="panel-body">
@@ -136,4 +137,9 @@
             <!--<div class="panel-footer"></div>-->
         </div>
     </div>
+</section>
+
+<section ng-hide="pet.name">
+    <h2>La mascota no existe!</h2>
+    <a ng-href="/#!/pets" class="btn btn-primary btn-lg">Volver al listado de mascotas</a>
 </section>
