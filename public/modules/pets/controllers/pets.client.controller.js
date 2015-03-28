@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -37,7 +37,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			// Redirect after save
 			Upload.parse(pet).then(function () {
 				pet.$save(function(response) {
-					$location.path('pets/' + response._id);
+					$location.path('pet/' + response.slug);
 					// Clear form fields
 					$scope.name = '';
 					$scope.picture = '';
@@ -109,5 +109,11 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				pet.get();
 			});
 		};
+
+		$scope.getGeoLocalization = function() {
+			geolocation.getLocation().then(function(data){
+				$scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+			});
+		}
 	}
 ]);

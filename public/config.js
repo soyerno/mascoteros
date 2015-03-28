@@ -27,7 +27,8 @@ var ApplicationConfiguration = (function() {
 		'pettypes',
 		'angularMoment',
 		'angular-datepicker',
-		'djds4rce.angular-socialshare'
+		'djds4rce.angular-socialshare',
+		'geolocation'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
