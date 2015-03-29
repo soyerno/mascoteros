@@ -28,7 +28,8 @@ var ApplicationConfiguration = (function() {
 		'angularMoment',
 		'angular-datepicker',
 		'djds4rce.angular-socialshare',
-    'ngAutocomplete'
+    'ngAutocomplete',
+		'geolocation'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
@@ -150,6 +151,10 @@ ApplicationConfiguration.registerModule('imageuploaders');
 
 // Use applicaion configuration module to register a new module
 ApplicationConfiguration.registerModule('issues');
+'use strict';
+
+// Use applicaion configuration module to register a new module
+ApplicationConfiguration.registerModule('notifications');
 'use strict';
 
 // Use applicaion configuration module to register a new module
@@ -951,6 +956,21 @@ angular.module('core').controller('TimelineController', ['$scope',
 		// ...
 	}
 ]);
+'use strict';
+
+angular.module('core').directive('fbPagePlugin', [
+	function() {
+		return {
+			templateUrl: '/modules/core/views/partials/fb-page-plugin.client.view.html',
+			restrict: 'E',
+			link: function postLink(scope, element, attrs) {
+				// Fb page plugin directive logic
+				// ...
+			}
+		};
+	}
+]);
+
 /**=========================================================
  * Module: navbar-search.js
  * Navbar search toggler * Auto dismiss on ESC key
@@ -2218,6 +2238,124 @@ angular.module('issues').factory('Issues', ['$resource',
 		});
 	}
 ]);
+/*
+'use strict';
+
+// Configuring the Articles module
+angular.module('notifications').run(['Menus',
+	function(Menus) {
+		// Set top bar menu items
+		Menus.addMenuItem('sidebar', 'Notifications', 'notifications', 'dropdown', '/notifications(/create)?');
+		Menus.addSubMenuItem('sidebar', 'notifications', 'List Notifications', 'notifications');
+		Menus.addSubMenuItem('sidebar', 'notifications', 'New Notification', 'notifications/create');
+	}
+]);*/
+
+'use strict';
+
+//Setting up route
+angular.module('notifications').config(['$stateProvider',
+	function($stateProvider) {
+		// Notifications state routing
+		$stateProvider.
+		state('app.listNotifications', {
+			url: '/notifications',
+			templateUrl: 'modules/notifications/views/list-notifications.client.view.html'
+		}).
+		state('app.createNotification', {
+			url: '/notifications/create',
+			templateUrl: 'modules/notifications/views/create-notification.client.view.html'
+		}).
+		state('app.viewNotification', {
+			url: '/notifications/:notificationId',
+			templateUrl: 'modules/notifications/views/view-notification.client.view.html'
+		}).
+		state('app.editNotification', {
+			url: '/notifications/:notificationId/edit',
+			templateUrl: 'modules/notifications/views/edit-notification.client.view.html'
+		});
+	}
+]);
+
+'use strict';
+
+// Notifications controller
+angular.module('notifications').controller('NotificationsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Notifications',
+	function($scope, $stateParams, $location, Authentication, Notifications) {
+		$scope.authentication = Authentication;
+
+		// Create new Notification
+		$scope.create = function() {
+			// Create new Notification object
+			var notification = new Notifications ({
+				name: this.name
+			});
+
+			// Redirect after save
+			notification.$save(function(response) {
+				$location.path('notifications/' + response._id);
+
+				// Clear form fields
+				$scope.name = '';
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Remove existing Notification
+		$scope.remove = function(notification) {
+			if ( notification ) { 
+				notification.$remove();
+
+				for (var i in $scope.notifications) {
+					if ($scope.notifications [i] === notification) {
+						$scope.notifications.splice(i, 1);
+					}
+				}
+			} else {
+				$scope.notification.$remove(function() {
+					$location.path('notifications');
+				});
+			}
+		};
+
+		// Update existing Notification
+		$scope.update = function() {
+			var notification = $scope.notification;
+
+			notification.$update(function() {
+				$location.path('notifications/' + notification._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		};
+
+		// Find a list of Notifications
+		$scope.find = function() {
+			$scope.notifications = Notifications.query();
+		};
+
+		// Find existing Notification
+		$scope.findOne = function() {
+			$scope.notification = Notifications.get({ 
+				notificationId: $stateParams.notificationId
+			});
+		};
+	}
+]);
+'use strict';
+
+//Notifications service used to communicate Notifications REST endpoints
+angular.module('notifications').factory('Notifications', ['$resource',
+	function($resource) {
+		return $resource('notifications/:notificationId', { notificationId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);
 'use strict';
 
 // Configuring the Articles module
@@ -2416,8 +2554,8 @@ angular.module('pets').config(['$stateProvider',
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', '$http',
-	function($scope, $stateParams, $location, Authentication, Pets, Upload, $http) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -2452,7 +2590,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 			// Redirect after save
 			Upload.parse(pet).then(function () {
 				pet.$save(function(response) {
-					$location.path('pets/' + response._id);
+					$location.path('pet/' + response.slug);
 					// Clear form fields
 					$scope.name = '';
 					$scope.picture = '';
@@ -2509,12 +2647,6 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 		$scope.find = function() {
 			$scope.pets = Pets.query();
 		};
-		/*$scope.find = function() {
-			$scope.pets = Pets.get({
-				user: $scope.authentication.user._id
-			});
-			console.log($scope.pets);
-		};*/
 
 		// Find existing Pet
 		$scope.findOne = function() {
@@ -2523,16 +2655,38 @@ angular.module('pets').controller('PetsController', ['$scope', '$stateParams', '
 			});
 		};
 
-    $scope.findOneBySlug = function() {
-      $http.get('/pet/' + $stateParams.petSlug).
-        success(function(data, status, headers, config) {
-          $scope.pet = data;
-        }).
-        error(function(data, status, headers, config) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-        });
-    };
+    	$scope.findOneBySlug = function() {
+			var Pet = $resource('/pet/:petSlug', {petSlug:'@slug'});
+			$scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function() {
+				pet.get();
+			});
+		};
+
+		$scope.getGeoLocalization = function() {
+			geolocation.getLocation().then(function(data){
+				$scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+			});
+		};
+
+		$scope.sendScanNotif = function() {
+			/* @todo: add this to pet profile options*/
+			var petSendNotification = true;
+			if(petSendNotification){
+				// Create new Notification object
+				var notification = new Notifications ({
+					title: 'Tu perro fue scaneado',
+					pet: $scope.pet._id,
+					geoLocation: $scope.coords
+				});
+
+				// Redirect after save
+				notification.$save(function(response) {
+					console.log(response);
+				}, function(errorResponse) {
+					$scope.error = errorResponse.data.message;
+				});
+			}
+		};
 	}
 ]);
 
@@ -2550,6 +2704,7 @@ angular.module('pets').directive('qr',[ '$http',
 			link: function postLink(scope, element, attr) {
 
         element.bind('click', function() {
+          alert('hola');
           //var printContents = document.getElementById(divName).innerHTML;
           var popupWin = window.open('', '_blank', 'width=300,height=300');
           popupWin.document.open();
