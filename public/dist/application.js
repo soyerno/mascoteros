@@ -28,8 +28,8 @@ var ApplicationConfiguration = (function() {
 		'angularMoment',
 		'angular-datepicker',
 		'djds4rce.angular-socialshare',
-    'ngAutocomplete',
-		'geolocation'
+		'geolocation',
+    'uiGmapgoogle-maps'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {

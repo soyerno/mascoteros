@@ -38,7 +38,6 @@ angular.module('core').run(['Menus',
 
 }])
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-
   cfpLoadingBarProvider.includeBar = true;
   cfpLoadingBarProvider.includeSpinner = false;
   cfpLoadingBarProvider.latencyThreshold = 500;
@@ -46,9 +45,16 @@ angular.module('core').run(['Menus',
 }])
 .config(function($locationProvider){
   $locationProvider.html5Mode(true).hashPrefix('!');
-})
+}).config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+    GoogleMapApiProviders.configure({
+      //    key: 'your api key',
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
+    });
+}])
 .run(function(amMoment){
   amMoment.changeLocale('es');
-}).run(function($FB){
+})
+.run(function($FB){
   $FB.init('1414293935539684');
 });

@@ -48,9 +48,9 @@ module.exports = {
 				'public/lib/angular-socialshare/angular-socialshare.js',
 				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
 				'http://platform.twitter.com/widgets.js',
-        'http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false'
-
-        // 'public/lib/jquery/dist/jquery.js',
+        '//maps.googleapis.com/maps/api/js?sensor=false',
+        'public/lib/angular-google-maps/dist/angular-google-maps.min.js'
+      // 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
 				// 'public/lib/angular-cookies/angular-cookies.js',

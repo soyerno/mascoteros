@@ -6,8 +6,14 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
+    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    $scope.options = {scrollwheel: false};
+    var events = {
+      places_changed: function (searchBox) {}
+    };
+    $scope.searchbox = { template:'searchbox.tpl.html', events:events};
 
-		$scope.$watch('step', function(step){
+    $scope.$watch('step', function(step){
 			if(step === 3 && $scope.inviteUserEmail !== ''){
 				$scope.email = $scope.inviteUserEmail;
 			}
