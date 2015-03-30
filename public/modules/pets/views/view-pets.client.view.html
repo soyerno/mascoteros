@@ -83,10 +83,10 @@
                             <qr ng-if="pet" pet="pet"></qr>
                         </div>
 
-                        <div class="row" align="center">
-                            <a nf-if="pet" facebook class="facebookShare" data-url='http://mascoteros.net/pets/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
-                            <a nf-if="pet" twitter  data-lang="en" data-count='horizontal' data-url='http://mascoteros.net/pets/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
-                            <div nf-if="pet" gplus class="g-plus" data-size="tall" data-annotation="bubble" data-href='http://mascoteros.net/pets/{{pet.slug}}' data-action='share'></div>
+                        <div class="row" align="center" nf-if="pet.slug">
+                            <a facebook class="facebookShare" data-ng-url='http://mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
+                            <a twitter  data-lang="en" data-count='horizontal' data-ng-url='http://mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
+                            <div gplus class="g-plus" data-size="tall" data-annotation="bubble" data-ng-href='http://mascoteros.net/pet/{{pet.slug}}' data-href='http://mascoteros.net/pet/{{pet.slug}}' data-action='share'></div>
                         </div>
                     </div>
                     <div class=" col-md-4 col-lg-4 ">
