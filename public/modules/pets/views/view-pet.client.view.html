@@ -144,7 +144,7 @@
     </div>
 </section>
 
-<section ng-hide="pet.name">
-    <h2>La mascota no existe!</h2>
+<section ng-hide="pet.name || pet.isPrivate">
+    <h2>La mascota no existe o el perfíl es privado!</h2>
     <a ng-href="/#!/pets" class="btn btn-primary btn-lg">Volver al listado de mascotas</a>
 </section>
