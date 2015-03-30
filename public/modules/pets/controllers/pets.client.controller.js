@@ -129,7 +129,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			if(petSendNotification){
 				// Create new Notification object
 				var notification = new Notifications ({
-					title: 'Tu perro fue scaneado',
+					title: $scope.pet.name + ' fue scaneado',
 					pet: $scope.pet._id,
 					geoLocation: $scope.coords
 				});
