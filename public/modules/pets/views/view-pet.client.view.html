@@ -70,9 +70,6 @@
                                 <!--MAKE A LIKE DIRECTIVE-->
 
                                 <!--MAKE A SHARE DIRECTIVE-->
-                                <a facebook class="facebookShare" data-url='http://mascoteros.net/pets/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
-                                <a twitter  data-lang="en" data-count='horizontal' data-url='http://mascoteros.net/pets/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
-                                <div gplus class="g-plus" data-size="tall" data-annotation="bubble" data-href='http://mascoteros.net/pets/{{pet.slug}}' data-action='share'></div>
                                 <!--<button class="btn btn-lg btn-primary"><i class="icon-share"></i> Compartír</button>-->
                                 <!--MAKE A SHARE DIRECTIVE-->
 
@@ -82,6 +79,12 @@
                         <div class="row" ng-show="authentication.user._id == pet.user._id">
                             <p>Hacé click sobre la imagen para imprimir tu collar!</p>
                             <qr ng-if="pet" pet="pet"></qr>
+                        </div>
+
+                        <div class="row">
+                            <a nf-if="pet" facebook class="facebookShare" data-url='http://mascoteros.net/pets/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
+                            <a nf-if="pet" twitter  data-lang="en" data-count='horizontal' data-url='http://mascoteros.net/pets/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
+                            <div nf-if="pet" gplus class="g-plus" data-size="tall" data-annotation="bubble" data-href='http://mascoteros.net/pets/{{pet.slug}}' data-action='share'></div>
                         </div>
                     </div>
                     <div class=" col-md-4 col-lg-4 ">
