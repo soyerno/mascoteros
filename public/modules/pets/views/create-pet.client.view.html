@@ -122,11 +122,17 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><label class="control-label" for="yearOfBirth">Nació</label></td>
-                                    <td>
+                                    <td colspan="2">
+                                        <label class="control-label" for="yearOfBirth">Nació</label>
                                         <div class="controls">
+                                            <p class="input-group custom-datepicker">
+                                                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                      <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                      </span>
+                                            </p>
                                             <!--<input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>-->
-                                            <input type="text" id="yearOfBirth" pick-a-date="yearOfBirth" class="form-control datepicker" pick-a-date-options="{ format: 'dd-mm-yyyy' }" placeholder="Fecha de Nac" required/>
+                                            <!--<input type="text" id="yearOfBirth" pick-a-date="yearOfBirth" class="form-control datepicker" pick-a-date-options="{ format: 'dd-mm-yyyy' }" placeholder="Fecha de Nac" required/>-->
                                         </div>
                                     </td>
                                 </tr>
@@ -183,6 +189,7 @@
 
                                 <tr>
                                     <td>
+                                        <!--<iframe ng-if="address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="https://www.google.com.ar/maps/place/{{address}}&output=embed"></iframe>-->
                                     </td>
                                     <td>
                                         <label class="control-label" for="description">Dirección</label>
