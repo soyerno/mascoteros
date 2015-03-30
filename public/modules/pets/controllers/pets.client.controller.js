@@ -28,7 +28,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
-				address: this.address
+				address: this.address,
+				tel1: this.tel1,
+				tel2: this.tel2
 			});
 
 			$scope.formBusy = true;
@@ -47,6 +49,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.neutered = '';
 					$scope.email = '';
 					$scope.address = '';
+					$scope.tel1 = '';
+					$scope.tel2 = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
 				  	$scope.error = errorResponse.data.message;

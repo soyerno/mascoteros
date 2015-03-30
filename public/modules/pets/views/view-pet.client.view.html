@@ -59,14 +59,14 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 pet-actions-container">
-                                <button ng-show="authentication.user._id != pet.user._id" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Contactar familia</button>
-                                <button class="btn btn-lg btn-success" ng-click="sendScanNotif();"><i class="icon-like"></i> Send Scan Notif</button>
+                                <button ng-show="authentication.user._id != pet.user._id" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
+                                <!--<button class="btn btn-lg btn-success" ng-click="sendScanNotif();"><i class="icon-like"></i> Notificar</button>-->
                                 <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
                                 <button ng-show="pet.missing" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
                                 <button ng-show="!pet.missing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Perdido</button>
                                 <!--MAKE A LIKE DIRECTIVE-->
-                                <button class="btn btn-lg btn-success"><i class="icon-like"></i> Likes: 120</button>
-                                <button class="btn btn-lg btn-success" disabled><i class="icon-like"></i> Likes: 120 / Liked</button>
+                                <!--<button class="btn btn-lg btn-success"><i class="icon-like"></i> Likes: 120</button>
+                                <button class="btn btn-lg btn-success" disabled><i class="icon-like"></i> Likes: 120 / Liked</button>-->
                                 <!--MAKE A LIKE DIRECTIVE-->
 
                                 <!--MAKE A SHARE DIRECTIVE-->
@@ -76,11 +76,12 @@
                                 <!--<button class="btn btn-lg btn-primary"><i class="icon-share"></i> Compartír</button>-->
                                 <!--MAKE A SHARE DIRECTIVE-->
 
-                                <button class="btn btn-lg btn-primary" ng-show="authentication.user._id == pet.user._id"><i class="icon-printer"></i> Imprimir ID</button>
+                                <!--<button class="btn btn-lg btn-primary" ng-show="authentication.user._id == pet.user._id"><i class="icon-printer"></i> Imprimir ID</button>-->
                             </div>
                         </div>
-                        <div class="row">
-                            <qr ng-show="authentication.user._id == pet.user._id" ng-if="pet" pet="pet"></qr>
+                        <div class="row" ng-show="authentication.user._id == pet.user._id">
+                            <p>Hacé click sobre la imagen para imprimir tu collar!</p>
+                            <qr ng-if="pet" pet="pet"></qr>
                         </div>
                     </div>
                     <div class=" col-md-4 col-lg-4 ">

@@ -55,6 +55,14 @@ var PetSchema = new Schema({
 		default: '',
 		required: 'Please fill Pet Address'
 	},
+	tel1: {
+		type: String,
+		default: ''
+	},
+	tel2: {
+		type: String,
+		default: ''
+	},
 	genre: {
 		type: Schema.ObjectId,
 		ref: 'Petgenre'
