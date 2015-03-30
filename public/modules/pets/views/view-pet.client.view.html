@@ -8,6 +8,7 @@
     {{pet.name}}
 </h3>
 <div class="content-wrapper" ng-if="!pet.isPrivate || authentication.user._id == pet.user._id">
+    {{pet}}
     <div class="unwrap">
         <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
             <div class="p-xl text-center text-white">

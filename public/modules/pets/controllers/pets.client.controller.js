@@ -30,6 +30,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				email: this.email,
 				address: this.address,
 				isPrivate: this.isPrivate,
+				isAdoption: this.isAdoption,
 				tel1: this.tel1,
 				tel2: this.tel2
 			});
@@ -51,6 +52,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.email = '';
 					$scope.address = '';
 					$scope.isPrivate = '';
+					$scope.isAdoption = '';
 					$scope.tel1 = '';
 					$scope.tel2 = '';
 				}, function(errorResponse) {
