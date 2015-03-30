@@ -90,7 +90,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
 			Upload.parse(pet).then(function () {
 				pet.$update(function() {
-					$location.path('pets/' + pet._id);
+					$location.path('pet/' + pet.slug);
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
