@@ -6,7 +6,7 @@
     </div>
     {{pet.name}}
 </h3>
-<div class="content-wrapper" ng-show="pet.name" ng-hide="pet.isPrivate">
+<div class="content-wrapper" ng-if="!pet.isPrivate">
     <div class="unwrap">
         <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
             <div class="p-xl text-center text-white">
@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<section data-ng-init="findOneBySlug(); getGeoLocalization();" ng-show="pet.name">
+<section data-ng-init="findOneBySlug(); getGeoLocalization();" ng-if="!pet.isPrivate">
     <!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
     <div class="panel">
         {{coords}}

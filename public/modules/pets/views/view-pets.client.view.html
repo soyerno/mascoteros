@@ -41,7 +41,7 @@
     </div>
 </div>
 
-<section data-ng-init="findOne(); getGeoLocalization();" ng-show="pet.name">
+<section data-ng-init="findOne(); getGeoLocalization();" ng-if="!pet.isPrivate">
     <!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
     <div class="panel">
         {{coords}}
