@@ -39,11 +39,15 @@ module.exports = {
         'public/lib/angular-native-picker/build/angular-datepicker.js',
         'public/lib/angular-socialshare/angular-socialshare.js',
 		'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
-        'http://platform.twitter.com/widgets.js'
+        'http://platform.twitter.com/widgets.js',
+		'public/lib/textAngular/dist/textAngular.min.js',
+		'public/lib/textAngular/dist/textAngular-rangy.min.js',
+		'public/lib/textAngular/dist/textAngular-sanitize.min.js'
 			]
 		},
 		css:  [
 			// 'public/modules/**/css/*.css'
+			'public/lib/textAngular/src/textAngular.css',
 			'public/application.min.css',
 			'public/modules/core/css/core.css',
 			'public/modules/core/css/landing.css',
@@ -53,7 +57,8 @@ module.exports = {
 			'public/modules/pets/css/qr.css',
 			'public/lib/angular-native-picker/build/themes/default.css',
 			'public/lib/angular-native-picker/build/themes/default.date.css',
-			'public/lib/angular-socialshare/angular-socialshare.css'
+			'public/lib/angular-socialshare/angular-socialshare.css',
+
 		],
 		js: 'public/dist/application.min.js'
 	},

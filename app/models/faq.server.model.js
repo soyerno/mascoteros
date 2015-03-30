@@ -10,11 +10,16 @@ var mongoose = require('mongoose'),
  * Faq Schema
  */
 var FaqSchema = new Schema({
-	name: {
+	title: {
 		type: String,
 		default: '',
-		required: 'Please fill Faq name',
+		required: 'Please fill Faq title',
 		trim: true
+	},
+	content: {
+		type: String,
+		default: '',
+		required: 'Please fill Faq content'
 	},
 	created: {
 		type: Date,

@@ -28,7 +28,8 @@ var ApplicationConfiguration = (function() {
 		'angularMoment',
 		'angular-datepicker',
 		'djds4rce.angular-socialshare',
-		'geolocation'
+		'geolocation',
+		'textAngular'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
