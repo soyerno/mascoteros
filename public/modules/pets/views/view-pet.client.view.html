@@ -141,12 +141,11 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 ">
-                        <div class="panel widget">
-                            <script type="text/ng-template" id="searchbox.tpl.html">
-                                <input type="text" placeholder="Search Box">
-                            </script>
-                            <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+                    <div class="col-md-4 col-lg-4">
+                        <div class="panel widget" ng-if="map">
+                            <ui-gmap-google-map center='map.center' zoom='map.zoom'>
+                                <ui-gmap-marker coords="center" idkey="1"></ui-gmap-marker>
+                            </ui-gmap-google-map>
                         </div>
                     </div>
                 </div>
