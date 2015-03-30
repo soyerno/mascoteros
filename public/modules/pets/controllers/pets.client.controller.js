@@ -117,16 +117,18 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			});
 		};
 
+
+		var events = {
+			places_changed: function (searchBox) {}
+		}
+		$scope.searchbox = { template:'searchbox.tpl.html', events:events};
+
+
 		$scope.setGeoLocation = function() {
 			$scope.center = $scope.coords;
 			$scope.coordsUpdates = 0;
 			$scope.dynamicMoveCtr = 0;
 			$scope.map = {center: $scope.center, zoom: 18 };
-			$scope.options = {scrollwheel: false};
-			var events = {
-				places_changed: function (searchBox) {}
-			}
-			//$scope.searchbox = { template:'searchbox.tpl.html', events:events};
 		}
 
 		$scope.getGeoLocalization = function() {
