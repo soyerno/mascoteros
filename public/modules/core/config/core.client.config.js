@@ -47,6 +47,13 @@ angular.module('core').run(['Menus',
 .config(function($locationProvider){
   $locationProvider.html5Mode(true).hashPrefix('!');
 })
+.config(function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    //    key: 'your api key',
+    v: '3.17',
+    libraries: 'places' // Required for SearchBox.
+  });
+})
 .run(function(amMoment){
   amMoment.changeLocale('es');
 }).run(function($FB){

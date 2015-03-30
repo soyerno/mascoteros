@@ -17,7 +17,6 @@ module.exports = {
 				// 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
-
 				'public/lib/jquery/dist/jquery.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-route/angular-route.js',
@@ -27,8 +26,8 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/ngstorage/ngStorage.js',
 				'public/lib/lodash/dist/lodash.js',
-        		'public/lib/restangular/dist/restangular.js',
-        		'public/lib/angular-ui-utils/ui-utils.js',
+				'public/lib/restangular/dist/restangular.js',
+				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap-checkbox-fa/angular-bootstrap-checkbox.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-resource/angular-resource.js',
@@ -50,7 +49,8 @@ module.exports = {
 				'http://platform.twitter.com/widgets.js',
 				'public/lib/textAngular/dist/textAngular.min.js',
 				'public/lib/textAngular/dist/textAngular-rangy.min.js',
-				'public/lib/textAngular/dist/textAngular-sanitize.min.js'
+				'public/lib/textAngular/dist/textAngular-sanitize.min.js',
+				'public/lib/angular-google-maps/dist/angular-google-maps.min.js'
         		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',

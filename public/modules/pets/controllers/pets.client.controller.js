@@ -117,9 +117,19 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			});
 		};
 
+		$scope.setGeoLocation = function() {
+			$scope.map = {center: $scope.coords, zoom: 4 };
+			$scope.options = {scrollwheel: false};
+			var events = {
+				places_changed: function (searchBox) {}
+			}
+			$scope.searchbox = { template:'searchbox.tpl.html', events:events};
+		}
+
 		$scope.getGeoLocalization = function() {
 			geolocation.getLocation().then(function(data){
 				$scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+				$scope.setGeoLocation();
 			});
 		};
 
