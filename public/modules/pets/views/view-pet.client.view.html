@@ -57,6 +57,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h2>Acciones disponibles</h2>
+                                <hr/>
                             </div>
                         </div>
                         <div class="row" align="center">
@@ -78,7 +79,7 @@
                                 <!--<button class="btn btn-lg btn-primary" ng-show="authentication.user._id == pet.user._id"><i class="icon-printer"></i> Imprimir ID</button>-->
                             </div>
                         </div>
-                        <div class="row" ng-show="authentication.user._id == pet.user._id">
+                        <div class="row" ng-show="authentication.user._id == pet.user._id" align="center">
                             <p>Hacé click sobre la imagen para imprimir tu collar!</p>
                             <qr ng-if="pet" pet="pet"></qr>
                         </div>
