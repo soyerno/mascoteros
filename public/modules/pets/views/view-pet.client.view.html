@@ -1,3 +1,4 @@
+<div data-ng-init="findOneBySlug(); getGeoLocalization();"></div>
 <h3 data-ng-show="authentication.user._id == pet.user._id && pet.name">
     <div class="pull-right">
         <a class="btn btn-primary" href="/#!/pets/{{pet._id}}/edit">
@@ -6,7 +7,7 @@
     </div>
     {{pet.name}}
 </h3>
-<div class="content-wrapper" ng-if="!pet.isPrivate">
+<div class="content-wrapper" ng-if="!pet.isPrivate || authentication.user._id == pet.user._id">
     <div class="unwrap">
         <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
             <div class="p-xl text-center text-white">
@@ -41,7 +42,7 @@
     </div>
 </div>
 
-<section data-ng-init="findOneBySlug(); getGeoLocalization();" ng-if="!pet.isPrivate">
+<section ng-if="!pet.isPrivate || authentication.user._id == pet.user._id">
     <!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
     <div class="panel">
         {{coords}}
@@ -152,7 +153,13 @@
     </div>
 </section>
 
-<section ng-hide="pet.name" ng-show="pet.isPrivate">
-    <h2>La mascota no existe o el perfíl es privado!</h2>
+<section ng-hide="pet._id">
+    <h2>La mascota no existe</h2>
     <a ng-href="/#!/pets" class="btn btn-primary btn-lg">Volver al listado de mascotas</a>
 </section>
+
+<section ng-show="pet.isPrivate && authentication.user._id != pet.user._id">
+    <h2>El perfíl de la mascota es privado!</h2>
+    <a ng-href="/#!/pets" class="btn btn-primary btn-lg">Volver al listado de mascotas</a>
+</section>
+
