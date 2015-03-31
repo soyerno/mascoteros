@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -185,5 +185,43 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				$scope.error = errorResponse.data.message;
 			});
 		}
+
+    /*Date directive */
+    $scope.today = function() {
+      $scope.yearOfBirth = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+      $scope.yearOfBirth = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = $scope.minDate ? null : '01/01/1970';
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      formatYear: 'yyyy',
+      startingDay: 1
+    };
+
+    $scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+
+
 	}
+
 ]);
