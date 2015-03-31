@@ -28,8 +28,8 @@ var ApplicationConfiguration = (function() {
 		'angularMoment',
 		'angular-datepicker',
 		'djds4rce.angular-socialshare',
-    'ngAutocomplete',
-		'geolocation'
+		'geolocation',
+		'textAngular'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
@@ -1901,7 +1901,8 @@ angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '
 		$scope.create = function() {
 			// Create new Faq object
 			var faq = new Faqs ({
-				name: this.name
+				title: this.title,
+				content: this.content
 			});
 
 			// Redirect after save
@@ -1909,7 +1910,8 @@ angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '
 				$location.path('faqs/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.title = '';
+				$scope.content = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -1956,6 +1958,7 @@ angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '
 		};
 	}
 ]);
+
 'use strict';
 
 //Faqs service used to communicate Faqs REST endpoints
@@ -2581,7 +2584,10 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
-				address: this.address
+				address: this.address,
+				isPrivate: this.isPrivate,
+				tel1: this.tel1,
+				tel2: this.tel2
 			});
 
 			$scope.formBusy = true;
@@ -2600,6 +2606,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.neutered = '';
 					$scope.email = '';
 					$scope.address = '';
+					$scope.isPrivate = '';
+					$scope.tel1 = '';
+					$scope.tel2 = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
 				  	$scope.error = errorResponse.data.message;

@@ -23,6 +23,26 @@
                         <div class=" col-md-9 col-lg-9 ">
                             <table class="table table-user-information">
                                 <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="isPrivate">Perfil Privado?</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="checkbox" data-ng-model="pet.isPrivate" id="isPrivate" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label" for="isAdoption">En adopción?</label>
+                                    </td>
+                                    <td>
+                                        <div class="controls">
+                                            <input type="checkbox" data-ng-model="pet.isAdoption" id="isAdoption" class="form-control">
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr ng-hide="true">
                                     <td>
                                         <label class="control-label" for="name">Nombre</label>
@@ -105,6 +125,22 @@
                                     <td>
                                         <label class="control-label" for="description">Dirección</label>
                                         <input type="text" data-ng-model="pet.address" id="address" class="form-control" placeholder="Calle 123 - PB" required>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="tel1">Teléfono de contacto</label>
+                                        <input type="text" data-ng-model="pet.tel1" id="tel1" class="form-control" placeholder="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <label class="control-label" for="tel2">Celular de contacto</label>
+                                        <input type="text" data-ng-model="pet.tel2" id="tel2" class="form-control" placeholder="">
                                     </td>
                                 </tr>
 

@@ -55,6 +55,12 @@ var PetSchema = new Schema({
 		default: '',
 		required: 'Please fill Pet Address'
 	},
+	tel1: {
+		type: String
+	},
+	tel2: {
+		type: String
+	},
 	genre: {
 		type: Schema.ObjectId,
 		ref: 'Petgenre'
@@ -81,14 +87,14 @@ var PetSchema = new Schema({
 	isAdoption: {
 		type: Boolean
 	},
-  registered: {
-    type: Date,
-    default: Date.now
-  },
-  slug: {
-    type: String,
-    required: 'Please fill slug name'
-  }
+	registered: {
+		type: Date,
+		default: Date.now
+	},
+	slug: {
+		type: String,
+		required: 'Please fill slug name'
+	}
 });
 
 PetSchema.plugin(new URLSlugs('name', {field: 'slug'}));

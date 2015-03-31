@@ -5,11 +5,11 @@
             <div class="well">
                 <div class="media">
                     <div class="pull-left">
-                        <img class="media-object" ng-src="{{faq.picture}}">
+                        <i class="icon-question"></i>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" data-ng-bind="faq.name"></h4>
-                        <p>{{faq.description}}</p>
+                        <h4 class="media-heading" data-ng-bind="faq.title"></h4>
+                        <div ng-bind-html="faq.content"></div>
                     </div>
                 </div>
             </div>

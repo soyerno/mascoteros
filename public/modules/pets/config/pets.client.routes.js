@@ -24,7 +24,7 @@ angular.module('pets').config(['$stateProvider',
 		}).
 		state('app.viewPets', {
 			url: '/pets/:petId',
-			templateUrl: 'modules/pets/views/view-pets.client.view.html',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.editPet', {

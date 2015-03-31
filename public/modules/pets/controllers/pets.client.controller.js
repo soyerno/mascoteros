@@ -24,11 +24,15 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				color: this.color,
 				breed: this.breed,
 				genre: this.genre,
-        		yearOfBirth: this.yearOfBirth,
+        yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
-				address: this.address
+				address: this.address,
+				isPrivate: this.isPrivate,
+				isAdoption: this.isAdoption,
+				tel1: this.tel1,
+				tel2: this.tel2
 			});
 
 			$scope.formBusy = true;
@@ -47,6 +51,10 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.neutered = '';
 					$scope.email = '';
 					$scope.address = '';
+					$scope.isPrivate = '';
+					$scope.isAdoption = '';
+					$scope.tel1 = '';
+					$scope.tel2 = '';
 				}, function(errorResponse) {
 					$scope.formBusy = false;
 				  	$scope.error = errorResponse.data.message;
@@ -82,7 +90,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
 			Upload.parse(pet).then(function () {
 				pet.$update(function() {
-					$location.path('pets/' + pet._id);
+					$location.path('pet/' + pet.slug);
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
@@ -109,9 +117,24 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			});
 		};
 
+
+		var events = {
+			places_changed: function (searchBox) {}
+		}
+		$scope.searchbox = { template:'searchbox.tpl.html', events:events};
+
+
+		$scope.setGeoLocation = function() {
+			$scope.center = $scope.coords;
+			$scope.coordsUpdates = 0;
+			$scope.dynamicMoveCtr = 0;
+			$scope.map = {center: $scope.center, zoom: 18 };
+		}
+
 		$scope.getGeoLocalization = function() {
 			geolocation.getLocation().then(function(data){
-				$scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+				$scope.coords = {latitude:data.coords.latitude, longitude:data.coords.longitude};
+				$scope.setGeoLocation();
 			});
 		};
 
@@ -121,7 +144,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			if(petSendNotification){
 				// Create new Notification object
 				var notification = new Notifications ({
-					title: 'Tu perro fue scaneado',
+					title: $scope.pet.name + ' fue scaneado',
 					pet: $scope.pet._id,
 					geoLocation: $scope.coords
 				});
@@ -134,5 +157,43 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				});
 			}
 		};
+
+    /*Date directive */
+    $scope.today = function() {
+      $scope.yearOfBirth = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+      $scope.yearOfBirth = null;
+    };
+
+    // Disable weekend selection
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
+
+    $scope.toggleMin = function() {
+      $scope.minDate = $scope.minDate ? null : '01/01/1970';
+    };
+    $scope.toggleMin();
+
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      formatYear: 'yyyy',
+      startingDay: 1
+    };
+
+    $scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+
+
 	}
+
 ]);

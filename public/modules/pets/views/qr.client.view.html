@@ -166,7 +166,7 @@
 		}
 	</style>
 	<section id="id-container" class="c">
-		<article class="id-front-2" ng-class="{'female': pet.genre == 'female'}">
+		<article class="id-front-2" ng-class="{'female': pet.genre.name == 'Hembra'}">
 			<div class="pin">
 				<div class="circle"></div>
 			</div>
@@ -176,14 +176,15 @@
 			<!--<div class="qr" ng-bind-html="svg"></div>-->
 			<div class="name" ng-bind="pet.name"></div>
 		</article>
-		<article class="id-back-2" ng-class="{'female': pet.genre == 'female'}">
+		<article class="id-back-2" ng-class="{'female': pet.genre.name == 'Hembra'}">
 			<div class="pin">
 				<div class="circle"></div>
 			</div>
 			<div class="page">
 				mascoteros.net/ <span ng-bind="pet.slug"></span>
 			</div>
-			<div class="tel">11-5566-7788</div>
+			<div class="tel" ng-show="pet.tel1">{{pet.tel1}}</div>
+			<div class="tel" ng-show="pet.tel2 && !pet.tel1">{{pet.tel2}}</div>
 		</article>
 	</section>
 

@@ -9,7 +9,8 @@ angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '
 		$scope.create = function() {
 			// Create new Faq object
 			var faq = new Faqs ({
-				name: this.name
+				title: this.title,
+				content: this.content
 			});
 
 			// Redirect after save
@@ -17,7 +18,8 @@ angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '
 				$location.path('faqs/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.title = '';
+				$scope.content = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
