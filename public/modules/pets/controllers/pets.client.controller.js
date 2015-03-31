@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -106,10 +106,14 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		};
 
 		$scope.findAdoptions = function() {
-			var Pet = $resource('/pets/adoption');
-			$scope.pets = Pet.get({}, function() {
-				pet.get();
-			});
+			$http.get('/pets/adoption').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading adoption pets');
+					$scope.pets = [];
+				});
 		};
 
 		// Find existing Pet
