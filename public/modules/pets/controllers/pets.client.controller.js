@@ -189,7 +189,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		$scope.today = function() {
 		  $scope.yearOfBirth = new Date();
 		};
-		$scope.today();
+		//$scope.today();
 
 		$scope.clear = function () {
 		  $scope.yearOfBirth = null;

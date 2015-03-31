@@ -78,7 +78,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.today = function() {
 			$scope.yearOfBirth = new Date();
 		};
-		$scope.today();
+		//$scope.today();
 
 		$scope.clear = function () {
 			$scope.yearOfBirth = null;
