@@ -103,6 +103,13 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			$scope.pets = Pets.query();
 		};
 
+		$scope.findAdoptions = function() {
+			var Pet = $resource('/pets/adoption');
+			$scope.pets = Pet.get({}, function() {
+				pet.get();
+			});
+		};
+
 		// Find existing Pet
 		$scope.findOne = function() {
 			$scope.pet = Pets.get({ 

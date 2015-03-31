@@ -9,14 +9,18 @@ angular.module('pets').config(['$stateProvider',
 			url: '/qr',
 			templateUrl: 'modules/pets/views/qr.client.view.html'
 		}).
-    state('app.viewPet', {
-        url: '/pet/:petSlug',
-        templateUrl: 'modules/pets/views/view-pet.client.view.html',
-        controller: 'PetsController'
-    }).
-    state('app.listPets', {
-			url: '/pets',
-			templateUrl: 'modules/pets/views/list-pets.client.view.html'
+		state('app.viewPet', {
+			url: '/pet/:petSlug',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			controller: 'PetsController'
+		}).
+		state('app.listPets', {
+				url: '/pets',
+				templateUrl: 'modules/pets/views/list-pets.client.view.html'
+		}).
+		state('app.listPetsAdoption', {
+			url: '/pets/adopcion',
+			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
 		}).
 		state('app.createPet', {
 			url: '/pets/create',
