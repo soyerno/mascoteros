@@ -32,7 +32,7 @@ var PetSchema = new Schema({
 		type: String,
 		default: ''
 	},
-	missing: {
+	isMissing: {
 		type: Boolean
 	},
 	picture: {

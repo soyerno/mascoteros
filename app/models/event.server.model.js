@@ -10,11 +10,24 @@ var mongoose = require('mongoose'),
  * Event Schema
  */
 var EventSchema = new Schema({
-	name: {
+	title: {
 		type: String,
 		default: '',
-		required: 'Please fill Event name',
+		required: 'Please fill Event title',
 		trim: true
+	},
+	image: {
+		type: String,
+		default: '',
+		required: 'Please fill Event image',
+	},
+	content: {
+		type: String,
+		default: '',
+		required: 'Please fill Event content',
+	},
+	date:{
+		type: Date
 	},
 	created: {
 		type: Date,

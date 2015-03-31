@@ -23,6 +23,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				slug: this.slug,
 				color: this.color,
 				breed: this.breed,
+				isMissing: this.isMissing,
 				genre: this.genre,
         		yearOfBirth: this.yearOfBirth,
 				description: this.description,
@@ -48,6 +49,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.slug = '';
 					$scope.color = '';
 					$scope.breed = '';
+					$scope.isMissing = '';
 					$scope.neutered = '';
 					$scope.email = '';
 					$scope.address = '';
@@ -164,5 +166,20 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				});
 			}
 		};
+
+		$scope.setPetMissing = function(value){
+			var pet = $scope.pet;
+			delete pet.$promise;
+			delete pet.$resolved;
+
+			pet.isMissing = value;
+
+			debugger;
+			pet.$update(function() {
+				$location.path('pets/' + pet._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		}
 	}
 ]);
