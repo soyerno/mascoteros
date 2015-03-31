@@ -112,7 +112,6 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				}).
 				error(function(data, status, headers, config) {
 					console.log('error loading adoption pets');
-					$scope.pets = [];
 				});
 		};
 
