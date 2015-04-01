@@ -29,7 +29,8 @@ var ApplicationConfiguration = (function() {
 		'angular-datepicker',
 		'djds4rce.angular-socialshare',
 		'geolocation',
-		'textAngular'
+		'textAngular',
+		'uiGmapgoogle-maps'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
@@ -570,6 +571,13 @@ angular.module('core').run(['Menus',
 }])
 .config(["$locationProvider", function($locationProvider){
   $locationProvider.html5Mode(true).hashPrefix('!');
+}])
+.config(["uiGmapGoogleMapApiProvider", function(uiGmapGoogleMapApiProvider) {
+  uiGmapGoogleMapApiProvider.configure({
+    //    key: 'your api key',
+    v: '3.17',
+    libraries: 'places' // Required for SearchBox.
+  });
 }])
 .run(["amMoment", function(amMoment){
   amMoment.changeLocale('es');
@@ -1776,25 +1784,36 @@ angular.module('events').config(['$stateProvider',
 'use strict';
 
 // Events controller
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Events',
-	function($scope, $stateParams, $location, Authentication, Events) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Upload', 'Events',
+	function($scope, $stateParams, $location, Authentication, Upload, Events) {
 		$scope.authentication = Authentication;
 
 		// Create new Event
 		$scope.create = function() {
 			// Create new Event object
 			var event = new Events ({
-				name: this.name
+				title: this.title,
+				image: this.image,
+				date: this.date,
+				content: this.content
 			});
 
-			// Redirect after save
-			event.$save(function(response) {
-				$location.path('events/' + response._id);
+			$scope.formBusy = true;
 
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			// Redirect after save
+			Upload.parse(event).then(function () {
+				event.$save(function(response) {
+					$location.path('events/' + response._id);
+
+					// Clear form fields
+					$scope.title = '';
+					$scope.image = '';
+					$scope.content = '';
+					$scope.date = '';
+				}, function(errorResponse) {
+					$scope.formBusy = false;
+					$scope.error = errorResponse.data.message;
+				});
 			});
 		};
 
@@ -1837,8 +1856,46 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 				eventId: $stateParams.eventId
 			});
 		};
+
+		/*Date directive */
+		$scope.today = function() {
+			$scope.yearOfBirth = new Date();
+		};
+		//$scope.today();
+
+		$scope.clear = function () {
+			$scope.yearOfBirth = null;
+		};
+
+		// Disable weekend selection
+		$scope.disabled = function(date, mode) {
+			//return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+		};
+
+		$scope.toggleMin = function() {
+			$scope.minDate = $scope.minDate ? null : '01/01/1970';
+		};
+		$scope.toggleMin();
+
+		$scope.open = function($event) {
+			$event.preventDefault();
+			$event.stopPropagation();
+
+			$scope.opened = true;
+		};
+
+		$scope.dateOptions = {
+			formatYear: 'yyyy',
+			startingDay: 1
+		};
+
+		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.format = $scope.formats[0];
+
+
 	}
 ]);
+
 'use strict';
 
 //Events service used to communicate Events REST endpoints
@@ -2514,6 +2571,8 @@ angular.module('pets').run(['Menus',
 		Menus.addMenuItem('sidebar', 'Mascotas', 'pets', 'dropdown', '/pets(/create)?', false, null, null, 'fa fa-paw');
 		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets/top', false, null, null, 'icon-user');*/
 		/*Menus.addSubMenuItem('sidebar', 'pets', 'Ranking', 'pets/', false, null, null, 'icon-trophy');*/
+		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis amigos', 'pets/', false, null, null, 'icon-trophy');*/
+		Menus.addSubMenuItem('sidebar', 'pets', 'Adoptar', 'pets/adopcion', false, null, null, 'icon-heart');
 		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create', false, null, null, 'fa-plus-circle');
 	}
 ]);
@@ -2529,14 +2588,18 @@ angular.module('pets').config(['$stateProvider',
 			url: '/qr',
 			templateUrl: 'modules/pets/views/qr.client.view.html'
 		}).
-    state('app.viewPet', {
-        url: '/pet/:petSlug',
-        templateUrl: 'modules/pets/views/view-pet.client.view.html',
-        controller: 'PetsController'
-    }).
-    state('app.listPets', {
-			url: '/pets',
-			templateUrl: 'modules/pets/views/list-pets.client.view.html'
+		state('app.viewPet', {
+			url: '/pet/:petSlug',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			controller: 'PetsController'
+		}).
+		state('app.listPets', {
+				url: '/pets',
+				templateUrl: 'modules/pets/views/list-pets.client.view.html'
+		}).
+		state('app.listPetsAdoption', {
+			url: '/pets/adopcion',
+			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
 		}).
 		state('app.createPet', {
 			url: '/pets/create',
@@ -2544,7 +2607,7 @@ angular.module('pets').config(['$stateProvider',
 		}).
 		state('app.viewPets', {
 			url: '/pets/:petId',
-			templateUrl: 'modules/pets/views/view-pets.client.view.html',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.editPet', {
@@ -2557,8 +2620,8 @@ angular.module('pets').config(['$stateProvider',
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -2579,6 +2642,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				slug: this.slug,
 				color: this.color,
 				breed: this.breed,
+				isMissing: this.isMissing,
 				genre: this.genre,
         		yearOfBirth: this.yearOfBirth,
 				description: this.description,
@@ -2586,6 +2650,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				email: this.email,
 				address: this.address,
 				isPrivate: this.isPrivate,
+				isAdoption: this.isAdoption,
 				tel1: this.tel1,
 				tel2: this.tel2
 			});
@@ -2603,10 +2668,12 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.slug = '';
 					$scope.color = '';
 					$scope.breed = '';
+					$scope.isMissing = '';
 					$scope.neutered = '';
 					$scope.email = '';
 					$scope.address = '';
 					$scope.isPrivate = '';
+					$scope.isAdoption = '';
 					$scope.tel1 = '';
 					$scope.tel2 = '';
 				}, function(errorResponse) {
@@ -2644,7 +2711,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
 			Upload.parse(pet).then(function () {
 				pet.$update(function() {
-					$location.path('pets/' + pet._id);
+					$location.path('pet/' + pet.slug);
 				}, function(errorResponse) {
 					$scope.error = errorResponse.data.message;
 				});
@@ -2655,6 +2722,16 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		// Find a list of Pets
 		$scope.find = function() {
 			$scope.pets = Pets.query();
+		};
+
+		$scope.findAdoptions = function() {
+			$http.get('/pets/adoption').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading adoption pets');
+				});
 		};
 
 		// Find existing Pet
@@ -2671,9 +2748,24 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			});
 		};
 
+
+		var events = {
+			places_changed: function (searchBox) {}
+		}
+		$scope.searchbox = { template:'searchbox.tpl.html', events:events};
+
+
+		$scope.setGeoLocation = function() {
+			$scope.center = $scope.coords;
+			$scope.coordsUpdates = 0;
+			$scope.dynamicMoveCtr = 0;
+			$scope.map = {center: $scope.center, zoom: 18 };
+		}
+
 		$scope.getGeoLocalization = function() {
 			geolocation.getLocation().then(function(data){
-				$scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
+				$scope.coords = {latitude:data.coords.latitude, longitude:data.coords.longitude};
+				$scope.setGeoLocation();
 			});
 		};
 
@@ -2683,7 +2775,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			if(petSendNotification){
 				// Create new Notification object
 				var notification = new Notifications ({
-					title: 'Tu perro fue scaneado',
+					title: $scope.pet.name + ' fue scaneado',
 					pet: $scope.pet._id,
 					geoLocation: $scope.coords
 				});
@@ -2696,7 +2788,60 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				});
 			}
 		};
-	}
+
+		$scope.setPetMissing = function(value){
+			var pet = $scope.pet;
+			delete pet.$promise;
+			delete pet.$resolved;
+
+			pet.isMissing = value;
+
+			debugger;
+			pet.$update(function() {
+				$location.path('pets/' + pet._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		}
+
+		/*Date directive */
+		$scope.today = function() {
+		  $scope.yearOfBirth = new Date();
+		};
+		//$scope.today();
+
+		$scope.clear = function () {
+		  $scope.yearOfBirth = null;
+		};
+
+		// Disable weekend selection
+		$scope.disabled = function(date, mode) {
+		  //return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+		};
+
+		$scope.toggleMin = function() {
+		  $scope.minDate = $scope.minDate ? null : '01/01/1970';
+		};
+		$scope.toggleMin();
+
+		$scope.open = function($event) {
+		  $event.preventDefault();
+		  $event.stopPropagation();
+
+		  $scope.opened = true;
+		};
+
+		$scope.dateOptions = {
+		  formatYear: 'yyyy',
+		  startingDay: 1
+		};
+
+		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.format = $scope.formats[0];
+
+
+		}
+
 ]);
 
 'use strict';
@@ -2713,8 +2858,6 @@ angular.module('pets').directive('qr',[ '$http',
 			link: function postLink(scope, element, attr) {
 
         element.bind('click', function() {
-          alert('hola');
-          //var printContents = document.getElementById(divName).innerHTML;
           var popupWin = window.open('', '_blank', 'width=300,height=300');
           popupWin.document.open();
           popupWin.document.write('<html><head></head><body onload="window.print()">' + element.html() + '</html>');

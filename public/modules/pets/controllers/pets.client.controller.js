@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http) {
 		$scope.authentication = Authentication;
 
 		$scope.step = 1;
@@ -23,8 +23,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				slug: this.slug,
 				color: this.color,
 				breed: this.breed,
+				isMissing: this.isMissing,
 				genre: this.genre,
-        yearOfBirth: this.yearOfBirth,
+        		yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
@@ -48,6 +49,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 					$scope.slug = '';
 					$scope.color = '';
 					$scope.breed = '';
+					$scope.isMissing = '';
 					$scope.neutered = '';
 					$scope.email = '';
 					$scope.address = '';
@@ -101,6 +103,16 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		// Find a list of Pets
 		$scope.find = function() {
 			$scope.pets = Pets.query();
+		};
+
+		$scope.findAdoptions = function() {
+			$http.get('/pets/adoption').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading adoption pets');
+				});
 		};
 
 		// Find existing Pet
@@ -158,42 +170,57 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			}
 		};
 
-    /*Date directive */
-    $scope.today = function() {
-      $scope.yearOfBirth = new Date();
-    };
-    $scope.today();
+		$scope.setPetMissing = function(value){
+			var pet = $scope.pet;
+			delete pet.$promise;
+			delete pet.$resolved;
 
-    $scope.clear = function () {
-      $scope.yearOfBirth = null;
-    };
+			pet.isMissing = value;
 
-    // Disable weekend selection
-    $scope.disabled = function(date, mode) {
-      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-    };
+			debugger;
+			pet.$update(function() {
+				$location.path('pets/' + pet._id);
+			}, function(errorResponse) {
+				$scope.error = errorResponse.data.message;
+			});
+		}
 
-    $scope.toggleMin = function() {
-      $scope.minDate = $scope.minDate ? null : '01/01/1970';
-    };
-    $scope.toggleMin();
+		/*Date directive */
+		$scope.today = function() {
+		  $scope.yearOfBirth = new Date();
+		};
+		//$scope.today();
 
-    $scope.open = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
+		$scope.clear = function () {
+		  $scope.yearOfBirth = null;
+		};
 
-      $scope.opened = true;
-    };
+		// Disable weekend selection
+		$scope.disabled = function(date, mode) {
+		  //return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+		};
 
-    $scope.dateOptions = {
-      formatYear: 'yyyy',
-      startingDay: 1
-    };
+		$scope.toggleMin = function() {
+		  $scope.minDate = $scope.minDate ? null : '01/01/1970';
+		};
+		$scope.toggleMin();
 
-    $scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-    $scope.format = $scope.formats[0];
+		$scope.open = function($event) {
+		  $event.preventDefault();
+		  $event.stopPropagation();
+
+		  $scope.opened = true;
+		};
+
+		$scope.dateOptions = {
+		  formatYear: 'yyyy',
+		  startingDay: 1
+		};
+
+		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+		$scope.format = $scope.formats[0];
 
 
-	}
+		}
 
 ]);

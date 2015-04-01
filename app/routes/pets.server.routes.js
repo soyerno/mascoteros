@@ -12,8 +12,11 @@ module.exports = function(app) {
 		.get(pets.list)
 		.post(users.requiresLogin, pets.create);
 
+	app.route('/pets/adoption')
+		.get(users.requiresLogin, pets.listAdoption);
+
 	app.route('/pets/buscar')
-		.post(pets.list);
+		.post(users.requiresLogin, pets.list);
 
 	app.route('/pets/:petId/addLike')
 		.get(pets.read);

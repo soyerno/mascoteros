@@ -123,12 +123,12 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <label class="control-label" for="yearOfBirth">Nació</label>
-                                        <div class="controls">
+                                        <label class="control-label" for="yearOfBirth" style="float:left;">Nació</label>
+                                        <div class="controls" style="float:left;">
                                             <p class="input-group custom-datepicker">
-                                                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="yearOfBirth" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
                                                       <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                        <button type="button" id="yearOfBirth" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
                                                       </span>
                                             </p>
                                             <!--<input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>-->
