@@ -170,24 +170,6 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		htmlmin: {
-			app: {
-				options: {
-					conservativeCollapse: false,
-					removeCommentsFromCDATA: false,
-					removeOptionalTags: false,
-					collapseBooleanAttributes: false,
-					collapseWhitespace: false,
-					removeAttributeQuotes: false,
-					removeComments: true,
-					removeEmptyAttributes: false,
-					removeRedundantAttributes: false,
-					removeScriptTypeAttributes: false,
-					removeStyleLinkTypeAttributes: false
-				}
-			}
-
-		},
 		concurrent: {
 			default: ['nodemon', 'watch'],
 			debug: ['nodemon', 'watch', 'node-inspector'],
