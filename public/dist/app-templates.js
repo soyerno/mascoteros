@@ -1,7 +1,7 @@
 angular.module('tpls').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('/modules/articles/views/create-article.client.view.html',
+  $templateCache.put('modules/articles/views/create-article.client.view.html',
     "<h3>New Article</h3>\n" +
     "<section data-ng-controller=\"ArticlesController\">\n" +
     "\t<div class=\"col-md-12\">\n" +
@@ -32,7 +32,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/articles/views/edit-article.client.view.html',
+  $templateCache.put('modules/articles/views/edit-article.client.view.html',
     "<h3>Edit Article</h3>\n" +
     "<section data-ng-controller=\"ArticlesController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"col-md-12\">\n" +
@@ -69,7 +69,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/articles/views/list-articles.client.view.html',
+  $templateCache.put('modules/articles/views/list-articles.client.view.html',
     "<h3>Articles</h3>\n" +
     "<section data-ng-controller=\"ArticlesController\" data-ng-init=\"find()\">\n" +
     "\t<div class=\"list-group\">\n" +
@@ -91,7 +91,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/articles/views/view-article.client.view.html',
+  $templateCache.put('modules/articles/views/view-article.client.view.html',
     "<h3>\n" +
     "\t<div class=\"pull-right\" data-ng-show=\"authentication.user._id == article.user._id\">\n" +
     "\t\t<a class=\"btn btn-primary\" href=\"/#!/articles/{{article._id}}/edit\">\n" +
@@ -117,7 +117,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/comments/views/create-comment.client.view.html',
+  $templateCache.put('modules/comments/views/create-comment.client.view.html',
     "<section data-ng-controller=\"CommentsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Comment</h1>\n" +
@@ -144,7 +144,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/comments/views/edit-comment.client.view.html',
+  $templateCache.put('modules/comments/views/edit-comment.client.view.html',
     "<section data-ng-controller=\"CommentsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Comment</h1>\n" +
@@ -171,7 +171,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/comments/views/list-comments.client.view.html',
+  $templateCache.put('modules/comments/views/list-comments.client.view.html',
     "<section data-ng-controller=\"CommentsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Comments</h1>\n" +
@@ -194,7 +194,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/comments/views/view-comment.client.view.html',
+  $templateCache.put('modules/comments/views/view-comment.client.view.html',
     "<section data-ng-controller=\"CommentsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"comment.name\"></h1>\n" +
@@ -219,7 +219,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/contacts/views/create-contact.client.view.html',
+  $templateCache.put('modules/contacts/views/create-contact.client.view.html',
     "<section data-ng-controller=\"ContactsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h2>Queres formar parte de mascoteros?</h2>\n" +
@@ -272,7 +272,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/contacts/views/edit-contact.client.view.html',
+  $templateCache.put('modules/contacts/views/edit-contact.client.view.html',
     "<section data-ng-controller=\"ContactsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Contact</h1>\n" +
@@ -299,7 +299,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/contacts/views/list-contacts.client.view.html',
+  $templateCache.put('modules/contacts/views/list-contacts.client.view.html',
     "<section data-ng-controller=\"ContactsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Contacts</h1>\n" +
@@ -322,7 +322,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/contacts/views/view-contact.client.view.html',
+  $templateCache.put('modules/contacts/views/view-contact.client.view.html',
     "<section data-ng-controller=\"ContactsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"contact.name\"></h1>\n" +
@@ -347,7 +347,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/core/views/home.client.view.html',
+  $templateCache.put('modules/core/views/home.client.view.html',
     "<header class=\"header landing\" data-ng-controller=\"HomeController\" data-ng-init=\"checkAuthentication()\" ng-cloak>\n" +
     "  <div class=\"container\">\n" +
     "    <div class=\"row\">\n" +
@@ -462,7 +462,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/core/views/timeline.client.view.html',
+  $templateCache.put('modules/core/views/timeline.client.view.html',
     "\n" +
     "<h3>Timeline</h3>\n" +
     "\n" +
@@ -640,7 +640,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/events/views/create-event.client.view.html',
+  $templateCache.put('modules/events/views/create-event.client.view.html',
     "<section data-ng-controller=\"EventsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Nuevo Evento</h1>\n" +
@@ -692,7 +692,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/events/views/edit-event.client.view.html',
+  $templateCache.put('modules/events/views/edit-event.client.view.html',
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Event</h1>\n" +
@@ -719,7 +719,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/events/views/list-events.client.view.html',
+  $templateCache.put('modules/events/views/list-events.client.view.html',
     "<h3>Eventos</h3>\n" +
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"list-group\">\n" +
@@ -773,7 +773,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/events/views/view-event.client.view.html',
+  $templateCache.put('modules/events/views/view-event.client.view.html',
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"event.name\"></h1>\n" +
@@ -798,7 +798,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/faqs/views/create-faq.client.view.html',
+  $templateCache.put('modules/faqs/views/create-faq.client.view.html',
     "<section data-ng-controller=\"FaqsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Faq</h1>\n" +
@@ -831,7 +831,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/faqs/views/edit-faq.client.view.html',
+  $templateCache.put('modules/faqs/views/edit-faq.client.view.html',
     "<section data-ng-controller=\"FaqsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Faq</h1>\n" +
@@ -864,7 +864,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/faqs/views/list-faqs.client.view.html',
+  $templateCache.put('modules/faqs/views/list-faqs.client.view.html',
     "<h3>Preguntas frecuentes</h3>\n" +
     "<section data-ng-controller=\"FaqsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"list-group\">\n" +
@@ -889,7 +889,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/faqs/views/view-faq.client.view.html',
+  $templateCache.put('modules/faqs/views/view-faq.client.view.html',
     "<section data-ng-controller=\"FaqsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"faq.title\"></h1>\n" +
@@ -915,7 +915,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/imageuploaders/views/create-imageuploader.client.view.html',
+  $templateCache.put('modules/imageuploaders/views/create-imageuploader.client.view.html',
     "<section data-ng-controller=\"ImageuploadersController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Imageuploader</h1>\n" +
@@ -943,7 +943,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/imageuploaders/views/edit-imageuploader.client.view.html',
+  $templateCache.put('modules/imageuploaders/views/edit-imageuploader.client.view.html',
     "<section data-ng-controller=\"ImageuploadersController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Imageuploader</h1>\n" +
@@ -970,7 +970,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/imageuploaders/views/list-imageuploaders.client.view.html',
+  $templateCache.put('modules/imageuploaders/views/list-imageuploaders.client.view.html',
     "<section data-ng-controller=\"ImageuploadersController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Imageuploaders</h1>\n" +
@@ -993,7 +993,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/imageuploaders/views/view-imageuploader.client.view.html',
+  $templateCache.put('modules/imageuploaders/views/view-imageuploader.client.view.html',
     "<section data-ng-controller=\"ImageuploadersController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"imageuploader.name\"></h1>\n" +
@@ -1018,7 +1018,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/issues/views/create-issue.client.view.html',
+  $templateCache.put('modules/issues/views/create-issue.client.view.html',
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-12\">\n" +
     "        <section data-ng-controller=\"IssuesController\">\n" +
@@ -1062,7 +1062,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/issues/views/edit-issue.client.view.html',
+  $templateCache.put('modules/issues/views/edit-issue.client.view.html',
     "<section data-ng-controller=\"IssuesController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Issue</h1>\n" +
@@ -1089,7 +1089,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/issues/views/list-issues.client.view.html',
+  $templateCache.put('modules/issues/views/list-issues.client.view.html',
     "<section data-ng-controller=\"IssuesController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Issues</h1>\n" +
@@ -1113,7 +1113,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/issues/views/view-issue.client.view.html',
+  $templateCache.put('modules/issues/views/view-issue.client.view.html',
     "<section data-ng-controller=\"IssuesController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"issue.title\"></h1>\n" +
@@ -1140,7 +1140,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/notifications/views/create-notification.client.view.html',
+  $templateCache.put('modules/notifications/views/create-notification.client.view.html',
     "<section data-ng-controller=\"NotificationsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Notification</h1>\n" +
@@ -1167,7 +1167,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/notifications/views/edit-notification.client.view.html',
+  $templateCache.put('modules/notifications/views/edit-notification.client.view.html',
     "<section data-ng-controller=\"NotificationsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Notification</h1>\n" +
@@ -1194,7 +1194,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/notifications/views/list-notifications.client.view.html',
+  $templateCache.put('modules/notifications/views/list-notifications.client.view.html',
     "<section data-ng-controller=\"NotificationsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Notifications</h1>\n" +
@@ -1218,7 +1218,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/notifications/views/view-notification.client.view.html',
+  $templateCache.put('modules/notifications/views/view-notification.client.view.html',
     "<section data-ng-controller=\"NotificationsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"notification.name\"></h1>\n" +
@@ -1243,7 +1243,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/petgenres/views/create-petgenre.client.view.html',
+  $templateCache.put('modules/petgenres/views/create-petgenre.client.view.html',
     "<section data-ng-controller=\"PetgenresController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Petgenre</h1>\n" +
@@ -1270,7 +1270,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/petgenres/views/edit-petgenre.client.view.html',
+  $templateCache.put('modules/petgenres/views/edit-petgenre.client.view.html',
     "<section data-ng-controller=\"PetgenresController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Petgenre</h1>\n" +
@@ -1297,7 +1297,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/petgenres/views/list-petgenres.client.view.html',
+  $templateCache.put('modules/petgenres/views/list-petgenres.client.view.html',
     "<section data-ng-controller=\"PetgenresController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Petgenres</h1>\n" +
@@ -1320,7 +1320,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/petgenres/views/view-petgenre.client.view.html',
+  $templateCache.put('modules/petgenres/views/view-petgenre.client.view.html',
     "<section data-ng-controller=\"PetgenresController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"petgenre.name\"></h1>\n" +
@@ -1345,7 +1345,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/create-pet.client.view.html',
+  $templateCache.put('modules/pets/views/create-pet.client.view.html',
     "<section data-ng-controller=\"PetsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Nueva Mascota</h1>\n" +
@@ -1593,7 +1593,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/edit-pet.client.view.html',
+  $templateCache.put('modules/pets/views/edit-pet.client.view.html',
     "<section data-ng-controller=\"PetsController\"  data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>{{pet.name}}</h1>\n" +
@@ -1762,7 +1762,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/list-pets-adoption.client.view.html',
+  $templateCache.put('modules/pets/views/list-pets-adoption.client.view.html',
     "<h3>Mascotas</h3>\n" +
     "<section data-ng-controller=\"PetsController\" data-ng-init=\"findAdoptions()\" class=\"row\">\n" +
     "    <!--<a data-ng-repeat=\"pet in pets\" data-ng-href=\"#!/pets/{{pet._id}}\">-->\n" +
@@ -1844,7 +1844,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/list-pets.client.view.html',
+  $templateCache.put('modules/pets/views/list-pets.client.view.html',
     "<h3>Mascotas</h3>\n" +
     "<section data-ng-controller=\"PetsController\" data-ng-init=\"find()\" class=\"row\">\n" +
     "    <!--<a data-ng-repeat=\"pet in pets\" data-ng-href=\"#!/pets/{{pet._id}}\">-->\n" +
@@ -1926,7 +1926,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/qr.client.view.html',
+  $templateCache.put('modules/pets/views/qr.client.view.html',
     "<div>\n" +
     "\t<style>\n" +
     "\t\t@media print{\n" +
@@ -2121,7 +2121,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/view-pet.client.view.html',
+  $templateCache.put('modules/pets/views/view-pet.client.view.html',
     "<div data-ng-init=\"findOneBySlug(); getGeoLocalization();\"></div>\n" +
     "<h3 data-ng-show=\"authentication.user._id == pet.user._id && pet.name\">\n" +
     "    <div class=\"pull-right\">\n" +
@@ -2292,7 +2292,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pets/views/view-pets.client.view.html',
+  $templateCache.put('modules/pets/views/view-pets.client.view.html',
     "<div data-ng-init=\"findOne(); getGeoLocalization();\"></div>\n" +
     "<h3 data-ng-show=\"authentication.user._id == pet.user._id && pet.name\">\n" +
     "    <div class=\"pull-right\">\n" +
@@ -2463,7 +2463,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pettypes/views/create-pettype.client.view.html',
+  $templateCache.put('modules/pettypes/views/create-pettype.client.view.html',
     "<section data-ng-controller=\"PettypesController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Pettype</h1>\n" +
@@ -2490,7 +2490,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pettypes/views/edit-pettype.client.view.html',
+  $templateCache.put('modules/pettypes/views/edit-pettype.client.view.html',
     "<section data-ng-controller=\"PettypesController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Pettype</h1>\n" +
@@ -2517,7 +2517,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pettypes/views/list-pettypes.client.view.html',
+  $templateCache.put('modules/pettypes/views/list-pettypes.client.view.html',
     "<section data-ng-controller=\"PettypesController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Pettypes</h1>\n" +
@@ -2540,7 +2540,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/pettypes/views/view-pettype.client.view.html',
+  $templateCache.put('modules/pettypes/views/view-pettype.client.view.html',
     "<section data-ng-controller=\"PettypesController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"pettype.name\"></h1>\n" +
@@ -2565,7 +2565,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/rescues/views/create-rescue.client.view.html',
+  $templateCache.put('modules/rescues/views/create-rescue.client.view.html',
     "<section data-ng-controller=\"RescuesController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Rescue</h1>\n" +
@@ -2592,7 +2592,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/rescues/views/edit-rescue.client.view.html',
+  $templateCache.put('modules/rescues/views/edit-rescue.client.view.html',
     "<section data-ng-controller=\"RescuesController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Rescue</h1>\n" +
@@ -2619,7 +2619,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/rescues/views/list-rescues.client.view.html',
+  $templateCache.put('modules/rescues/views/list-rescues.client.view.html',
     "<section data-ng-controller=\"RescuesController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Rescues</h1>\n" +
@@ -2642,7 +2642,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/rescues/views/view-rescue.client.view.html',
+  $templateCache.put('modules/rescues/views/view-rescue.client.view.html',
     "<section data-ng-controller=\"RescuesController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"rescue.name\"></h1>\n" +
@@ -2667,7 +2667,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/roles/views/create-role.client.view.html',
+  $templateCache.put('modules/roles/views/create-role.client.view.html',
     "<section data-ng-controller=\"RolesController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Role</h1>\n" +
@@ -2694,7 +2694,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/roles/views/edit-role.client.view.html',
+  $templateCache.put('modules/roles/views/edit-role.client.view.html',
     "<section data-ng-controller=\"RolesController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Role</h1>\n" +
@@ -2721,7 +2721,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/roles/views/list-roles.client.view.html',
+  $templateCache.put('modules/roles/views/list-roles.client.view.html',
     "<section data-ng-controller=\"RolesController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Roles</h1>\n" +
@@ -2744,7 +2744,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/roles/views/view-role.client.view.html',
+  $templateCache.put('modules/roles/views/view-role.client.view.html',
     "<section data-ng-controller=\"RolesController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"role.name\"></h1>\n" +
@@ -2769,7 +2769,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shelters/views/create-shelter.client.view.html',
+  $templateCache.put('modules/shelters/views/create-shelter.client.view.html',
     "<section data-ng-controller=\"SheltersController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Shelter</h1>\n" +
@@ -2796,7 +2796,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shelters/views/edit-shelter.client.view.html',
+  $templateCache.put('modules/shelters/views/edit-shelter.client.view.html',
     "<section data-ng-controller=\"SheltersController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Shelter</h1>\n" +
@@ -2823,7 +2823,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shelters/views/list-shelters.client.view.html',
+  $templateCache.put('modules/shelters/views/list-shelters.client.view.html',
     "<section data-ng-controller=\"SheltersController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Shelters</h1>\n" +
@@ -2846,7 +2846,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shelters/views/view-shelter.client.view.html',
+  $templateCache.put('modules/shelters/views/view-shelter.client.view.html',
     "<section data-ng-controller=\"SheltersController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"shelter.name\"></h1>\n" +
@@ -2871,7 +2871,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shops/views/create-shop.client.view.html',
+  $templateCache.put('modules/shops/views/create-shop.client.view.html',
     "<section data-ng-controller=\"ShopsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Shop</h1>\n" +
@@ -2898,7 +2898,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shops/views/edit-shop.client.view.html',
+  $templateCache.put('modules/shops/views/edit-shop.client.view.html',
     "<section data-ng-controller=\"ShopsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Shop</h1>\n" +
@@ -2925,7 +2925,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shops/views/list-shops.client.view.html',
+  $templateCache.put('modules/shops/views/list-shops.client.view.html',
     "<section data-ng-controller=\"ShopsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Shops</h1>\n" +
@@ -2948,7 +2948,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/shops/views/view-shop.client.view.html',
+  $templateCache.put('modules/shops/views/view-shop.client.view.html',
     "<section data-ng-controller=\"ShopsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"shop.name\"></h1>\n" +
@@ -2973,7 +2973,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/trainers/views/create-trainer.client.view.html',
+  $templateCache.put('modules/trainers/views/create-trainer.client.view.html',
     "<section data-ng-controller=\"TrainersController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Trainer</h1>\n" +
@@ -3000,7 +3000,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/trainers/views/edit-trainer.client.view.html',
+  $templateCache.put('modules/trainers/views/edit-trainer.client.view.html',
     "<section data-ng-controller=\"TrainersController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Trainer</h1>\n" +
@@ -3027,7 +3027,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/trainers/views/list-trainers.client.view.html',
+  $templateCache.put('modules/trainers/views/list-trainers.client.view.html',
     "<section data-ng-controller=\"TrainersController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Trainers</h1>\n" +
@@ -3050,7 +3050,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/trainers/views/view-trainer.client.view.html',
+  $templateCache.put('modules/trainers/views/view-trainer.client.view.html',
     "<section data-ng-controller=\"TrainersController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"trainer.name\"></h1>\n" +
@@ -3075,7 +3075,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/vets/views/create-vet.client.view.html',
+  $templateCache.put('modules/vets/views/create-vet.client.view.html',
     "<section data-ng-controller=\"VetsController\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>New Vet</h1>\n" +
@@ -3102,7 +3102,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/vets/views/edit-vet.client.view.html',
+  $templateCache.put('modules/vets/views/edit-vet.client.view.html',
     "<section data-ng-controller=\"VetsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Vet</h1>\n" +
@@ -3129,7 +3129,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/vets/views/list-vets.client.view.html',
+  $templateCache.put('modules/vets/views/list-vets.client.view.html',
     "<section data-ng-controller=\"VetsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Vets</h1>\n" +
@@ -3152,7 +3152,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('/modules/vets/views/view-vet.client.view.html',
+  $templateCache.put('modules/vets/views/view-vet.client.view.html',
     "<section data-ng-controller=\"VetsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
     "\t\t<h1 data-ng-bind=\"vet.name\"></h1>\n" +

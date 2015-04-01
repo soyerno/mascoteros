@@ -149,14 +149,12 @@ module.exports = function(grunt) {
 			}
 		},
 		ngtemplates: {
-			app: {
+			tpls: {
 				cwd: 'public',
 				src: ['modules/**/views/*.html'],
 				dest: 'public/dist/app-templates.js',
-				options: {
-					prefix: '/',
-					module: 'tpls',
-					/*htmlmin: {
+				options:    {
+					/*htmlmin:  {
 						conservativeCollapse: false,
 						removeCommentsFromCDATA: false,
 						removeOptionalTags: false,
@@ -171,6 +169,24 @@ module.exports = function(grunt) {
 					}*/
 				}
 			}
+		},
+		htmlmin: {
+			app: {
+				options: {
+					conservativeCollapse: false,
+					removeCommentsFromCDATA: false,
+					removeOptionalTags: false,
+					collapseBooleanAttributes: false,
+					collapseWhitespace: false,
+					removeAttributeQuotes: false,
+					removeComments: true,
+					removeEmptyAttributes: false,
+					removeRedundantAttributes: false,
+					removeScriptTypeAttributes: false,
+					removeStyleLinkTypeAttributes: false
+				}
+			}
+
 		},
 		concurrent: {
 			default: ['nodemon', 'watch'],
