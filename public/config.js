@@ -31,7 +31,7 @@ var ApplicationConfiguration = (function() {
 		'geolocation',
 		'textAngular',
 		'uiGmapgoogle-maps',
-		'tpls'
+		//'tpls'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
