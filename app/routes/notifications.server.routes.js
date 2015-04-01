@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// Notifications Routes
 	app.route('/notifications')
 		.get(notifications.list)
-		.post(users.requiresLogin, notifications.create);
+		.post(notifications.create);
 
 	app.route('/notifications/:notificationId')
 		.get(notifications.read)

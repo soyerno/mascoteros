@@ -1535,17 +1535,17 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "\n" +
     "                                </tr>\n" +
     "\n" +
-    "                                <tr>\n" +
+    "                                <!--<tr>\n" +
     "                                    <td>\n" +
-    "                                        <!--<iframe ng-if=\"address\" width=\"100%\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" ng-src=\"https://www.google.com.ar/maps/place/{{address}}&output=embed\"></iframe>-->\n" +
+    "                                        <iframe ng-if=\"address\" width=\"100%\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" ng-src=\"https://www.google.com.ar/maps/place/{{address}}&output=embed\"></iframe>\n" +
     "                                    </td>\n" +
     "                                    <td>\n" +
     "                                        <label class=\"control-label\" for=\"description\">Dirección</label>\n" +
     "                                        <input type=\"text\" data-ng-model=\"address\" id=\"address\" class=\"form-control\" placeholder=\"Calle 123 - PB\" required>\n" +
     "                                    </td>\n" +
-    "                                </tr>\n" +
+    "                                </tr>-->\n" +
     "\n" +
-    "                                <!--<tr>\n" +
+    "                                <tr>\n" +
     "                                    <td colspan=\"2\">\n" +
     "                                        <script type=\"text/ng-template\" id=\"searchbox.tpl.html\">\n" +
     "                                            <input type=\"text\" data-ng-model=\"address\" id=\"address\" class=\"form-control\" placeholder=\"\" required>\n" +
@@ -1554,7 +1554,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                            <ui-gmap-search-box template=\"searchbox.template\" events=\"searchbox.events\"></ui-gmap-search-box>\n" +
     "                                        </ui-gmap-google-map>\n" +
     "                                    </td>\n" +
-    "                                </tr>-->\n" +
+    "                                </tr>\n" +
     "\n" +
     "                                <tr>\n" +
     "                                    <td>Telefono de contacto</td>\n" +

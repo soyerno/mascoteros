@@ -131,8 +131,15 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
 
 		var events = {
-			places_changed: function (searchBox) {}
+			places_changed: function (searchBox) {
+				var places = searchBox.getPlaces();
+				var newLat = places[0].geometry.location.lat();
+				var newLong = places[0].geometry.location.lng();
+				$scope.coords = {latitude: newLat, longitude: newLong};
+				$scope.setGeoLocation();
+			}
 		}
+
 		$scope.searchbox = { template:'searchbox.tpl.html', events:events};
 
 
@@ -158,7 +165,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				var notification = new Notifications ({
 					title: $scope.pet.name + ' fue scaneado',
 					pet: $scope.pet._id,
-					geoLocation: $scope.coords
+					geoLocation: $scope.coords,
+					to: $scope.pet.user._id
 				});
 
 				// Redirect after save
@@ -172,12 +180,12 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
 		$scope.setPetMissing = function(value){
 			var pet = $scope.pet;
-			delete pet.$promise;
-			delete pet.$resolved;
+			debugger;
+			/*delete pet.$promise;
+			delete pet.$resolved;*/
 
 			pet.isMissing = value;
 
-			debugger;
 			pet.$update(function() {
 				$location.path('pets/' + pet._id);
 			}, function(errorResponse) {

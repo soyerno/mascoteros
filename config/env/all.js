@@ -79,8 +79,8 @@ module.exports = {
 			'public/lib/angular-socialshare/angular-socialshare.css'
 		],
 		js: [
-			'public/config.js',
 			'public/app-templates.js',
+			'public/config.js',
 			'public/application.js',
 			'public/modules/*/*.js',
 			'public/modules/*/*[!tests]*/*.js'
