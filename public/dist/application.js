@@ -30,7 +30,8 @@ var ApplicationConfiguration = (function() {
 		'djds4rce.angular-socialshare',
 		'geolocation',
 		'textAngular',
-		'uiGmapgoogle-maps'
+		'uiGmapgoogle-maps',
+		'tpls'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
