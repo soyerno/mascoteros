@@ -94,7 +94,10 @@ var PetSchema = new Schema({
 	slug: {
 		type: String,
 		required: 'Please fill slug name'
-	}
+	},
+  coords: {
+    type: Schema.Types.Mixed
+  }
 });
 
 PetSchema.plugin(new URLSlugs('name', {field: 'slug'}));

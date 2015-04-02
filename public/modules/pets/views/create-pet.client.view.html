@@ -65,7 +65,7 @@
                             <label class="control-label" for="name">Foto</label>
                             <div class="controls">
                                 <!--<input type="text" data-ng-model="picture" id="picture" class="form-control" placeholder="Pic Url" required>-->
-                                <input type="file"  fileread="picture"  data-ng-model="picture" id="images.name" class="form-control" placeholder="Name" required>
+                                <input type="file" fileread="picture" data-ng-model="picture" id="images.name" class="form-control" placeholder="Name" required>
                             </div>
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
@@ -124,16 +124,7 @@
                                 <tr>
                                     <td colspan="2">
                                         <label class="control-label" for="yearOfBirth" style="float:left;">Nació</label>
-                                        <div class="controls" style="float:left;">
-                                            <p class="input-group custom-datepicker">
-                                                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="yearOfBirth" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-                                                      <span class="input-group-btn">
-                                                        <button type="button" id="yearOfBirth" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
-                                                      </span>
-                                            </p>
-                                            <!--<input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>-->
-                                            <!--<input type="text" id="yearOfBirth" pick-a-date="yearOfBirth" class="form-control datepicker" pick-a-date-options="{ format: 'dd-mm-yyyy' }" placeholder="Fecha de Nac" required/>-->
-                                        </div>
+                                        <simple-date-input data-date="yearOfBirth"></simple-date-input>
                                     </td>
                                 </tr>
 
@@ -198,7 +189,7 @@
                                 </tr>-->
 
                                 <tr ng-init="getGeoLocalization();">
-                                    <td colspan="2">
+                                  <td colspan="2">
                                         <script type="text/ng-template" id="searchbox.tpl.html">
                                             <input type="text" data-ng-model="address" id="address" class="form-control" placeholder="" required>
                                         </script>
