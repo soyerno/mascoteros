@@ -15,9 +15,10 @@ angular.module('pets').config(['$stateProvider',
 			controller: 'PetsController'
 		}).
 		state('app.listPets', {
-				url: '/pets',
-				templateUrl: 'modules/pets/views/list-pets.client.view.html'
-		}).
+      url: '/pets',
+      templateUrl: 'modules/pets/views/list-pets.client.view.html',
+      controller: 'PetsController'
+    }).
 		state('app.listPetsAdoption', {
 			url: '/pets/adopcion',
 			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
