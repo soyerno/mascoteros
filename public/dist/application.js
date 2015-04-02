@@ -2572,6 +2572,7 @@ angular.module('pets').run(['Menus',
 		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis Mascotas', 'pets/top', false, null, null, 'icon-user');*/
 		/*Menus.addSubMenuItem('sidebar', 'pets', 'Ranking', 'pets/', false, null, null, 'icon-trophy');*/
 		/*Menus.addSubMenuItem('sidebar', 'pets', 'Mis amigos', 'pets/', false, null, null, 'icon-trophy');*/
+		Menus.addSubMenuItem('sidebar', 'pets', 'Perdidos', 'pets/perdidos', false, null, null, 'icon-alert');
 		Menus.addSubMenuItem('sidebar', 'pets', 'Adoptar', 'pets/adopcion', false, null, null, 'icon-heart');
 		Menus.addSubMenuItem('sidebar', 'pets', 'Nueva Mascota', 'pets/create', false, null, null, 'fa-plus-circle');
 	}
@@ -2594,12 +2595,17 @@ angular.module('pets').config(['$stateProvider',
 			controller: 'PetsController'
 		}).
 		state('app.listPets', {
-				url: '/pets',
-				templateUrl: 'modules/pets/views/list-pets.client.view.html'
+		  url: '/pets',
+		  templateUrl: 'modules/pets/views/list-pets.client.view.html',
+		  controller: 'PetsController'
 		}).
 		state('app.listPetsAdoption', {
 			url: '/pets/adopcion',
 			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
+		}).
+		state('app.listPetsMissing', {
+			url: '/pets/perdidos',
+			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html'
 		}).
 		state('app.createPet', {
 			url: '/pets/create',
@@ -2644,7 +2650,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				breed: this.breed,
 				isMissing: this.isMissing,
 				genre: this.genre,
-        		yearOfBirth: this.yearOfBirth,
+        yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
@@ -2734,6 +2740,16 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				});
 		};
 
+		$scope.findMissing = function() {
+			$http.get('/pets/missing').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading adoption pets');
+				});
+		};
+
 		// Find existing Pet
 		$scope.findOne = function() {
 			$scope.pet = Pets.get({ 
@@ -2744,14 +2760,21 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     	$scope.findOneBySlug = function() {
 			var Pet = $resource('/pet/:petSlug', {petSlug:'@slug'});
 			$scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function() {
-				pet.get();
+				//pet.get();
 			});
 		};
 
 
 		var events = {
-			places_changed: function (searchBox) {}
+			places_changed: function (searchBox) {
+				var places = searchBox.getPlaces();
+				var newLat = places[0].geometry.location.lat();
+				var newLong = places[0].geometry.location.lng();
+				$scope.coords = {latitude: newLat, longitude: newLong};
+				$scope.setGeoLocation();
+			}
 		}
+
 		$scope.searchbox = { template:'searchbox.tpl.html', events:events};
 
 
@@ -2777,7 +2800,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				var notification = new Notifications ({
 					title: $scope.pet.name + ' fue scaneado',
 					pet: $scope.pet._id,
-					geoLocation: $scope.coords
+					geoLocation: $scope.coords,
+					to: $scope.pet.user._id
 				});
 
 				// Redirect after save
@@ -2789,19 +2813,21 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 			}
 		};
 
+
 		$scope.setPetMissing = function(value){
-			var pet = $scope.pet;
-			delete pet.$promise;
-			delete pet.$resolved;
 
-			pet.isMissing = value;
-
-			debugger;
-			pet.$update(function() {
-				$location.path('pets/' + pet._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+			$http.put('pets/' + $scope.pet._id + '/missing', { isMissing: value }).
+				success(function(data, status, headers, config) {
+					console.log(data);
+					$scope.pet.isMissing = data.isMissing;
+					//$location.path('pet/' + pet.slug);
+				}).
+				error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					console.log(data);
+					$scope.error = data;
+				});
 		}
 
 		/*Date directive */
@@ -2842,6 +2868,20 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
 		}
 
+]);
+
+'use strict';
+
+angular.module('pets').directive('petList', [
+	function() {
+		return {
+			templateUrl: 'modules/pets/views/partials/pet-list.client.view.html',
+			restrict: 'E',
+			link: function postLink(scope, element, attrs) {
+        return;
+      }
+		};
+	}
 ]);
 
 'use strict';

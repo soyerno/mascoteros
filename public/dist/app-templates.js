@@ -1541,17 +1541,18 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                    </td>\n" +
     "                                    <td>\n" +
     "                                        <label class=\"control-label\" for=\"description\">Dirección</label>\n" +
-    "                                        <input type=\"text\" data-ng-model=\"address\" id=\"address\" class=\"form-control\" placeholder=\"Calle 123 - PB\" required>\n" +
+    "                                        <input type=\"text\" ng-autocomplete data-ng-model=\"address\" options=\"options\" details=\"details\" id=\"address\" class=\"form-control\" placeholder=\"Calle 123 - PB\" required>\n" +
     "                                    </td>\n" +
     "                                </tr>-->\n" +
     "\n" +
-    "                                <tr>\n" +
+    "                                <tr ng-init=\"getGeoLocalization();\">\n" +
     "                                    <td colspan=\"2\">\n" +
     "                                        <script type=\"text/ng-template\" id=\"searchbox.tpl.html\">\n" +
     "                                            <input type=\"text\" data-ng-model=\"address\" id=\"address\" class=\"form-control\" placeholder=\"\" required>\n" +
     "                                        </script>\n" +
     "                                        <ui-gmap-google-map center=\"map.center\" zoom=\"map.zoom\" draggable=\"true\" options=\"options\">\n" +
     "                                            <ui-gmap-search-box template=\"searchbox.template\" events=\"searchbox.events\"></ui-gmap-search-box>\n" +
+    "                                            <ui-gmap-marker coords=\"center\" idkey=\"1\"></ui-gmap-marker>\n" +
     "                                        </ui-gmap-google-map>\n" +
     "                                    </td>\n" +
     "                                </tr>\n" +
@@ -1764,164 +1765,33 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('modules/pets/views/list-pets-adoption.client.view.html',
     "<h3>Mascotas</h3>\n" +
-    "<section data-ng-controller=\"PetsController\" data-ng-init=\"findAdoptions()\" class=\"row\">\n" +
-    "    <!--<a data-ng-repeat=\"pet in pets\" data-ng-href=\"#!/pets/{{pet._id}}\">-->\n" +
-    "        <div class=\"col-lg-4\" data-ng-repeat=\"pet in pets\">\n" +
-    "            <!-- START widget-->\n" +
-    "            <div class=\"wow bounceInUp animated panel widget\" data-wow-offset=\"120\" data-wow-duration=\"1.5s\" >\n" +
-    "                <div class=\"panel-body text-center bg-center\" style=\"background-image: url('{{pet.picture | cloudinaryProfileBlured}}')\">\n" +
-    "                    <div class=\"row row-table\">\n" +
-    "                        <div class=\"col-xs-12 text-white\">\n" +
-    "                            <a data-ng-href=\"#!/pet/{{pet.slug}}\">\n" +
-    "                                <img ng-src=\"{{pet.picture | cloudinaryProfile}}\" alt=\"{{pet.name}}\" class=\"img-thumbnail thumb128\">\n" +
-    "                            </a>\n" +
-    "                            <h3 class=\"m0\">{{pet.name}}</h3>\n" +
-    "                            <p class=\"m0\">\n" +
-    "                                <a data-ng-href=\"#!/pet/{{pet.slug}}\" style=\"color: white;\"><em class=\"fa fa-paw\"></em> {{pet.slug}}</a></p>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <!--<div class=\"panel-body text-center bg-gray-darker\">\n" +
-    "                    <div class=\"row row-table\">\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-twitter fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-facebook fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-google-plus fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-comments fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>-->\n" +
-    "                <div class=\"list-group\">\n" +
-    "                    <!--<a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span class=\"pull-right\">Saliendo a pasear</span>\n" +
-    "                        <em class=\"fa fa-fw fa-clock-o text-muted\"></em>Ultima Actividad</a>-->\n" +
-    "                    <a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span class=\"label label-primary pull-right\">{{pet.user.displayName}}</span>\n" +
-    "                        <em class=\"fa fa-fw fa-user text-muted\"></em>Mejor Amigo</a>\n" +
-    "                    <!--<a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span class=\"label label-primary pull-right\">300</span>\n" +
-    "                        <em class=\"fa fa-fw fa-folder-open-o text-muted\"></em>Fotos</a>-->\n" +
-    "                    <a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span ng-show=\"pet.isPrivate\" class=\"label label-success pull-right\">Sí</span>\n" +
-    "                        <span ng-show=\"!pet.isPrivate\" class=\"label label-success pull-right\">No</span>\n" +
-    "                        <em class=\"fa fa-fw fa-user text-muted\"></em>Perfil Privado</a>\n" +
-    "                </div>\n" +
-    "                <!--<div class=\"widget bg-success\">\n" +
-    "                    <div class=\"row row-table\">\n" +
-    "                        <div class=\"col-xs-4 text-center pv-lg\">\n" +
-    "                            <em class=\"icon-star fa-3x\"></em>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-8 pv-lg\">\n" +
-    "                            <div class=\"h1 m0 text-bold\">7000</div>\n" +
-    "                            <div class=\"text-uppercase\">likes totales</div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>-->\n" +
-    "            </div>\n" +
-    "            <!-- END widget-->\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "    <!--</a>-->\n" +
-    "\n" +
-    "    <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"!pets.length\">\n" +
-    "        Actualmente no hay mascotas en adopción, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">agregar una</a>?\n" +
-    "    </h4>\n" +
+    "<section data-ng-init=\"findAdoptions()\" class=\"row\">\n" +
+    "  <pet-list></pet-list>\n" +
+    "  <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"!pets.length\">\n" +
+    "      Actualmente no hay mascotas en adopción, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">agregar una</a>?\n" +
+    "  </h4>\n" +
+    "</section>\n"
+  );
+
+
+  $templateCache.put('modules/pets/views/list-pets-missing.client.view.html',
+    "<h3>Mascotas</h3>\n" +
+    "<section data-ng-init=\"findMissing();\" class=\"row\">\n" +
+    "\t<pet-list></pet-list>\n" +
+    "\t<h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"!pets.length\">\n" +
+    "\t\tActualmente no hay mascotas perdidas, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">agregar una</a>?\n" +
+    "\t</h4>\n" +
     "</section>\n"
   );
 
 
   $templateCache.put('modules/pets/views/list-pets.client.view.html',
     "<h3>Mascotas</h3>\n" +
-    "<section data-ng-controller=\"PetsController\" data-ng-init=\"find()\" class=\"row\">\n" +
-    "    <!--<a data-ng-repeat=\"pet in pets\" data-ng-href=\"#!/pets/{{pet._id}}\">-->\n" +
-    "        <div class=\"col-lg-4\" data-ng-repeat=\"pet in pets\">\n" +
-    "            <!-- START widget-->\n" +
-    "            <div class=\"wow bounceInUp animated panel widget\" data-wow-offset=\"120\" data-wow-duration=\"1.5s\" >\n" +
-    "                <div class=\"panel-body text-center bg-center\" style=\"background-image: url('{{pet.picture | cloudinaryProfileBlured}}')\">\n" +
-    "                    <div class=\"row row-table\">\n" +
-    "                        <div class=\"col-xs-12 text-white\">\n" +
-    "                            <a data-ng-href=\"#!/pet/{{pet.slug}}\">\n" +
-    "                                <img ng-src=\"{{pet.picture | cloudinaryProfile}}\" alt=\"{{pet.name}}\" class=\"img-thumbnail thumb128\">\n" +
-    "                            </a>\n" +
-    "                            <h3 class=\"m0\">{{pet.name}}</h3>\n" +
-    "                            <p class=\"m0\">\n" +
-    "                                <a data-ng-href=\"#!/pet/{{pet.slug}}\" style=\"color: white;\"><em class=\"fa fa-paw\"></em> {{pet.slug}}</a></p>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <!--<div class=\"panel-body text-center bg-gray-darker\">\n" +
-    "                    <div class=\"row row-table\">\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-twitter fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-facebook fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-google-plus fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-3\">\n" +
-    "                            <a href=\"#\" class=\"text-white\">\n" +
-    "                                <em class=\"fa fa-comments fa-2x\"></em>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>-->\n" +
-    "                <div class=\"list-group\">\n" +
-    "                    <!--<a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span class=\"pull-right\">Saliendo a pasear</span>\n" +
-    "                        <em class=\"fa fa-fw fa-clock-o text-muted\"></em>Ultima Actividad</a>-->\n" +
-    "                    <a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span class=\"label label-primary pull-right\">{{pet.user.displayName}}</span>\n" +
-    "                        <em class=\"fa fa-fw fa-user text-muted\"></em>Mejor Amigo</a>\n" +
-    "                    <!--<a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span class=\"label label-primary pull-right\">300</span>\n" +
-    "                        <em class=\"fa fa-fw fa-folder-open-o text-muted\"></em>Fotos</a>-->\n" +
-    "                    <a href=\"#\" class=\"list-group-item\">\n" +
-    "                        <span ng-show=\"pet.isPrivate\" class=\"label label-success pull-right\">Sí</span>\n" +
-    "                        <span ng-show=\"!pet.isPrivate\" class=\"label label-success pull-right\">No</span>\n" +
-    "                        <em class=\"fa fa-fw fa-user text-muted\"></em>Perfil Privado</a>\n" +
-    "                </div>\n" +
-    "                <!--<div class=\"widget bg-success\">\n" +
-    "                    <div class=\"row row-table\">\n" +
-    "                        <div class=\"col-xs-4 text-center pv-lg\">\n" +
-    "                            <em class=\"icon-star fa-3x\"></em>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"col-xs-8 pv-lg\">\n" +
-    "                            <div class=\"h1 m0 text-bold\">7000</div>\n" +
-    "                            <div class=\"text-uppercase\">likes totales</div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>-->\n" +
-    "            </div>\n" +
-    "            <!-- END widget-->\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "    <!--</a>-->\n" +
-    "\n" +
-    "    <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"pets.$resolved && !pets.length\">\n" +
-    "        No tienes mascotas creadas, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">crear una</a>?\n" +
-    "    </h4>\n" +
+    "<section data-ng-init=\"find()\" class=\"row\">\n" +
+    "  <pet-list></pet-list>\n" +
+    "  <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"pets.$resolved && !pets.length\">\n" +
+    "      No tienes mascotas creadas, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">crear una</a>?\n" +
+    "  </h4>\n" +
     "</section>\n"
   );
 
@@ -2188,8 +2058,8 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                <button ng-show=\"authentication.user._id != pet.user._id\" ng-click=\"sendScanNotif();\" class=\"btn btn-lg btn-warning\"><i class=\"icon-envelope\"></i> Notificar familia</button>\n" +
     "                                <!--<button class=\"btn btn-lg btn-success\" ng-click=\"sendScanNotif();\"><i class=\"icon-like\"></i> Notificar</button>-->\n" +
     "                                <button ng-show=\"pet.isAdoption\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Adoptar</button>\n" +
-    "                                <button ng-click=\"setPetMissing(false);\" ng-show=\"pet.isMissing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Encontrado</button>\n" +
-    "                                <button ng-click=\"setPetMissing(true);\" ng-show=\"!pet.isMissing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-danger\"><i class=\"icon-magnifier-remove\"></i> Perdido</button>\n" +
+    "                                <button ng-click=\"setPetMissing(false);\" ng-show=\"pet.isMissing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Notificar encuentro</button>\n" +
+    "                                <button ng-click=\"setPetMissing(true);\" ng-show=\"!pet.isMissing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-danger\"><i class=\"icon-magnifier-remove\"></i> Alertar perdida</button>\n" +
     "                                <!--MAKE A LIKE DIRECTIVE-->\n" +
     "                                <!--<button class=\"btn btn-lg btn-success\"><i class=\"icon-like\"></i> Likes: 120</button>\n" +
     "                                <button class=\"btn btn-lg btn-success\" disabled><i class=\"icon-like\"></i> Likes: 120 / Liked</button>-->\n" +
@@ -2208,8 +2078,8 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                        </div>\n" +
     "\n" +
     "                        <div class=\"row\" align=\"center\" nf-if=\"pet.slug\">\n" +
-    "                            <a facebook class=\"facebookShare\" data-ng-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>\n" +
-    "                            <a twitter  data-lang=\"en\" data-count='horizontal' data-ng-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size=\"medium\" data-text='Hola soy {{pet.name}}!' ></a>\n" +
+    "                            <a facebook class=\"facebookShare\" data-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>\n" +
+    "                            <a twitter  data-lang=\"en\" data-count='horizontal' data-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size=\"medium\" data-text='Hola soy {{pet.name}}!' ></a>\n" +
     "                            <div gplus class=\"g-plus\" data-size=\"tall\" data-annotation=\"bubble\" data-ng-href='http://www.mascoteros.net/pet/{{pet.slug}}' data-action='share'></div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -2268,7 +2138,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                    <div class=\"col-md-4 col-lg-4\">\n" +
     "                        <div class=\"panel widget\" ng-if=\"map\">\n" +
     "                            <ui-gmap-google-map center='map.center' zoom='map.zoom'>\n" +
-    "                                <ui-gmap-marker coords=\"center\" idkey=\"1\"></ui-gmap-marker>\n" +
+    "                                <ui-gmap-marker icon=\"http://obedience-101.webstarts.com/uploads/paw_print2.png\" coords=\"center\" idkey=\"1\"></ui-gmap-marker>\n" +
     "                            </ui-gmap-google-map>\n" +
     "                        </div>\n" +
     "                    </div>\n" +

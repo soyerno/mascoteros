@@ -115,6 +115,17 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				});
 		};
 
+		$scope.findMissing = function() {
+			console.log('missing');
+			$http.get('/pets/missing').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading missing pets');
+				});
+		};
+
 		// Find existing Pet
 		$scope.findOne = function() {
 			$scope.pet = Pets.get({ 
@@ -177,6 +188,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				});
 			}
 		};
+
 
 		$scope.setPetMissing = function(value){
 

@@ -131,6 +131,19 @@ exports.listAdoption = function(req, res) {
 	});
 };
 
+exports.listMissing = function(req, res) {
+
+	Pet.find({isMissing: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(pets);
+		}
+	});
+};
+
 /**
  * Pet middleware
  */

@@ -15,6 +15,9 @@ module.exports = function(app) {
 	app.route('/pets/adoption')
 		.get(users.requiresLogin, pets.listAdoption);
 
+	app.route('/pets/missing')
+		.get(users.requiresLogin, pets.listMissing);
+
 	app.route('/pets/buscar')
 		.post(users.requiresLogin, pets.list);
 

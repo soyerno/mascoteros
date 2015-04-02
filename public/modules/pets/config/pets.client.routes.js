@@ -15,17 +15,19 @@ angular.module('pets').config(['$stateProvider',
 			controller: 'PetsController'
 		}).
 		state('app.listPets', {
-      url: '/pets',
-      templateUrl: 'modules/pets/views/list-pets.client.view.html',
-      controller: 'PetsController'
-    }).
+		  url: '/pets',
+		  templateUrl: 'modules/pets/views/list-pets.client.view.html',
+		  controller: 'PetsController'
+		}).
 		state('app.listPetsAdoption', {
 			url: '/pets/adopcion',
-			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
+			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html',
+			controller: 'PetsController'
 		}).
 		state('app.listPetsMissing', {
 			url: '/pets/perdidos',
-			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html'
+			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html',
+			controller: 'PetsController'
 		}).
 		state('app.createPet', {
 			url: '/pets/create',
