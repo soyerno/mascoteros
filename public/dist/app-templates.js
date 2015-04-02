@@ -1776,7 +1776,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('modules/pets/views/list-pets-missing.client.view.html',
     "<h3>Mascotas</h3>\n" +
-    "<section data-ng-init=\"findMissing();\" class=\"row\">\n" +
+    "<section ng-init=\"findMissing()\" class=\"row\">\n" +
     "\t<pet-list></pet-list>\n" +
     "\t<h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"!pets.length\">\n" +
     "\t\tActualmente no hay mascotas perdidas, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">agregar una</a>?\n" +
@@ -1789,7 +1789,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "<h3>Mascotas</h3>\n" +
     "<section data-ng-init=\"find()\" class=\"row\">\n" +
     "  <pet-list></pet-list>\n" +
-    "  <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"pets.$resolved && !pets.length\">\n" +
+    "  <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"!pets.length\">\n" +
     "      No tienes mascotas creadas, deseas <a href=\"/#!/pets/create\" class=\"text-yellow\">crear una</a>?\n" +
     "  </h4>\n" +
     "</section>\n"
@@ -1993,7 +1993,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('modules/pets/views/view-pet.client.view.html',
     "<div data-ng-init=\"findOneBySlug(); getGeoLocalization();\"></div>\n" +
-    "<h3 data-ng-show=\"authentication.user._id == pet.user._id && pet.name\">\n" +
+    "<h3 data-ng-show=\"authentication.user._id == pet.user._id && pet.$resolved &&  pet.name\">\n" +
     "    <div class=\"pull-right\">\n" +
     "        <a class=\"btn btn-primary\" href=\"/#!/pets/{{pet._id}}/edit\">\n" +
     "            <i class=\"fa fa-edit\"></i>\n" +
@@ -2001,7 +2001,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "    {{pet.name}}\n" +
     "</h3>\n" +
-    "<div class=\"content-wrapper\" ng-if=\"!pet.isPrivate || authentication.user._id == pet.user._id\">\n" +
+    "<div class=\"content-wrapper\" ng-if=\"!pet.isPrivate || authentication.user._id == pet.user._id && pet.$resolved\">\n" +
     "    <div class=\"unwrap\">\n" +
     "        <div style=\"background-image: url('{{pet.picture | cloudinaryProfileBlured}}')\" class=\"bg-cover\">\n" +
     "            <div class=\"p-xl text-center text-white\">\n" +
@@ -2036,7 +2036,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<section ng-if=\"!pet.isPrivate || authentication.user._id == pet.user._id\">\n" +
+    "<section ng-if=\"pet.$resolved && !pet.isPrivate || authentication.user._id == pet.user._id\">\n" +
     "    <!--<div class=\"\" data-ng-show=\"((authentication.user) && (authentication.user._id == pet.user._id))\">-->\n" +
     "    <!--<div class=\"panel\">\n" +
     "        {{coords}}\n" +
@@ -2149,12 +2149,12 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "    </div>\n" +
     "</section>\n" +
     "\n" +
-    "<section ng-hide=\"pet._id\">\n" +
+    "<section ng-hide=\"pet.$resolved && pet._id\">\n" +
     "    <h2>La mascota no existe</h2>\n" +
     "    <a ng-href=\"/#!/pets\" class=\"btn btn-primary btn-lg\">Volver al listado de mascotas</a>\n" +
     "</section>\n" +
     "\n" +
-    "<section ng-show=\"pet.isPrivate && authentication.user._id != pet.user._id\">\n" +
+    "<section ng-show=\"pet.$resolved && pet.isPrivate && authentication.user._id != pet.user._id\">\n" +
     "    <h2>El perfíl de la mascota es privado!</h2>\n" +
     "    <a ng-href=\"/#!/pets\" class=\"btn btn-primary btn-lg\">Volver al listado de mascotas</a>\n" +
     "</section>\n" +

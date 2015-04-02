@@ -2601,11 +2601,13 @@ angular.module('pets').config(['$stateProvider',
 		}).
 		state('app.listPetsAdoption', {
 			url: '/pets/adopcion',
-			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
+			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html',
+			controller: 'PetsController'
 		}).
 		state('app.listPetsMissing', {
 			url: '/pets/perdidos',
-			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html'
+			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html',
+			controller: 'PetsController'
 		}).
 		state('app.createPet', {
 			url: '/pets/create',
@@ -2741,12 +2743,13 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		};
 
 		$scope.findMissing = function() {
+			console.log('missing');
 			$http.get('/pets/missing').
 				success(function(data, status, headers, config) {
 					$scope.pets = data;
 				}).
 				error(function(data, status, headers, config) {
-					console.log('error loading adoption pets');
+					console.log('error loading missing pets');
 				});
 		};
 
