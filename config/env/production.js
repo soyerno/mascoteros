@@ -36,6 +36,7 @@ module.exports = {
 				'public/lib/moment/moment.js',
 				'public/lib/angular-moment/angular-moment.js',
 				'public/lib/moment/locale/es.js',
+				'http://code.angularjs.org/1.0.8/i18n/angular-locale_es-es.js',
 				'public/lib/angular-native-picker/build/angular-datepicker.js',
 				'public/lib/angular-socialshare/angular-socialshare.js',
 				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',

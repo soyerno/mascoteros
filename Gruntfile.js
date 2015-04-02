@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 	};
 
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
 	// Project Configuration
 	grunt.initConfig({
@@ -104,18 +105,18 @@ module.exports = function(grunt) {
 					mangle: false
 				},
 				files: {
-					'public/dist/application.min.js': 'public/dist/application.js'
+					'public/dist/application.min.js': ['public/dist/application.js', 'public/dist/app-templates.js']
 				}
 			}
 		},
-		/* Not needed for LESS
+		// Not needed for LESS
 		cssmin: {
 			combine: {
 				files: {
 					'public/dist/application.min.css': '<%= applicationCSSFiles %>'
 				}
 			}
-		},*/
+		},
 		nodemon: {
 			dev: {
 				script: 'server.js',
@@ -148,15 +149,24 @@ module.exports = function(grunt) {
 			}
 		},
 		ngtemplates: {
-			app: {
-				cwd: 'app',
-				src: ['**/*.html'],
-				dest: '.tmp/concat/scripts/app-templates.js',
-				options: {
-					prefix: '/',
-					module: 'fwtv',
-					htmlmin: '<%= htmlmin.views.options %>',
-					usemin: 'scripts/app.js'
+			tpls: {
+				cwd: 'public',
+				src: ['modules/**/views/*.html'],
+				dest: 'public/dist/app-templates.js',
+				options:    {
+					/*htmlmin:  {
+						conservativeCollapse: false,
+						removeCommentsFromCDATA: false,
+						removeOptionalTags: false,
+						collapseBooleanAttributes: false,
+						collapseWhitespace: false,
+						removeAttributeQuotes: false,
+						removeComments: true,
+						removeEmptyAttributes: false,
+						removeRedundantAttributes: false,
+						removeScriptTypeAttributes: false,
+						removeStyleLinkTypeAttributes: false
+					}*/
 				}
 			}
 		},
@@ -218,7 +228,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify',/* 'cssmin',*/ 'less' ]);
+	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'ngtemplates', 'uglify', 'cssmin', 'less' ]);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

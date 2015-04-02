@@ -49,8 +49,8 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button class="btn btn-lg-btn-primary" ng-click="step = 1"> < atras</button>
-                        <button class="btn btn-lg-btn-primary" ng-click="step = 3"> > siguiente</button>
+                        <button class="btn btn-lg-btn-primary" ng-click="step = 1"> atras</button>
+                        <button class="btn btn-lg-btn-primary" ng-click="step = 3"> siguiente</button>
                     </div>
                 </div>
             </div>
@@ -187,26 +187,27 @@
 
                                 </tr>
 
-                                <tr>
+                                <!--<tr>
                                     <td>
-                                        <!--<iframe ng-if="address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="https://www.google.com.ar/maps/place/{{address}}&output=embed"></iframe>-->
+                                        <iframe ng-if="address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="https://www.google.com.ar/maps/place/{{address}}&output=embed"></iframe>
                                     </td>
                                     <td>
                                         <label class="control-label" for="description">Dirección</label>
                                         <input type="text" ng-autocomplete data-ng-model="address" options="options" details="details" id="address" class="form-control" placeholder="Calle 123 - PB" required>
                                     </td>
-                                </tr>
+                                </tr>-->
 
-                                <!--<tr>
+                                <tr ng-init="getGeoLocalization();">
                                     <td colspan="2">
                                         <script type="text/ng-template" id="searchbox.tpl.html">
                                             <input type="text" data-ng-model="address" id="address" class="form-control" placeholder="" required>
                                         </script>
                                         <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
                                             <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+                                            <ui-gmap-marker coords="center" idkey="1"></ui-gmap-marker>
                                         </ui-gmap-google-map>
                                     </td>
-                                </tr>-->
+                                </tr>
 
                                 <tr>
                                     <td>Telefono de contacto</td>
@@ -231,7 +232,7 @@
 
             <fieldset ng-show="step == 3">
                 <div class="form-group">
-                    <button class="btn btn-lg-btn-primary" ng-click="step = 1"> < atras</button>
+                    <button class="btn btn-lg-btn-primary" ng-click="step = 1"> atras</button>
                     <input type="submit" ng-disabled="formBusy" class="btn btn-default mar-bot-40">
                     <i ng-show="formBusy" class="fa fa-cog fa-spin"></i>
                 </div>

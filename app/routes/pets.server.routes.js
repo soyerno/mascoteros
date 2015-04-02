@@ -19,7 +19,7 @@ module.exports = function(app) {
 		.post(users.requiresLogin, pets.list);
 
 	app.route('/pets/:petId/addLike')
-		.get(pets.read);
+		.get(users.requiresLogin, pets.read);
 
   app.route('/pets/:petId')
 		.get(pets.read)

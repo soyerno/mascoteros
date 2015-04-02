@@ -38,22 +38,22 @@ var PetSchema = new Schema({
 	picture: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet picture'
+		required: 'Por favor, ingrese la foto de su mascota'
 	},
 	color: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet color'
+		required: 'Por favor, ingrese un color'
 	},
 	email: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet Email'
+		required: 'Por favor, ingrese un email'
 	},
 	address: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet Address'
+		required: 'Por favor, ingrese la dirección'
 	},
 	tel1: {
 		type: String
@@ -68,7 +68,7 @@ var PetSchema = new Schema({
 	breed: {
 		type: String,
 		default: '',
-		required: 'Please fill Pet breed',
+		required: 'Por favor, ingrese la raza',
 		trim: true
 	},
 	yearOfBirth: {

@@ -25,7 +25,7 @@ var NotificationSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
+	to: {
 		type: Schema.ObjectId,
 		ref: 'User'
 	}
