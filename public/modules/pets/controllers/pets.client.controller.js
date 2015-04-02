@@ -25,7 +25,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 				breed: this.breed,
 				isMissing: this.isMissing,
 				genre: this.genre,
-        		yearOfBirth: this.yearOfBirth,
+        yearOfBirth: this.yearOfBirth,
 				description: this.description,
 				neutered: this.neutered,
 				email: this.email,
