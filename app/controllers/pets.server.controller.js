@@ -52,6 +52,28 @@ exports.update = function(req, res) {
 	});
 };
 
+exports.updateMissing = function(req, res) {
+
+	console.log(req.body.isMissing);
+	console.log('-----------------------------------');
+
+	var query = { _id: req.pet._id };
+
+	Pet.findOne(query, function (err, doc){
+		doc.isMissing = req.body.isMissing;
+		doc.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				console.log(doc);
+				res.jsonp(doc);
+			}
+		});
+	});
+};
+
 /**
  * Delete an Pet
  */
