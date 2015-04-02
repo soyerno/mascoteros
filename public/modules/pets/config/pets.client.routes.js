@@ -22,6 +22,10 @@ angular.module('pets').config(['$stateProvider',
 			url: '/pets/adopcion',
 			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html'
 		}).
+		state('app.listPetsMissing', {
+			url: '/pets/perdidos',
+			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html'
+		}).
 		state('app.createPet', {
 			url: '/pets/create',
 			templateUrl: 'modules/pets/views/create-pet.client.view.html'
