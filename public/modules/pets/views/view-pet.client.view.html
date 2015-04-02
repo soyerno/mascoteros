@@ -64,8 +64,8 @@
                                 <button ng-show="authentication.user._id != pet.user._id" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
                                 <!--<button class="btn btn-lg btn-success" ng-click="sendScanNotif();"><i class="icon-like"></i> Notificar</button>-->
                                 <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
-                                <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
-                                <button ng-click="setPetMissing(true);" ng-show="!pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Perdido</button>
+                                <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Notificar encuentro</button>
+                                <button ng-click="setPetMissing(true);" ng-show="!pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Alertar perdida</button>
                                 <!--MAKE A LIKE DIRECTIVE-->
                                 <!--<button class="btn btn-lg btn-success"><i class="icon-like"></i> Likes: 120</button>
                                 <button class="btn btn-lg btn-success" disabled><i class="icon-like"></i> Likes: 120 / Liked</button>-->
@@ -84,8 +84,8 @@
                         </div>
 
                         <div class="row" align="center" nf-if="pet.slug">
-                            <a facebook class="facebookShare" data-ng-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
-                            <a twitter  data-lang="en" data-count='horizontal' data-ng-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
+                            <a facebook class="facebookShare" data-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>
+                            <a twitter  data-lang="en" data-count='horizontal' data-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size="medium" data-text='Hola soy {{pet.name}}!' ></a>
                             <div gplus class="g-plus" data-size="tall" data-annotation="bubble" data-ng-href='http://www.mascoteros.net/pet/{{pet.slug}}' data-action='share'></div>
                         </div>
                     </div>

@@ -125,7 +125,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     	$scope.findOneBySlug = function() {
 			var Pet = $resource('/pet/:petSlug', {petSlug:'@slug'});
 			$scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function() {
-				pet.get();
+				//pet.get();
 			});
 		};
 
@@ -179,18 +179,19 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 		};
 
 		$scope.setPetMissing = function(value){
-			var pet = $scope.pet;
-			debugger;
-			/*delete pet.$promise;
-			delete pet.$resolved;*/
 
-			pet.isMissing = value;
-
-			pet.$update(function() {
-				$location.path('pets/' + pet._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+			$http.put('pets/' + $scope.pet._id + '/missing', { isMissing: value }).
+				success(function(data, status, headers, config) {
+					console.log(data);
+					$scope.pet.isMissing = data.isMissing;
+					//$location.path('pet/' + pet.slug);
+				}).
+				error(function(data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					console.log(data);
+					$scope.error = data;
+				});
 		}
 
 		/*Date directive */

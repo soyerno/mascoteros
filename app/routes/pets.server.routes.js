@@ -27,7 +27,7 @@ module.exports = function(app) {
 		.delete(users.requiresLogin, pets.hasAuthorization, pets.delete);
 
 	app.route('/pets/:petId/missing')
-		.put(users.requiresLogin, pets.hasAuthorization, pets.update);
+		.put(users.requiresLogin, pets.hasAuthorization, pets.updateMissing);
 
 	// Finish by binding the Pet middleware
 	app.param('petId', pets.petByID);
