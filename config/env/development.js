@@ -2,7 +2,7 @@
 
 module.exports = {
 	//db: 'mongodb://localhost/mascoteros-dev',
-	db: 'mongodb://mascoteros:mascoteros@ds033107.mongolab.com:33107/heroku_app34828065',
+	db: 'mongodb://mascoteros:mascoteros@ds061371.mongolab.com:61371/heroku_app35295284',
 	app: {
 		title: 'Mascoteros'
 	},

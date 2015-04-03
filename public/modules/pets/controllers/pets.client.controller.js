@@ -101,6 +101,8 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
     // Find a list of Pets
     $scope.find = function () {
+      debugger;
+
       $scope.pets = Pets.query();
     };
 
@@ -116,12 +118,15 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
     // Find existing Pet
     $scope.findOne = function () {
+      debugger;
       $scope.pet = Pets.get({
         petId: $stateParams.petId
       });
     };
 
     $scope.findOneBySlug = function () {
+      debugger;
+
       var Pet = $resource('/pet/:petSlug', {petSlug: '@slug'});
       $scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function () {
       });

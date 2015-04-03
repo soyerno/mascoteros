@@ -72,7 +72,8 @@ exports.delete = function(req, res) {
 /**
  * List of Notifications
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
+	if (!req.user && !req.user._id) { res.jsonp('Sin notificaciones');}
 	Notification.find({to: req.user._id}).sort('-created').populate('user', 'displayName').exec(function(err, notifications) {
 		if (err) {
 			return res.status(400).send({
