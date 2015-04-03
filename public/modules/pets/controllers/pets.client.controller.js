@@ -200,6 +200,5 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
           console.log('error loading missing pets');
         });
     };
-
   }
 ]);
