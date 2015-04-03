@@ -14,6 +14,11 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: 'modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
+		state('app.viewPets', {
+			url: '/pets/:petId',
+			templateUrl: 'modules/pets/views/view-pets.client.view.html',
+			controller: 'PetsController'
+		}).
 		state('app.listPets', {
 		  url: '/pets',
 		  templateUrl: 'modules/pets/views/list-pets.client.view.html',
@@ -32,11 +37,6 @@ angular.module('pets').config(['$stateProvider',
 		state('app.createPet', {
 			url: '/pets/create',
 			templateUrl: 'modules/pets/views/create-pet.client.view.html'
-		}).
-		state('app.viewPets', {
-			url: '/pets/:petId',
-			templateUrl: 'modules/pets/views/view-pet.client.view.html',
-			controller: 'PetsController'
 		}).
 		state('app.editPet', {
 			url: '/pets/:petId/edit',
