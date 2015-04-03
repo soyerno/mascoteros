@@ -133,8 +133,34 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
         var newLat = places[0].geometry.location.lat();
         var newLong = places[0].geometry.location.lng();
         $scope.coords = { latitude: newLat, longitude: newLong };
+        $scope.marker.coords = { latitude: newLat, longitude: newLong };
         $scope.setGeoLocation();
         $scope.address = places[0].formatted_address;
+      }
+    };
+
+    $scope.marker = {
+      id: 0,
+      coords: {
+        latitude: 40.1451,
+        longitude: -99.6680
+      },
+      options: { draggable: true },
+      events: {
+        dragend: function (marker, eventName, args) {
+          $log.log('marker dragend');
+          var lat = marker.getPosition().lat();
+          var lon = marker.getPosition().lng();
+          $log.log(lat);
+          $log.log(lon);
+
+          $scope.marker.options = {
+            draggable: true,
+            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+            labelAnchor: "100 0",
+            labelClass: "marker-labels"
+          };
+        }
       }
     };
 
@@ -145,6 +171,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
       $scope.coordsUpdates = 0;
       $scope.dynamicMoveCtr = 0;
       $scope.map = {center: $scope.center, zoom: 18};
+      $scope.marker.coords = $scope.center;
     };
 
     $scope.getGeoLocalization = function () {

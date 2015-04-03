@@ -144,7 +144,7 @@
             <div class="col-md-4 col-lg-4">
               <div class="panel widget" ng-if="map">
                 <ui-gmap-google-map center='pet.coords' zoom='map.zoom'>
-                  <ui-gmap-marker coords="pet.coords" idkey="1"></ui-gmap-marker>
+                  <ui-gmap-marker coords="marker.coords" idkey="1" options="marker.options" events="marker.events"></ui-gmap-marker>
                 </ui-gmap-google-map>
               </div>
             </div>
