@@ -1,8 +1,8 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http) {
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http', '$timeout',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http, $timeout) {
     $scope.authentication = Authentication;
 
     $scope.step = 1;
@@ -127,59 +127,84 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
       });
     };
 
+      //MAPS
+      $scope.map = {center: {latitude: 40.1451, longitude: -99.6680 }, zoom: 4 };
+      $scope.map = {center: {latitude: 40.1451, longitude: -99.6680 }, zoom: 4 };
+      $scope.options = {scrollwheel: false};
+      $scope.coordsUpdates = 0;
+      $scope.dynamicMoveCtr = 0;
+      $scope.marker = {
+        id: 0,
+        coords: {
+          latitude: 40.1451,
+          longitude: -99.6680
+        },
+        options: { draggable: true },
+        events: {
+          dragend: function (marker, eventName, args) {
+            $log.log('marker dragend');
+            var lat = marker.getPosition().lat();
+            var lon = marker.getPosition().lng();
+            $log.log(lat);
+            $log.log(lon);
+
+            $scope.marker.options = {
+              draggable: true,
+              labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+              labelAnchor: "100 0",
+              labelClass: "marker-labels"
+            };
+          }
+        }
+      };
+      $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
+        if (_.isEqual(newVal, oldVal))
+          return;
+        $scope.coordsUpdates++;
+      });
+      $timeout(function () {
+        $scope.marker.coords = {
+          latitude: 42.1451,
+          longitude: -100.6680
+        };
+        $scope.dynamicMoveCtr++;
+        $timeout(function () {
+          $scope.marker.coords = {
+            latitude: 43.1451,
+            longitude: -102.6680
+          };
+          $scope.dynamicMoveCtr++;
+        }, 2000);
+      }, 1000);
+
     var events = {
       places_changed: function (searchBox, event) {
         var places = searchBox.getPlaces();
         var newLat = places[0].geometry.location.lat();
         var newLong = places[0].geometry.location.lng();
-        $scope.coords = { latitude: newLat, longitude: newLong };
+        $scope.map.center = { latitude: newLat, longitude: newLong };
         $scope.marker.coords = { latitude: newLat, longitude: newLong };
-        $scope.setGeoLocation();
+        //$scope.setGeoLocation();
         $scope.address = places[0].formatted_address;
-      }
-    };
-
-    $scope.marker = {
-      id: 0,
-      coords: {
-        latitude: 40.1451,
-        longitude: -99.6680
-      },
-      options: { draggable: true },
-      events: {
-        dragend: function (marker, eventName, args) {
-          $log.log('marker dragend');
-          var lat = marker.getPosition().lat();
-          var lon = marker.getPosition().lng();
-          $log.log(lat);
-          $log.log(lon);
-
-          $scope.marker.options = {
-            draggable: true,
-            labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-            labelAnchor: "100 0",
-            labelClass: "marker-labels"
-          };
-        }
       }
     };
 
     $scope.searchbox = { template: 'searchbox.tpl.html', events: events };
 
     $scope.setGeoLocation = function () {
-      $scope.center = $scope.coords;
-      $scope.coordsUpdates = 0;
-      $scope.dynamicMoveCtr = 0;
-      $scope.map = {center: $scope.center, zoom: 18};
-      $scope.marker.coords = $scope.center;
+      $scope.map = {center: $scope.currentCoords, zoom: 18};
+      $scope.marker.coords = $scope.currentCoords;
     };
 
     $scope.getGeoLocalization = function () {
       geolocation.getLocation().then(function (data) {
-        $scope.coords = {latitude: data.coords.latitude, longitude: data.coords.longitude};
+        $scope.currentCoords = {latitude: data.coords.latitude, longitude: data.coords.longitude};
         $scope.setGeoLocation();
       });
     };
+
+
+      //END MAPS
 
     $scope.sendScanNotif = function () {
       /* @todo: add this to pet profile options*/
