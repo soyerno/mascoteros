@@ -21,10 +21,6 @@ npm-debug.log
 # build and temp folders
 .tmp
 
-#Webstorm IDE configuration files
-.idea
-.idea/workspace.xml
-
 Admin.css
 Admin.css.map
 
