@@ -1413,7 +1413,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                            <label class=\"control-label\" for=\"name\">Foto</label>\n" +
     "                            <div class=\"controls\">\n" +
     "                                <!--<input type=\"text\" data-ng-model=\"picture\" id=\"picture\" class=\"form-control\" placeholder=\"Pic Url\" required>-->\n" +
-    "                                <input type=\"file\"  fileread=\"picture\"  data-ng-model=\"picture\" id=\"images.name\" class=\"form-control\" placeholder=\"Name\" required>\n" +
+    "                                <input type=\"file\" fileread=\"picture\" data-ng-model=\"picture\" id=\"images.name\" class=\"form-control\" placeholder=\"Name\" required>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                        <div class=\" col-md-9 col-lg-9 \">\n" +
@@ -1472,16 +1472,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                <tr>\n" +
     "                                    <td colspan=\"2\">\n" +
     "                                        <label class=\"control-label\" for=\"yearOfBirth\" style=\"float:left;\">Nació</label>\n" +
-    "                                        <div class=\"controls\" style=\"float:left;\">\n" +
-    "                                            <p class=\"input-group custom-datepicker\">\n" +
-    "                                                <input type=\"text\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"yearOfBirth\" is-open=\"opened\" min-date=\"minDate\" max-date=\"'2015-06-22'\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\" />\n" +
-    "                                                      <span class=\"input-group-btn\">\n" +
-    "                                                        <button type=\"button\" id=\"yearOfBirth\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"fa fa-calendar\"></i></button>\n" +
-    "                                                      </span>\n" +
-    "                                            </p>\n" +
-    "                                            <!--<input type=\"text\" data-ng-model=\"yearOfBirth\" id=\"yearOfBirth\" class=\"form-control\" placeholder=\"Fecha de Nac\" required>-->\n" +
-    "                                            <!--<input type=\"text\" id=\"yearOfBirth\" pick-a-date=\"yearOfBirth\" class=\"form-control datepicker\" pick-a-date-options=\"{ format: 'dd-mm-yyyy' }\" placeholder=\"Fecha de Nac\" required/>-->\n" +
-    "                                        </div>\n" +
+    "                                        <simple-date-input data-date=\"yearOfBirth\"></simple-date-input>\n" +
     "                                    </td>\n" +
     "                                </tr>\n" +
     "\n" +
@@ -1544,16 +1535,20 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                        <input type=\"text\" ng-autocomplete data-ng-model=\"address\" options=\"options\" details=\"details\" id=\"address\" class=\"form-control\" placeholder=\"Calle 123 - PB\" required>\n" +
     "                                    </td>\n" +
     "                                </tr>-->\n" +
-    "\n" +
+    "                                <tr>\n" +
+    "                                    <td>{{address}}</td>\n" +
+    "                                </tr>\n" +
     "                                <tr ng-init=\"getGeoLocalization();\">\n" +
-    "                                    <td colspan=\"2\">\n" +
+    "                                  <td colspan=\"2\">\n" +
     "                                        <script type=\"text/ng-template\" id=\"searchbox.tpl.html\">\n" +
     "                                            <input type=\"text\" data-ng-model=\"address\" id=\"address\" class=\"form-control\" placeholder=\"\" required>\n" +
     "                                        </script>\n" +
-    "                                        <ui-gmap-google-map center=\"map.center\" zoom=\"map.zoom\" draggable=\"true\" options=\"options\">\n" +
-    "                                            <ui-gmap-search-box template=\"searchbox.template\" events=\"searchbox.events\"></ui-gmap-search-box>\n" +
-    "                                            <ui-gmap-marker coords=\"center\" idkey=\"1\"></ui-gmap-marker>\n" +
-    "                                        </ui-gmap-google-map>\n" +
+    "                                      <ui-gmap-google-map center=\"map.center\" zoom=\"map.zoom\" draggable=\"true\" options=\"options\">\n" +
+    "                                          <ui-gmap-search-box template=\"searchbox.template\" events=\"searchbox.events\">\n" +
+    "                                          </ui-gmap-search-box>\n" +
+    "                                          <ui-gmap-marker coords=\"marker.coords\" options=\"marker.options\" events=\"marker.events\" idkey=\"marker.id\">\n" +
+    "                                          </ui-gmap-marker>\n" +
+    "                                      </ui-gmap-google-map>\n" +
     "                                    </td>\n" +
     "                                </tr>\n" +
     "\n" +
@@ -1611,7 +1606,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                        <div class=\"col-md-3 col-lg-3 \" align=\"center\">\n" +
     "                            <label class=\"control-label\" for=\"name\">Foto</label>\n" +
     "                            <br/><br/>\n" +
-    "                            <img ng-if=\"pet.picture\" alt=\"{{pet.name}}\" ng-src=\"{{pet.picture| cloudinaryProfile}}\" class=\"\">\n" +
+    "                            <img ng-if=\"pet.picture\" alt=\"{{pet.name}}\" ng-src=\"{{pet.picture | cloudinaryProfile}}\" class=\"\">\n" +
     "                            <br/><br/>\n" +
     "                            <div class=\"controls\">\n" +
     "                                <input type=\"file\"  fileread=\"pet.picture\"  data-ng-model=\"pet.picture\" id=\"images.name\" class=\"form-control\" placeholder=\"Name\" required>\n" +
@@ -1714,7 +1709,6 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                </td>\n" +
     "\n" +
     "                                </tr>\n" +
-    "\n" +
     "                                <tr>\n" +
     "                                    <td>\n" +
     "                                        <iframe ng-if=\"pet.address\" width=\"100%\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://www.google.com.ar/maps/place/\"{{pet.address + '&output=embed'}}></iframe>\n" +
@@ -1993,343 +1987,13 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('modules/pets/views/view-pet.client.view.html',
     "<div data-ng-init=\"findOneBySlug(); getGeoLocalization();\"></div>\n" +
-    "<h3 data-ng-show=\"authentication.user._id == pet.user._id && pet.$resolved &&  pet.name\">\n" +
-    "    <div class=\"pull-right\">\n" +
-    "        <a class=\"btn btn-primary\" href=\"/#!/pets/{{pet._id}}/edit\">\n" +
-    "            <i class=\"fa fa-edit\"></i>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "    {{pet.name}}\n" +
-    "</h3>\n" +
-    "<div class=\"content-wrapper\" ng-if=\"!pet.isPrivate || authentication.user._id == pet.user._id && pet.$resolved\">\n" +
-    "    <div class=\"unwrap\">\n" +
-    "        <div style=\"background-image: url('{{pet.picture | cloudinaryProfileBlured}}')\" class=\"bg-cover\">\n" +
-    "            <div class=\"p-xl text-center text-white\">\n" +
-    "                <img alt=\"{{pet.name}}\" ng-src=\"{{pet.picture |cloudinaryProfile }}\" class=\"img-thumbnail thumb128\">\n" +
-    "                <h3 class=\"m0\">{{pet.name}}</h3>\n" +
-    "                <p>{{pet.user.displayName}}</p>\n" +
-    "                <p>{{pet.description}}</p>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <!--<div class=\"text-center bg-gray-dark p-lg mb-xl\">\n" +
-    "            <div class=\"row row-table\">\n" +
-    "                <div class=\"col-xs-4 br\">\n" +
-    "                    <h3 class=\"m0\">400</h3>\n" +
-    "                    <p class=\"m0\">\n" +
-    "                        &lt;!&ndash;<span class=\"hidden-xs\"></span>&ndash;&gt;\n" +
-    "                        <span>Visitas</span>\n" +
-    "                    </p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-xs-4 br\">\n" +
-    "                    <h3 class=\"m0\">2000</h3>\n" +
-    "                    <p class=\"m0\">Likes</p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-xs-4\">\n" +
-    "                    <h3 class=\"m0\">100</h3>\n" +
-    "                    <p class=\"m0\">Puntos</p>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>-->\n" +
-    "        <div class=\"p-lg\">\n" +
-    "\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<section ng-if=\"pet.$resolved && !pet.isPrivate || authentication.user._id == pet.user._id\">\n" +
-    "    <!--<div class=\"\" data-ng-show=\"((authentication.user) && (authentication.user._id == pet.user._id))\">-->\n" +
-    "    <!--<div class=\"panel\">\n" +
-    "        {{coords}}\n" +
-    "    </div>-->\n" +
-    "\n" +
-    "    <div class=\"\">\n" +
-    "        <div class=\"panel panel-info\">\n" +
-    "            <div class=\"panel-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-md-4 col-lg-4\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-md-12\">\n" +
-    "                                <h2>Acciones disponibles</h2>\n" +
-    "                                <hr/>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\" align=\"center\">\n" +
-    "                            <div class=\"col-md-12 pet-actions-container\">\n" +
-    "                                <button ng-show=\"authentication.user._id != pet.user._id\" ng-click=\"sendScanNotif();\" class=\"btn btn-lg btn-warning\"><i class=\"icon-envelope\"></i> Notificar familia</button>\n" +
-    "                                <!--<button class=\"btn btn-lg btn-success\" ng-click=\"sendScanNotif();\"><i class=\"icon-like\"></i> Notificar</button>-->\n" +
-    "                                <button ng-show=\"pet.isAdoption\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Adoptar</button>\n" +
-    "                                <button ng-click=\"setPetMissing(false);\" ng-show=\"pet.isMissing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Notificar encuentro</button>\n" +
-    "                                <button ng-click=\"setPetMissing(true);\" ng-show=\"!pet.isMissing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-danger\"><i class=\"icon-magnifier-remove\"></i> Alertar perdida</button>\n" +
-    "                                <!--MAKE A LIKE DIRECTIVE-->\n" +
-    "                                <!--<button class=\"btn btn-lg btn-success\"><i class=\"icon-like\"></i> Likes: 120</button>\n" +
-    "                                <button class=\"btn btn-lg btn-success\" disabled><i class=\"icon-like\"></i> Likes: 120 / Liked</button>-->\n" +
-    "                                <!--MAKE A LIKE DIRECTIVE-->\n" +
-    "\n" +
-    "                                <!--MAKE A SHARE DIRECTIVE-->\n" +
-    "                                <!--<button class=\"btn btn-lg btn-primary\"><i class=\"icon-share\"></i> Compartír</button>-->\n" +
-    "                                <!--MAKE A SHARE DIRECTIVE-->\n" +
-    "\n" +
-    "                                <!--<button class=\"btn btn-lg btn-primary\" ng-show=\"authentication.user._id == pet.user._id\"><i class=\"icon-printer\"></i> Imprimir ID</button>-->\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\" ng-show=\"authentication.user._id == pet.user._id\" align=\"center\">\n" +
-    "                            <p>Hacé click sobre la imagen para imprimir tu collar!</p>\n" +
-    "                            <qr ng-if=\"pet\" pet=\"pet\"></qr>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"row\" align=\"center\" nf-if=\"pet.slug\">\n" +
-    "                            <a facebook class=\"facebookShare\" data-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>\n" +
-    "                            <a twitter  data-lang=\"en\" data-count='horizontal' data-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size=\"medium\" data-text='Hola soy {{pet.name}}!' ></a>\n" +
-    "                            <div gplus class=\"g-plus\" data-size=\"tall\" data-annotation=\"bubble\" data-ng-href='http://www.mascoteros.net/pet/{{pet.slug}}' data-action='share'></div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\" col-md-4 col-lg-4 \">\n" +
-    "                        <div class=\"\">\n" +
-    "                            <table class=\"table table-user-information\">\n" +
-    "                                <tbody>\n" +
-    "                                <h2>Detalles</h2>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Raza</td>\n" +
-    "                                    <td>{{pet.breed}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Color</td>\n" +
-    "                                    <td>{{pet.color}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Nació</td>\n" +
-    "                                    <td am-time-ago=\"pet.yearOfBirth\"></td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Genero</td>\n" +
-    "                                    <td>{{pet.genre.name}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Castrado</td>\n" +
-    "                                    <td><i class=\"fa\" ng-class=\"pet.neutered ? 'fa-check' : 'fa-times'\"></i></td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Email de contacto</td>\n" +
-    "                                    <td>\n" +
-    "                                        <a ng-if=\"pet.email\" href=\"mailto:{{pet.email}}\">{{pet.email}}</a>\n" +
-    "                                    </td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Descripcion o Rasgos de la mascota</td>\n" +
-    "                                    <td>{{pet.description}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Dirección</td>\n" +
-    "                                    <td>{{pet.address}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Telefono</td>\n" +
-    "                                    <td>{{pet.tel1}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Celular</td>\n" +
-    "                                    <td>{{pet.tel2}}</td>\n" +
-    "                                </tr>\n" +
-    "                                </tbody>\n" +
-    "                            </table>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"col-md-4 col-lg-4\">\n" +
-    "                        <div class=\"panel widget\" ng-if=\"map\">\n" +
-    "                            <ui-gmap-google-map center='map.center' zoom='map.zoom'>\n" +
-    "                                <ui-gmap-marker icon=\"http://obedience-101.webstarts.com/uploads/paw_print2.png\" coords=\"center\" idkey=\"1\"></ui-gmap-marker>\n" +
-    "                            </ui-gmap-google-map>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <!--<div class=\"panel-footer\"></div>-->\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</section>\n" +
-    "\n" +
-    "<section ng-hide=\"pet.$resolved && pet._id\">\n" +
-    "    <h2>La mascota no existe</h2>\n" +
-    "    <a ng-href=\"/#!/pets\" class=\"btn btn-primary btn-lg\">Volver al listado de mascotas</a>\n" +
-    "</section>\n" +
-    "\n" +
-    "<section ng-show=\"pet.$resolved && pet.isPrivate && authentication.user._id != pet.user._id\">\n" +
-    "    <h2>El perfíl de la mascota es privado!</h2>\n" +
-    "    <a ng-href=\"/#!/pets\" class=\"btn btn-primary btn-lg\">Volver al listado de mascotas</a>\n" +
-    "</section>\n" +
-    "\n"
+    "<pet-profile-view></pet-profile-view>\n"
   );
 
 
   $templateCache.put('modules/pets/views/view-pets.client.view.html',
     "<div data-ng-init=\"findOne(); getGeoLocalization();\"></div>\n" +
-    "<h3 data-ng-show=\"authentication.user._id == pet.user._id && pet.name\">\n" +
-    "    <div class=\"pull-right\">\n" +
-    "        <a class=\"btn btn-primary\" href=\"/#!/pets/{{pet._id}}/edit\">\n" +
-    "            <i class=\"fa fa-edit\"></i>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "    {{pet.name}}\n" +
-    "</h3>\n" +
-    "<div class=\"content-wrapper\" ng-if=\"!pet.isPrivate || authentication.user._id == pet.user._id\">\n" +
-    "    <div class=\"unwrap\">\n" +
-    "        <div style=\"background-image: url('{{pet.picture | cloudinaryProfileBlured}}')\" class=\"bg-cover\">\n" +
-    "            <div class=\"p-xl text-center text-white\">\n" +
-    "                <img alt=\"{{pet.name}}\" ng-src=\"{{pet.picture |cloudinaryProfile }}\" class=\"img-thumbnail thumb128\">\n" +
-    "                <h3 class=\"m0\">{{pet.name}}</h3>\n" +
-    "                <p>{{pet.user.displayName}}</p>\n" +
-    "                <p>{{pet.description}}</p>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <!--<div class=\"text-center bg-gray-dark p-lg mb-xl\">\n" +
-    "            <div class=\"row row-table\">\n" +
-    "                <div class=\"col-xs-4 br\">\n" +
-    "                    <h3 class=\"m0\">400</h3>\n" +
-    "                    <p class=\"m0\">\n" +
-    "                        &lt;!&ndash;<span class=\"hidden-xs\"></span>&ndash;&gt;\n" +
-    "                        <span>Visitas</span>\n" +
-    "                    </p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-xs-4 br\">\n" +
-    "                    <h3 class=\"m0\">2000</h3>\n" +
-    "                    <p class=\"m0\">Likes</p>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-xs-4\">\n" +
-    "                    <h3 class=\"m0\">100</h3>\n" +
-    "                    <p class=\"m0\">Puntos</p>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>-->\n" +
-    "        <div class=\"p-lg\">\n" +
-    "\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<section ng-if=\"!pet.isPrivate || authentication.user._id == pet.user._id\">\n" +
-    "    <!--<div class=\"\" data-ng-show=\"((authentication.user) && (authentication.user._id == pet.user._id))\">-->\n" +
-    "    <!--<div class=\"panel\">\n" +
-    "        {{coords}}\n" +
-    "    </div>-->\n" +
-    "\n" +
-    "    <div class=\"\">\n" +
-    "        <div class=\"panel panel-info\">\n" +
-    "            <div class=\"panel-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-md-4 col-lg-4\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-md-12\">\n" +
-    "                                <h2>Acciones disponibles</h2>\n" +
-    "                                <hr/>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\" align=\"center\">\n" +
-    "                            <div class=\"col-md-12 pet-actions-container\">\n" +
-    "                                <button ng-show=\"authentication.user._id != pet.user._id\" ng-click=\"sendScanNotif();\" class=\"btn btn-lg btn-warning\"><i class=\"icon-envelope\"></i> Notificar familia</button>\n" +
-    "                                <!--<button class=\"btn btn-lg btn-success\" ng-click=\"sendScanNotif();\"><i class=\"icon-like\"></i> Notificar</button>-->\n" +
-    "                                <button ng-show=\"pet.isAdoption\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Adoptar</button>\n" +
-    "                                <button ng-show=\"pet.missing\" class=\"btn btn-lg btn-success\"><i class=\"icon-magnifier-add\"></i> Encontrado</button>\n" +
-    "                                <button ng-show=\"!pet.missing && authentication.user._id == pet.user._id\" class=\"btn btn-lg btn-danger\"><i class=\"icon-magnifier-remove\"></i> Perdido</button>\n" +
-    "                                <!--MAKE A LIKE DIRECTIVE-->\n" +
-    "                                <!--<button class=\"btn btn-lg btn-success\"><i class=\"icon-like\"></i> Likes: 120</button>\n" +
-    "                                <button class=\"btn btn-lg btn-success\" disabled><i class=\"icon-like\"></i> Likes: 120 / Liked</button>-->\n" +
-    "                                <!--MAKE A LIKE DIRECTIVE-->\n" +
-    "\n" +
-    "                                <!--MAKE A SHARE DIRECTIVE-->\n" +
-    "                                <!--<button class=\"btn btn-lg btn-primary\"><i class=\"icon-share\"></i> Compartír</button>-->\n" +
-    "                                <!--MAKE A SHARE DIRECTIVE-->\n" +
-    "\n" +
-    "                                <!--<button class=\"btn btn-lg btn-primary\" ng-show=\"authentication.user._id == pet.user._id\"><i class=\"icon-printer\"></i> Imprimir ID</button>-->\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"row\" ng-show=\"authentication.user._id == pet.user._id\" align=\"center\">\n" +
-    "                            <p>Hacé click sobre la imagen para imprimir tu collar!</p>\n" +
-    "                            <qr ng-if=\"pet\" pet=\"pet\"></qr>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"row\" align=\"center\" nf-if=\"pet.slug\">\n" +
-    "                            <a facebook class=\"facebookShare\" data-ng-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-shares='shares'>{{ shares }}</a>\n" +
-    "                            <a twitter  data-lang=\"en\" data-count='horizontal' data-ng-url='http://www.mascoteros.net/pet/{{pet.slug}}' data-via='mascoteros' data-size=\"medium\" data-text='Hola soy {{pet.name}}!' ></a>\n" +
-    "                            <div gplus class=\"g-plus\" data-size=\"tall\" data-annotation=\"bubble\" data-ng-href='http://www.mascoteros.net/pet/{{pet.slug}}' data-action='share'></div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\" col-md-4 col-lg-4 \">\n" +
-    "                        <div class=\"\">\n" +
-    "                            <table class=\"table table-user-information\">\n" +
-    "                                <tbody>\n" +
-    "                                <h2>Detalles</h2>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Raza</td>\n" +
-    "                                    <td>{{pet.breed}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Color</td>\n" +
-    "                                    <td>{{pet.color}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Nació</td>\n" +
-    "                                    <td am-time-ago=\"pet.yearOfBirth\"></td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Genero</td>\n" +
-    "                                    <td>{{pet.genre.name}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Castrado</td>\n" +
-    "                                    <td><i class=\"fa\" ng-class=\"pet.neutered ? 'fa-check' : 'fa-times'\"></i></td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Email de contacto</td>\n" +
-    "                                    <td>\n" +
-    "                                        <a ng-if=\"pet.email\" href=\"mailto:{{pet.email}}\">{{pet.email}}</a>\n" +
-    "                                    </td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Descripcion o Rasgos de la mascota</td>\n" +
-    "                                    <td>{{pet.description}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Dirección</td>\n" +
-    "                                    <td>{{pet.address}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Telefono</td>\n" +
-    "                                    <td>{{pet.tel1}}</td>\n" +
-    "                                </tr>\n" +
-    "                                <tr>\n" +
-    "                                    <td>Celular</td>\n" +
-    "                                    <td>{{pet.tel2}}</td>\n" +
-    "                                </tr>\n" +
-    "                                </tbody>\n" +
-    "                            </table>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                    <div class=\"col-md-4 col-lg-4\">\n" +
-    "                        <div class=\"panel widget\" ng-if=\"map\">\n" +
-    "                            <ui-gmap-google-map center='map.center' zoom='map.zoom'>\n" +
-    "                                <ui-gmap-marker coords=\"center\" idkey=\"1\"></ui-gmap-marker>\n" +
-    "                            </ui-gmap-google-map>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <!--<div class=\"panel-footer\"></div>-->\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</section>\n" +
-    "\n" +
-    "<section ng-hide=\"pet._id\">\n" +
-    "    <h2>La mascota no existe</h2>\n" +
-    "    <a ng-href=\"/#!/pets\" class=\"btn btn-primary btn-lg\">Volver al listado de mascotas</a>\n" +
-    "</section>\n" +
-    "\n" +
-    "<section ng-show=\"pet.isPrivate && authentication.user._id != pet.user._id\">\n" +
-    "    <h2>El perfíl de la mascota es privado!</h2>\n" +
-    "    <a ng-href=\"/#!/pets\" class=\"btn btn-primary btn-lg\">Volver al listado de mascotas</a>\n" +
-    "</section>\n" +
-    "\n"
+    "<pet-profile-view></pet-profile-view>\n"
   );
 
 

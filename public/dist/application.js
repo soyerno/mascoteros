@@ -1151,6 +1151,58 @@ angular.module('core').directive('sidebar', ['$rootScope', '$window', 'Utils', f
   }
 
 }]);
+'use strict';
+
+angular.module('core').directive('simpleDateInput', [
+	function() {
+		return {
+			templateUrl: 'modules/core/views/partials/simple-date-input.client.view.html',
+      scope: {
+        date: '='
+      },
+			restrict: 'E',
+			link: function postLink(scope, element, attrs) {
+
+        scope.today = function() {
+          $scope.yearOfBirth = new Date();
+        };
+        //$scope.today();
+
+        scope.clear = function () {
+          scope.yearOfBirth = null;
+        };
+
+        // Disable weekend selection
+        //scope.disabled = function(date, mode) {
+        //  return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+        //};
+
+        scope.toggleMin = function() {
+          scope.minDate = scope.minDate ? null : '01/01/1970';
+        };
+        scope.toggleMin();
+
+        scope.open = function($event) {
+          $event.preventDefault();
+          $event.stopPropagation();
+
+          scope.opened = true;
+        };
+
+        scope.dateOptions = {
+          formatYear: 'yyyy',
+          startingDay: 1
+        };
+
+        scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        scope.format = scope.formats[0];
+
+        return false;
+			}
+		};
+	}
+]);
+
 /**=========================================================
  * Module: toggle-state.js
  * Toggle a classname from the BODY Useful to change a state that 
@@ -2589,11 +2641,6 @@ angular.module('pets').config(['$stateProvider',
 			url: '/qr',
 			templateUrl: 'modules/pets/views/qr.client.view.html'
 		}).
-		state('app.viewPet', {
-			url: '/pet/:petSlug',
-			templateUrl: 'modules/pets/views/view-pet.client.view.html',
-			controller: 'PetsController'
-		}).
 		state('app.listPets', {
 		  url: '/pets',
 		  templateUrl: 'modules/pets/views/list-pets.client.view.html',
@@ -2613,9 +2660,14 @@ angular.module('pets').config(['$stateProvider',
 			url: '/pets/create',
 			templateUrl: 'modules/pets/views/create-pet.client.view.html'
 		}).
+		state('app.viewPet', {
+			url: '/pet/:petSlug',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			controller: 'PetsController'
+		}).
 		state('app.viewPets', {
 			url: '/pets/:petId',
-			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			templateUrl: 'modules/pets/views/view-pets.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.editPet', {
@@ -2628,249 +2680,258 @@ angular.module('pets').config(['$stateProvider',
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http) {
-		$scope.authentication = Authentication;
+angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', 'Notifications', '$http', '$timeout',
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, Notifications, $http, $timeout) {
+    $scope.authentication = Authentication;
 
-		$scope.step = 1;
+    $scope.step = 1;
 
-		$scope.$watch('step', function(step){
-			if(step === 3 && $scope.inviteUserEmail !== ''){
-				$scope.email = $scope.inviteUserEmail;
-			}
-		});
+    $scope.$watch('step', function (step) {
+      if (step === 3 && $scope.inviteUserEmail !== '') {
+        $scope.email = $scope.inviteUserEmail;
+      }
+    });
 
-		// Create new Pet
-		$scope.create = function() {
-			// Create new Pet object
+    // Create new Pet
+    $scope.create = function () {
+      // Create new Pet object
 
-			var pet = new Pets ({
-				name: this.name,
-				picture: this.picture,
-				slug: this.slug,
-				color: this.color,
-				breed: this.breed,
-				isMissing: this.isMissing,
-				genre: this.genre,
+      var pet = new Pets({
+        name: this.name,
+        picture: this.picture,
+        slug: this.slug,
+        color: this.color,
+        breed: this.breed,
+        isMissing: this.isMissing,
+        genre: this.genre,
         yearOfBirth: this.yearOfBirth,
-				description: this.description,
-				neutered: this.neutered,
-				email: this.email,
-				address: this.address,
-				isPrivate: this.isPrivate,
-				isAdoption: this.isAdoption,
-				tel1: this.tel1,
-				tel2: this.tel2
-			});
+        description: this.description,
+        neutered: this.neutered,
+        email: this.email,
+        address: this.address,
+        isPrivate: this.isPrivate,
+        isAdoption: this.isAdoption,
+        tel1: this.tel1,
+        tel2: this.tel2,
+        coords: this.coords
+      });
 
-			$scope.formBusy = true;
-
-
-			// Redirect after save
-			Upload.parse(pet).then(function () {
-				pet.$save(function(response) {
-					$location.path('pet/' + response.slug);
-					// Clear form fields
-					$scope.name = '';
-					$scope.picture = '';
-					$scope.slug = '';
-					$scope.color = '';
-					$scope.breed = '';
-					$scope.isMissing = '';
-					$scope.neutered = '';
-					$scope.email = '';
-					$scope.address = '';
-					$scope.isPrivate = '';
-					$scope.isAdoption = '';
-					$scope.tel1 = '';
-					$scope.tel2 = '';
-				}, function(errorResponse) {
-					$scope.formBusy = false;
-				  	$scope.error = errorResponse.data.message;
-				});
-			});
+      $scope.formBusy = true;
 
 
-		};
+      // Redirect after save
+      Upload.parse(pet).then(function () {
+        pet.$save(function (response) {
+          $location.path('pet/' + response.slug);
+          // Clear form fields
+          $scope.name = '';
+          $scope.picture = '';
+          $scope.slug = '';
+          $scope.color = '';
+          $scope.breed = '';
+          $scope.isMissing = '';
+          $scope.neutered = '';
+          $scope.email = '';
+          $scope.address = '';
+          $scope.isPrivate = '';
+          $scope.isAdoption = '';
+          $scope.tel1 = '';
+          $scope.tel2 = '';
+          $scope.coords = '';
+        }, function (errorResponse) {
+          $scope.formBusy = false;
+          $scope.error = errorResponse.data.message;
+        });
+      });
+    };
 
-		// Remove existing Pet
-		$scope.remove = function(pet) {
-			if ( pet ) { 
-				pet.$remove();
+    // Remove existing Pet
+    $scope.remove = function (pet) {
+      if (pet) {
+        pet.$remove();
 
-				for (var i in $scope.pets) {
-					if ($scope.pets [i] === pet) {
-						$scope.pets.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.pet.$remove(function() {
-					$location.path('pets');
-				});
-			}
-		};
+        for (var i in $scope.pets) {
+          if ($scope.pets [i] === pet) {
+            $scope.pets.splice(i, 1);
+          }
+        }
+      } else {
+        $scope.pet.$remove(function () {
+          $location.path('pets');
+        });
+      }
+    };
 
-		// Update existing Pet
-		$scope.update = function() {
-			$scope.formBusy = true;
-			var pet = $scope.pet;
-			delete pet.$promise;
-			delete pet.$resolved;
+    // Update existing Pet
+    $scope.update = function () {
+      $scope.formBusy = true;
+      var pet = $scope.pet;
+      delete pet.$promise;
+      delete pet.$resolved;
 
-			Upload.parse(pet).then(function () {
-				pet.$update(function() {
-					$location.path('pet/' + pet.slug);
-				}, function(errorResponse) {
-					$scope.error = errorResponse.data.message;
-				});
-			});
+      Upload.parse(pet).then(function () {
+        pet.$update(function () {
+          $location.path('pet/' + pet.slug);
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      });
+    };
 
-		};
+    // Find a list of Pets
+    $scope.find = function () {
+      $scope.pets = Pets.query();
+    };
 
-		// Find a list of Pets
-		$scope.find = function() {
-			$scope.pets = Pets.query();
-		};
+    $scope.findAdoptions = function () {
+      $http.get('/pets/adoption').
+        success(function (data, status, headers, config) {
+          $scope.pets = data;
+        }).
+        error(function (data, status, headers, config) {
+          console.log('error loading adoption pets');
+        });
+    };
 
-		$scope.findAdoptions = function() {
-			$http.get('/pets/adoption').
-				success(function(data, status, headers, config) {
-					$scope.pets = data;
-				}).
-				error(function(data, status, headers, config) {
-					console.log('error loading adoption pets');
-				});
-		};
+    // Find existing Pet
+    $scope.findOne = function () {
+      $scope.pet = Pets.get({
+        petId: $stateParams.petId
+      });
+    };
 
-		$scope.findMissing = function() {
-			console.log('missing');
-			$http.get('/pets/missing').
-				success(function(data, status, headers, config) {
-					$scope.pets = data;
-				}).
-				error(function(data, status, headers, config) {
-					console.log('error loading missing pets');
-				});
-		};
+    $scope.findOneBySlug = function () {
+      var Pet = $resource('/pet/:petSlug', {petSlug: '@slug'});
+      $scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function () {
+      });
+    };
 
-		// Find existing Pet
-		$scope.findOne = function() {
-			$scope.pet = Pets.get({ 
-				petId: $stateParams.petId
-			});
-		};
+      //MAPS
+      $scope.map = {center: {latitude: 40.1451, longitude: -99.6680 }, zoom: 4 };
+      $scope.map = {center: {latitude: 40.1451, longitude: -99.6680 }, zoom: 4 };
+      $scope.options = {scrollwheel: false};
+      $scope.coordsUpdates = 0;
+      $scope.dynamicMoveCtr = 0;
+      $scope.marker = {
+        id: 0,
+        coords: {
+          latitude: 40.1451,
+          longitude: -99.6680
+        },
+        options: { draggable: true },
+        events: {
+          dragend: function (marker, eventName, args) {
+            $log.log('marker dragend');
+            var lat = marker.getPosition().lat();
+            var lon = marker.getPosition().lng();
+            $log.log(lat);
+            $log.log(lon);
 
-    	$scope.findOneBySlug = function() {
-			var Pet = $resource('/pet/:petSlug', {petSlug:'@slug'});
-			$scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function() {
-				//pet.get();
-			});
-		};
+            $scope.marker.options = {
+              draggable: true,
+              labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+              labelAnchor: "100 0",
+              labelClass: "marker-labels"
+            };
+          }
+        }
+      };
+      $scope.$watchCollection("marker.coords", function (newVal, oldVal) {
+        if (_.isEqual(newVal, oldVal))
+          return;
+        $scope.coordsUpdates++;
+      });
+      $timeout(function () {
+        $scope.marker.coords = {
+          latitude: 42.1451,
+          longitude: -100.6680
+        };
+        $scope.dynamicMoveCtr++;
+        $timeout(function () {
+          $scope.marker.coords = {
+            latitude: 43.1451,
+            longitude: -102.6680
+          };
+          $scope.dynamicMoveCtr++;
+        }, 2000);
+      }, 1000);
 
+    var events = {
+      places_changed: function (searchBox, event) {
+        var places = searchBox.getPlaces();
+        var newLat = places[0].geometry.location.lat();
+        var newLong = places[0].geometry.location.lng();
+        $scope.map.center = { latitude: newLat, longitude: newLong };
+        $scope.marker.coords = { latitude: newLat, longitude: newLong };
+        //$scope.setGeoLocation();
+        $scope.address = places[0].formatted_address;
+      }
+    };
 
-		var events = {
-			places_changed: function (searchBox) {
-				var places = searchBox.getPlaces();
-				var newLat = places[0].geometry.location.lat();
-				var newLong = places[0].geometry.location.lng();
-				$scope.coords = {latitude: newLat, longitude: newLong};
-				$scope.setGeoLocation();
-			}
-		}
+    $scope.searchbox = { template: 'searchbox.tpl.html', events: events };
 
-		$scope.searchbox = { template:'searchbox.tpl.html', events:events};
+    $scope.setGeoLocation = function () {
+      $scope.map = {center: $scope.currentCoords, zoom: 18};
+      $scope.marker.coords = $scope.currentCoords;
+    };
 
-
-		$scope.setGeoLocation = function() {
-			$scope.center = $scope.coords;
-			$scope.coordsUpdates = 0;
-			$scope.dynamicMoveCtr = 0;
-			$scope.map = {center: $scope.center, zoom: 18 };
-		}
-
-		$scope.getGeoLocalization = function() {
-			geolocation.getLocation().then(function(data){
-				$scope.coords = {latitude:data.coords.latitude, longitude:data.coords.longitude};
-				$scope.setGeoLocation();
-			});
-		};
-
-		$scope.sendScanNotif = function() {
-			/* @todo: add this to pet profile options*/
-			var petSendNotification = true;
-			if(petSendNotification){
-				// Create new Notification object
-				var notification = new Notifications ({
-					title: $scope.pet.name + ' fue scaneado',
-					pet: $scope.pet._id,
-					geoLocation: $scope.coords,
-					to: $scope.pet.user._id
-				});
-
-				// Redirect after save
-				notification.$save(function(response) {
-					console.log(response);
-				}, function(errorResponse) {
-					$scope.error = errorResponse.data.message;
-				});
-			}
-		};
-
-
-		$scope.setPetMissing = function(value){
-
-			$http.put('pets/' + $scope.pet._id + '/missing', { isMissing: value }).
-				success(function(data, status, headers, config) {
-					console.log(data);
-					$scope.pet.isMissing = data.isMissing;
-					//$location.path('pet/' + pet.slug);
-				}).
-				error(function(data, status, headers, config) {
-					// called asynchronously if an error occurs
-					// or server returns response with an error status.
-					console.log(data);
-					$scope.error = data;
-				});
-		}
-
-		/*Date directive */
-		$scope.today = function() {
-		  $scope.yearOfBirth = new Date();
-		};
-		//$scope.today();
-
-		$scope.clear = function () {
-		  $scope.yearOfBirth = null;
-		};
-
-		// Disable weekend selection
-		$scope.disabled = function(date, mode) {
-		  //return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-		};
-
-		$scope.toggleMin = function() {
-		  $scope.minDate = $scope.minDate ? null : '01/01/1970';
-		};
-		$scope.toggleMin();
-
-		$scope.open = function($event) {
-		  $event.preventDefault();
-		  $event.stopPropagation();
-
-		  $scope.opened = true;
-		};
-
-		$scope.dateOptions = {
-		  formatYear: 'yyyy',
-		  startingDay: 1
-		};
-
-		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-		$scope.format = $scope.formats[0];
+    $scope.getGeoLocalization = function () {
+      geolocation.getLocation().then(function (data) {
+        $scope.currentCoords = {latitude: data.coords.latitude, longitude: data.coords.longitude};
+        $scope.setGeoLocation();
+      });
+    };
 
 
-		}
+      //END MAPS
 
+    $scope.sendScanNotif = function () {
+      /* @todo: add this to pet profile options*/
+      var petSendNotification = true;
+      if (petSendNotification) {
+        // Create new Notification object
+        var notification = new Notifications({
+          title: $scope.pet.name + ' fue scaneado',
+          pet: $scope.pet._id,
+          geoLocation: $scope.coords,
+          to: $scope.pet.user._id
+        });
+
+        // Redirect after save
+        notification.$save(function (response) {
+          console.log(response);
+        }, function (errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      }
+    };
+
+    $scope.setPetMissing = function (value) {
+      $http.put('pets/' + $scope.pet._id + '/missing', {isMissing: value}).
+        success(function (data, status, headers, config) {
+          console.log(data);
+          $scope.pet.isMissing = data.isMissing;
+          //$location.path('pet/' + pet.slug);
+        }).
+        error(function (data, status, headers, config) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+          console.log(data);
+          $scope.error = data;
+        });
+    }
+
+    $scope.findMissing = function() {
+      console.log('missing');
+      $http.get('/pets/missing').
+        success(function(data, status, headers, config) {
+          $scope.pets = data;
+        }).
+        error(function(data, status, headers, config) {
+          console.log('error loading missing pets');
+        });
+    };
+  }
 ]);
 
 'use strict';
@@ -2883,6 +2944,21 @@ angular.module('pets').directive('petList', [
 			link: function postLink(scope, element, attrs) {
         return;
       }
+		};
+	}
+]);
+
+'use strict';
+
+angular.module('pets').directive('petProfileView', [
+	function() {
+		return {
+      templateUrl: 'modules/pets/views/partials/pet-profile-view.client.view.html',
+			restrict: 'E',
+      replace: true,
+			link: function postLink(scope, element, attrs) {
+        return;
+			}
 		};
 	}
 ]);
