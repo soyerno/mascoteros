@@ -102,12 +102,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		};
 
 		$scope.dateOptions = {
-			formatYear: 'yyyy',
-			startingDay: 1
+			//formatYear: 'yyyy',
+//			startingDay: 1,
+			pickTime: true,
+			pick12HourFormat: true
 		};
 
-		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-		$scope.format = $scope.formats[0];
+		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'dd-MM-yyyy HH:mm:ss'];
+		$scope.format = $scope.formats[5];
 
 
 	}
