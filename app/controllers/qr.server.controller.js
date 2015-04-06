@@ -16,7 +16,7 @@ exports.generate = function(req, res) {
 		options = {
 			margin: 0
 		};
-	var img = qr.image(req.param('url'), [ec_level | options]);
+	var img = qr.image('https://www.mascoteros.net/#!/pet/' + req.param('url'), [ec_level | options]);
 	res.writeHead(200, {'Content-Type': 'image/png'});
 	img.pipe(res);
 };
