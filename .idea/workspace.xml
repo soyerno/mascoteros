@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d27ff9d-ed92-4113-934b-601a9d1b499e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/articles/views/list-articles.client.view.html" afterPath="$PROJECT_DIR$/public/modules/articles/views/list-articles.client.view.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html" afterPath="$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/events/views/list-events.client.view.html" afterPath="$PROJECT_DIR$/public/modules/events/views/list-events.client.view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/pets/views/qr.client.view.html" afterPath="$PROJECT_DIR$/public/modules/pets/views/qr.client.view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mascoteros.iws" />
@@ -26,21 +25,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="view-event.client.view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/modules/events/views/view-event.client.view.html">
+      <file leaf-file-name="edit-event.client.view.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6734693">
-              <caret line="12" column="10" selection-start-line="5" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list-events.client.view.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="view-event.client.view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/events/views/view-event.client.view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.4489796">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list-events.client.view.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/modules/events/views/list-events.client.view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73085845">
-              <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+            <state vertical-scroll-proportion="-5.2040815">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -58,7 +67,6 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/app/controllers/notifications.server.controller.js" />
         <option value="$PROJECT_DIR$/public/modules/events/views/view-event.client.view.html" />
-        <option value="$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html" />
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/app/controllers/events.server.controller.js" />
         <option value="$PROJECT_DIR$/public/modules/events/controllers/events.client.controller.js" />
@@ -69,6 +77,7 @@
         <option value="$PROJECT_DIR$/public/modules/pets/views/qr.client.view.html" />
         <option value="$PROJECT_DIR$/public/modules/articles/views/list-articles.client.view.html" />
         <option value="$PROJECT_DIR$/public/modules/events/views/list-events.client.view.html" />
+        <option value="$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html" />
       </list>
     </option>
   </component>
@@ -450,14 +459,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/env/production.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -514,18 +515,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/events/views/view-event.client.view.html">
+    <entry file="file://$PROJECT_DIR$/public/modules/events/views/list-events.client.view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6734693">
-          <caret line="12" column="10" selection-start-line="5" selection-start-column="4" selection-end-line="12" selection-end-column="10" />
+        <state vertical-scroll-proportion="-5.2040815">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/events/views/list-events.client.view.html">
+    <entry file="file://$PROJECT_DIR$/public/modules/events/views/view-event.client.view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73085845">
-          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+        <state vertical-scroll-proportion="-2.4489796">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/events/views/edit-event.client.view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
