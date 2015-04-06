@@ -664,12 +664,17 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                <div class=\"form-group\">\n" +
     "                    <label class=\"control-label\" for=\"date\">Fecha</label>\n" +
     "                    <div class=\"controls\">\n" +
-    "                        <p class=\"input-group custom-datepicker\">\n" +
+    "                        <div class=\"input-group custom-datepicker\">\n" +
     "                            <input type=\"text\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"date\" is-open=\"opened\" min-date=\"minDate\" max-date=\"'2015-06-22'\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" minutes ng-required=\"true\" close-text=\"Close\" />\n" +
     "                              <span class=\"input-group-btn\">\n" +
     "                                <button type=\"button\" id=\"date\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"fa fa-calendar\"></i></button>\n" +
     "                              </span>\n" +
-    "                        </p>\n" +
+    "                        </div>\n" +
+    "                        <div>\n" +
+    "                            <timepicker-pop input-time=\"time1\" class=\"input-group\"\n" +
+    "                                            show-meridian='true'>\n" +
+    "                            </timepicker-pop>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"form-group\">\n" +
@@ -2030,7 +2035,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "\t\t\t\t<div class=\"circle\"></div>\n" +
     "\t\t\t</div>\n" +
     "\t\t\t<div class=\"page\">\n" +
-    "\t\t\t\tmascoteros.net/ <span ng-bind=\"pet.slug\"></span>\n" +
+    "\t\t\t\tmascoteros.net/<br/>#!/pet/<br/><span>{{pet.slug}}</span>\n" +
     "\t\t\t</div>\n" +
     "\t\t\t<div class=\"tel\" ng-show=\"pet.tel1\">{{pet.tel1}}</div>\n" +
     "\t\t\t<div class=\"tel\" ng-show=\"pet.tel2 && !pet.tel1\">{{pet.tel2}}</div>\n" +
