@@ -183,8 +183,8 @@
 			<div class="page">
 				mascoteros.net/<br/>#!/pet/<br/><span>{{pet.slug}}</span>
 			</div>
-			<div class="tel" ng-show="pet.tel1">{{pet.tel1}}</div>
-			<div class="tel" ng-show="pet.tel2 && !pet.tel1">{{pet.tel2}}</div>
+			<div class="tel" ng-show="pet.tel1 && !pet.tel2">{{pet.tel1}}</div>
+			<div class="tel" ng-show="pet.tel2">{{pet.tel2}}</div>
 		</article>
 	</section>
 
