@@ -26,7 +26,6 @@ var ApplicationConfiguration = (function() {
 		'petgenres',
 		'pettypes',
 		'angularMoment',
-		'angular-datepicker',
 		'djds4rce.angular-socialshare',
 		'geolocation',
 		'textAngular',
