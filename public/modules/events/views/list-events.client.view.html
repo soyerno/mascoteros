@@ -1,7 +1,7 @@
 <h3>Eventos</h3>
 <section data-ng-controller="EventsController" data-ng-init="find()">
     <div class="list-group">
-        <a data-ng-repeat="event in events" data-ng-href="#!/events" class="list-group-item">
+        <a data-ng-repeat="event in events" data-ng-href="#!/events/{{event._id}}" class="list-group-item">
             <div class="well">
                 <div class="media">
                     <div class="pull-left">

@@ -665,7 +665,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                    <label class=\"control-label\" for=\"date\">Fecha</label>\n" +
     "                    <div class=\"controls\">\n" +
     "                        <p class=\"input-group custom-datepicker\">\n" +
-    "                            <input type=\"text\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"date\" is-open=\"opened\" min-date=\"minDate\" max-date=\"'2015-06-22'\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\" />\n" +
+    "                            <input type=\"text\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"date\" is-open=\"opened\" min-date=\"minDate\" max-date=\"'2015-06-22'\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" minutes ng-required=\"true\" close-text=\"Close\" />\n" +
     "                              <span class=\"input-group-btn\">\n" +
     "                                <button type=\"button\" id=\"date\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"fa fa-calendar\"></i></button>\n" +
     "                              </span>\n" +
@@ -693,7 +693,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('modules/events/views/edit-event.client.view.html',
-    "<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
+    "<!--<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Edit Event</h1>\n" +
     "    </div>\n" +
@@ -715,7 +715,56 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "            </fieldset>\n" +
     "        </form>\n" +
     "    </div>\n" +
-    "</section>"
+    "</section>-->\n" +
+    "\n" +
+    "<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
+    "    <div class=\"page-header\">\n" +
+    "        <h1>Editar Evento: {{event.title}}</h1>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-12\">\n" +
+    "        <form class=\"form-horizontal\" data-ng-submit=\"update()\" novalidate>\n" +
+    "            <fieldset>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label class=\"control-label\" for=\"title\">Titulo</label>\n" +
+    "                    <div class=\"controls\">\n" +
+    "                        <input type=\"text\" data-ng-model=\"event.title\" id=\"title\" class=\"form-control\" placeholder=\"Titulo\" required>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label class=\"control-label\" for=\"image\">Foto</label>\n" +
+    "                    <div class=\"controls\">\n" +
+    "                        <!--<input type=\"text\" data-ng-model=\"picture\" id=\"picture\" class=\"form-control\" placeholder=\"Pic Url\" required>-->\n" +
+    "                        <input type=\"file\" id=\"image\" fileread=\"image\"  data-ng-model=\"event.image\" id=\"images.name\" class=\"form-control\" placeholder=\"Name\" required>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label class=\"control-label\" for=\"date\">Fecha</label>\n" +
+    "                    <div class=\"controls\">\n" +
+    "                        <p class=\"input-group custom-datepicker\">\n" +
+    "                            <input type=\"text\" class=\"form-control\" datepicker-popup=\"{{format}}\" ng-model=\"event.date\" is-open=\"opened\" min-date=\"minDate\" max-date=\"'2015-06-22'\" datepicker-options=\"dateOptions\" date-disabled=\"disabled(date, mode)\" ng-required=\"true\" close-text=\"Close\" />\n" +
+    "                              <span class=\"input-group-btn\">\n" +
+    "                                <button type=\"button\" id=\"date\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"fa fa-calendar\"></i></button>\n" +
+    "                              </span>\n" +
+    "                        </p>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <label class=\"control-label\" for=\"content\">Contenido</label>\n" +
+    "                    <div class=\"controls\">\n" +
+    "                        <text-angular id=\"content\" ng-model=\"event.content\"></text-angular>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <input type=\"submit\" ng-disabled=\"formBusy\" class=\"btn btn-default mar-bot-40\">\n" +
+    "                    <i ng-show=\"formBusy\" class=\"fa fa-cog fa-spin\"></i>\n" +
+    "                </div>\n" +
+    "                <div data-ng-show=\"error\" class=\"text-danger\">\n" +
+    "                    <strong data-ng-bind=\"error\"></strong>\n" +
+    "                </div>\n" +
+    "            </fieldset>\n" +
+    "        </form>\n" +
+    "    </div>\n" +
+    "</section>\n"
   );
 
 
@@ -723,7 +772,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "<h3>Eventos</h3>\n" +
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"list-group\">\n" +
-    "        <a data-ng-repeat=\"event in events\" data-ng-href=\"#!/events\" class=\"list-group-item\">\n" +
+    "        <a data-ng-repeat=\"event in events\" data-ng-href=\"#!/events/{{event._id}}\" class=\"list-group-item\">\n" +
     "            <div class=\"well\">\n" +
     "                <div class=\"media\">\n" +
     "                    <div class=\"pull-left\">\n" +
@@ -733,7 +782,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                        <h4 class=\"media-heading\" data-ng-bind=\"event.title\"></h4>\n" +
     "                        <div ng-bind-html=\"event.content\"></div>\n" +
     "                        <ul class=\"list-inline list-unstyled\">\n" +
-    "                            <li><span><i class=\"fa fa-calendar\"></i> {{event.date}} </span></li>\n" +
+    "                            <li><span><i class=\"fa fa-calendar\"></i> {{event.date | amCalendar }} </span></li>\n" +
     "                            <li>|</li>\n" +
     "                            <!--<li>\n" +
     "                                <span><i class=\"fa fa-facebook-square\"></i></span>\n" +
@@ -776,14 +825,15 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   $templateCache.put('modules/events/views/view-event.client.view.html',
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
-    "\t\t<h1 data-ng-bind=\"event.name\"></h1>\n" +
+    "\t\t<h1 data-ng-bind=\"event.title\"></h1>\n" +
+    "\t\t<div ng-bind-html=\"event.content\"></div>\n" +
     "\t</div>\n" +
     "\t<div class=\"pull-right\" data-ng-show=\"((authentication.user) && (authentication.user._id == event.user._id))\">\n" +
     "\t\t<a class=\"btn btn-primary\" href=\"/#!/events/{{event._id}}/edit\">\n" +
-    "\t\t\t<i class=\"glyphicon glyphicon-edit\"></i>\n" +
+    "\t\t\t<i class=\"fa fa-edit\"></i>\n" +
     "\t\t</a>\n" +
     "\t\t<a class=\"btn btn-primary\" data-ng-click=\"remove();\">\n" +
-    "\t\t\t<i class=\"glyphicon glyphicon-trash\"></i>\n" +
+    "\t\t\t<i class=\"fa fa-trash\"></i>\n" +
     "\t\t</a>\n" +
     "\t</div>\n" +
     "\t<small>\n" +
@@ -1357,6 +1407,9 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                    <div class=\"col-md-4 col-md-offset-1\">\n" +
     "                        <div class=\"panel widget\" ng-click=\"step = 3\">\n" +
     "                            <div class=\"panel-body\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-md-12\" style=\"background-image: url('/modules/core/img/create1.jpg'); background-size: cover; height: 350px;margin-bottom: 15px;background-position: center center;\"></div>\n" +
+    "                                </div>\n" +
     "                                <div class=\"row row-table\">\n" +
     "                                    <div class=\"col-xs-12 text-center\">\n" +
     "                                        Registrar mi mascota\n" +
@@ -1368,6 +1421,9 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                    <div class=\"col-md-4 col-md-offset-2\">\n" +
     "                        <div class=\"panel widget\" ng-click=\"step = 2\">\n" +
     "                            <div class=\"panel-body\">\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-md-12\" style=\"background-image: url('/modules/core/img/create2.jpg'); background-size: cover; height: 350px;margin-bottom: 15px;background-position: center center;\"></div>\n" +
+    "                                </div>\n" +
     "                                <div class=\"row row-table\">\n" +
     "                                    <div class=\"col-xs-12 text-center\">\n" +
     "                                        Registrar una mascota de otra persona\n" +
