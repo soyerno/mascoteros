@@ -3909,13 +3909,14 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.authentication.user = response;
 
 				// And redirect to the index page
-				$location.path('/');
+				$location.path('/timeline');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
 		};
 	}
 ]);
+
 'use strict';
 
 angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication',

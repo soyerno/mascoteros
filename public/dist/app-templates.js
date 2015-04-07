@@ -87,7 +87,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "\t<h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"articles.$resolved && !articles.length\">\n" +
     "\t\tNo articles yet, why don't you <a href=\"/#!/articles/create\" class=\"text-yellow\">create one</a>?\n" +
     "\t</h4>\n" +
-    "</section>"
+    "</section>\n"
   );
 
 
@@ -325,24 +325,26 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
   $templateCache.put('modules/contacts/views/view-contact.client.view.html',
     "<section data-ng-controller=\"ContactsController\" data-ng-init=\"findOne()\">\n" +
     "\t<div class=\"page-header\">\n" +
-    "\t\t<h1 data-ng-bind=\"contact.name\"></h1>\n" +
+    "\t\t<h1>Gracias {{contact.name}}.</h1>\n" +
     "\t</div>\n" +
+    "\t<!--\n" +
     "\t<div class=\"pull-right\" data-ng-show=\"((authentication.user) && (authentication.user._id == contact.user._id))\">\n" +
     "\t\t<a class=\"btn btn-primary\" href=\"/#!/contacts/{{contact._id}}/edit\">\n" +
-    "\t\t\t<i class=\"glyphicon glyphicon-edit\"></i>\n" +
+    "\t\t\t<i class=\"fa fa-edit\"></i>\n" +
     "\t\t</a>\n" +
     "\t\t<a class=\"btn btn-primary\" data-ng-click=\"remove();\">\n" +
-    "\t\t\t<i class=\"glyphicon glyphicon-trash\"></i>\n" +
+    "\t\t\t<i class=\"fa fa-trash\"></i>\n" +
     "\t\t</a>\n" +
     "\t</div>\n" +
-    "\t<small>\n" +
+    "\t-->\n" +
+    "\t<!--<small>\n" +
     "\t\t<em class=\"text-muted\">\n" +
     "\t\t\tPosted on\n" +
     "\t\t\t<span data-ng-bind=\"contact.created | date:'mediumDate'\"></span>\n" +
-    "\t\t\tby\n" +
+    "\t\t\tpor\n" +
     "\t\t\t<span data-ng-bind=\"contact.user.displayName\"></span>\n" +
     "\t\t</em>\n" +
-    "\t</small>\n" +
+    "\t</small>-->\n" +
     "</section>\n"
   );
 
@@ -670,12 +672,12 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                                <button type=\"button\" id=\"date\" class=\"btn btn-default\" ng-click=\"open($event)\"><i class=\"fa fa-calendar\"></i></button>\n" +
     "                              </span>\n" +
     "                        </div>\n" +
-    "                        <div>\n" +
-    "                            <timepicker-pop input-time=\"time1\" class=\"input-group\"\n" +
-    "                                            show-meridian='true'>\n" +
-    "                            </timepicker-pop>\n" +
-    "                        </div>\n" +
     "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <timepicker-pop input-time=\"time1\" class=\"input-group\"\n" +
+    "                                    show-meridian='true'>\n" +
+    "                    </timepicker-pop>\n" +
     "                </div>\n" +
     "                <div class=\"form-group\">\n" +
     "                    <label class=\"control-label\" for=\"content\">Contenido</label>\n" +
@@ -698,33 +700,12 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('modules/events/views/edit-event.client.view.html',
-    "<!--<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "        <h1>Edit Event</h1>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-12\">\n" +
-    "        <form class=\"form-horizontal\" data-ng-submit=\"update()\" novalidate>\n" +
-    "            <fieldset>\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <label class=\"control-label\" for=\"name\">Name</label>\n" +
-    "                    <div class=\"controls\">\n" +
-    "                        <input type=\"text\" data-ng-model=\"event.name\" id=\"name\" class=\"form-control\" placeholder=\"Name\" required>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <input type=\"submit\" value=\"Update\" class=\"btn btn-default\">\n" +
-    "                </div>\n" +
-    "\t\t\t\t<div data-ng-show=\"error\" class=\"text-danger\">\n" +
-    "\t\t\t\t\t<strong data-ng-bind=\"error\"></strong>\n" +
-    "\t\t\t\t</div>\n" +
-    "            </fieldset>\n" +
-    "        </form>\n" +
-    "    </div>\n" +
-    "</section>-->\n" +
-    "\n" +
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"findOne()\">\n" +
     "    <div class=\"page-header\">\n" +
     "        <h1>Editar Evento: {{event.title}}</h1>\n" +
+    "        <a class=\"btn btn-primary\" data-ng-click=\"remove();\">\n" +
+    "            <i class=\"fa fa-trash\"></i>\n" +
+    "        </a>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-12\">\n" +
     "        <form class=\"form-horizontal\" data-ng-submit=\"update()\" novalidate>\n" +
@@ -777,7 +758,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "<h3>Eventos</h3>\n" +
     "<section data-ng-controller=\"EventsController\" data-ng-init=\"find()\">\n" +
     "    <div class=\"list-group\">\n" +
-    "        <a data-ng-repeat=\"event in events\" data-ng-href=\"#!/events/{{event._id}}\" class=\"list-group-item\">\n" +
+    "        <div data-ng-repeat=\"event in events\" data-ng-href=\"#!/events/{{event._id}}\" class=\"list-group-item\">\n" +
     "            <div class=\"well\">\n" +
     "                <div class=\"media\">\n" +
     "                    <div class=\"pull-left\">\n" +
@@ -788,7 +769,11 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                        <div ng-bind-html=\"event.content\"></div>\n" +
     "                        <ul class=\"list-inline list-unstyled\">\n" +
     "                            <li><span><i class=\"fa fa-calendar\"></i> {{event.date | amCalendar }} </span></li>\n" +
-    "                            <li>|</li>\n" +
+    "                            <li data-ng-show=\"((authentication.user) && (authentication.user._id == event.user._id))\">\n" +
+    "                                <a class=\"btn btn-primary\" href=\"/#!/events/{{event._id}}/edit\">\n" +
+    "                                    <i class=\"fa fa-edit\"></i>\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
     "                            <!--<li>\n" +
     "                                <span><i class=\"fa fa-facebook-square\"></i></span>\n" +
     "                                <span><i class=\"fa fa-twitter-square\"></i></span>\n" +
@@ -798,7 +783,7 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </a>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "    <h4 class=\"alert alert-purple text-center pv-lg\" data-ng-if=\"events.$resolved && !events.length\">\n" +
     "        No tienes eventos creados, deseas <a href=\"/#!/events/create\" class=\"text-yellow\">crear uno</a>?\n" +
@@ -2035,10 +2020,10 @@ angular.module('tpls').run(['$templateCache', function($templateCache) {
     "\t\t\t\t<div class=\"circle\"></div>\n" +
     "\t\t\t</div>\n" +
     "\t\t\t<div class=\"page\">\n" +
-    "\t\t\t\tmascoteros.net/<br/>#!/pet/<br/><span>{{pet.slug}}</span>\n" +
+    "\t\t\t\tmascoteros.net<br/>/#!/pet/<br/><span>{{pet.slug}}</span>\n" +
     "\t\t\t</div>\n" +
-    "\t\t\t<div class=\"tel\" ng-show=\"pet.tel1\">{{pet.tel1}}</div>\n" +
-    "\t\t\t<div class=\"tel\" ng-show=\"pet.tel2 && !pet.tel1\">{{pet.tel2}}</div>\n" +
+    "\t\t\t<div class=\"tel\" ng-show=\"pet.tel1 && !pet.tel2\">{{pet.tel1}}</div>\n" +
+    "\t\t\t<div class=\"tel\" ng-show=\"pet.tel2\">{{pet.tel2}}</div>\n" +
     "\t\t</article>\n" +
     "\t</section>\n" +
     "\n" +
