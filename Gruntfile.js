@@ -105,7 +105,7 @@ module.exports = function(grunt) {
 					mangle: false
 				},
 				files: {
-					'public/dist/application.min.js': ['public/dist/application.js', 'public/dist/app-templates.js']
+					'public/dist/application.min.js': ['public/dist/application.js'/*, 'public/dist/app-templates.js'*/]
 				}
 			}
 		},
@@ -228,7 +228,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'ngtemplates', 'uglify', 'cssmin', 'less' ]);
+	grunt.registerTask('build', [/*'lint',*/ 'loadConfig', 'ngAnnotate', /*'ngtemplates',*/ 'uglify', 'cssmin', 'less' ]);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
