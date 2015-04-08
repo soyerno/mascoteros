@@ -8,16 +8,12 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Create new Event
 		$scope.create = function() {
 
-			var fullDate = this.date;
-			fullDate.setHours(this.dateTime.getHours());
-			fullDate.setMinutes(this.dateTime.getMinutes());
-
 			console.log(fullDate);
 			// Create new Event object
 			var event = new Events ({
 				title: this.title,
 				image: this.image,
-				date: fullDate,
+				date: parseDate(this.date, this.dateTime),
 				content: this.content
 			});
 
@@ -40,6 +36,16 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			});
 		};
 
+		function parseDate(date, dateTime){
+
+			var fullDate = date;
+			fullDate.setHours(dateTime.getHours());
+			fullDate.setMinutes(dateTime.getMinutes());
+
+			return fullDate;
+
+		}
+
 		// Remove existing Event
 		$scope.remove = function(event) {
 			if ( event ) { 
@@ -60,6 +66,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Update existing Event
 		$scope.update = function() {
 			var event = $scope.event;
+
+			event.date = parseDate(this.date, this.dateTime);
 
 			event.$update(function() {
 				$location.path('events/' + event._id);
