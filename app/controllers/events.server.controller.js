@@ -73,7 +73,10 @@ exports.delete = function(req, res) {
  * List of Events
  */
 exports.list = function(req, res) {
-	Event.find().sort([['date', 'ascending']]).populate('user', 'displayName').exec(function(err, events) {
+
+	var today = new Date();
+
+	Event.find({date: { $gte: today }}).sort([['date', 'ascending']]).populate('user', 'displayName').exec(function(err, events) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

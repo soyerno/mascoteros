@@ -29,7 +29,8 @@ var ApplicationConfiguration = (function() {
 		'djds4rce.angular-socialshare',
 		'geolocation',
 		'textAngular',
-		'uiGmapgoogle-maps'
+		'uiGmapgoogle-maps',
+		'ui.bootstrap.datetimepicker'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
@@ -455,7 +456,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 			// Redirect after save
 			contact.$save(function(response) {
-				$location.path('contacts/' + response._id);
+				$location.path('contacts');
 
 				// Clear form fields
 				$scope.name = '';
@@ -1841,11 +1842,13 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Create new Event
 		$scope.create = function() {
+
+			console.log(fullDate);
 			// Create new Event object
 			var event = new Events ({
 				title: this.title,
 				image: this.image,
-				date: this.date,
+				date: parseDate(this.date, this.dateTime),
 				content: this.content
 			});
 
@@ -1868,6 +1871,16 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			});
 		};
 
+		function parseDate(date, dateTime){
+
+			var fullDate = date;
+			fullDate.setHours(dateTime.getHours());
+			fullDate.setMinutes(dateTime.getMinutes());
+
+			return fullDate;
+
+		}
+
 		// Remove existing Event
 		$scope.remove = function(event) {
 			if ( event ) { 
@@ -1888,6 +1901,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Update existing Event
 		$scope.update = function() {
 			var event = $scope.event;
+
+			event.date = parseDate(this.date, this.dateTime);
 
 			event.$update(function() {
 				$location.path('events/' + event._id);
@@ -1912,7 +1927,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.today = function() {
 			$scope.yearOfBirth = new Date();
 		};
-		//$scope.today();
 
 		$scope.clear = function () {
 			$scope.yearOfBirth = null;
@@ -1936,15 +1950,27 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		};
 
 		$scope.dateOptions = {
-			//formatYear: 'yyyy',
-//			startingDay: 1,
-			linkFormat: "yyyy-mm-dd hh:ii",
+			formatYear: 'yyyy',
+			startingDay: 1,
+			linkFormat: "yyyy-mm-dd",
 			pickTime: true,
 			pick12HourFormat: true
 		};
 
+		$scope.dateTime;
+		$scope.hstep = 1;
+		$scope.mstep = 1;
+		$scope.ismeridian = true;
+		$scope.toggleMode = function() {
+			$scope.ismeridian = ! $scope.ismeridian;
+		};
+
+		$scope.timeChanged = function(){
+			console.log($scope.date);
+		};
+
 		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'dd-MM-yyyy HH:mm:ss', 'dd MM yyyy - hh:ii'];
-		$scope.format = $scope.formats[6];
+		$scope.format = $scope.formats[1];
 
 
 	}

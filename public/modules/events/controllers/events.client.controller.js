@@ -67,7 +67,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.update = function() {
 			var event = $scope.event;
 
-			event.date = parseDate(this.date, this.dateTime);
+			event.date = parseDate(event.date, event.dateTime);
 
 			event.$update(function() {
 				$location.path('events/' + event._id);
@@ -122,7 +122,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			pick12HourFormat: true
 		};
 
-		$scope.dateTime;
+		//$scope.dateTime;
 		$scope.hstep = 1;
 		$scope.mstep = 1;
 		$scope.ismeridian = true;

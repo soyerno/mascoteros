@@ -139,7 +139,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
           latitude: 40.1451,
           longitude: -99.6680
         },
-        options: { draggable: true },
+        options: { draggable: false },
         events: {
           dragend: function (marker, eventName, args) {
             $log.log('marker dragend');
@@ -149,7 +149,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
             $log.log(lon);
 
             $scope.marker.options = {
-              draggable: true,
+              draggable: false,
               labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
               labelAnchor: "100 0",
               labelClass: "marker-labels"
