@@ -29,8 +29,7 @@ var ApplicationConfiguration = (function() {
 		'djds4rce.angular-socialshare',
 		'geolocation',
 		'textAngular',
-		'uiGmapgoogle-maps',
-		'ui.bootstrap.datetimepicker'
+		'uiGmapgoogle-maps'
 	];
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
