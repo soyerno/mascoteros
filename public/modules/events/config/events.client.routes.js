@@ -17,7 +17,7 @@ angular.module('events').config(['$stateProvider',
 			url: '/eventos/:eventId',
 			templateUrl: 'modules/events/views/view-event.client.view.html'
 		}).
-		state('app.viewEvent', {
+		state('app.viewEventBySlug', {
 			url: '/evento/:slug',
 			templateUrl: 'modules/events/views/view-event.client.view.html'
 		}).
