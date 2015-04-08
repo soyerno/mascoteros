@@ -17,7 +17,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 
 			// Redirect after save
 			contact.$save(function(response) {
-				$location.path('contacts/' + response._id);
+				$location.path('contacts');
 
 				// Clear form fields
 				$scope.name = '';

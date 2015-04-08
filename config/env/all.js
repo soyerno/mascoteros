@@ -51,7 +51,8 @@ module.exports = {
 				'public/lib/textAngular/dist/textAngular.min.js',
 				'public/lib/textAngular/dist/textAngular-rangy.min.js',
 				'public/lib/textAngular/dist/textAngular-sanitize.min.js',
-				'public/lib/angular-google-maps/dist/angular-google-maps.min.js'
+				'public/lib/angular-google-maps/dist/angular-google-maps.min.js',
+				'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'
         		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',

@@ -30,9 +30,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <timepicker-pop input-time="time1" class="input-group"
+                    <!--<timepicker-pop input-time="time1" class="input-group"
                                     show-meridian='true'>
-                    </timepicker-pop>
+                    </timepicker-pop>-->
+                    <timepicker ng-model="dateTime" ng-change="timeChanged()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="content">Contenido</label>

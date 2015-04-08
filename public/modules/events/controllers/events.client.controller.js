@@ -7,11 +7,17 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Create new Event
 		$scope.create = function() {
+
+			var fullDate = this.date;
+			fullDate.setHours(this.dateTime.getHours());
+			fullDate.setMinutes(this.dateTime.getMinutes());
+
+			console.log(fullDate);
 			// Create new Event object
 			var event = new Events ({
 				title: this.title,
 				image: this.image,
-				date: this.date,
+				date: fullDate,
 				content: this.content
 			});
 
@@ -78,7 +84,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.today = function() {
 			$scope.yearOfBirth = new Date();
 		};
-		//$scope.today();
 
 		$scope.clear = function () {
 			$scope.yearOfBirth = null;
@@ -102,15 +107,27 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		};
 
 		$scope.dateOptions = {
-			//formatYear: 'yyyy',
-//			startingDay: 1,
-			linkFormat: "yyyy-mm-dd hh:ii",
+			formatYear: 'yyyy',
+			startingDay: 1,
+			linkFormat: "yyyy-mm-dd",
 			pickTime: true,
 			pick12HourFormat: true
 		};
 
+		$scope.dateTime;
+		$scope.hstep = 1;
+		$scope.mstep = 1;
+		$scope.ismeridian = true;
+		$scope.toggleMode = function() {
+			$scope.ismeridian = ! $scope.ismeridian;
+		};
+
+		$scope.timeChanged = function(){
+			console.log($scope.date);
+		};
+
 		$scope.formats = ['dd/MM/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate', 'dd-MM-yyyy HH:mm:ss', 'dd MM yyyy - hh:ii'];
-		$scope.format = $scope.formats[6];
+		$scope.format = $scope.formats[1];
 
 
 	}

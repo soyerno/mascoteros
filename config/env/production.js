@@ -59,7 +59,7 @@ module.exports = {
 			'public/modules/pets/css/qr.css',
 			'public/lib/angular-native-picker/build/themes/default.css',
 			'public/lib/angular-native-picker/build/themes/default.date.css',
-			'public/lib/angular-socialshare/angular-socialshare.css',
+			'public/lib/angular-socialshare/angular-socialshare.css'
 
 		],
 		js: 'public/dist/application.min.js'
