@@ -6,7 +6,7 @@ angular.module('events').config(['$stateProvider',
 		// Events state routing
 		$stateProvider.
 		state('app.listEvents', {
-			url: '/events',
+			url: '/eventos',
 			templateUrl: 'modules/events/views/list-events.client.view.html'
 		}).
 		state('app.createEvent', {
@@ -14,7 +14,11 @@ angular.module('events').config(['$stateProvider',
 			templateUrl: 'modules/events/views/create-event.client.view.html'
 		}).
 		state('app.viewEvent', {
-			url: '/events/:eventId',
+			url: '/eventos/:eventId',
+			templateUrl: 'modules/events/views/view-event.client.view.html'
+		}).
+		state('app.viewEvent', {
+			url: '/evento/:slug',
 			templateUrl: 'modules/events/views/view-event.client.view.html'
 		}).
 		state('app.editEvent', {

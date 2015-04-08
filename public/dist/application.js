@@ -1815,7 +1815,7 @@ angular.module('events').config(['$stateProvider',
 		// Events state routing
 		$stateProvider.
 		state('app.listEvents', {
-			url: '/events',
+			url: '/eventos',
 			templateUrl: 'modules/events/views/list-events.client.view.html'
 		}).
 		state('app.createEvent', {
@@ -1823,7 +1823,11 @@ angular.module('events').config(['$stateProvider',
 			templateUrl: 'modules/events/views/create-event.client.view.html'
 		}).
 		state('app.viewEvent', {
-			url: '/events/:eventId',
+			url: '/eventos/:eventId',
+			templateUrl: 'modules/events/views/view-event.client.view.html'
+		}).
+		state('app.viewEvent', {
+			url: '/evento/:slug',
 			templateUrl: 'modules/events/views/view-event.client.view.html'
 		}).
 		state('app.editEvent', {
@@ -1902,7 +1906,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		$scope.update = function() {
 			var event = $scope.event;
 
-			event.date = parseDate(this.date, this.dateTime);
+			event.date = parseDate(event.date, event.dateTime);
 
 			event.$update(function() {
 				$location.path('events/' + event._id);
@@ -1957,7 +1961,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			pick12HourFormat: true
 		};
 
-		$scope.dateTime;
+		//$scope.dateTime;
 		$scope.hstep = 1;
 		$scope.mstep = 1;
 		$scope.ismeridian = true;
@@ -2846,7 +2850,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
           latitude: 40.1451,
           longitude: -99.6680
         },
-        options: { draggable: true },
+        options: { draggable: false },
         events: {
           dragend: function (marker, eventName, args) {
             $log.log('marker dragend');
@@ -2856,7 +2860,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
             $log.log(lon);
 
             $scope.marker.options = {
-              draggable: true,
+              draggable: false,
               labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
               labelAnchor: "100 0",
               labelClass: "marker-labels"
