@@ -59,7 +59,7 @@
     position: relative;
     display: table;
     width: 100%;
-    min-height: 100vh;
+    min-height: 60vh;
 }
 .pull-middle {
     display: table-cell;
