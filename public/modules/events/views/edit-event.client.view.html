@@ -21,7 +21,29 @@
                         <input type="file" id="image" fileread="image"  data-ng-model="event.image" id="images.name" class="form-control" placeholder="Name" required>
                     </div>
                 </div>
+
+                {{event.date}}
+
                 <div class="form-group">
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input data-ng-model="event.date" type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker2').datetimepicker({
+                            locale: 'es'
+                        });
+                    });
+                </script>
+
+                <input type="text" date-time="" ng-model="event.date" required="true" view="hours" partial="true" class="ng-scope ng-pristine ng-invalid ng-invalid-required">
+
+                <!--<div class="form-group">
                     <label class="control-label" for="date">Fecha</label>
                     <div class="controls">
                         <p class="input-group custom-datepicker">
@@ -34,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <timepicker ng-model="event.dateTime" ng-change="timeChanged()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="control-label" for="content">Contenido</label>
                     <div class="controls">

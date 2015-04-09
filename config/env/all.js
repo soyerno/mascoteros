@@ -52,7 +52,8 @@ module.exports = {
 				'public/lib/textAngular/dist/textAngular-rangy.min.js',
 				'public/lib/textAngular/dist/textAngular-sanitize.min.js',
 				'public/lib/angular-google-maps/dist/angular-google-maps.min.js',
-				'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js'
+				'public/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+				'public/lib/angular-datepicker/dist/index.js'
         		// 'public/lib/jquery/dist/jquery.js',
 				// 'public/lib/angular/angular.js',
 				// 'public/lib/angular-resource/angular-resource.js',
@@ -77,7 +78,9 @@ module.exports = {
 			'public/modules/pets/css/qr.css',
 			'public/lib/angular-native-picker/build/themes/default.css',
 			'public/lib/angular-native-picker/build/themes/default.date.css',
-			'public/lib/angular-socialshare/angular-socialshare.css'
+			'public/lib/angular-socialshare/angular-socialshare.css',
+			'public/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+			'public/lib/angular-datepicker/dist/index.css'
 		],
 		js: [
 			'public/app-templates.js',

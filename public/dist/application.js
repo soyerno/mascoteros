@@ -1846,12 +1846,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Create new Event
 		$scope.create = function() {
 
-			console.log(fullDate);
 			// Create new Event object
 			var event = new Events ({
 				title: this.title,
 				image: this.image,
-				date: parseDate(this.date, this.dateTime),
+				date: this.date,
 				content: this.content
 			});
 
@@ -1874,7 +1873,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 			});
 		};
 
-		function parseDate(date, dateTime){
+		/*function parseDate(date, dateTime){
 
 			var fullDate = date;
 			fullDate.setHours(dateTime.getHours());
@@ -1882,7 +1881,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 			return fullDate;
 
-		}
+		}*/
 
 		// Remove existing Event
 		$scope.remove = function(event) {
@@ -1903,15 +1902,21 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
 		// Update existing Event
 		$scope.update = function() {
+			$scope.formBusy = true;
+
 			var event = $scope.event;
+			delete event.$promise;
+			delete event.$resolved;
 
-			event.date = parseDate(event.date, event.dateTime);
-
-			event.$update(function() {
-				$location.path('events/' + event._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
+			Upload.parse(event).then(function () {
+				event.$update(function() {
+					$location.path('events/' + event._id);
+				}, function(errorResponse) {
+					$scope.formBusy = false;
+					$scope.error = errorResponse.data.message;
+				});
 			});
+
 		};
 
 		// Find a list of Events
