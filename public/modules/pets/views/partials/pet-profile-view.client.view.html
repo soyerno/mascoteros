@@ -143,8 +143,8 @@
             </div>
             <div class="col-md-4 col-lg-4">
               <div class="panel widget" ng-if="map">
-                <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
-                  <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                <ui-gmap-google-map center="pet.coords" zoom="18" draggable="false" options="options">
+                  <ui-gmap-marker coords="pet.coords" options="marker.options" events="marker.events" idkey="marker.id">
                   </ui-gmap-marker>
                 </ui-gmap-google-map>
               </div>

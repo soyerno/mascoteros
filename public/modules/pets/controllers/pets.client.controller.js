@@ -34,7 +34,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
         isAdoption: this.isAdoption,
         tel1: this.tel1,
         tel2: this.tel2,
-        coords: this.coords
+        coords: $scope.marker.coords
       });
 
       $scope.formBusy = true;
@@ -123,8 +123,9 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
     $scope.findOneBySlug = function () {
       var Pet = $resource('/pet/:petSlug', {petSlug: '@slug'});
-      $scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function () {
-      });
+      $scope.pet = Pet.get({petSlug: $stateParams.petSlug});
+      console.log($scope.pet);
+      $scope.currentCoords = $scope.pet.coords;
     };
 
       //MAPS
@@ -196,10 +197,15 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
       $scope.marker.coords = $scope.currentCoords;
     };
 
+    $scope.setCurrentLocation = function(){
+      var current = $scope.getGeoLocalization();
+      $scope.map = {center: current, zoom: 18};
+      $scope.marker.coords = current;
+    };
+
     $scope.getGeoLocalization = function () {
       geolocation.getLocation().then(function (data) {
-        $scope.currentCoords = {latitude: data.coords.latitude, longitude: data.coords.longitude};
-        $scope.setGeoLocation();
+        return {latitude: data.coords.latitude, longitude: data.coords.longitude};
       });
     };
 
