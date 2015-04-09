@@ -11537,6 +11537,10 @@ body {
   width: 128px !important;
   height: 128px !important;
 }
+.thumb25p {
+  width: 25% !important;
+  height: 25% !important;
+}
 .align-middle {
   vertical-align: middle;
 }
