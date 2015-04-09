@@ -8,7 +8,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 		// Create new Event
 		$scope.create = function() {
 
-			console.log(fullDate);
 			// Create new Event object
 			var event = new Events ({
 				title: this.title,
