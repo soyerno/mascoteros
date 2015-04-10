@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var comments = require('../../app/controllers/comments.server.controller');
 
 	// Comments Routes
-	app.route('/comments')
+	app.route('/api/comments')
 		.get(comments.list)
 		.post(users.requiresLogin, comments.create);
 
-	app.route('/comments/:commentId')
+	app.route('/api/comments/:commentId')
 		.get(comments.read)
 		.put(users.requiresLogin, comments.hasAuthorization, comments.update)
 		.delete(users.requiresLogin, comments.hasAuthorization, comments.delete);

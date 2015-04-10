@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var trainers = require('../../app/controllers/trainers.server.controller');
 
 	// Trainers Routes
-	app.route('/trainers')
+	app.route('/api/trainers')
 		.get(trainers.list)
 		.post(users.requiresLogin, trainers.create);
 
-	app.route('/trainers/:trainerId')
+	app.route('/api/trainers/:trainerId')
 		.get(trainers.read)
 		.put(users.requiresLogin, trainers.hasAuthorization, trainers.update)
 		.delete(users.requiresLogin, trainers.hasAuthorization, trainers.delete);

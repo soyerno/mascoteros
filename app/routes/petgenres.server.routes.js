@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var petgenres = require('../../app/controllers/petgenres.server.controller');
 
 	// Petgenres Routes
-	app.route('/petgenres')
+	app.route('/api/petgenres')
 		.get(petgenres.list)
 		.post(users.requiresLogin, petgenres.create);
 
-	app.route('/petgenres/:petgenreId')
+	app.route('/api/petgenres/:petgenreId')
 		.get(petgenres.read)
 		.put(users.requiresLogin, petgenres.hasAuthorization, petgenres.update)
 		.delete(users.requiresLogin, petgenres.hasAuthorization, petgenres.delete);

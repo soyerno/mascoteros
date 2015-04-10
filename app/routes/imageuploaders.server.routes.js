@@ -7,11 +7,11 @@ module.exports = function(app) {
   var multipart = require('connect-multiparty')();
 
 	// Imageuploaders Routes
-	app.route('/imageuploaders')
+	app.route('/api/imageuploaders')
 		.get(imageuploaders.list)
 		.post(users.requiresLogin, imageuploaders.create);
 
-	app.route('/imageuploaders/:imageuploaderId')
+	app.route('/api/imageuploaders/:imageuploaderId')
 		.get(imageuploaders.read)
 		.put(users.requiresLogin, imageuploaders.hasAuthorization, imageuploaders.update)
 		.delete(users.requiresLogin, imageuploaders.hasAuthorization, imageuploaders.delete);
@@ -19,7 +19,7 @@ module.exports = function(app) {
 	// Finish by binding the Imageuploader middleware
 	app.param('imageuploaderId', imageuploaders.imageuploaderByID);
 
-  app.route('/upload').post(
+  app.route('/api/upload').post(
     users.requiresLogin,
     multipart,
     imageuploaders.upload);

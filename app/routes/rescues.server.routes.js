@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var rescues = require('../../app/controllers/rescues.server.controller');
 
 	// Rescues Routes
-	app.route('/rescues')
+	app.route('/api/rescues')
 		.get(rescues.list)
 		.post(users.requiresLogin, rescues.create);
 
-	app.route('/rescues/:rescueId')
+	app.route('/api/rescues/:rescueId')
 		.get(rescues.read)
 		.put(users.requiresLogin, rescues.hasAuthorization, rescues.update)
 		.delete(users.requiresLogin, rescues.hasAuthorization, rescues.delete);

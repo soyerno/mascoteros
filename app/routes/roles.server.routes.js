@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var roles = require('../../app/controllers/roles.server.controller');
 
 	// Roles Routes
-	app.route('/roles')
+	app.route('/api/roles')
 		.get(roles.list)
 		.post(users.requiresLogin, roles.create);
 
-	app.route('/roles/:roleId')
+	app.route('/api/roles/:roleId')
 		.get(roles.read)
 		.put(users.requiresLogin, roles.hasAuthorization, roles.update)
 		.delete(users.requiresLogin, roles.hasAuthorization, roles.delete);

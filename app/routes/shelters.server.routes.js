@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var shelters = require('../../app/controllers/shelters.server.controller');
 
 	// Shelters Routes
-	app.route('/shelters')
+	app.route('/api/shelters')
 		.get(shelters.list)
 		.post(users.requiresLogin, shelters.create);
 
-	app.route('/shelters/:shelterId')
+	app.route('/api/shelters/:shelterId')
 		.get(shelters.read)
 		.put(users.requiresLogin, shelters.hasAuthorization, shelters.update)
 		.delete(users.requiresLogin, shelters.hasAuthorization, shelters.delete);

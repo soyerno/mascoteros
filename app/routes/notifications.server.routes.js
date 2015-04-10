@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var notifications = require('../../app/controllers/notifications.server.controller');
 
 	// Notifications Routes
-	app.route('/notifications')
+	app.route('/api/notifications')
 		.get(notifications.list)
 		.post(notifications.create);
 
-	app.route('/notifications/:notificationId')
+	app.route('/api/notifications/:notificationId')
 		.get(notifications.read)
 		.put(users.requiresLogin, notifications.hasAuthorization, notifications.update)
 		.delete(users.requiresLogin, notifications.hasAuthorization, notifications.delete);

@@ -105,7 +105,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     };
 
     $scope.findAdoptions = function () {
-      $http.get('/pets/adoption').
+      $http.get('/api/pets/adoption').
         success(function (data, status, headers, config) {
           $scope.pets = data;
         }).
@@ -122,7 +122,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     };
 
     $scope.findOneBySlug = function () {
-      var Pet = $resource('/pet/:petSlug', {petSlug: '@slug'});
+      var Pet = $resource('/api/pet/:petSlug', {petSlug: '@slug'});
       $scope.pet = Pet.get({petSlug: $stateParams.petSlug});
       console.log($scope.pet);
       $scope.currentCoords = $scope.pet.coords;
@@ -234,7 +234,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     };
 
     $scope.setPetMissing = function (value) {
-      $http.put('pets/' + $scope.pet._id + '/missing', {isMissing: value}).
+      $http.put('/api/pets/' + $scope.pet._id + '/missing', {isMissing: value}).
         success(function (data, status, headers, config) {
           console.log(data);
           $scope.pet.isMissing = data.isMissing;
@@ -250,7 +250,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
     $scope.findMissing = function() {
       console.log('missing');
-      $http.get('/pets/missing').
+      $http.get('/api/pets/missing').
         success(function(data, status, headers, config) {
           $scope.pets = data;
         }).

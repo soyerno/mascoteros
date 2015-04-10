@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var faqs = require('../../app/controllers/faqs.server.controller');
 
 	// Faqs Routes
-	app.route('/faqs')
+	app.route('/api/faqs')
 		.get(faqs.list)
 		.post(users.requiresLogin, faqs.create);
 
-	app.route('/faqs/:faqId')
+	app.route('/api/faqs/:faqId')
 		.get(faqs.read)
 		.put(users.requiresLogin, faqs.hasAuthorization, faqs.update)
 		.delete(users.requiresLogin, faqs.hasAuthorization, faqs.delete);

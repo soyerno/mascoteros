@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var shops = require('../../app/controllers/shops.server.controller');
 
 	// Shops Routes
-	app.route('/shops')
+	app.route('/api/shops')
 		.get(shops.list)
 		.post(users.requiresLogin, shops.create);
 
-	app.route('/shops/:shopId')
+	app.route('/api/shops/:shopId')
 		.get(shops.read)
 		.put(users.requiresLogin, shops.hasAuthorization, shops.update)
 		.delete(users.requiresLogin, shops.hasAuthorization, shops.delete);

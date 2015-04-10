@@ -5,31 +5,31 @@ module.exports = function(app) {
 	var pets = require('../../app/controllers/pets.server.controller');
 
 	// Pets Routes
-  app.route('/pet/:petSlug')
+  app.route('/api/pet/:petSlug')
     .get(pets.read);
 
-  app.route('/pets')
+  app.route('/api/pets')
 		.get(pets.list)
 		.post(users.requiresLogin, pets.create);
 
-	app.route('/pets/adoption')
+	app.route('/api/pets/adoption')
 		.get(users.requiresLogin, pets.listAdoption);
 
-	app.route('/pets/missing')
+	app.route('/api/pets/missing')
 		.get(users.requiresLogin, pets.listMissing);
 
-	app.route('/pets/buscar')
+	app.route('/api/pets/buscar')
 		.post(users.requiresLogin, pets.list);
 
-	app.route('/pets/:petId/addLike')
+	app.route('/api/pets/:petId/addLike')
 		.get(users.requiresLogin, pets.read);
 
-  app.route('/pets/:petId')
+  app.route('/api/pets/:petId')
 		.get(pets.read)
 		.put(users.requiresLogin, pets.hasAuthorization, pets.update)
 		.delete(users.requiresLogin, pets.hasAuthorization, pets.delete);
 
-	app.route('/pets/:petId/missing')
+	app.route('/api/pets/:petId/missing')
 		.put(users.requiresLogin, pets.hasAuthorization, pets.updateMissing);
 
 	// Finish by binding the Pet middleware

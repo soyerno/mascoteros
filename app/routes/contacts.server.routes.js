@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var contacts = require('../../app/controllers/contacts.server.controller');
 
 	// Contacts Routes
-	app.route('/contacts')
+	app.route('/api/contacts')
 		.get(contacts.list)
 		.post(users.requiresLogin, contacts.create);
 
-	app.route('/contacts/:contactId')
+	app.route('/api/contacts/:contactId')
 		.get(contacts.read)
 		.put(users.requiresLogin, contacts.hasAuthorization, contacts.update)
 		.delete(users.requiresLogin, contacts.hasAuthorization, contacts.delete);

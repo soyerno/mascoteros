@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var pettypes = require('../../app/controllers/pettypes.server.controller');
 
 	// Pettypes Routes
-	app.route('/pettypes')
+	app.route('/api/pettypes')
 		.get(pettypes.list)
 		.post(users.requiresLogin, pettypes.create);
 
-	app.route('/pettypes/:pettypeId')
+	app.route('/api/pettypes/:pettypeId')
 		.get(pettypes.read)
 		.put(users.requiresLogin, pettypes.hasAuthorization, pettypes.update)
 		.delete(users.requiresLogin, pettypes.hasAuthorization, pettypes.delete);

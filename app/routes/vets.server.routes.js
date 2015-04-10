@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var vets = require('../../app/controllers/vets.server.controller');
 
 	// Vets Routes
-	app.route('/vets')
+	app.route('/api/vets')
 		.get(vets.list)
 		.post(users.requiresLogin, vets.create);
 
-	app.route('/vets/:vetId')
+	app.route('/api/vets/:vetId')
 		.get(vets.read)
 		.put(users.requiresLogin, vets.hasAuthorization, vets.update)
 		.delete(users.requiresLogin, vets.hasAuthorization, vets.delete);

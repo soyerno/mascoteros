@@ -5,11 +5,11 @@ module.exports = function(app) {
 	var events = require('../../app/controllers/events.server.controller');
 
 	// Events Routes
-	app.route('/events')
+	app.route('/api/events')
 		.get(events.list)
 		.post(users.requiresLogin, events.create);
 
-	app.route('/events/:eventId')
+	app.route('/api/events/:eventId')
 		.get(events.read)
 		.put(users.requiresLogin, events.hasAuthorization, events.update)
 		.delete(users.requiresLogin, events.hasAuthorization, events.delete);
