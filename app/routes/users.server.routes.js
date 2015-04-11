@@ -16,27 +16,27 @@ module.exports = function(app) {
 
 	// Setting up the users password api
 	app.route('/api/users/password').post(users.changePassword);
-	app.route('/api/auth/forgot').post(users.forgot);
-	app.route('/api/auth/reset/:token').get(users.validateResetToken);
-	app.route('/api/auth/reset/:token').post(users.reset);
+	app.route('/auth/forgot').post(users.forgot);
+	app.route('/auth/reset/:token').get(users.validateResetToken);
+	app.route('/auth/reset/:token').post(users.reset);
 
 	// Setting up the users authentication api
-	app.route('/api/auth/signup').post(users.signup);
-	app.route('/api/auth/signin').post(users.signin);
-	app.route('/api/auth/signout').get(users.signout);
+	app.route('/auth/signup').post(users.signup);
+	app.route('/auth/signin').post(users.signin);
+	app.route('/auth/signout').get(users.signout);
 
 	// Setting the facebook oauth routes
-	app.route('/api/auth/facebook').get(passport.authenticate('facebook', {
+	app.route('/auth/facebook').get(passport.authenticate('facebook', {
 		scope: ['email']
 	}));
 	app.route('/api/auth/facebook/callback').get(users.oauthCallback('facebook'));
 
 	// Setting the twitter oauth routes
-	app.route('/api/auth/twitter').get(passport.authenticate('twitter'));
-	app.route('/api/auth/twitter/callback').get(users.oauthCallback('twitter'));
+	app.route('/auth/twitter').get(passport.authenticate('twitter'));
+	app.route('/auth/twitter/callback').get(users.oauthCallback('twitter'));
 
 	// Setting the google oauth routes
-	app.route('/api/auth/google').get(passport.authenticate('google', {
+	app.route('/auth/google').get(passport.authenticate('google', {
 		scope: [
 			'https://www.googleapis.com/auth/userinfo.profile',
 			'https://www.googleapis.com/auth/userinfo.email'
@@ -45,12 +45,12 @@ module.exports = function(app) {
 	app.route('/api/auth/google/callback').get(users.oauthCallback('google'));
 
 	// Setting the linkedin oauth routes
-	app.route('/api/auth/linkedin').get(passport.authenticate('linkedin'));
-	app.route('/api/auth/linkedin/callback').get(users.oauthCallback('linkedin'));
+	app.route('/auth/linkedin').get(passport.authenticate('linkedin'));
+	app.route('/auth/linkedin/callback').get(users.oauthCallback('linkedin'));
 
 	// Setting the github oauth routes
-	app.route('/api/auth/github').get(passport.authenticate('github'));
-	app.route('/api/auth/github/callback').get(users.oauthCallback('github'));
+	app.route('/auth/github').get(passport.authenticate('github'));
+	app.route('/auth/github/callback').get(users.oauthCallback('github'));
 
 	// Finish by binding the user middleware
 	app.param('userId', users.userByID);

@@ -7,8 +7,8 @@ module.exports = {
 		title: 'Mascoteros'
 	},
 	facebook: {
-		clientID: process.env.FACEBOOK_ID || '1414293935539684',
-		clientSecret: process.env.FACEBOOK_SECRET || 'fb7c4444f2362a08c14a72c86773662e',
+		clientID: process.env.FACEBOOK_ID || '1428057644163313',
+		clientSecret: process.env.FACEBOOK_SECRET || 'c602e9aa95926a4ddbca84f8b7eb5ba3',
 		callbackURL: '/auth/facebook/callback'
 	},
 	twitter: {
