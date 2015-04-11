@@ -7,19 +7,19 @@ angular.module('faqs').config(['$stateProvider',
 		$stateProvider.
 		state('app.listFaqs', {
 			url: '/faqs',
-			templateUrl: 'modules/faqs/views/list-faqs.client.view.html'
+			templateUrl: '/modules/faqs/views/list-faqs.client.view.html'
 		}).
 		state('app.createFaq', {
 			url: '/faqs/create',
-			templateUrl: 'modules/faqs/views/create-faq.client.view.html'
+			templateUrl: '/modules/faqs/views/create-faq.client.view.html'
 		}).
 		state('app.viewFaq', {
 			url: '/faqs/:faqId',
-			templateUrl: 'modules/faqs/views/view-faq.client.view.html'
+			templateUrl: '/modules/faqs/views/view-faq.client.view.html'
 		}).
 		state('app.editFaq', {
 			url: '/faqs/:faqId/edit',
-			templateUrl: 'modules/faqs/views/edit-faq.client.view.html'
+			templateUrl: '/modules/faqs/views/edit-faq.client.view.html'
 		});
 	}
 ]);
