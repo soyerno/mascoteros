@@ -10,7 +10,7 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: '/modules/pets/views/qr.client.view.html'
 		}).
 		state('app.listPets', {
-		  url: '/pets',
+		  url: 'pets',
 		  templateUrl: '/modules/pets/views/list-pets.client.view.html',
 		  controller: 'PetsController'
 		}).

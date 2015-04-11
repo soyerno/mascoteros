@@ -15,10 +15,27 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		autoprefixer: {
+			options: {
+				browsers: ['> 1%', 'last 3 versions', 'Explorer >= 9', 'Firefox >= 20', 'Android >= 2.3', 'iOS >= 6']
+			},
+			development: {
+				files: [{
+					src: [
+						'public/modules/core/css/core.css',
+						'public/modules/core/css/datePicker.css',
+						'public/modules/core/css/landing.css',
+						'public/modules/core/css/offsidebar-tab-1.css',
+						'public/modules/core/css/pets.css'
+					]
+				}]
+			}
+		},
 		watch: {
 			serverViews: {
 				files: watchFiles.serverViews,
@@ -228,7 +245,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('lint', ['jshint', 'csslint']);
 
 	// Build task(s).
-	grunt.registerTask('build', [/*'lint',*/ 'loadConfig', 'ngAnnotate', /*'ngtemplates',*/ 'uglify', 'cssmin', 'less' ]);
+	grunt.registerTask('build', ['autoprefixer',/*'lint',*/ 'loadConfig', 'ngAnnotate', /*'ngtemplates',*/ 'uglify', 'cssmin', 'less' ]);
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);

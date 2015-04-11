@@ -56,18 +56,22 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 // Setting HTML5 Location Mode
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
 	function($locationProvider) {
-		$locationProvider.hashPrefix('!');
+		$locationProvider.html5Mode({
+			enabled: true,
+			requireBase: false
+		}).hashPrefix('!');
 	}
 ]);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {
 	//Fixing facebook bug with redirect
-	if (window.location.hash === '#_=_') window.location.hash = '#!';
+	if (window.location.hash === '#_=_') window.location.hash = '';
 
 	//Then init the app
 	angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
 });
+
 'use strict';
 
 // Use Applicaion configuration module to register a new module
@@ -298,7 +302,7 @@ angular.module('articles').controller('ArticlesController', ['$scope', '$statePa
 //Articles service used for communicating with the articles REST endpoints
 angular.module('articles').factory('Articles', ['$resource',
 	function($resource) {
-		return $resource('articles/:articleId', {
+		return $resource('api/articles/:articleId', {
 			articleId: '@_id'
 		}, {
 			update: {
@@ -307,6 +311,7 @@ angular.module('articles').factory('Articles', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 //Setting up route
@@ -403,7 +408,7 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 //Comments service used to communicate Comments REST endpoints
 angular.module('comments').factory('Comments', ['$resource',
 	function($resource) {
-		return $resource('comments/:commentId', { commentId: '@_id'
+		return $resource('api/comments/:commentId', { commentId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -411,6 +416,7 @@ angular.module('comments').factory('Comments', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 //Setting up route
@@ -515,7 +521,7 @@ angular.module('contacts').controller('ContactsController', ['$scope', '$statePa
 //Contacts service used to communicate Contacts REST endpoints
 angular.module('contacts').factory('Contacts', ['$resource',
 	function($resource) {
-		return $resource('contacts/:contactId', { contactId: '@_id'
+		return $resource('api/contacts/:contactId', { contactId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -523,6 +529,7 @@ angular.module('contacts').factory('Contacts', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Core module
@@ -966,6 +973,14 @@ angular.module('core').controller('TimelineController', ['$scope',
 ]);
 'use strict';
 
+angular.module('core').controller('WelcomeModalController', ['$scope',
+	function($scope) {
+		// Welcome modal controller logic
+		// ...
+	}
+]);
+'use strict';
+
 angular.module('core').directive('fbPagePlugin', [
 	function() {
 		return {
@@ -1245,6 +1260,22 @@ angular.module('core').directive('toggleState', ['toggleStateService', function(
   
 }]);
 
+'use strict';
+
+angular.module('core').directive('welcomeModal', [
+	function() {
+		return {
+			template: '<div></div>',
+			restrict: 'E',
+			link: function postLink(scope, element, attrs) {
+				// Welcome modal directive logic
+				// ...
+
+				element.text('this is the welcomeModal directive');
+			}
+		};
+	}
+]);
 angular.module('core').service('browser', function(){
   "use strict";
 
@@ -1990,7 +2021,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 //Events service used to communicate Events REST endpoints
 angular.module('events').factory('Events', ['$resource',
 	function($resource) {
-		return $resource('events/:eventId', { eventId: '@_id'
+		return $resource('api/events/:eventId', { eventId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -1998,6 +2029,7 @@ angular.module('events').factory('Events', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -2019,19 +2051,19 @@ angular.module('faqs').config(['$stateProvider',
 		$stateProvider.
 		state('app.listFaqs', {
 			url: '/faqs',
-			templateUrl: 'modules/faqs/views/list-faqs.client.view.html'
+			templateUrl: '/modules/faqs/views/list-faqs.client.view.html'
 		}).
 		state('app.createFaq', {
 			url: '/faqs/create',
-			templateUrl: 'modules/faqs/views/create-faq.client.view.html'
+			templateUrl: '/modules/faqs/views/create-faq.client.view.html'
 		}).
 		state('app.viewFaq', {
 			url: '/faqs/:faqId',
-			templateUrl: 'modules/faqs/views/view-faq.client.view.html'
+			templateUrl: '/modules/faqs/views/view-faq.client.view.html'
 		}).
 		state('app.editFaq', {
 			url: '/faqs/:faqId/edit',
-			templateUrl: 'modules/faqs/views/edit-faq.client.view.html'
+			templateUrl: '/modules/faqs/views/edit-faq.client.view.html'
 		});
 	}
 ]);
@@ -2110,7 +2142,7 @@ angular.module('faqs').controller('FaqsController', ['$scope', '$stateParams', '
 //Faqs service used to communicate Faqs REST endpoints
 angular.module('faqs').factory('Faqs', ['$resource',
 	function($resource) {
-		return $resource('faqs/:faqId', { faqId: '@_id'
+		return $resource('api/faqs/:faqId', { faqId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -2118,6 +2150,7 @@ angular.module('faqs').factory('Faqs', ['$resource',
 		});
 	}
 ]);
+
 /*
 'use strict';
 
@@ -2379,7 +2412,7 @@ angular.module('issues').controller('IssuesController', ['$scope', '$stateParams
 //Issues service used to communicate Issues REST endpoints
 angular.module('issues').factory('Issues', ['$resource',
 	function($resource) {
-		return $resource('issues/:issueId', { issueId: '@_id'
+		return $resource('api/issues/:issueId', { issueId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -2387,6 +2420,7 @@ angular.module('issues').factory('Issues', ['$resource',
 		});
 	}
 ]);
+
 /*
 'use strict';
 
@@ -2497,7 +2531,7 @@ angular.module('notifications').controller('NotificationsController', ['$scope',
 //Notifications service used to communicate Notifications REST endpoints
 angular.module('notifications').factory('Notifications', ['$resource',
 	function($resource) {
-		return $resource('notifications/:notificationId', { notificationId: '@_id'
+		return $resource('api/notifications/:notificationId', { notificationId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -2505,6 +2539,7 @@ angular.module('notifications').factory('Notifications', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -2643,7 +2678,7 @@ angular.module('petgenres').directive('petGenreSelector', [ 'Petgenres', '$local
 //Petgenres service used to communicate Petgenres REST endpoints
 angular.module('petgenres').factory('Petgenres', ['$resource',
 	function($resource) {
-		return $resource('petgenres/:petgenreId', { petgenreId: '@_id'
+		return $resource('api/petgenres/:petgenreId', { petgenreId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -2651,6 +2686,7 @@ angular.module('petgenres').factory('Petgenres', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -2676,40 +2712,40 @@ angular.module('pets').config(['$stateProvider',
 		$stateProvider.
 		state('qr', {
 			url: '/qr',
-			templateUrl: 'modules/pets/views/qr.client.view.html'
+			templateUrl: '/modules/pets/views/qr.client.view.html'
 		}).
 		state('app.listPets', {
-		  url: '/pets',
-		  templateUrl: 'modules/pets/views/list-pets.client.view.html',
+		  url: 'pets',
+		  templateUrl: '/modules/pets/views/list-pets.client.view.html',
 		  controller: 'PetsController'
 		}).
 		state('app.listPetsAdoption', {
 			url: '/pets/adopcion',
-			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html',
+			templateUrl: '/modules/pets/views/list-pets-adoption.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.listPetsMissing', {
 			url: '/pets/perdidos',
-			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html',
+			templateUrl: '/modules/pets/views/list-pets-missing.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.createPet', {
 			url: '/pets/create',
-			templateUrl: 'modules/pets/views/create-pet.client.view.html'
+			templateUrl: '/modules/pets/views/create-pet.client.view.html'
 		}).
 		state('app.viewPet', {
 			url: '/pet/:petSlug',
-			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			templateUrl: '/modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.viewPets', {
 			url: '/pets/:petId',
-			templateUrl: 'modules/pets/views/view-pets.client.view.html',
+			templateUrl: '/modules/pets/views/view-pets.client.view.html',
 			controller: 'PetsController'
 		}).
 		state('app.editPet', {
 			url: '/pets/:petId/edit',
-			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
+			templateUrl: '/modules/pets/views/edit-pet.client.view.html'
 		});
 	}
 ]);
@@ -2750,7 +2786,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
         isAdoption: this.isAdoption,
         tel1: this.tel1,
         tel2: this.tel2,
-        coords: this.coords
+        coords: $scope.marker.coords
       });
 
       $scope.formBusy = true;
@@ -2821,7 +2857,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     };
 
     $scope.findAdoptions = function () {
-      $http.get('/pets/adoption').
+      $http.get('/api/pets/adoption').
         success(function (data, status, headers, config) {
           $scope.pets = data;
         }).
@@ -2838,9 +2874,10 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     };
 
     $scope.findOneBySlug = function () {
-      var Pet = $resource('/pet/:petSlug', {petSlug: '@slug'});
-      $scope.pet = Pet.get({petSlug: $stateParams.petSlug}, function () {
-      });
+      var Pet = $resource('/api/pet/:petSlug', {petSlug: '@slug'});
+      $scope.pet = Pet.get({petSlug: $stateParams.petSlug});
+      console.log($scope.pet);
+      $scope.currentCoords = $scope.pet.coords;
     };
 
       //MAPS
@@ -2912,10 +2949,15 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
       $scope.marker.coords = $scope.currentCoords;
     };
 
+    $scope.setCurrentLocation = function(){
+      var current = $scope.getGeoLocalization();
+      $scope.map = {center: current, zoom: 18};
+      $scope.marker.coords = current;
+    };
+
     $scope.getGeoLocalization = function () {
       geolocation.getLocation().then(function (data) {
-        $scope.currentCoords = {latitude: data.coords.latitude, longitude: data.coords.longitude};
-        $scope.setGeoLocation();
+        return {latitude: data.coords.latitude, longitude: data.coords.longitude};
       });
     };
 
@@ -2944,7 +2986,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
     };
 
     $scope.setPetMissing = function (value) {
-      $http.put('pets/' + $scope.pet._id + '/missing', {isMissing: value}).
+      $http.put('/api/pets/' + $scope.pet._id + '/missing', {isMissing: value}).
         success(function (data, status, headers, config) {
           console.log(data);
           $scope.pet.isMissing = data.isMissing;
@@ -2960,7 +3002,7 @@ angular.module('pets').controller('PetsController', ['$scope', '$resource', '$st
 
     $scope.findMissing = function() {
       console.log('missing');
-      $http.get('/pets/missing').
+      $http.get('/api/pets/missing').
         success(function(data, status, headers, config) {
           $scope.pets = data;
         }).
@@ -3082,7 +3124,7 @@ angular.module('pets').directive('qr',[ '$http',
 //Pets service used to communicate Pets REST endpoints
 angular.module('pets').factory('Pets', ['$resource',
 	function($resource) {
-		return $resource('pets/:petId', { petId: '@_id'
+		return $resource('api/pets/:petId', { petId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3090,6 +3132,7 @@ angular.module('pets').factory('Pets', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -3229,7 +3272,7 @@ angular.module('petgenres').directive('petTypeSelector', [ 'Pettypes', '$localSt
 //Pettypes service used to communicate Pettypes REST endpoints
 angular.module('pettypes').factory('Pettypes', ['$resource',
 	function($resource) {
-		return $resource('pettypes/:pettypeId', { pettypeId: '@_id'
+		return $resource('api/pettypes/:pettypeId', { pettypeId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3237,6 +3280,7 @@ angular.module('pettypes').factory('Pettypes', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -3347,7 +3391,7 @@ angular.module('rescues').controller('RescuesController', ['$scope', '$statePara
 //Rescues service used to communicate Rescues REST endpoints
 angular.module('rescues').factory('Rescues', ['$resource',
 	function($resource) {
-		return $resource('rescues/:rescueId', { rescueId: '@_id'
+		return $resource('api/rescues/:rescueId', { rescueId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3355,6 +3399,7 @@ angular.module('rescues').factory('Rescues', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 //Setting up route
@@ -3481,7 +3526,7 @@ angular.module('roles').directive('roleUserSelector', [ 'Roles', '$localStorage'
 //Roles service used to communicate Roles REST endpoints
 angular.module('roles').factory('Roles', ['$resource',
 	function($resource) {
-		return $resource('roles/:roleId', { roleId: '@_id'
+		return $resource('api/roles/:roleId', { roleId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3489,6 +3534,7 @@ angular.module('roles').factory('Roles', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -3599,7 +3645,7 @@ angular.module('shelters').controller('SheltersController', ['$scope', '$statePa
 //Shelters service used to communicate Shelters REST endpoints
 angular.module('shelters').factory('Shelters', ['$resource',
 	function($resource) {
-		return $resource('shelters/:shelterId', { shelterId: '@_id'
+		return $resource('api/shelters/:shelterId', { shelterId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3607,6 +3653,7 @@ angular.module('shelters').factory('Shelters', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -3716,7 +3763,7 @@ angular.module('shops').controller('ShopsController', ['$scope', '$stateParams',
 //Shops service used to communicate Shops REST endpoints
 angular.module('shops').factory('Shops', ['$resource',
 	function($resource) {
-		return $resource('shops/:shopId', { shopId: '@_id'
+		return $resource('api/shops/:shopId', { shopId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3724,6 +3771,7 @@ angular.module('shops').factory('Shops', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -3834,7 +3882,7 @@ angular.module('trainers').controller('TrainersController', ['$scope', '$statePa
 //Trainers service used to communicate Trainers REST endpoints
 angular.module('trainers').factory('Trainers', ['$resource',
 	function($resource) {
-		return $resource('trainers/:trainerId', { trainerId: '@_id'
+		return $resource('api/trainers/:trainerId', { trainerId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'
@@ -3842,6 +3890,7 @@ angular.module('trainers').factory('Trainers', ['$resource',
 		});
 	}
 ]);
+
 'use strict';
 
 // Config HTTP Error Handling
@@ -4086,13 +4135,14 @@ angular.module('users').factory('Authentication', [
 // Users service used for communicating with the users REST endpoint
 angular.module('users').factory('Users', ['$resource',
 	function($resource) {
-		return $resource('users', {}, {
+		return $resource('api/users', {}, {
 			update: {
 				method: 'PUT'
 			}
 		});
 	}
 ]);
+
 'use strict';
 
 // Configuring the Articles module
@@ -4203,7 +4253,7 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 //Vets service used to communicate Vets REST endpoints
 angular.module('vets').factory('Vets', ['$resource',
 	function($resource) {
-		return $resource('vets/:vetId', { vetId: '@_id'
+		return $resource('api/vets/:vetId', { vetId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'

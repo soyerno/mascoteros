@@ -76,13 +76,15 @@
 
 .input-group input {
     border: 0;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
     padding-right: 30px;
 }
 .input-group input:focus,
 .input-group input:active {
     outline: 0;
-    box-shadow: none;
+    -webkit-box-shadow: none;
+            box-shadow: none;
 }
 .input-group-btn:last-child>.btn {
     z-index: 2;
@@ -98,5 +100,6 @@
     border: 2px solid #ddd;
     border-radius: 20px;
     background-color: #222;
-    box-shadow: 20px 20px 40px #887;
+    -webkit-box-shadow: 20px 20px 40px #887;
+            box-shadow: 20px 20px 40px #887;
 }
