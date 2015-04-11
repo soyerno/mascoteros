@@ -47,10 +47,10 @@
                         data-ng-if="subitem.shouldRender(authentication.user);" 
                         ui-route="{{subitem.uiRoute}}" 
                         ng-class="{active: $uiRoute}">
-                           <a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
+                           <a href="/{{subitem.link}}" data-ng-bind="subitem.title"></a>
                   </li>
                </ul>
-               <a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
+               <a ng-switch-default href="/{{item.link}}" data-ng-bind="item.title"></a>
          </li>
       </ul>  -->
       <!-- END Left navbar-->
@@ -78,13 +78,13 @@
             </a>
             <ul class="dropdown-menu">
                <li>
-                  <a href="/#!/settings/profile">Editar Perfíl</a>
+                  <a href="/settings/profile">Editar Perfíl</a>
                </li>
                <li>
-                  <a href="/#!/settings/accounts">Administrar Cuentas</a>
+                  <a href="/settings/accounts">Administrar Cuentas</a>
                </li>
                <li data-ng-show="authentication.user.provider === 'local'">
-                  <a href="/#!/settings/password">Change Password</a>
+                  <a href="/settings/password">Change Password</a>
                </li>
                <li class="divider"></li>
                <li>
@@ -95,11 +95,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right ml0 mr0" data-ng-hide="authentication.user">
          <!--<li ui-route="/signup" ng-class="{active: $uiRoute}">
-            <a href="/#!/signup">Sign Up</a>
+            <a href="/signup">Sign Up</a>
          </li>-->
          <li class="divider-vertical"></li>
          <li ui-route="/signin" ng-class="{active: $uiRoute}">
-            <a href="/#!/signin">Entrar</a>
+            <a href="/signin">Entrar</a>
          </li>
       </ul>
       <!-- END Right Navbar-->

@@ -13,7 +13,7 @@
                         <ul class="list-inline list-unstyled">
                             <li><span><i class="fa fa-calendar"></i> {{event.date | amCalendar }} </span></li>
                             <li data-ng-show="((authentication.user) && (authentication.user._id == event.user._id))">
-                                <a class="btn btn-primary" href="/#!/events/{{event._id}}/edit">
+                                <a class="btn btn-primary" href="/events/{{event._id}}/edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </li>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <h4 class="alert alert-purple text-center pv-lg" data-ng-if="events.$resolved && !events.length">
-        No tienes eventos creados, deseas <a href="/#!/events/create" class="text-yellow">crear uno</a>?
+        No tienes eventos creados, deseas <a href="/events/create" class="text-yellow">crear uno</a>?
     </h4>
 </section>
 <!--<section data-ng-controller="PetsController" data-ng-init="find()">
@@ -49,6 +49,6 @@
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!pets.$resolved || pets.length">
-    	No Pets yet, why don't you <a href="/#!/pets/create">create one</a>?
+    	No Pets yet, why don't you <a href="/pets/create">create one</a>?
     </div>
 </section>-->

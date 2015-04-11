@@ -4,7 +4,7 @@
 	</div>
 	<div ng-bind-html="faq.content"></div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == faq.user._id))">
-		<a class="btn btn-primary" href="/#!/faqs/{{faq._id}}/edit">
+		<a class="btn btn-primary" href="/faqs/{{faq._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>
 		</a>
 		<a class="btn btn-primary" data-ng-click="remove();">

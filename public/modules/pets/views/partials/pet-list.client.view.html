@@ -5,12 +5,12 @@
     <div class="panel-body text-center bg-center" style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')">
       <div class="row row-table">
         <div class="col-xs-12 text-white">
-          <a data-ng-href="#!/pet/{{pet.slug}}">
+          <a data-ng-href="/pet/{{pet.slug}}">
             <img ng-src="{{pet.picture | cloudinaryProfile}}" alt="{{pet.name}}" class="img-thumbnail thumb128">
           </a>
           <h3 class="m0">{{pet.name}}</h3>
           <p class="m0">
-            <a data-ng-href="#!/pet/{{pet.slug}}" style="color: white;"><em class="fa fa-paw"></em> {{pet.slug}}</a></p>
+            <a data-ng-href="/pet/{{pet.slug}}" style="color: white;"><em class="fa fa-paw"></em> {{pet.slug}}</a></p>
         </div>
       </div>
     </div>
