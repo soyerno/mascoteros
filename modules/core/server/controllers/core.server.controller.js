@@ -26,3 +26,45 @@ exports.renderNotFound = function(req, res) {
 		url: req.originalUrl
 	});
 };
+
+
+exports.upload =  function (req, res, next) {
+	if (req.files) {
+
+		var provider = req.body.imageProvider || 'cloudinary';
+		Object.keys(req.files).forEach(function (field) {
+			if (provider === 'cloudinary') {
+				var options = {};
+				if (req.files[field].path.indexOf('.webm') !== -1) {
+					options.resource_type = 'raw';
+				}
+
+				cloudinary.uploader.upload(req.files[field].path, function (result) {
+					var url = result.url;
+					if (process.env.CLOUDINARY_PROXY_CNAME) {
+						url = url.replace(/res\.cloudinary\.com/, process.env.CLOUDINARY_PROXY_CNAME);
+					}
+					res.jsonp({
+						url: url
+					});
+					/*helpers.handleResponse(res, null, {
+					 url: url
+					 }, next);*/
+				}, options);
+			} else if (provider === 'imgur') {
+				imgur(fs.readFileSync(req.files[field].path), function (err, url) {
+					if (err) {
+						console.log(err);
+					}
+					res.jsonp({
+						url: url
+					});
+					/*
+					 helpers.handleResponse(res, null, {
+					 url: url
+					 }, next);*/
+				});
+			}
+		});
+	}
+};

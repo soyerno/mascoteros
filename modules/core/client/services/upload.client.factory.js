@@ -21,7 +21,7 @@ angular.module('core').factory('Upload', ['$window', '$q', 'Restangular',
                         }
 
                         Restangular
-                            .one('upload')
+                            .one('api/upload')
                             .withHttpConfig({transformRequest: angular.identity})
                             .customPOST(data, null, {}, {'Content-Type': undefined})
                             .then(function (file) {
