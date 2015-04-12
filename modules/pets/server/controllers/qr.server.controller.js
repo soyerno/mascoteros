@@ -3,15 +3,20 @@
 /**
  * Module dependencies.
  */
-var qr = require('qr-image'),
-	_ = require('lodash');
+
+var _ = require('lodash'),
+	path = require('path'),
+	qr = require('qr-image'),
+	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 
 exports.generate = function(req, res) {
+
 	//req.param('url');
 	/*var code = qr.imageSync(req.param('url'), { type: 'image/png' });
 	res.type('image/png');
 	code.pipe(res);*/
+
 	var ec_level = 'M',
 		options = {
 			margin: 0

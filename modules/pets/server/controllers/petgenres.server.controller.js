@@ -3,10 +3,11 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-	errorHandler = require('./errors.server.controller'),
+var _ = require('lodash'),
+	path = require('path'),
+	mongoose = require('mongoose'),
 	Petgenre = mongoose.model('Petgenre'),
-	_ = require('lodash');
+	errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
  * Create a Petgenre
