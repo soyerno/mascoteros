@@ -22,7 +22,6 @@ var ApplicationConfiguration = (function() {
 		'ui.utils',
 		'ui.checkbox',
 		'imageuploaders',
-		'ngStorage',
 		'petgenres',
 		'pettypes',
 		'angularMoment',

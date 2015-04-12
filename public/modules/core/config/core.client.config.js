@@ -45,7 +45,10 @@ angular.module('core').run(['Menus',
   cfpLoadingBarProvider.parentSelector = '.wrapper > section';
 }])
 .config(function($locationProvider){
-  $locationProvider.html5Mode(true).hashPrefix('!');
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  }).hashPrefix('');
 })
 .config(function(uiGmapGoogleMapApiProvider) {
   uiGmapGoogleMapApiProvider.configure({

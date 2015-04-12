@@ -9,7 +9,10 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
 
   // Set the following to true to enable the HTML5 Mode
   // You may have to set <base> tag in index and a routing configuration in your server
-  $locationProvider.html5Mode(false);
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
 
   // default route
   $urlRouterProvider.otherwise('/home');
@@ -17,6 +20,9 @@ function ($stateProvider, $locationProvider, $urlRouterProvider, helper) {
   //
   // Application Routes
   // -----------------------------------
+
+  $urlRouterProvider.otherwise('/404');
+
   $stateProvider
     .state('app', {
       // url: '/',
