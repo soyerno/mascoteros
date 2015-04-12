@@ -20,6 +20,18 @@ exports.invokeRolesPolicies = function() {
 		}, {
 			resources: '/api/pets/:petId',
 			permissions: '*'
+		}, {
+			resources: '/api/petgenres',
+			permissions: '*'
+		}, {
+			resources: '/api/petgenres/:petId',
+			permissions: '*'
+		}, {
+			resources: '/api/pettypes/:petId',
+			permissions: '*'
+		}, {
+			resources: '/api/pettypes/:petId',
+			permissions: '*'
 		}]
 	}, {
 		roles: ['user'],
@@ -29,6 +41,18 @@ exports.invokeRolesPolicies = function() {
 		}, {
 			resources: '/api/pets/:petId',
 			permissions: ['get']
+		},{
+			resources: '/api/petgenres',
+			permissions: ['get']
+		}, {
+			resources: '/api/petgenres/:petId',
+			permissions: ['get']
+		}, {
+			resources: '/api/pettypes/:petId',
+			permissions: ['get']
+		}, {
+			resources: '/api/pettypes/:petId',
+			permissions: ['get']
 		}]
 	}, {
 		roles: ['guest'],
@@ -37,6 +61,18 @@ exports.invokeRolesPolicies = function() {
 			permissions: ['get']
 		}, {
 			resources: '/api/pets/:petId',
+			permissions: ['get']
+		}, {
+			resources: '/api/petgenres',
+			permissions: ['get']
+		}, {
+			resources: '/api/petgenres/:petId',
+			permissions: ['get']
+		}, {
+			resources: '/api/pettypes/:petId',
+			permissions: ['get']
+		}, {
+			resources: '/api/pettypes/:petId',
 			permissions: ['get']
 		}]
 	}]);

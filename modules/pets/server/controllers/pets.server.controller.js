@@ -97,3 +97,68 @@ exports.petByID = function(req, res, next, id) {
 		next();
 	});
 };
+
+exports.petBySlug = function(req, res, next, slug) {
+	Pet.findOne({slug: slug}).populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pet) {
+		if (err) return next(err);
+		if (! pet) return next(new Error('Failed to load Pet ' + slug));
+		req.pet = pet;
+		next();
+	});
+};
+
+/**
+ * Pet Missing
+ */
+
+exports.listMissing = function(req, res) {
+
+	Pet.find({isMissing: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(pets);
+		}
+	});
+};
+
+exports.updateMissing = function(req, res) {
+
+	console.log(req.body.isMissing);
+	console.log('-----------------------------------');
+
+	var query = { _id: req.pet._id };
+
+	Pet.findOne(query, function (err, doc){
+		doc.isMissing = req.body.isMissing;
+		doc.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				console.log(doc);
+				res.jsonp(doc);
+			}
+		});
+	});
+};
+
+/**
+ * Pet Adoption
+ */
+
+exports.listAdoption = function(req, res) {
+
+	Pet.find({isAdoption: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(pets);
+		}
+	});
+};

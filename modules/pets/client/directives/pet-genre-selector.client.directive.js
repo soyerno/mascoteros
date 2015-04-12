@@ -3,7 +3,7 @@
 angular.module('pets').directive('petGenreSelector', [ 'Petgenres', '$localStorage',
 	function(Petgenres, $localStorage) {
 		return {
-			templateUrl: '/modules/pets/views/partials/pet-genre-selector.html',
+			templateUrl: 'modules/pets/views/partials/pet-genre-selector.html',
 			restrict: 'E',
 			replace: true,
 			link: function(scope, element, attrs) {

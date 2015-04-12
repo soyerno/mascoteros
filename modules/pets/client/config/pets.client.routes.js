@@ -26,6 +26,7 @@ angular.module('pets').config(['$stateProvider',
 			url: '/:petId/edit',
 			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
 		}).
+			//GENRES
 		state('petsgenres', {
 			abstract: true,
 			url: '/petsgenres',
@@ -47,6 +48,7 @@ angular.module('pets').config(['$stateProvider',
 			url: '/:petgenreId/edit',
 			templateUrl: 'modules/pets/views/edit-petgenre.client.view.html'
 		}).
+			//TYPES
 		state('pettype', {
 			abstract: true,
 			url: '/petstypes',
