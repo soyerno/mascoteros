@@ -27,7 +27,7 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/petgenres/:petId',
 			permissions: '*'
 		}, {
-			resources: '/api/pettypes/:petId',
+			resources: '/api/pettypes',
 			permissions: '*'
 		}, {
 			resources: '/api/pettypes/:petId',
@@ -48,7 +48,7 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/petgenres/:petId',
 			permissions: ['get']
 		}, {
-			resources: '/api/pettypes/:petId',
+			resources: '/api/pettypes',
 			permissions: ['get']
 		}, {
 			resources: '/api/pettypes/:petId',
@@ -69,7 +69,7 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/petgenres/:petId',
 			permissions: ['get']
 		}, {
-			resources: '/api/pettypes/:petId',
+			resources: '/api/pettypes',
 			permissions: ['get']
 		}, {
 			resources: '/api/pettypes/:petId',
