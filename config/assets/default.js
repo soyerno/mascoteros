@@ -20,7 +20,8 @@ module.exports = {
 				'public/lib/restangular/dist/restangular.min.js',
 				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
 				'public/lib/angular-google-maps/dist/angular-google-maps.js',
-				'public/lib/angular-datepicker/dist/index.js'
+				'public/lib/angular-datepicker/dist/index.js',
+				'public/lib/ngstorage/ngStorage.js'
 			],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},

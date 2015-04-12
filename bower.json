@@ -13,7 +13,8 @@
     "angular-ui-router": "~0.2.10",
     "angular-file-upload": "~1.1.5",
     "restangular": "~1.5.1",
-    "angularjs-geolocation": "~0.1.1"
+    "angularjs-geolocation": "~0.1.1",
+    "ngstorage": "~0.3.0"
   },
   "resolutions": {
     "lodash": "~3.6.0"

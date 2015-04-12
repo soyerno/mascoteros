@@ -1,7 +1,18 @@
 'use strict';
 
 // Pets controller
-angular.module('pets').controller('PetsController', ['$scope', '$resource', '$stateParams', '$location', 'Authentication', 'Pets', 'Upload', 'geolocation', /*'Notifications',*/ '$http', '$timeout',
+angular.module('pets').controller('PetsController', [
+	'$scope',
+	'$resource',
+	'$stateParams',
+	'$location',
+	'Authentication',
+	'Pets',
+	'Upload',
+	'geolocation',
+	/*'Notifications',*/
+	'$http',
+	'$timeout',
 	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, /*Notifications,*/ $http, $timeout) {
 		$scope.authentication = Authentication;
 

@@ -21,5 +21,29 @@ angular.module('pets').run(['Menus',
 			title: 'Create Pets',
 			state: 'pets.create'
 		});
+
+		// Add the dropdown list item
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'List PetGenres',
+			state: 'petgenres.list'
+		});
+
+		// Add the dropdown create item
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Create PetGenres',
+			state: 'petgenres.create'
+		});
+
+		// Add the dropdown list item
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'List PetTypes',
+			state: 'pettypes.list'
+		});
+
+		// Add the dropdown create item
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Create PetTypes',
+			state: 'pettypes.create'
+		});
 	}
 ]);

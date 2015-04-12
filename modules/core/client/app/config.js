@@ -14,7 +14,8 @@ var ApplicationConfiguration = (function() {
 		'restangular',
 		'geolocation',
 		'uiGmapgoogle-maps',
-		'datePicker'
+		'datePicker',
+		'ngStorage'
 	];
 
 	// Add a new vertical module

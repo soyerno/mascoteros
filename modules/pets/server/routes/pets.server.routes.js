@@ -21,12 +21,12 @@ module.exports = function(app) {
 		.delete(pets.delete);
 
 	//GENRES
-	app.route('/api/petgernres').all(petsPolicy.isAllowed)
+	app.route('/api/petgenres').all(petsPolicy.isAllowed)
 		.get(petgenres.list)
 		.post(petgenres.create);
 
 	// Single pet routes
-	app.route('/api/petgernres/:petId').all(petsPolicy.isAllowed)
+	app.route('/api/petgenres/:petId').all(petsPolicy.isAllowed)
 		.get(petgenres.read)
 		.put(petgenres.update)
 		.delete(petgenres.delete);

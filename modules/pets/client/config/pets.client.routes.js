@@ -27,34 +27,34 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
 		}).
 			//GENRES
-		state('petsgenres', {
+		state('petgenres', {
 			abstract: true,
-			url: '/petsgenres',
+			url: '/petgenres',
 			template: '<ui-view/>'
 		}).
-		state('list.petgenres', {
+		state('petgenres.list', {
 			url: '',
 			templateUrl: 'modules/pets/views/list-petgenres.client.view.html'
 		}).
-		state('petsgenres.create', {
+		state('petgenres.create', {
 			url: '/create',
 			templateUrl: 'modules/pets/views/create-petgenre.client.view.html'
 		}).
-		state('petsgenres.view', {
+		state('petgenres.view', {
 			url: '/:petgenreId',
 			templateUrl: 'modules/pets/views/view-petgenre.client.view.html'
 		}).
-		state('petsgenres.edit', {
+		state('petgenres.edit', {
 			url: '/:petgenreId/edit',
 			templateUrl: 'modules/pets/views/edit-petgenre.client.view.html'
 		}).
 			//TYPES
-		state('pettype', {
+		state('pettypes', {
 			abstract: true,
-			url: '/petstypes',
+			url: '/pettypes',
 			template: '<ui-view/>'
 		}).
-		state('list.pettypes', {
+		state('pettypes.list', {
 			url: '',
 			templateUrl: 'modules/pets/views/list-pettypes.client.view.html'
 		}).
