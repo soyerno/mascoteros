@@ -3,7 +3,7 @@
 angular.module('pets').directive('petTypeSelector', [ 'Pettypes', '$localStorage',
 	function(Pettypes, $localStorage) {
 		return {
-			templateUrl: '/modules/pettypes/views/partials/pet-type-selector.html',
+			templateUrl: '/modules/pets/views/partials/pet-type-selector.html',
 			restrict: 'E',
 			replace: true,
 			link: function(scope, element, attrs) {
