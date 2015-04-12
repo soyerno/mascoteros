@@ -3,7 +3,7 @@
 // Configuring the Pets module
 angular.module('pets').run(['Menus',
 	function(Menus) {
-		// Add the Pets dropdown item
+		// Add the pets dropdown item
 		Menus.addMenuItem('topbar', {
 			title: 'Pets',
 			state: 'pets',

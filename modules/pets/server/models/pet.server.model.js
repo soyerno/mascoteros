@@ -1,12 +1,12 @@
+
 'use strict';
 
 /**
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	URLSlugs = require('mongoose-url-slugs');
-
+	URLSlugs = require('mongoose-url-slugs'),
+	Schema = mongoose.Schema;
 /**
  * Pet Schema
  */
@@ -14,7 +14,7 @@ var PetSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Por favor, ingrese el nombre de la mascota',
+		required: 'Please fill Pet name',
 		trim: true
 	},
 	created: {
@@ -104,3 +104,4 @@ var PetSchema = new Schema({
 PetSchema.plugin(new URLSlugs('name', {field: 'slug'}));
 
 mongoose.model('Pet', PetSchema);
+

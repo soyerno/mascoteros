@@ -1,0 +1,7 @@
+<h3>Mascotas</h3>
+<section ng-init="findMissing()" class="row">
+	<pet-list></pet-list>
+	<h4 class="alert alert-purple text-center pv-lg" data-ng-if="!pets.length">
+		Actualmente no hay mascotas perdidas, deseas <a href="/pets/create" class="text-yellow">agregar una</a>?
+	</h4>
+</section>

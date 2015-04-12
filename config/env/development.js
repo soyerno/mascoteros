@@ -4,7 +4,7 @@ module.exports = {
 	//db: 'mongodb://localhost/mean-dev',
     db: 'mongodb://mascoteros:mascoteros@ds061371.mongolab.com:61371/heroku_app35295284',
 	app: {
-		title: 'www.mascoteros.net | Todo para las mascotas en un solo lugar'
+		title: 'Todo para las mascotas en un solo lugar'
 	},
 	facebook: {
         clientID: process.env.FACEBOOK_ID || '1428057644163313',

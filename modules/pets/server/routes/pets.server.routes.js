@@ -12,12 +12,12 @@ module.exports = function(app) {
 		.get(pets.list)
 		.post(pets.create);
 
-	// Single article routes
+	// Single pet routes
 	app.route('/api/pets/:petId').all(petsPolicy.isAllowed)
 		.get(pets.read)
 		.put(pets.update)
 		.delete(pets.delete);
 
-	// Finish by binding the article middleware
+	// Finish by binding the pet middleware
 	app.param('petId', pets.petByID);
 };

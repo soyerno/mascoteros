@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', 'Authentication',
-	function($scope, Authentication) {
+angular.module('core').controller('HomeController', ['$scope', 'Authentication', '$location',
+	function($scope, Authentication, $location) {
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
@@ -9,8 +9,8 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 			if($scope.authentication && $scope.authentication.user._id){
 				console.log($location);
 				var currentLocation = $location.path();
-				if(currentLocation != '/pets'){
-					$location.path('/pets');
+				if(currentLocation != '/'){
+					$location.path('/');
 				}
 			}
 		};

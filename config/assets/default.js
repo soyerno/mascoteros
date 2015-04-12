@@ -5,16 +5,22 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/angular-datepicker/dist/index.css'
 			],
 			js: [
+				'public/lib/lodash/lodash.min.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angular-file-upload/angular-file-upload.js'
+				'public/lib/angular-file-upload/angular-file-upload.js',
+				'public/lib/restangular/dist/restangular.min.js',
+				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
+				'public/lib/angular-google-maps/dist/angular-google-maps.js',
+				'public/lib/angular-datepicker/dist/index.js'
 			],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},
