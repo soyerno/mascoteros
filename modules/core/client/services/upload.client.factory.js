@@ -1,8 +1,8 @@
 'use strict';
 
 //Image updaload factory used for upload imagen to cludinary
-angular.module('core').factory('Upload', ['$window', '$q', 'Restangular',
-    function ($window, $q, Restangular) {
+angular.module('core').factory('Upload', ['$window', '$q',
+    function ($window, $q) {
         return {
             parse: function (fields) {
 
@@ -20,7 +20,19 @@ angular.module('core').factory('Upload', ['$window', '$q', 'Restangular',
                             data.append('imageProvider', fieldData.imageProvider);
                         }
 
-                        Restangular
+                        $http.post('api/upload', data, {
+                            transformRequest: angular.identity,
+                            headers: {'Content-Type': undefined}
+                        })
+                          .success(function(){
+                              fields[field] = file.url;
+                              deferred.resolve();
+                          })
+                          .error(function(){
+                          });
+                    }
+
+                     /*   Restangular
                             .one('api/upload')
                             .withHttpConfig({transformRequest: angular.identity})
                             .customPOST(data, null, {}, {'Content-Type': undefined})
@@ -33,7 +45,7 @@ angular.module('core').factory('Upload', ['$window', '$q', 'Restangular',
                         that.parse(fields[field]).then(function () {
                             deferred.resolve();
                         });
-                    }
+                    }*/
                 });
 
                 $q.all(requests).then(function () {
