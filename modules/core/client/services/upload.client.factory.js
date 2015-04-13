@@ -1,8 +1,8 @@
 'use strict';
 
 //Image updaload factory used for upload imagen to cludinary
-angular.module('core').factory('Upload', ['$window', '$q',
-    function ($window, $q) {
+angular.module('core').factory('Upload', ['$window', '$q', '$http',
+    function ($window, $q, $http) {
         return {
             parse: function (fields) {
 

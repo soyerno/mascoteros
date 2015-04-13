@@ -11,7 +11,6 @@ var ApplicationConfiguration = (function() {
 		'ui.bootstrap',
 		'ui.utils',
 		'angularFileUpload',
-		'restangular',
 		'geolocation',
 		'uiGmapgoogle-maps',
 		'datePicker',
