@@ -12,6 +12,7 @@ var ApplicationConfiguration = (function() {
 		'ui.utils',
 		'angularFileUpload',
 		'geolocation',
+		'restangular',
 		'uiGmapgoogle-maps',
 		'datePicker',
 		'ngStorage'

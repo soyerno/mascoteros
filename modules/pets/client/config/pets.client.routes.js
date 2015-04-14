@@ -12,15 +12,17 @@ angular.module('pets').config(['$stateProvider',
 		}).
 		state('pets.list', {
 			url: '',
-			templateUrl: 'modules/pets/views/list-pets.client.view.html'
+			templateUrl: 'modules/pets/views/list-pets.client.view.html',
+			controller: 'PetsController'
 		}).
 		state('pets.create', {
 			url: '/create',
-			templateUrl: 'modules/pets/views/create-pet.client.view.html'
+			templateUrl: 'modules/pets/views/create-pet.client.view.html',
 		}).
 		state('pets.view', {
 			url: '/:petId',
-			templateUrl: 'modules/pets/views/view-pet.client.view.html'
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			controller: 'PetsController'
 		}).
 		state('pets.edit', {
 			url: '/:petId/edit',

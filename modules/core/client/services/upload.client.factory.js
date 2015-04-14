@@ -24,11 +24,12 @@ angular.module('core').factory('Upload', ['$window', '$q', '$http',
                             transformRequest: angular.identity,
                             headers: {'Content-Type': undefined}
                         })
-                          .success(function(){
-                              fields[field] = file.url;
+                          .success(function(data){
+                              fields[field] = data.url;
                               deferred.resolve();
                           })
                           .error(function(){
+                                deferred.resolve();
                           });
                     }
 

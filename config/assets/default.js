@@ -17,7 +17,7 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
-
+				'public/lib/restangular/dist/restangular.js',
 				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
 				'public/lib/angular-google-maps/dist/angular-google-maps.js',
 				'public/lib/angular-datepicker/dist/index.js',

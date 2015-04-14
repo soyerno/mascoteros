@@ -48,8 +48,8 @@ module.exports = function(app) {
 	app.route('/api/pets/missing').all(petsPolicy.isAllowed)
 		.get(pets.listMissing);
 
-	app.route('/api/pets/buscar').all(petsPolicy.isAllowed)
-		.post(pets.list);
+	/*app.route('/api/pets/buscar').all(petsPolicy.isAllowed)
+		.post(pets.list);*/
 
 	/*app.route('/api/pets/:petId/addLike')
 		.get(users.requiresLogin, pets.read);*/
