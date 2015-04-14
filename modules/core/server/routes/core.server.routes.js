@@ -2,8 +2,10 @@
 
 module.exports = function(app) {
 	// Root routing
-	var core = require('../controllers/core.server.controller');
-	var multipart = require('connect-multiparty')();
+	var core = require('../controllers/core.server.controller'),
+	//multipart = require('connect-multiparty')(),
+	//multiparty = require('multiparty')(),
+	multer  = require('multer')();
 
 	// Define error pages
 	app.route('/server-error').get(core.renderServerError);
@@ -11,6 +13,6 @@ module.exports = function(app) {
 
 	// Define application route
 	app.route('/*').get(core.renderIndex);
-	app.route('/api/upload').post(multipart, core.upload);
+	app.route('/api/upload').post(multer, core.upload);
 
 };

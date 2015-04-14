@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-	//db: 'mongodb://localhost/mean-dev',
-    db: 'mongodb://mascoteros:mascoteros@ds061371.mongolab.com:61371/heroku_app35295284',
+	db: 'mongodb://localhost/mascoteros-dev',
+    //db: 'mongodb://mascoteros:mascoteros@ds061371.mongolab.com:61371/heroku_app35295284',
 	app: {
 		title: 'Todo para las mascotas en un solo lugar'
 	},
