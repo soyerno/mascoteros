@@ -18,7 +18,16 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/pets',
 			permissions: '*'
 		}, {
+			resources: '/api/pets/missing',
+			permissions: '*'
+		}, {
+			resources: '/api/pets/adoption',
+			permissions: '*'
+		}, {
 			resources: '/api/pets/:petId',
+			permissions: '*'
+		}, {
+			resources: '/api/pet/:petSlug',
 			permissions: '*'
 		}, {
 			resources: '/api/petgenres',
@@ -39,9 +48,18 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/pets',
 			permissions: ['get', 'post']
 		}, {
+			resources: '/api/pets/missing',
+			permissions: ['get']
+		}, {
+			resources: '/api/pets/adoption',
+			permissions: ['get']
+		}, {
 			resources: '/api/pets/:petId',
 			permissions: ['get']
-		},{
+		}, {
+			resources: '/api/pet/:petSlug',
+			permissions: ['get']
+		}, {
 			resources: '/api/petgenres',
 			permissions: ['get']
 		}, {
@@ -53,14 +71,23 @@ exports.invokeRolesPolicies = function() {
 		}, {
 			resources: '/api/pettypes/:petId',
 			permissions: ['get']
-		}]
+		},]
 	}, {
 		roles: ['guest'],
 		allows: [{
 			resources: '/api/pets',
 			permissions: ['get']
 		}, {
+			resources: '/api/pets/missing',
+			permissions: ['get']
+		}, {
+			resources: '/api/pets/adoption',
+			permissions: ['get']
+		}, {
 			resources: '/api/pets/:petId',
+			permissions: ['get']
+		}, {
+			resources: '/api/pet/:petSlug',
 			permissions: ['get']
 		}, {
 			resources: '/api/petgenres',

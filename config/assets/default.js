@@ -7,7 +7,9 @@ module.exports = {
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-datepicker/dist/index.css',
-				'public/lib/angular-socialshare/angular-socialshare.css'
+				'public/lib/angular-socialshare/angular-socialshare.css',
+				'public/lib/textAngular/src/textAngular.css',
+				'public/lib/font-awesome/css/font-awesome.css'
 			],
 			js: [
 				'public/lib/lodash/lodash.min.js',

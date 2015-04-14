@@ -14,7 +14,22 @@ module.exports = function(app) {
 		.get(pets.list)
 		.post(pets.create);
 
-	app.route('/api/pet/:petSlug')
+	/*app.route('/api/pets/buscar').all(petsPolicy.isAllowed)
+	 .post(pets.list);*/
+
+	/*app.route('/api/pets/:petId/addLike')
+	 .get(users.requiresLogin, pets.read);*/
+
+	app.route('/api/pets/adoption').all(petsPolicy.isAllowed)
+		.get(pets.listAdoption);
+
+	app.route('/api/pets/missing').all(petsPolicy.isAllowed)
+		.get(pets.listMissing);
+
+	app.route('/api/pets/:petId/missing').all(petsPolicy.isAllowed)
+		.put(pets.updateMissing);
+
+	app.route('/api/pet/:petSlug').all(petsPolicy.isAllowed)
 		.get(pets.read);
 
 	// Single pet routes
@@ -44,21 +59,6 @@ module.exports = function(app) {
 		.get(pettypes.read)
 		.put(pettypes.update)
 		.delete(pettypes.delete);
-
-	app.route('/api/pets/adoption').all(petsPolicy.isAllowed)
-		.get(pets.listAdoption);
-
-	app.route('/api/pets/missing').all(petsPolicy.isAllowed)
-		.get(pets.listMissing);
-
-	/*app.route('/api/pets/buscar').all(petsPolicy.isAllowed)
-		.post(pets.list);*/
-
-	/*app.route('/api/pets/:petId/addLike')
-		.get(users.requiresLogin, pets.read);*/
-
-	app.route('/api/pets/:petId/missing').all(petsPolicy.isAllowed)
-		.put(pets.updateMissing);
 
 
 	// Finish by binding the pet middleware

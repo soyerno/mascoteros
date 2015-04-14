@@ -15,6 +15,16 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: 'modules/pets/views/list-pets.client.view.html',
 			controller: 'PetsController'
 		}).
+		state('pets.list.adoption', {
+			url: '/adopciones',
+			templateUrl: 'modules/pets/views/list-pets-missing.client.view.html',
+			controller: 'PetsController'
+		}).
+		state('pets.list.missing', {
+			url: '/perdidos',
+			templateUrl: 'modules/pets/views/list-pets-adoption.client.view.html',
+			controller: 'PetsController'
+		}).
 		state('pets.create', {
 			url: '/create',
 			templateUrl: 'modules/pets/views/create-pet.client.view.html',
@@ -24,7 +34,11 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: 'modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
-
+		state('pets.edit', {
+			url: '/:petId/edit',
+			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
+		}).
+		//BY SLUG
 		state('pet', {
 			abstract: true,
 			url: '/pet',
@@ -35,12 +49,7 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: 'modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
-
-		state('pets.edit', {
-			url: '/:petId/edit',
-			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
-		}).
-			//GENRES
+		//GENRES
 		state('petgenres', {
 			abstract: true,
 			url: '/petgenres',
