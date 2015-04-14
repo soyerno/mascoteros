@@ -1,0 +1,26 @@
+{
+  "replaceConsole": true,
+  "appenders": [
+    { "type": "console" },
+    {
+      "type": "logLevelFilter",
+      "level": "ALL",
+      "appender": {
+        "type": "smtp",
+        "recipients": ["grimaldi.gerardo@gmail.com","desouza030689@gmail.com"],
+        "sender": "error@mascoteros.tv",
+        "sendInterval": 60,
+        "transport": "SMTP",
+        "SMTP": {
+          "host": "smtpout.secureserver.net",
+          "port": 465,
+          "secureConnection": true,
+          "auth": {
+            "user": "info@mascoteros.net",
+            "pass": "Hola.124"
+          }
+        }
+      }
+    }
+  ]
+}

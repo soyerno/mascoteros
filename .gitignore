@@ -9,3 +9,23 @@ public/dist/
 .idea/
 uploads
 modules/users/client/img/profie/uploads
+
+
+# sass cache folder
+.sass-cache
+
+# build and temp folders
+.tmp
+
+Admin.css
+Admin.css.map
+
+App.css
+App.css.map
+/doc/
+
+.idea/workspace.xml
+public/lib
+
+/config/logs
+
