@@ -3,6 +3,18 @@
 /**
  * Module dependencies.
  */
+var init = require('./config/init')(),
+	config = require('./config/config'),
+	mongoose = require('mongoose'),
+	log4js = require("log4js"),
+	logger = log4js.getLogger(),
+	chalk = require('chalk');
+
+log4js.configure(__dirname + "/config/logging.json");
+
+/**
+ * Module dependencies.
+ */
 var config = require('./config/config'),
 	mongoose = require('./config/lib/mongoose'),
 	express = require('./config/lib/express');
