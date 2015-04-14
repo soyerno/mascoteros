@@ -40,16 +40,20 @@ exports.renderNotFound = function(req, res) {
 
 exports.upload =  function (req, res, next) {
 	if (req.files) {
-		console.log(req.files);
-		var provider = req.body.imageProvider || 'cloudinary';
+		//var provider = req.body.imageProvider || 'cloudinary';
+		var provider = 'cloudinary';
 		Object.keys(req.files).forEach(function (field) {
+
 			if (provider === 'cloudinary') {
 				var options = {};
-				if (req.files[field].path.indexOf('.webm') !== -1) {
+				/*if (req.files[field].path.indexOf('.webm') !== -1) {
 					options.resource_type = 'raw';
-				}
-
+				}*/
+				console.log('cloudinary');
+				console.log(field);
 				cloudinary.uploader.upload(req.files[field].path, function (result) {
+					console.log(result);
+
 					var url = result.url;
 					if (process.env.CLOUDINARY_PROXY_CNAME) {
 						url = url.replace(/res\.cloudinary\.com/, process.env.CLOUDINARY_PROXY_CNAME);
@@ -61,6 +65,7 @@ exports.upload =  function (req, res, next) {
 					 url: url
 					 }, next);*/
 				}, options);
+
 			} else if (provider === 'imgur') {
 				imgur(fs.readFileSync(req.files[field].path), function (err, url) {
 					if (err) {
