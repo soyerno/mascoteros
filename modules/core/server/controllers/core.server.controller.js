@@ -1,5 +1,15 @@
 'use strict';
 
+var cloudinary = require('cloudinary'),
+	imgur = require('imsave')('f0a61bc62ea77fd'),
+	fs = require('fs');
+
+cloudinary.config({
+	cloud_name: 'hb1bxocye',
+	api_key: '869496637818748',
+	api_secret: 'ECsv4bAtyqACL3LatYy1D_xu34Q'
+});
+
 /**
  * Render the main applicaion page
  */
@@ -30,7 +40,7 @@ exports.renderNotFound = function(req, res) {
 
 exports.upload =  function (req, res, next) {
 	if (req.files) {
-
+		console.log(req.files);
 		var provider = req.body.imageProvider || 'cloudinary';
 		Object.keys(req.files).forEach(function (field) {
 			if (provider === 'cloudinary') {

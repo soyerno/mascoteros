@@ -21,7 +21,6 @@ var fs = require('fs'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
-	multer  = require('multer'),
 	path = require('path');
 
 module.exports = function(db) {
@@ -56,9 +55,7 @@ module.exports = function(db) {
 	}));
 
 	// Showing stack errors
-	app.set('showStackError', true);
-
-	app.use(multer({ dest: '/uploads/'}))
+	app.set('showStackError', true);s
 
 	// Set swig as the template engine
 	app.engine('server.view.html', consolidate[config.templateEngine]);
