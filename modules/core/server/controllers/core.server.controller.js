@@ -40,8 +40,8 @@ exports.renderNotFound = function(req, res) {
 
 exports.upload =  function (req, res, next) {
 	if (req.files) {
-		//var provider = req.body.imageProvider || 'cloudinary';
-		var provider = 'cloudinary';
+		var provider = req.body.imageProvider || 'cloudinary';
+		//var provider = 'cloudinary';
 		Object.keys(req.files).forEach(function (field) {
 
 			if (provider === 'cloudinary') {
@@ -49,9 +49,11 @@ exports.upload =  function (req, res, next) {
 				/*if (req.files[field].path.indexOf('.webm') !== -1) {
 					options.resource_type = 'raw';
 				}*/
-				console.log('cloudinary');
-				console.log(field);
+
+				console.log(req.files[field].path);
+
 				cloudinary.uploader.upload(req.files[field].path, function (result) {
+
 					console.log(result);
 
 					var url = result.url;

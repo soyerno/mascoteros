@@ -53,7 +53,9 @@ angular.module('pets').controller('PetsController', [
 
 			// Redirect after save
 			Upload.parse(pet).then(function () {
+				console.log('postcloudinary', pet);
 				pet.$save(function (response) {
+					console.log(response);
 					$location.path('pet/' + response.slug);
 					// Clear form fields
 					$scope.name = '';
