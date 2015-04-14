@@ -15,7 +15,11 @@ var ApplicationConfiguration = (function() {
 		'restangular',
 		'uiGmapgoogle-maps',
 		'datePicker',
-		'ngStorage'
+		'ngStorage',
+		'textAngular',
+		'angularMoment',
+		'ui.checkbox',
+		'djds4rce.angular-socialshare',
 	];
 
 	// Add a new vertical module

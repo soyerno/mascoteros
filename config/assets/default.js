@@ -6,7 +6,8 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-				'public/lib/angular-datepicker/dist/index.css'
+				'public/lib/angular-datepicker/dist/index.css',
+				'public/lib/angular-socialshare/angular-socialshare.css'
 			],
 			js: [
 				'public/lib/lodash/lodash.min.js',
@@ -21,7 +22,16 @@ module.exports = {
 				'public/lib/angularjs-geolocation/dist/angularjs-geolocation.min.js',
 				'public/lib/angular-google-maps/dist/angular-google-maps.js',
 				'public/lib/angular-datepicker/dist/index.js',
-				'public/lib/ngstorage/ngStorage.js'
+				'public/lib/ngstorage/ngStorage.js',
+				'public/lib/textAngular/dist/textAngular.min.js',
+				'public/lib/textAngular/dist/textAngular-rangy.min.js',
+				'public/lib/textAngular/dist/textAngular-sanitize.min.js',
+				'public/lib/moment/moment.js',
+				'public/lib/angular-moment/angular-moment.js',
+				'public/lib/moment/locale/es.js',
+				'http://platform.twitter.com/widgets.js',
+				'public/lib/angular-socialshare/angular-socialshare.js',
+				'public/lib/angular-bootstrap-checkbox-fa/angular-bootstrap-checkbox.js'
 			],
 			tests: ['public/lib/angular-mocks/angular-mocks.js']
 		},

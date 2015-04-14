@@ -92,7 +92,7 @@ exports.list = function(req, res) {
  * Pet middleware
  */
 exports.petByID = function(req, res, next, id) {
-	Pet.findById(id).populate('user', 'displayName').exec(function(err, pet) {
+	Pet.findById(id).populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pet) {
 		if (err) return next(err);
 		if (!pet) return next(new Error('Failed to load pet ' + id));
 		req.pet = pet;

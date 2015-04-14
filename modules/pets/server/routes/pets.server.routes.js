@@ -14,6 +14,9 @@ module.exports = function(app) {
 		.get(pets.list)
 		.post(pets.create);
 
+	app.route('/api/pet/:petSlug')
+		.get(pets.read);
+
 	// Single pet routes
 	app.route('/api/pets/:petId').all(petsPolicy.isAllowed)
 		.get(pets.read)

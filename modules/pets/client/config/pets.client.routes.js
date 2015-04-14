@@ -24,6 +24,18 @@ angular.module('pets').config(['$stateProvider',
 			templateUrl: 'modules/pets/views/view-pet.client.view.html',
 			controller: 'PetsController'
 		}).
+
+		state('pet', {
+			abstract: true,
+			url: '/pet',
+			template: '<ui-view/>'
+		}).
+		state('pet.viewSlug', {
+			url: '/:petSlug',
+			templateUrl: 'modules/pets/views/view-pet.client.view.html',
+			controller: 'PetsController'
+		}).
+
 		state('pets.edit', {
 			url: '/:petId/edit',
 			templateUrl: 'modules/pets/views/edit-pet.client.view.html'
