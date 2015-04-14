@@ -1,5 +1,5 @@
-<h3>Mascotas</h3>
-<section data-ng-init="findAdoptions()" class="row">
+<h3>Mascotas en adopción</h3>
+<section data-ng-controller="PetsController" data-ng-init="findAdoptions()" class="row">
   <pet-list></pet-list>
   <h4 class="alert alert-purple text-center pv-lg" data-ng-if="!pets.length">
       Actualmente no hay mascotas en adopción, deseas <a href="/pets/create" class="text-yellow">agregar una</a>?

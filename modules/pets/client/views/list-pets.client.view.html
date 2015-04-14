@@ -1,5 +1,5 @@
-<h3>Mascotas</h3>
-<section data-ng-init="find()" class="row">
+<h3>Tus mascotas</h3>
+<section data-ng-controller="PetsController" data-ng-init="find()" class="row">
   <pet-list></pet-list>
   <h4 class="alert alert-purple text-center pv-lg" data-ng-if="!pets.length">
       No tienes mascotas creadas, deseas <a href="/pets/create" class="text-yellow">crear una</a>?
