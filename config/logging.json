@@ -8,7 +8,7 @@
       "appender": {
         "type": "smtp",
         "recipients": ["grimaldi.gerardo@gmail.com","desouza030689@gmail.com"],
-        "sender": "error@mascoteros.tv",
+        "sender": "info@mascoteros.net",
         "sendInterval": 60,
         "transport": "SMTP",
         "SMTP": {
