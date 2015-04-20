@@ -40,7 +40,13 @@ module.exports = function(db) {
 	app.locals.jsFiles = config.getJavaScriptAssets();
 	app.locals.cssFiles = config.getCSSAssets();
 
-	// Passing the request url to environment locals
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+  // Passing the request url to environment locals
 	app.use(function(req, res, next) {
 		res.locals.url = req.protocol + '://' + req.headers.host + req.url;
 		next();
@@ -139,6 +145,8 @@ module.exports = function(db) {
 			error: 'Not Found'
 		});
 	});
+
+
 
 	if (process.env.NODE_ENV === 'secure') {
 		// Log SSL usage
