@@ -4,7 +4,7 @@
     { "type": "console" },
     {
       "type": "logLevelFilter",
-      "level": "ALL",
+      "level": "ERROR",
       "appender": {
         "type": "smtp",
         "recipients": ["info@mascoteros.net", "grimaldi.gerardo@gmail.com", "desouza030689@gmail.com"],
