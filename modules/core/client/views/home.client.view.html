@@ -1,4 +1,5 @@
 <header class="header landing" data-ng-controller="HomeController" data-ng-init="checkAuthentication()" ng-cloak>
+	<div ng-if="authentication.user">User: {{authentication.user}}</div>
 	<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInDown animated">
 		<div class="row">
 			<div class="col-md-5">

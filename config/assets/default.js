@@ -10,11 +10,13 @@ module.exports = {
 				'public/lib/angular-datepicker/dist/index.css',
 				'public/lib/angular-socialshare/angular-socialshare.css',
 				'public/lib/textAngular/src/textAngular.css',
-				'public/lib/font-awesome/css/font-awesome.css'
+				'public/lib/font-awesome/css/font-awesome.css',
+				'public/lib/animate.css/animate.min.css'
 			],
 			js: [
 				'public/lib/lodash/lodash.min.js',
 				'public/lib/angular/angular.js',
+				'public/lib/wowjs/dist/wow.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
