@@ -1,121 +1,128 @@
-<header class="header landing" data-ng-controller="HomeController" data-ng-init="checkAuthentication()" ng-cloak>
-	<div ng-if="authentication.user">User: {{authentication.user}}</div>
-	<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInDown animated">
-		<div class="row">
-			<div class="col-md-5">
-				<div class="content">
-					<div class="pull-middle">
-						<h1 class="page-header">La nueva forma de cuidar a tu mascota, gratis!</h1>
-						<p class="lead">
-							Somos un portal que unifica servicios para dueños de mascotas, hogares, refugios, veterinarias, paseadores, entrenadores, eventos, proovedores de articulos para mascotas y más.
-						</p>
-						<p class="lead">Ingresá con tus redes sociales, añadí tu mascota y disfruta de nuestros beneficios.</p>
-						<div class="widget">
-							<h3>Ingresar:</h3>
-							<div data-ng-controller="AuthenticationController">
-								<div class="col-md-12 text-center">
-									<a href="/api/auth/facebook" target="_self" class="undecorated-link">
-										<img src="/modules/users/img/buttons/facebook.png">
-									</a>
-									<a href="/api/auth/twitter" target="_self" class="undecorated-link">
-										<img src="/modules/users/img/buttons/twitter.png">
-									</a>
-									<a href="/api/auth/google" target="_self" class="undecorated-link">
-										<img src="/modules/users/img/buttons/google.png">
-									</a>
+<div data-ng-controller="HomeController" data-ng-init="checkAuthentication()" >
+	<header class="header landing" ng-cloak ng-if="!authentication.user">
+		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInLeft animated">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="content">
+						<div class="pull-middle">
+							<h1 class="page-header">La nueva forma de cuidar a tu mascota, gratis!</h1>
+							<p class="lead">
+								Somos un portal que unifica servicios para dueños de mascotas, hogares, refugios, veterinarias, paseadores, entrenadores, eventos, proovedores de articulos para mascotas y más.
+							</p>
+							<p class="lead">Ingresá con tus redes sociales, añadí tu mascota y disfruta de nuestros beneficios.</p>
+							<div class="widget">
+								<h3>Ingresar:</h3>
+								<div data-ng-controller="AuthenticationController">
+									<div class="col-md-12 text-center">
+										<a href="/api/auth/facebook" target="_self" class="undecorated-link">
+											<img src="/modules/users/img/buttons/facebook.png">
+										</a>
+										<a href="/api/auth/twitter" target="_self" class="undecorated-link">
+											<img src="/modules/users/img/buttons/twitter.png">
+										</a>
+										<a href="/api/auth/google" target="_self" class="undecorated-link">
+											<img src="/modules/users/img/buttons/google.png">
+										</a>
+									</div>
 								</div>
 							</div>
+							<!--<button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Facebook</button>
+							<button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Twitter</button>-->
 						</div>
-						<!--<button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Facebook</button>
-                        <button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Twitter</button>-->
 					</div>
 				</div>
-			</div>
-			<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
-				<div class="phone">
-					<img class="img-responsive img-rounded" src="/modules/core/img/cel1.png">
-				</div>
-			</div>
-		</div>
-	</div>
-</header>
-<!-- START DOWNLOAD-->
-<section id="download" class="download landing">
-	<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInDown animated">
-		<h2 class="h1 page-header">Bajate la app mascotera!</h2>
-		<p class="lead">Scanea a tu mascota, subí las mascotas de tus amigos y más!</p>
-		<div data-wow-offset="100">
-			<a href="" class="btn btn-lg btn-primary">
-				<em class="fa fa-apple"></em> Itunes Store</a>
-			<a href="" class="btn btn-lg btn-primary wow fadeInDown animated">
-				<em class="fa fa-android"></em> Play Store</a>
-		</div>
-		<p class="lead">(proximamente)</p>
-	</div>
-</section>
-<!-- END DOWNLOAD-->
-<section class="section landing">
-	<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInDown animated">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
-				<div class="phone">
-					<img class="img-responsive img-rounded" src="/modules/core/img/cel2.png">
-				</div>
-			</div>
-			<div class="col-md-5">
-				<div class="content">
-					<div class="pull-middle">
-						<h2 class="h1 page-header">Descubrí la nueva forma de cuidar a tu mascota.</h2>
-						<ul class="media-list">
-							<li class="media">
-								<a class="media-left" href="#">
-									<span class="fa fa-cloud icon text-success"></span>
-								</a>
-								<div class="media-body">
-									<h3 class="media-heading">Id para tu mascota.</h3>
-									<p>Registrate, imprimí y listo. Desde un celular escanea el codigo QR y podes ver el perfil de tu mascota, totalmente gratis.</p>
-								</div>
-							</li>
-							<li class="media">
-								<a class="media-left" href="#">
-									<span class="fa fa-lock icon text-success"></span>
-								</a>
-								<div class="media-body">
-									<h3 class="media-heading">Privacidad.</h3>
-									<p>Si no queres que tus datos sean publicos, podés activar el perfíl cuando lo necesites.(premium)</p>
-								</div>
-							</li>
-							<li class="media">
-								<a class="media-left" href="#">
-									<span class="fa fa-user icon text-success"></span>
-								</a>
-								<div class="media-body">
-									<h3 class="media-heading">Geo Localization.</h3>
-									<p>Si tu perro es escaneado te enviamos un alerta con la posición.</p>
-								</div>
-							</li>
-							<li class="media">
-								<a class="media-left" href="#">
-									<span class="fa fa-user icon text-success"></span>
-								</a>
-								<div class="media-body">
-									<h3 class="media-heading">Directorio.</h3>
-									<p>Buscas entrenadores, veterinarias, amigos, eventos... encontralo acá. </p>
-								</div>
-							</li>
-							<li class="media">
-								<a class="media-left" href="#">
-									<span class="fa fa-user icon text-success"></span>
-								</a>
-								<div class="media-body">
-									<h3 class="media-heading">Y más.</h3>
-									<p>Estamos en desarrollo constantemente, para ofrecerte siempre algo nuevo para vos y tus mascotas. </p>
-								</div>
-							</li>
-						</ul>
+				<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
+					<div class="phone">
+						<img class="img-responsive img-rounded" src="/modules/core/img/cel1.png">
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</header>
+	<!-- START DOWNLOAD-->
+	<section id="download" class="download landing" ng-if="!authentication.user">
+		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow zoomIn animated">
+			<h2 class="h1 page-header">Bajate la app mascotera!</h2>
+			<p class="lead">Scanea a tu mascota, subí las mascotas de tus amigos y más!</p>
+			<div data-wow-offset="100">
+				<a href="" class="btn btn-lg btn-primary">
+					<em class="fa fa-apple"></em> Itunes Store</a>
+				<a href="" class="btn btn-lg btn-primary wow fadeInDown animated">
+					<em class="fa fa-android"></em> Play Store</a>
+			</div>
+			<p class="lead">(proximamente)</p>
+		</div>
+	</section>
+	<!-- END DOWNLOAD-->
+	<section class="section landing" ng-if="!authentication.user">
+		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInRight animated">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
+					<div class="phone">
+						<img class="img-responsive img-rounded" src="/modules/core/img/cel2.png">
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="content">
+						<div class="pull-middle">
+							<h2 class="h1 page-header">Descubrí la nueva forma de cuidar a tu mascota.</h2>
+							<ul class="media-list">
+								<li class="media">
+									<a class="media-left" href="#">
+										<span class="fa fa-cloud icon text-success"></span>
+									</a>
+									<div class="media-body">
+										<h3 class="media-heading">Id para tu mascota.</h3>
+										<p>Registrate, imprimí y listo. Desde un celular escanea el codigo QR y podes ver el perfil de tu mascota, totalmente gratis.</p>
+									</div>
+								</li>
+								<li class="media">
+									<a class="media-left" href="#">
+										<span class="fa fa-lock icon text-success"></span>
+									</a>
+									<div class="media-body">
+										<h3 class="media-heading">Privacidad.</h3>
+										<p>Si no queres que tus datos sean publicos, podés activar el perfíl cuando lo necesites.(premium)</p>
+									</div>
+								</li>
+								<li class="media">
+									<a class="media-left" href="#">
+										<span class="fa fa-user icon text-success"></span>
+									</a>
+									<div class="media-body">
+										<h3 class="media-heading">Geo Localization.</h3>
+										<p>Si tu perro es escaneado te enviamos un alerta con la posición.</p>
+									</div>
+								</li>
+								<li class="media">
+									<a class="media-left" href="#">
+										<span class="fa fa-user icon text-success"></span>
+									</a>
+									<div class="media-body">
+										<h3 class="media-heading">Directorio.</h3>
+										<p>Buscas entrenadores, veterinarias, amigos, eventos... encontralo acá. </p>
+									</div>
+								</li>
+								<li class="media">
+									<a class="media-left" href="#">
+										<span class="fa fa-user icon text-success"></span>
+									</a>
+									<div class="media-body">
+										<h3 class="media-heading">Y más.</h3>
+										<p>Estamos en desarrollo constantemente, para ofrecerte siempre algo nuevo para vos y tus mascotas. </p>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="section" ng-if="authentication.user">
+		<div class="container">
+			User: {{authentication.user}}
+		</div>
+	</section>
+</div>
+
