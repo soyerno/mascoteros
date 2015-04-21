@@ -1,0 +1,23 @@
+<div class="controls" style="float:left;">
+  <p class="input-group custom-datepicker">
+    <input type="text" class="form-control"
+           datepicker-popup="{{format}}"
+           ng-model="yearOfBirth"
+           is-open="opened"
+           min-date="minDate"
+           datepicker-options="dateOptions"
+           date-disabled="disabled(date, mode)"
+           ng-required="true"
+           close-text="Close" />
+    <span class="input-group-btn">
+      <button type="button"
+              id="yearOfBirth"
+              class="btn btn-default"
+              ng-click="open($event)">
+        <i class="fa fa-calendar"></i>
+      </button>
+    </span>
+  </p>
+  <!--<input type="text" data-ng-model="yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>-->
+  <!--<input type="text" id="yearOfBirth" pick-a-date="yearOfBirth" class="form-control datepicker" pick-a-date-options="{ format: 'dd-mm-yyyy' }" placeholder="Fecha de Nac" required/>-->
+</div>

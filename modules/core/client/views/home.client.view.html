@@ -1,7 +1,7 @@
 <header class="header landing" data-ng-controller="HomeController" data-ng-init="checkAuthentication()" ng-cloak>
 	<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInDown animated">
 		<div class="row">
-			<div class="col-md-5 col-md-offset-1">
+			<div class="col-md-5">
 				<div class="content">
 					<div class="pull-middle">
 						<h1 class="page-header">La nueva forma de cuidar a tu mascota, gratis!</h1>
@@ -11,22 +11,26 @@
 						<p class="lead">Ingresá con tus redes sociales, añadí tu mascota y disfruta de nuestros beneficios.</p>
 						<div class="widget">
 							<h3>Ingresar:</h3>
-							<a href="/api/auth/facebook" target="_self" class="undecorated-link">
-								<img src="/modules/users/img/buttons/facebook.png">
-							</a>
-							<a href="/api/auth/twitter" target="_self" class="undecorated-link">
-								<img src="/modules/users/img/buttons/twitter.png">
-							</a>
-							<a href="/api/auth/google" target="_self" class="undecorated-link">
-								<img src="/modules/users/img/buttons/google.png">
-							</a>
+							<div data-ng-controller="AuthenticationController">
+								<div class="col-md-12 text-center">
+									<a href="/api/auth/facebook" target="_self" class="undecorated-link">
+										<img src="/modules/users/img/buttons/facebook.png">
+									</a>
+									<a href="/api/auth/twitter" target="_self" class="undecorated-link">
+										<img src="/modules/users/img/buttons/twitter.png">
+									</a>
+									<a href="/api/auth/google" target="_self" class="undecorated-link">
+										<img src="/modules/users/img/buttons/google.png">
+									</a>
+								</div>
+							</div>
 						</div>
 						<!--<button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Facebook</button>
                         <button class="btn btn-primary btn-large"><i class="fa fa-facebook"></i> Twitter</button>-->
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 text-center mt-100 mb-100">
+			<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
 				<div class="phone">
 					<img class="img-responsive img-rounded" src="/modules/core/img/cel1.png">
 				</div>
@@ -52,12 +56,12 @@
 <section class="section landing">
 	<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInDown animated">
 		<div class="row">
-			<div class="col-md-4 text-center mt-100 mb-100">
+			<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
 				<div class="phone">
 					<img class="img-responsive img-rounded" src="/modules/core/img/cel2.png">
 				</div>
 			</div>
-			<div class="col-md-5 col-md-offset-1">
+			<div class="col-md-5">
 				<div class="content">
 					<div class="pull-middle">
 						<h2 class="h1 page-header">Descubrí la nueva forma de cuidar a tu mascota.</h2>
