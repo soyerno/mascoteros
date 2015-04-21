@@ -5,21 +5,36 @@ angular.module('pets').run(['Menus',
 	function(Menus) {
 		// Add the pets dropdown item
 		Menus.addMenuItem('topbar', {
-			title: 'Pets',
+			title: 'Mascotas',
 			state: 'pets',
 			type: 'dropdown'
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'List Pets',
+			title: 'Mis mascotas',
 			state: 'pets.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Create Pets',
+			title: 'Nueva mascota',
 			state: 'pets.create'
+		});
+
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Perdidas',
+			state: 'pets.list-missing'
+		});
+
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Adoccion',
+			state: 'pets.list-adoption'
+		});
+
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Busca Novi@s',
+			state: 'pets.list-dates'
 		});
 
 		// Add the dropdown list item
