@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 // Create the 'chat' controller
@@ -32,3 +33,4 @@ angular.module('chat').controller('ChatController', ['$scope', 'Socket',
 
     }
 ]); 
+*/

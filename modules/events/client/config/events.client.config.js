@@ -5,20 +5,20 @@ angular.module('events').run(['Menus',
 	function(Menus) {
 		// Add the Events dropdown item
 		Menus.addMenuItem('topbar', {
-			title: 'Events',
+			title: 'Eventos',
 			state: 'events',
 			type: 'dropdown'
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'events', {
-			title: 'List Events',
+			title: 'Proximos eventos',
 			state: 'events.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'events', {
-			title: 'Create Event',
+			title: 'Crear evento',
 			state: 'events.create'
 		});
 	}
