@@ -14,7 +14,7 @@ module.exports = {
 				'public/lib/animate.css/animate.min.css'
 			],
 			js: [
-				'public/lib/lodash/lodas.min.js',
+				'public/lib/lodash/lodash.min.js',
 				'public/lib/angular/angular.js',
 				'public/lib/wowjs/dist/wow.js',
 				'public/lib/angular-resource/angular-resource.js',
