@@ -287,5 +287,16 @@ angular.module('pets').controller('PetsController', [
 					console.log('error loading missing pets');
 				});
 		};
+
+		$scope.findDates = function() {
+			console.log('dates');
+			$http.get('/api/pets/dates').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading missing pets');
+				});
+		};
 	}
 ]);

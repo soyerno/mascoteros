@@ -126,6 +126,26 @@ exports.listMissing = function(req, res) {
 	});
 };
 
+/**
+ * Pet Dates
+ */
+exports.listDates = function(req, res) {
+
+	Pet.find({isFindingDate: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(pets);
+		}
+	});
+};
+
+/**
+ * Pet Update Missing
+ */
+
 exports.updateMissing = function(req, res) {
 
 	var query = { _id: req.pet._id };
@@ -144,6 +164,10 @@ exports.updateMissing = function(req, res) {
 		});
 	});
 };
+
+/**
+ * Pet Update Date
+ */
 
 exports.updateFindingDate = function(req, res) {
 
