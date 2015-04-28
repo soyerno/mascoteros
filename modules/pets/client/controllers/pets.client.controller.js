@@ -156,17 +156,16 @@ angular.module('pets').controller('PetsController', [
 			options: { draggable: false },
 			events: {
 				dragend: function (marker, eventName, args) {
-					$log.log('marker dragend');
+					//$log.log('marker dragend');
 					var lat = marker.getPosition().lat();
 					var lon = marker.getPosition().lng();
-					$log.log(lat);
-					$log.log(lon);
-
+					/*$log.log(lat);
+						$log.log(lon);*/
 					$scope.marker.options = {
 						draggable: false,
-						labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-						labelAnchor: "100 0",
-						labelClass: "marker-labels"
+						labelContent: 'lat: ' + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+						labelAnchor: '100 0',
+						labelClass: 'marker-labels'
 					};
 				}
 			}
@@ -259,7 +258,7 @@ angular.module('pets').controller('PetsController', [
 					console.log(data);
 					$scope.error = data;
 				});
-		}
+		};
 
 		$scope.findMissing = function() {
 			console.log('missing');

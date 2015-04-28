@@ -18,8 +18,7 @@ angular.module('pets').directive('qr',[ '$http',
           popupWin.document.close();
         });
 
-
-          scope.svg = "";
+        scope.svg = '';
 
 				$http.get('/qr/' + scope.pet.slug).
 					success(function(data, status, headers, config) {
@@ -61,16 +60,16 @@ angular.module('pets').directive('qr',[ '$http',
       }
     }
     function printElement(elem) {
-      	// clones the element you want to print
-      	var domClone = elem.cloneNode(true);
+      // clones the element you want to print
+      var domClone = elem.cloneNode(true);
 
-		printSection.appendChild(domClone);
-      	window.print();
+		  printSection.appendChild(domClone);
+      window.print();
     }
     return {
       link: link,
       restrict: 'A'
     };
-  }
+  };
   angular.module('core').directive('ngPrint', [printDirective]);
-}(window.angular));;
+}(window.angular));
