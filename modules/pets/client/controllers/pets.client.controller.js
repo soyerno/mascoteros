@@ -260,9 +260,36 @@ angular.module('pets').controller('PetsController', [
 				});
 		};
 
+		$scope.setFindingDate = function (value) {
+			$http.put('/api/pets/' + $scope.pet._id + '/date', {isFindingDate: value}).
+				success(function (data, status, headers, config) {
+					console.log(data);
+					$scope.pet.isFindingDate = data.isFindingDate;
+					//$location.path('pet/' + pet.slug);
+				}).
+				error(function (data, status, headers, config) {
+					// called asynchronously if an error occurs
+					// or server returns response with an error status.
+					console.log(data);
+					$scope.error = data;
+				});
+		}
+
+
 		$scope.findMissing = function() {
 			console.log('missing');
 			$http.get('/api/pets/missing').
+				success(function(data, status, headers, config) {
+					$scope.pets = data;
+				}).
+				error(function(data, status, headers, config) {
+					console.log('error loading missing pets');
+				});
+		};
+
+		$scope.findDates = function() {
+			console.log('dates');
+			$http.get('/api/pets/dates').
 				success(function(data, status, headers, config) {
 					$scope.pets = data;
 				}).

@@ -21,6 +21,9 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/pets/missing',
 			permissions: '*'
 		}, {
+			resources: '/api/pets/dates',
+			permissions: '*'
+		}, {
 			resources: '/api/pets/adoption',
 			permissions: '*'
 		}, {
@@ -51,6 +54,9 @@ exports.invokeRolesPolicies = function() {
 			resources: '/api/pets/missing',
 			permissions: ['get']
 		}, {
+			resources: '/api/pets/dates',
+			permissions: ['get']
+		}, {
 			resources: '/api/pets/adoption',
 			permissions: ['get']
 		}, {
@@ -79,6 +85,9 @@ exports.invokeRolesPolicies = function() {
 			permissions: ['get']
 		}, {
 			resources: '/api/pets/missing',
+			permissions: ['get']
+		}, {
+			resources: '/api/pets/dates',
 			permissions: ['get']
 		}, {
 			resources: '/api/pets/adoption',

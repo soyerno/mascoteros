@@ -23,9 +23,12 @@
     "fontawesome": "~4.3.0",
     "Bootflat": "~2.0.4",
     "animate.css": "~3.2.6",
-    "wowjs": "~1.1.2"
+    "wowjs": "~1.1.2",
+    "angular-google-maps": "~2.0.19",
+    "lodash": "~3.7.0",
+    "angular-datepicker": "~1.0.4"
   },
   "resolutions": {
-    "lodash": "~3.6.0"
+    "lodash": "~3.7.0"
   }
 }

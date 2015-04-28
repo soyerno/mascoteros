@@ -126,15 +126,55 @@ exports.listMissing = function(req, res) {
 	});
 };
 
-exports.updateMissing = function(req, res) {
+/**
+ * Pet Dates
+ */
+exports.listDates = function(req, res) {
 
-	console.log(req.body.isMissing);
-	console.log('-----------------------------------');
+	Pet.find({isFindingDate: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(pets);
+		}
+	});
+};
+
+/**
+ * Pet Update Missing
+ */
+
+exports.updateMissing = function(req, res) {
 
 	var query = { _id: req.pet._id };
 
 	Pet.findOne(query, function (err, doc){
 		doc.isMissing = req.body.isMissing;
+		doc.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				console.log(doc);
+				res.jsonp(doc);
+			}
+		});
+	});
+};
+
+/**
+ * Pet Update Date
+ */
+
+exports.updateFindingDate = function(req, res) {
+
+	var query = { _id: req.pet._id };
+
+	Pet.findOne(query, function (err, doc){
+		doc.isFindingDate = req.body.isFindingDate;
 		doc.save(function(err) {
 			if (err) {
 				return res.status(400).send({

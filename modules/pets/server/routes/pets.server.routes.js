@@ -26,8 +26,14 @@ module.exports = function(app) {
 	app.route('/api/pets/missing').all(petsPolicy.isAllowed)
 		.get(pets.listMissing);
 
+	app.route('/api/pets/dates').all(petsPolicy.isAllowed)
+		.get(pets.listDates);
+
 	app.route('/api/pets/:petId/missing').all(petsPolicy.isAllowed)
 		.put(pets.updateMissing);
+
+	app.route('/api/pets/:petId/date').all(petsPolicy.isAllowed)
+		.put(pets.updateFindingDate)
 
 	app.route('/api/pet/:petSlug').all(petsPolicy.isAllowed)
 		.get(pets.read);
