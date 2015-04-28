@@ -20,6 +20,7 @@
 .navbar-inverse .navbar-inverse .navbar-brand,
 .navbar-inverse .navbar-inverse .navbar-link {
   color: #fff;
+  padding-top: 20px;
 }
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-inverse .navbar-text {

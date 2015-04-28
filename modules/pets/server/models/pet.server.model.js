@@ -88,6 +88,9 @@ var PetSchema = new Schema({
 	isAdoption: {
 		type: Boolean
 	},
+	isFindingDate: {
+		type: Boolean
+	},
 	registered: {
 		type: Date,
 		default: Date.now
