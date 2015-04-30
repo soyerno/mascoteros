@@ -1,0 +1,9 @@
+<div style="width: 100%; min-height: 200px;">
+    <script type="text/ng-template" id="searchbox.tpl.html">
+        <input type="text" class="google-map-search-box" data-ng-model="address" id="address" class="form-control" placeholder="" required>
+    </script>
+    <ui-gmap-google-map class="ui-gmap-google-map" center="map.center" zoom="18" draggable="false" options="options">
+        <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+    </ui-gmap-google-map>
+</div>

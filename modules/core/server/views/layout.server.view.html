@@ -52,6 +52,12 @@
 		{% block content %}{% endblock %}
 	</section>
 
+
+	<!--GOOGLE MAPS SEARCH TEMPLATE-->
+	<!--<script type="text/ng-template" id="searchbox.tpl.html">
+		<input type="text" class="google-map-search-box" data-ng-model="address" id="address" class="form-control" placeholder="" required>
+	</script>-->
+	<!--END GOOGLE MAPS SEARCH TEMPLATE-->
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};

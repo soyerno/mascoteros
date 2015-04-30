@@ -4,247 +4,113 @@
     </div>
     <div class="col-md-12">
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
-            <div class="panel-info" id="step1" ng-show="step == 1">
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-1">
-                        <div class="panel widget" ng-click="step = 3">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12" style="background-image: url('/modules/core/img/create1.jpg'); background-size: cover; height: 350px; margin-bottom: 15px; background-position: center center;"></div>
-                                </div>
-                                <div class="row row-table">
-                                    <div class="col-xs-12 text-center">
-                                        Registrar mi mascota
-                                    </div>
-                                </div>
-                            </div>
+            <div class="row" id="step3">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div ng-hide="pet.picture" class="pet-avatar">
+                            <i class="fa fa-paw img-circle"></i>
+                        </div>
+                        <img ng-show="picture" alt="{{name}}" ng-src="{{picture}}" class="">
+                        <label class="control-label" for="name">Foto</label>
+                        <div class="controls">
+                            <!--<input type="text" data-ng-model="picture" id="picture" class="form-control" placeholder="Pic Url" required>-->
+                            <input type="file" fileread="picture" data-ng-model="picture" id="images.name" class="form-control" placeholder="Name" required>
                         </div>
                     </div>
-                    <div class="col-md-4 col-md-offset-2">
-                        <div class="panel widget" ng-click="step = 2">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-12" style="background-image: url('/modules/core/img/create2.jpg'); background-size: cover; height: 350px;margin-bottom: 15px;background-position: center center;"></div>
-                                </div>
-                                <div class="row row-table">
-                                    <div class="col-xs-12 text-center">
-                                        Registrar una mascota de otra persona
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label" for="isPrivate">Perfil Privado?</label>
+                        <div class="controls">
+                            <input type="checkbox" data-ng-model="isPrivate" id="isPrivate" class="form-control">
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="" id="step2" ng-show="step == 2">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="panel widget">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-xs-6 text-center">
-                                        Invitar amigo:
-                                    </div>
-                                    <div class="col-xs-6 text-center">
-                                        <input type="text" data-ng-model="inviteUserEmail" id="inviteUserEmail" class="form-control" placeholder="amigo@email.com" required>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label" for="name">Nombre</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="nombre de la mascota" required>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <button class="btn btn-lg-btn-primary" ng-click="step = 1"> atras</button>
-                        <button class="btn btn-lg-btn-primary" ng-click="step = 3"> siguiente</button>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-info" id="step3" ng-show="step == 3">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-3 col-lg-3 " align="center">
-                            <div ng-hide="pet.picture" class="pet-avatar">
-                                <i class="fa fa-paw img-circle"></i>
-                            </div>
-                            <img ng-show="picture" alt="{{name}}" ng-src="{{picture}}" class="">
-                            <label class="control-label" for="name">Foto</label>
-                            <div class="controls">
-                                <!--<input type="text" data-ng-model="picture" id="picture" class="form-control" placeholder="Pic Url" required>-->
-                                <input type="file" fileread="picture" data-ng-model="picture" id="images.name" class="form-control" placeholder="Name" required>
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label" for="name">Tipo de Mascota</label>
+                        <div class="controls">
+                            <pet-type-selector ng-model="type"></pet-type-selector>
                         </div>
-                        <div class=" col-md-9 col-lg-9 ">
-                            <table class="table table-user-information">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="isPrivate">Perfil Privado?</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <input type="checkbox" data-ng-model="isPrivate" id="isPrivate" class="form-control">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="name">Nombre</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <input type="text" data-ng-model="name" id="name" class="form-control" placeholder="nombre de la mascota" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="name">Tipo de Mascota</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <pet-type-selector ng-model="type"></pet-type-selector>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="breed">Raza</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <input type="text" data-ng-model="breed" id="breed" class="form-control" placeholder="Raza" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="color">Color</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <input type="text" data-ng-model="color" id="color" class="form-control" placeholder="Color" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="yearOfBirth" style="float:left;">Fecha de nacimiento</label>
-
-                                    </td>
-                                    <td>
-                                        <input type="datetime" min-view="date" date-time ng-model="start" class="form-control">
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="color">Genero</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <!--<select name="genre" ng-model="genre" class="form-control" id="genre" required>
-                                                <option value="male">Macho</option>
-                                                <option value="female">Hembra</option>
-                                            </select>-->
-                                            <pet-genre-selector ng-model="genre"></pet-genre-selector>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="neutered">Castrado</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <input type="checkbox" data-ng-model="neutered" id="neutered" class="form-control" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="control-label" for="isAdoption">En Adopción</label>
-                                    </td>
-                                    <td>
-                                        <div class="controls">
-                                            <input type="checkbox" data-ng-model="isAdoption" id="isAdoption" class="form-control" required>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Email de contacto</td>
-                                    <td>
-                                        <input type="text" data-ng-model="email" id="email" class="form-control" placeholder="usuario@email.com" required>
-                                    </td>
-                                </tr>
-                                <td><label class="control-label" for="description">Descripcion o Rasgos de la mascota</label></td>
-                                <td>
-                                    <div class="controls">
-                                        <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="Mancha pata derecha" required>
-                                    </div>
-                                </td>
-
-                                </tr>
-
-                                <!--<tr>
-                                    <td>
-                                        <iframe ng-if="address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" ng-src="https://www.google.com.ar/maps/place/{{address}}&output=embed"></iframe>
-                                    </td>
-                                    <td>
-                                        <label class="control-label" for="description">Dirección</label>
-                                        <input type="text" ng-autocomplete data-ng-model="address" options="options" details="details" id="address" class="form-control" placeholder="Calle 123 - PB" required>
-                                    </td>
-                                </tr>-->
-                                <tr>
-                                    <td>{{address}}</td>
-                                </tr>
-                                <tr>
-                                  <td colspan="2">
-                                    <script type="text/ng-template" id="searchbox.tpl.html">
-                                        <input style="left:0;" type="text" data-ng-model="address" id="address" class="form-control" placeholder="" required>
-                                    </script>
-                                    <ui-gmap-google-map center="map.center" zoom="18" draggable="false" options="options">
-                                        <ui-gmap-search-box template="searchbox.template" events="searchbox.events">
-                                        </ui-gmap-search-box>
-                                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-                                        </ui-gmap-marker>
-                                    </ui-gmap-google-map>
-                                  </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Telefono de contacto</td>
-                                    <td>
-                                        <input type="text" data-ng-model="tel1" id="tel1" class="form-control" placeholder="">
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Celular de contacto</td>
-                                    <td>
-                                        <input type="text" data-ng-model="tel2" id="tel2" class="form-control" placeholder="">
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="breed">Raza</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="breed" id="breed" class="form-control" placeholder="Raza" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="color">Color</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="color" id="color" class="form-control" placeholder="Color" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="yearOfBirth" style="float:left;">Fecha de nacimiento</label>
+                        <div class="controls">
+                            <input type="datetime" min-view="date" date-time ng-model="start" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="color">Genero</label>
+                        <div class="controls">
+                            <pet-genre-selector ng-model="genre"></pet-genre-selector>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="neutered">Castrado</label>
+                        <div class="controls">
+                            <input type="checkbox" data-ng-model="neutered" id="neutered" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="isAdoption">En Adopción</label>
+                        <div class="controls">
+                            <input type="checkbox" data-ng-model="isAdoption" id="isAdoption" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email de contacto</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="email" id="email" class="form-control" placeholder="usuario@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="description">Descripcion o Rasgos de la mascota</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="description" id="description" class="form-control" placeholder="Mancha pata derecha" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        Direccion: {{address}}
+                        <label class="control-label" for="description">Descripcion o Rasgos de la mascota</label>
+                        <div class="controls">
+                            <!--<address-google-map></address-google-map>-->
+                            <script type="text/ng-template" id="searchbox.tpl.html">
+                                <input type="text" class="google-map-search-box" data-ng-model="address" id="address" class="form-control" placeholder="" required>
+                            </script>
+                            <ui-gmap-google-map class="ui-gmap-google-map" center="map.center" zoom="18" draggable="false" options="options">
+                                <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+                                <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+                            </ui-gmap-google-map>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="tel1">Telefono de contacto</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="tel1" id="tel1" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="tel2">Celular de contacto</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="tel2" id="tel2" class="form-control" placeholder="">
                         </div>
                     </div>
                 </div>
             </div>
-
-            <fieldset ng-show="step == 3">
-                <div class="form-group">
-                    <button class="btn btn-lg-btn-primary" ng-click="step = 1"> atras</button>
-                    <!--<input type="submit" ng-disabled="formBusy" class="btn btn-default mar-bot-40">-->
-                    <input type="submit" class="btn btn-default mar-bot-40">
-                    <i ng-show="formBusy" class="fa fa-cog fa-spin"></i>
-                </div>
-				<div data-ng-show="error" class="text-danger">
-					<strong data-ng-bind="error"></strong>
-				</div>
-            </fieldset>
         </form>
     </div>
 </section>
