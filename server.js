@@ -6,11 +6,11 @@
 var init = require('./config/init')(),
 	config = require('./config/config'),
 	mongoose = require('mongoose'),
-	log4js = require("log4js"),
+	log4js = require('log4js'),
 	logger = log4js.getLogger(),
 	chalk = require('chalk');
 
-log4js.configure(__dirname + "/config/logging.json");
+log4js.configure(__dirname + '/config/logging.json');
 
 /**
  * Module dependencies.
