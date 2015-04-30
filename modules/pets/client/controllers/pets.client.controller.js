@@ -147,7 +147,7 @@ angular.module('pets').controller('PetsController', [
 			},
 			options: { draggable: false },
 			events: {
-				dragend: function (marker, eventName, args) {
+				/*dragend: function (marker, eventName, args) {
 					$log.log('marker dragend');
 					var lat = marker.getPosition().lat();
 					var lon = marker.getPosition().lng();
@@ -160,7 +160,7 @@ angular.module('pets').controller('PetsController', [
 						labelAnchor: "100 0",
 						labelClass: "marker-labels"
 					};
-				}
+				}*/
 			}
 		};
 		$scope.$watchCollection("marker.coords", function (newVal, oldVal) {

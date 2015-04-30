@@ -19,7 +19,7 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 			},
 			options: { draggable: false },
 			events: {
-				dragend: function (marker, eventName, args) {
+				/*dragend: function (marker, eventName, args) {
 					$log.log('marker dragend');
 					var lat = marker.getPosition().lat();
 					var lon = marker.getPosition().lng();
@@ -32,7 +32,7 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 						labelAnchor: "100 0",
 						labelClass: "marker-labels"
 					};
-				}
+				}*/
 			}
 		};
 		$scope.$watchCollection("marker.coords", function (newVal, oldVal) {
@@ -93,7 +93,9 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 		$scope.create = function() {
 			// Create new Vet object
 			var vet = new Vets ({
-				name: this.name
+				name: this.name,
+				coords: $scope.marker.coords,
+				address: this.address
 			});
 
 			// Redirect after save

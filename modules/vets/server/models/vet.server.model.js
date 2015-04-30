@@ -16,6 +16,14 @@ var VetSchema = new Schema({
 		required: 'Please fill Vet name',
 		trim: true
 	},
+	address: {
+		type: String,
+		default: '',
+		required: 'Por favor, ingrese la dirección'
+	},
+	coords: {
+		type: Schema.Types.Mixed
+	},
 	created: {
 		type: Date,
 		default: Date.now

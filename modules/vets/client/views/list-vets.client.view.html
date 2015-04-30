@@ -1,4 +1,4 @@
-<section data-ng-controller="VetsController" data-ng-init="find()">
+<section class="container" data-ng-controller="VetsController" data-ng-init="find()">
     <div class="page-header">
         <h1>Vets</h1>
     </div>
@@ -10,7 +10,7 @@
 				by
 				<span data-ng-bind="vet.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="vet.name"></h4>
+			<h4 class="list-group-item-heading" data-ng-bind="vet.name"></h4>{{vet}}
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!vets.$resolved || vets.length">
