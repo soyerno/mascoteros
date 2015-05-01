@@ -1,8 +1,8 @@
 'use strict';
 
 // Vets controller
-angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout',
-	function($scope, $stateParams, $location, Authentication, Vets, $timeout ) {
+angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout', 'geolocation',
+	function($scope, $stateParams, $location, Authentication, Vets, $timeout, geolocation ) {
 		$scope.authentication = Authentication;
 
 		//MAPS
@@ -138,7 +138,10 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 
 		// Find a list of Vets
 		$scope.find = function() {
-			$scope.vets = Vets.query();
+			geolocation.getLocation().then(function (data) {
+				$scope.vets = Vets.query({latitude: data.coords.latitude, longitude: data.coords.longitude});
+				console.log($scope.vets);
+			});
 		};
 
 		// Find existing Vet
