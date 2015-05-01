@@ -35,6 +35,14 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 				}*/
 			}
 		};
+		$scope.radioSelected = {text: '1km', val: '0.0001'};
+		$scope.radios = [
+			{text: '1km', val: '0.0001'},
+			{text: '3km', val: '0.0003'},
+			{text: '5km', val: '0.0005'},
+			{text: '10km', val: '0.001'}
+		];
+
 		$scope.$watchCollection("marker.coords", function (newVal, oldVal) {
 			if (_.isEqual(newVal, oldVal))
 				return;
@@ -139,7 +147,7 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 		// Find a list of Vets
 		$scope.find = function() {
 			geolocation.getLocation().then(function (data) {
-				$scope.vets = Vets.query({latitude: data.coords.latitude, longitude: data.coords.longitude});
+				$scope.vets = Vets.query({latitude: data.coords.latitude, longitude: data.coords.longitude, radio: $scope.radioSelected.val});
 				console.log($scope.vets);
 			});
 		};

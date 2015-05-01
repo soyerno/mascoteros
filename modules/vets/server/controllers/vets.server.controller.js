@@ -74,8 +74,7 @@ exports.delete = function(req, res) {
  * List of Vets
  */
 exports.list = function(req, res) {
-	console.log(parseFloat(req.query.longitude), parseFloat(req.query.latitude));
-	Vet.find({coords: { $geoWithin: { $centerSphere: [ [ parseFloat(req.query.longitude), parseFloat(req.query.latitude)], 0.0001 ] } }}).sort('-created').populate('user', 'displayName').exec(function(err, vets) {
+	Vet.find({coords: { $geoWithin: { $centerSphere: [ [ parseFloat(req.query.longitude), parseFloat(req.query.latitude)], parseFloat(req.query.radio) ] } }}).sort('-created').populate('user', 'displayName').exec(function(err, vets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
