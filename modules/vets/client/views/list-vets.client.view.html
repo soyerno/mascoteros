@@ -3,6 +3,10 @@
         <h1>Vets</h1>
         Distancia de busqueda: <select name="radio" id="" ng-options="item.text for item in radios" ng-model="radioSelected" ng-change="find()"></select>
     </div>
+    <div>
+        <h3>BANNER DE VENDE EN MASCOTEROS</h3>
+        <hr/>
+    </div>
     <div class="list-group">
         <a data-ng-repeat="vet in vets" data-ng-href="/#!/vets/{{vet._id}}" class="list-group-item">
 			<small class="list-group-item-text">
