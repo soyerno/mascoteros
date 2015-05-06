@@ -5,6 +5,7 @@ angular.module('pets').directive('vetList', [
 		return {
 			templateUrl: 'modules/pets/views/partials/vet-list.client.view.html',
 			restrict: 'E',
+			replace: true,
 			link: function postLink(scope, element, attrs) {
         return;
       }
