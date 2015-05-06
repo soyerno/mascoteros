@@ -9,7 +9,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		$scope.founds.foundCounter = 1000.00;
 		$scope.increaseCounter = function(){
 			setInterval(function(){
-				$scope.founds.foundCounter = $scope.founds.foundCounter + 0.03;
+				$scope.founds.foundCounter = $scope.founds.foundCounter + 1;
 				$apply();
 				console.log($scope.founds.foundCounter);
 			}, 1000);
