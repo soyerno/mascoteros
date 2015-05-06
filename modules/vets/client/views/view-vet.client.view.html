@@ -1,13 +1,19 @@
 <section class="container" data-ng-controller="VetsController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="vet.name"></h1>
-		<div class="pull-right" data-ng-show="authentication.user._id == vet.user._id">
-			<a class="btn btn-primary" href="/#!/vets/{{vet._id}}/edit">
-				<i class="glyphicon glyphicon-edit"></i>
-			</a>
-			<a class="btn btn-primary" data-ng-click="remove();">
-				<i class="glyphicon glyphicon-trash"></i>
-			</a>
+		<div class="row">
+			<div class="col-sm-6">
+				<h1 data-ng-bind="vet.name"></h1>
+			</div>
+			<div class="col-sm-6">
+				<div class="pull-right" data-ng-show="authentication.user._id == vet.user._id">
+					<a class="btn btn-primary" href="/#!/vets/{{vet._id}}/edit">
+						<i class="fa fa-edit"></i>
+					</a>
+					<a class="btn btn-primary" data-ng-click="remove();">
+						<i class="fa fa-trash"></i>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<h3>Dirección:</h3>
@@ -15,6 +21,161 @@
 	<ui-gmap-google-map center="vet.coords" zoom="18" draggable="false" options="options">
 		<ui-gmap-marker coords="vet.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
 	</ui-gmap-google-map>
+	<hr/>
+	<div class="row m-results-business-expanded is-expanded" data-loaded="false" data-layer="result-ad1">
+		<div class="col-md-6 m-results-business-left-expanded-section">
+
+
+			<div class="m-results-business-expanded-section">
+				<h4>Servicios</h4>
+				<ul class="m-services">
+
+
+
+					<li><i class="m-icon--list-dash"></i>Veterinarios</li>
+
+					<li><i class="m-icon--list-dash"></i>Veterinarias</li>
+
+					<li><i class="m-icon--list-dash"></i>Mascotas</li>
+
+					<li><i class="m-icon--list-dash"></i>Clínicas Para Mascotas</li>
+
+					<li><i class="m-icon--list-dash"></i>Urgencias Veterinarias</li>
+
+					<li><i class="m-icon--list-dash"></i>Peluquería Canina</li>
+
+					<li><i class="m-icon--list-dash"></i>Veterinaria A Domicilio</li>
+
+
+				</ul>
+			</div>
+
+		</div>
+		<div class="col-md-6 m-results-business-right-expanded-section last">
+
+			<div class="m-results-business-expanded-section">
+				<div itemprop="openingHoursSpecification" itemscope="" itemtype="http://schema.org/OpeningHoursSpecification" class="m-opening-hours">
+					<div class="openinHoursTitle">Horarios de Atención</div>
+
+
+					<div class="openingHoursContainer">
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Domingo">Dom</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+
+					<div class="openingHoursContainer">
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Lunes">Lun</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+
+					<div class="openingHoursContainer">
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Martes">Mar</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+					<div class="is-today openingHoursContainer">
+
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Miércoles">Mie</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+
+					<div class="openingHoursContainer">
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Jueves">Jue</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+
+					<div class="openingHoursContainer">
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Viernes">Vie</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+
+					<div class="openingHoursContainer">
+						<!-- SOLO SRL -->
+						<div class="dayCol" itemprop="dayOfWeek"><abbr title="Sábado">Sab</abbr></div>
+
+
+
+
+						<div class="hourCol" itemprop="opens">00:00</div>
+						<div class="divCol">-</div>
+						<div class="hourCol" itemprop="closes">23:59</div>
+						<div class="divCol">&nbsp;</div>
+
+
+					</div>
+
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
 	<hr/>
 	<home-list title="'Productos'" items="[1,2,3,4,5,6,7,8]"></home-list>
 </section>
