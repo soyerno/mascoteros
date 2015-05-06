@@ -9,13 +9,13 @@
     </div>
     <div class="list-group">
         <a data-ng-repeat="vet in vets" data-ng-href="/#!/vets/{{vet._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
+            <h4 class="list-group-item-heading" data-ng-bind="vet.name"></h4>
+            <small class="list-group-item-text">
+                {{vet.address}}
 				<span data-ng-bind="vet.created | date:'medium'"></span>
 				by
 				<span data-ng-bind="vet.user.displayName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="vet.name"></h4>{{vet}}
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!vets.$resolved || vets.length">

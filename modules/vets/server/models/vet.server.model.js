@@ -13,8 +13,29 @@ var VetSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Vet name',
+		required: 'Por favor, ingrese el nombre',
 		trim: true
+	},
+	description: {
+		type: String,
+		default: '',
+		required: 'Por favor, ingrese el la descripcion',
+		trim: true
+	},
+	email: {
+		type: String,
+		default: '',
+		required: 'Por favor, ingrese el email',
+		trim: true
+	},
+	tel: {
+		type: Schema.Types.Mixed
+	},
+	servicesList: {
+		type: Schema.Types.Mixed
+	},
+	schedule: {
+		type: Schema.Types.Mixed
 	},
 	address: {
 		type: String,

@@ -60,5 +60,17 @@ angular.module('pets').run(['Menus',
 			title: 'Create PetTypes',
 			state: 'pettypes.create'
 		});
+
+		// Add the dropdown list item
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'List Petbreeds',
+			state: 'petbreeds.list'
+		});
+
+		// Add the dropdown create item
+		Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Create Petbreed',
+			state: 'petbreeds.create'
+		});
 	}
 ]);

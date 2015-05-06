@@ -1,0 +1,19 @@
+<section class="container" data-ng-controller="PetbreedsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Petbreeds</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="petbreed in petbreeds" data-ng-href="/#!/petbreeds/{{petbreed._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="petbreed.created | date:'medium'"></span>
+				by
+				<span data-ng-bind="petbreed.user.displayName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="petbreed.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!petbreeds.$resolved || petbreeds.length">
+    	No Petbreeds yet, why don't you <a href="/#!/petbreeds/create">create one</a>?
+    </div>
+</section>
