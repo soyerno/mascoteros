@@ -73,7 +73,7 @@ exports.delete = function(req, res) {
 /**
  * List of Petbreeds
  */
-exports.list = function(req, res) { Petbreed.find().sort('-created').populate('user', 'displayName').exec(function(err, petbreeds) {
+exports.list = function(req, res) { Petbreed.find().sort('-created').populate('user', 'displayName').populate('pettype', 'name').exec(function(err, petbreeds) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,7 +87,7 @@ exports.list = function(req, res) { Petbreed.find().sort('-created').populate('u
 /**
  * Petbreed middleware
  */
-exports.petbreedByID = function(req, res, next, id) { Petbreed.findById(id).populate('user', 'displayName').exec(function(err, petbreed) {
+exports.petbreedByID = function(req, res, next, id) { Petbreed.findById(id).populate('user', 'displayName').populate('pettype', 'name').exec(function(err, petbreed) {
 		if (err) return next(err);
 		if (! petbreed) return next(new Error('Failed to load Petbreed ' + id));
 		req.petbreed = petbreed ;

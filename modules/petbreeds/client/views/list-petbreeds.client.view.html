@@ -10,10 +10,12 @@
 				by
 				<span data-ng-bind="petbreed.user.displayName"></span>
 			</small>
+            {{petbreed}}
 			<h4 class="list-group-item-heading" data-ng-bind="petbreed.name"></h4>
+            <h4 class="list-group-item-heading" data-ng-bind="petbreed.pettype.name"></h4>
         </a>
     </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!petbreeds.$resolved || petbreeds.length">
-    	No Petbreeds yet, why don't you <a href="/#!/petbreeds/create">create one</a>?
+    <div class="alert alert-info text-center" data-ng-hide="!petbreeds.$resolved || petbreeds.length">
+    	No hay razas cargada, deseas <a href="/#!/petbreeds/create">crear una</a>?
     </div>
 </section>

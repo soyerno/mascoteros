@@ -1,16 +1,15 @@
-<!--<a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}">-->
-<div class="col-lg-4" data-ng-repeat="pet in pets">
+<!--<a data-ng-repeat="vet in vets" data-ng-href="#!/vets/{{vet._id}}">-->
+<div class="col-lg-4" data-ng-repeat="vet in vets">
   <!-- START widget-->
   <div class="wow bounceInUp animated panel widget" data-wow-offset="120" data-wow-duration="1.5s" >
-    <div class="panel-body text-center bg-center" style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')">
+    <div class="panel-body text-center bg-center" style="background-image: url('/modules/core/img/vet-profile.png')">
       <div class="row row-table">
         <div class="col-xs-12 text-white">
-          <a data-ng-href="/pet/{{pet.slug}}">
-            <img ng-src="{{pet.picture | cloudinaryProfile}}" alt="{{pet.name}}" class="img-thumbnail thumb128">
+          <a data-ng-href="/vet/{{vet.slug}}">
+            <img ng-if="vet.picture" ng-src="{{vet.picture | cloudinaryProfile}}" alt="{{vet.name}}" class="img-thumbnail thumb128">
+            <!--<img ng-if="!vet.picture" src="/modules/core/img/vet-profile.png" alt="{{vet.name}}" class="img-thumbnail thumb128">-->
           </a>
-          <h3 class="m0">{{pet.name}}</h3>
-          <p class="m0">
-            <a data-ng-href="/pet/{{pet.slug}}" style="color: white;"><em class="fa fa-paw"></em> {{pet.slug}}</a></p>
+            <br/><br/><br/><br/>
         </div>
       </div>
     </div>
@@ -42,19 +41,15 @@
       <!--<a href="#" class="list-group-item">
           <span class="pull-right">Saliendo a pasear</span>
           <em class="fa fa-fw fa-clock-o text-muted"></em>Ultima Actividad</a>-->
+    <a href="#" class="list-group-item">
+        <span class="label label-primary pull-right"></span>
+        <em class="fa fa-fw fa-map-marker text-muted"></em>{{vet.name}}</a>
       <a href="#" class="list-group-item">
-        <span class="label label-primary pull-right">{{pet.user.displayName}}</span>
-        <em class="fa fa-fw fa-user text-muted"></em>Mejor Amigo</a>
-      <!--<a href="#" class="list-group-item">
-          <span class="label label-primary pull-right">300</span>
-          <em class="fa fa-fw fa-folder-open-o text-muted"></em>Fotos</a>-->
+          <span class="label label-primary pull-right"></span>
+          <em class="fa fa-fw fa-map-marker text-muted"></em>{{vet.address}}</a>
       <a href="#" class="list-group-item">
-        <span ng-show="pet.isPrivate" class="label label-success pull-right">Sí</span>
-        <span ng-show="!pet.isPrivate" class="label label-success pull-right">No</span>
-        <em class="fa fa-fw fa-user text-muted"></em>Perfil Privado</a>
-        <a href="#" class="list-group-item">
-            <span class="label label-success pull-right"><i class="fa fa-envelope"></i></span>
-            <em class="fa fa-fw fa-user text-muted"></em>Contactar</a>
+          <span class="label label-success pull-right"><i class="fa fa-envelope"></i></span>
+          <em class="fa fa-fw fa-user text-muted"></em>Contactar</a>
 
     </div>
     <!--<div class="widget bg-success">

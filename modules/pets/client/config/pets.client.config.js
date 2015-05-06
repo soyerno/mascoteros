@@ -39,37 +39,37 @@ angular.module('pets').run(['Menus',
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'List PetGenres',
+			title: 'Listar Generos',
 			state: 'petgenres.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Create PetGenres',
+			title: 'Crear Genero',
 			state: 'petgenres.create'
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'List PetTypes',
+			title: 'Listar Typos',
 			state: 'pettypes.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Create PetTypes',
+			title: 'Crear Typo',
 			state: 'pettypes.create'
 		});
 
 		// Add the dropdown list item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'List Petbreeds',
+			title: 'Listar Razas',
 			state: 'petbreeds.list'
 		});
 
 		// Add the dropdown create item
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Create Petbreed',
+			title: 'Crear Raza',
 			state: 'petbreeds.create'
 		});
 	}

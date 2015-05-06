@@ -50,7 +50,7 @@ module.exports = function(app) {
 		.post(petgenres.create);
 
 	// Single pet routes
-	app.route('/api/petgenres/:petId').all(petsPolicy.isAllowed)
+	app.route('/api/petgenres/:petgenreId').all(petsPolicy.isAllowed)
 		.get(petgenres.read)
 		.put(petgenres.update)
 		.delete(petgenres.delete);
@@ -61,7 +61,7 @@ module.exports = function(app) {
 		.post(pettypes.create);
 
 	// Single pet routes
-	app.route('/api/pettypes/:petId').all(petsPolicy.isAllowed)
+	app.route('/api/pettypes/:pettypeId').all(petsPolicy.isAllowed)
 		.get(pettypes.read)
 		.put(pettypes.update)
 		.delete(pettypes.delete);

@@ -1,3 +1,20 @@
+body{
+  background-image: url('/modules/core/img/bg-page.png');
+  background-size: cover;
+}
+
+.content > section {
+  //background-image: url('/modules/core/img/bg-page.png');
+  //background-size: cover;
+  padding-top: 2em;
+
+}
+
+section.container {
+  background: #f5f7fa;
+  border-radius: 4px;
+}
+
 #map_canvas {
   height: 100%;
   width: 100%;

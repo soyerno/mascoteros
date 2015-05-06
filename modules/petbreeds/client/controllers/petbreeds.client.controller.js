@@ -9,7 +9,8 @@ angular.module('petbreeds').controller('PetbreedsController', ['$scope', '$state
 		$scope.create = function() {
 			// Create new Petbreed object
 			var petbreed = new Petbreeds ({
-				name: this.name
+				name: this.name,
+				pettype: this.type
 			});
 
 			// Redirect after save
@@ -18,6 +19,7 @@ angular.module('petbreeds').controller('PetbreedsController', ['$scope', '$state
 
 				// Clear form fields
 				$scope.name = '';
+				$scope.pettype = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

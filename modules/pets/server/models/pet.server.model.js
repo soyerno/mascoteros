@@ -27,7 +27,8 @@ var PetSchema = new Schema({
 	},
 	type: {
 		type: Schema.ObjectId,
-		ref: 'Pettype'
+		ref: 'Pettype',
+		required: 'Por favor, ingrese el tipo de mascota'
 	},
 	description: {
 		type: String,
