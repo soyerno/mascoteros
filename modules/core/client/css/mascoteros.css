@@ -1,20 +1,17 @@
-body{
+body {
   background-image: url('/modules/core/img/bg-page.png');
   background-size: cover;
 }
-
-.content > section {
-  //background-image: url('/modules/core/img/bg-page.png');
-  //background-size: cover;
-  padding-top: 2em;
-
+.content {
+  color: black;
 }
-
+.content > section {
+  padding-top: 2em;
+}
 section.container {
   background: #f5f7fa;
   border-radius: 4px;
 }
-
 #map_canvas {
   height: 100%;
   width: 100%;
@@ -69,4 +66,10 @@ section.container {
 }
 .home-list .list-item {
   margin-bottom: 15px;
+}
+.founds-banner {
+  padding: 15px 0;
+  background: #fff;
+  border-radius: 4px;
+  border-color: black;
 }

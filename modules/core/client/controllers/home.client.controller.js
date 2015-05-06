@@ -5,6 +5,17 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
 		// This provides Authentication context.
 		$scope.authentication = Authentication;
 
+		$scope.founds = {};
+		$scope.founds.foundCounter = 1000.00;
+		$scope.increaseCounter = function(){
+			setInterval(function(){
+				$scope.founds.foundCounter = $scope.founds.foundCounter + 0.03;
+				$apply();
+				console.log($scope.founds.foundCounter);
+			}, 1000);
+		};
+		$scope.increaseCounter();
+
 		$scope.checkAuthentication = function(){
 			if($scope.authentication && $scope.authentication.user._id){
 				console.log($location);

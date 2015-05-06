@@ -41,6 +41,29 @@ var UserSchema = new Schema({
 		type: String,
 		trim: true
 	},
+	dni: {
+		type: String,
+		trim: true,
+		default: ''
+	},
+	address: {
+		type: String,
+		default: '',
+		required: 'Por favor, ingrese la dirección'
+	},
+	coords: {
+		type: Schema.Types.Mixed
+	},
+	tel: {
+		type: String,
+		trim: true,
+		default: ''
+	},
+	cel: {
+		type: String,
+		trim: true,
+		default: ''
+	},
 	email: {
 		type: String,
 		trim: true,
