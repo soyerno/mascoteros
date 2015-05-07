@@ -172,7 +172,6 @@ exports.updateMissing = function(req, res) {
 exports.updateFindingDate = function(req, res) {
 
 	var query = { _id: req.pet._id };
-
 	Pet.findOne(query, function (err, doc){
 		doc.isFindingDate = req.body.isFindingDate;
 		doc.save(function(err) {
