@@ -5,7 +5,7 @@ module.exports = {
 		lib: {
 			css: [
 				'public/lib/Bootflat/css/bootstrap.min.css',
-				'public/lib/Bootflat/bootflat/css/bootflat.min.css',
+				//'public/lib/Bootflat/bootflat/css/bootflat.min.css',
 				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 				'public/lib/angular-datepicker/dist/index.css',
 				'public/lib/angular-socialshare/angular-socialshare.css',
