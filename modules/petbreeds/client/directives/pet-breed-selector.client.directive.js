@@ -9,7 +9,7 @@ angular.module('pets').directive('petBreedSelector', [ 'Petbreeds', '$localStora
             link: function(scope, element, attrs) {
                 scope.$storage = $localStorage;
 
-                scope.$watch('type', function(newValue, oldValue){
+                scope.$watch('type', function(){
                     scope.getBreeds();
                 });
 
