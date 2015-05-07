@@ -54,7 +54,8 @@ angular.module('petbreeds').controller('PetbreedsController', ['$scope', '$state
 
 		// Find a list of Petbreeds
 		$scope.find = function() {
-			$scope.petbreeds = Petbreeds.query();
+			console.log($scope.type);
+			$scope.petbreeds = Petbreeds.query({'typeId': $scope.type});
 		};
 
 		// Find existing Petbreed

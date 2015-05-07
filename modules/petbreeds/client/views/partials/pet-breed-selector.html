@@ -1,0 +1,6 @@
+<div>
+    {{petbreeds}}
+    <select ng-if="petbreeds.length" ng-options="item._id as item.name for item in petbreeds">
+        <option value="breed._id" ng-repeat="breed in petbreeds">{{breed.name}}</option>
+    </select>
+</div>

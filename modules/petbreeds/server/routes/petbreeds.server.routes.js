@@ -16,4 +16,5 @@ module.exports = function(app) {
 
 	// Finish by binding the Petbreed middleware
 	app.param('petbreedId', petbreeds.petbreedByID);
+	app.param('typeId', petbreeds.list);
 };

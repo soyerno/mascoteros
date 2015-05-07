@@ -73,7 +73,9 @@ exports.delete = function(req, res) {
 /**
  * List of Petbreeds
  */
-exports.list = function(req, res) { Petbreed.find().sort('-created').populate('user', 'displayName').populate('pettype', 'name').exec(function(err, petbreeds) {
+exports.list = function(req, res) {
+	console.log(req);
+	Petbreed.find({'pettype': req.query.typeId }).sort('-created').populate('user', 'displayName').populate('pettype', 'name').exec(function(err, petbreeds) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

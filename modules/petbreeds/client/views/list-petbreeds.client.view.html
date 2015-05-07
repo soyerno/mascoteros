@@ -1,7 +1,8 @@
-<section class="container" data-ng-controller="PetbreedsController" data-ng-init="find()">
+<section class="container" data-ng-controller="PetbreedsController">
     <div class="page-header">
-        <h1>Petbreeds</h1>
+        <h1>Razas de mascotas</h1>
     </div>
+    <pet-type-selector ng-model="type" ng-change="find()"></pet-type-selector>
     <div class="list-group">
         <a data-ng-repeat="petbreed in petbreeds" data-ng-href="/#!/petbreeds/{{petbreed._id}}" class="list-group-item">
 			<small class="list-group-item-text">
@@ -10,12 +11,11 @@
 				by
 				<span data-ng-bind="petbreed.user.displayName"></span>
 			</small>
-            {{petbreed}}
 			<h4 class="list-group-item-heading" data-ng-bind="petbreed.name"></h4>
             <h4 class="list-group-item-heading" data-ng-bind="petbreed.pettype.name"></h4>
         </a>
     </div>
-    <div class="alert alert-info text-center" data-ng-hide="!petbreeds.$resolved || petbreeds.length">
+    <!--<div class="alert alert-info text-center" data-ng-hide="!petbreeds.$resolved || petbreeds.length">
     	No hay razas cargada, deseas <a href="/#!/petbreeds/create">crear una</a>?
-    </div>
+    </div>-->
 </section>
