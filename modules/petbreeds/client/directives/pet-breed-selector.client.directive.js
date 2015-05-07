@@ -9,6 +9,10 @@ angular.module('pets').directive('petBreedSelector', [ 'Petbreeds', '$localStora
             link: function(scope, element, attrs) {
                 scope.$storage = $localStorage;
 
+                scope.$watch('type', function(){
+                    scope.getBreeds();
+                });
+
                 scope.getBreeds = function(){
                     /*if(scope.$storage.petbreeds && scope.$storage.petbreeds.length){
                         scope.petbreeds = scope.$storage.petbreeds;
@@ -19,8 +23,6 @@ angular.module('pets').directive('petBreedSelector', [ 'Petbreeds', '$localStora
                       /*  console.log('else', scope.petbreeds);*/
                     /*}*/
                 };
-
-                scope.getBreeds();
             }
         };
     }
