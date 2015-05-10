@@ -19,13 +19,13 @@ var VetSchema = new Schema({
 	description: {
 		type: String,
 		default: '',
-		required: 'Por favor, ingrese el la descripcion',
+		//required: 'Por favor, ingrese el la descripcion',
 		trim: true
 	},
 	email: {
 		type: String,
 		default: '',
-		required: 'Por favor, ingrese el email',
+		//required: 'Por favor, ingrese el email',
 		trim: true
 	},
 	tel: {
@@ -40,7 +40,7 @@ var VetSchema = new Schema({
 	address: {
 		type: String,
 		default: '',
-		required: 'Por favor, ingrese la dirección'
+		//required: 'Por favor, ingrese la dirección'
 	},
 	coords: {
 		type: Schema.Types.Mixed

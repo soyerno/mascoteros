@@ -93,8 +93,6 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 				return {latitude: data.coords.latitude, longitude: data.coords.longitude};
 			});
 		};
-
-
 		//END MAPS
 
 		// Create new Vet
@@ -119,8 +117,8 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 
 		// Remove existing Vet
 		$scope.remove = function( vet ) {
-			if ( vet ) { vet.$remove();
-
+			if (vet) {
+        vet.$remove();
 				for (var i in $scope.vets ) {
 					if ($scope.vets [i] === vet ) {
 						$scope.vets.splice(i, 1);
@@ -147,8 +145,10 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 		// Find a list of Vets
 		$scope.find = function() {
 			geolocation.getLocation().then(function (data) {
-				$scope.vets = Vets.query({latitude: data.coords.latitude, longitude: data.coords.longitude, radio: $scope.radioSelected.val});
-				console.log($scope.vets);
+				Vets.query({latitude: data.coords.latitude, longitude: data.coords.longitude, radio: $scope.radioSelected.val},
+        function(vets){
+          $scope.vets = vets;
+        });
 			});
 		};
 

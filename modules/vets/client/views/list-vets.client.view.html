@@ -18,7 +18,11 @@
         </a>
     </div>-->
     <div>
-        Distancia de busqueda: <select name="radio" id="" ng-options="item.text for item in radios" ng-model="radioSelected" ng-change="find()"></select>
+        Distancia de busqueda:
+        <select name="radio" id="" ng-model="radioSelected" ng-change="find()">
+            <option value="" ng-selected="radioSelected === ''">Seleccione un radio</option>
+            <option ng-repeat="item in radios" value="item" ng-selected="radioSelected === item.val">{{ item.text }}
+        </select>
     </div>
     <vet-list></vet-list>
     <div class="alert alert-warning text-center" data-ng-hide="!vets.$resolved || vets.length">
