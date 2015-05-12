@@ -48,8 +48,8 @@ var UserSchema = new Schema({
 	},
 	address: {
 		type: String,
-		default: '',
-		required: 'Por favor, ingrese la dirección'
+		default: ''
+		//required: 'Por favor, ingrese la dirección'
 	},
 	coords: {
 		type: Schema.Types.Mixed
