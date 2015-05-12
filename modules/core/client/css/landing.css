@@ -6,7 +6,8 @@
     text-align: center;
     color: #fff;
     /* Background image fallback */
-    background: url('../img/bg-download.jpg') no-repeat center;
+    //background: url('../img/bg-download.jpg') no-repeat center;
+    background: -webkit-gradient( linear, left top, left bottom, from(rgba(50,50,50,0.8)), to(rgba(80,80,80,0.2)), color-stop(.5,#333333));
     -webkit-background-size: cover;
     background-size: cover;
 }

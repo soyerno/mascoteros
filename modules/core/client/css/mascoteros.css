@@ -6,7 +6,7 @@ body {
   color: black;
 }
 .content > section {
-  padding-top: 2em;
+  padding-top: 0em;
 }
 section.container {
   background: #f5f7fa;
@@ -88,4 +88,14 @@ section.container {
 }
 .m-results-business-expanded-section .is-today {
   font-weight: bold;
+}
+/*
+.landing > section {
+   padding-top: 0em;
+}
+*/
+.footer {
+  padding-top: 1em !important;
+  width: 100%;
+  border-radius: 0 !important;
 }

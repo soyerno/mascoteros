@@ -40,7 +40,9 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 			{text: '1km', val: '0.0001'},
 			{text: '3km', val: '0.0003'},
 			{text: '5km', val: '0.0005'},
-			{text: '10km', val: '0.001'}
+			{text: '10km', val: '0.001'},
+			{text: '20km', val: '0.002'},
+			{text: '100km', val: '0.01'}
 		];
 
 		$scope.$watchCollection("marker.coords", function (newVal, oldVal) {
