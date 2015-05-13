@@ -35,11 +35,11 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 				}*/
 			}
 		};
-		$scope.radioSelected = {text: '1km', val: '0.0001'};
+		$scope.radioSelected = {text: '1km', val: '0.01'};
 		$scope.radios = [
-			{text: '1km', val: '0.0001'},
-			{text: '3km', val: '0.0003'},
-			{text: '5km', val: '0.0005'},
+			{text: '1km', val: '0.01'},
+			{text: '3km', val: '0.03'},
+			{text: '5km', val: '0.05'},
 			{text: '10km', val: '0.001'}
 		];
 
