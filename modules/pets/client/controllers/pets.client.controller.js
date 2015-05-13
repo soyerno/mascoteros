@@ -25,6 +25,7 @@ angular.module('pets').controller('PetsController', [
 				picture: this.picture,
 				slug: this.slug,
 				color: this.color,
+				type: this.type,
 				breed: this.breed,
 				isMissing: this.isMissing,
 				genre: this.genre,
