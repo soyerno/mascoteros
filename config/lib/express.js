@@ -133,7 +133,8 @@ module.exports.initModulesConfiguration = function (app, db) {
  */
 module.exports.initHelmetHeaders = function (app) {
 	// Use helmet to secure Express headers
-	app.use(helmet.xframe());
+	app.use(helmet.xframe('allow-from', 'https://apps.facebook.com'));
+	app.use(helmet.frameguard('allow-from', 'https://apps.facebook.com'));
 	app.use(helmet.xssFilter());
 	app.use(helmet.nosniff());
 	app.use(helmet.ienoopen());
