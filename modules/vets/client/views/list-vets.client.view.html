@@ -3,7 +3,7 @@
         <h1>Veterinarias en tu zona</h1>
     </div>
     <div>
-        <h3>Subscribite y vende a travez de Mascoteros.net</h3>
+        <h3>Subscribite y vende a trav&eacute;s de Mascoteros.net</h3>
         <hr/>
     </div>
     <!--<div class="list-group">
@@ -20,13 +20,17 @@
     <div>
         Distancia de busqueda:
         <select name="radio" id="" ng-model="radioSelected" ng-change="find()">
-            <option value="" ng-selected="radioSelected === ''">Seleccione un radio</option>
-            <option ng-repeat="item in radios" value="item" ng-selected="radioSelected === item.val">{{ item.text }}
+            <option value="" >Seleccione un radio</option>
+            <option ng-repeat="item in radios" value="{{item.val}}" >{{ item.text }}
         </select>
+        <spam>{{ searching }}</spam>
     </div>
+    </br>
+  <div>
     <vet-list></vet-list>
     <div class="alert alert-warning text-center" data-ng-hide="!vets.$resolved || vets.length">
     	<!--No Vets yet, why don't you <a href="/#!/vets/create">create one</a>?-->
         No tenemos veterinarias en tu zona, contactanos y la agregamos!
     </div>
+  </div>
 </section>

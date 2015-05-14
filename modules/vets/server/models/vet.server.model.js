@@ -39,12 +39,13 @@ var VetSchema = new Schema({
 	},
 	address: {
 		type: String,
-		default: '',
+		default: ''
 		//required: 'Por favor, ingrese la dirección'
 	},
 	coords: {
-		type: Schema.Types.Mixed
-	},
+    type: [Number],
+    index: '2d'
+  },
 	created: {
 		type: Date,
 		default: Date.now
