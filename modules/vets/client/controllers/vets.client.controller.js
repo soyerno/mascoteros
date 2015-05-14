@@ -35,14 +35,14 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 				}*/
 			}
 		};
-		$scope.radioSelected = {text: '1km', val: '0.0001'};
+
 		$scope.radios = [
-			{text: '1km', val: '0.001'},
-			{text: '3km', val: '0.003'},
-			{text: '5km', val: '0.005'},
-			{text: '10km', val: '0.01'},
-			{text: '20km', val: '0.02'},
-			{text: '100km', val: '0.01'}
+			{text: '1km',   val: '1000'},
+			{text: '3km',   val: '3000'},
+			{text: '5km',   val: '5000'},
+			{text: '10km',  val: '10000'},
+			{text: '20km',  val: '20000'},
+			{text: '100km', val: '100000'}
 		];
 
 		$scope.$watchCollection("marker.coords", function (newVal, oldVal) {
@@ -146,13 +146,26 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 
 		// Find a list of Vets
 		$scope.find = function() {
-			geolocation.getLocation().then(function (data) {
-				Vets.query({latitude: data.coords.latitude, longitude: data.coords.longitude, radio: $scope.radioSelected.val},
-        function(vets){
-          $scope.vets = vets;
-        });
-			});
-		};
+      if ($scope.radioSelected) {
+        $scope.searching = 'Buscando...';
+
+        geolocation
+          .getLocation()
+          .then(
+          function (data) {
+            Vets.query(
+              {
+                latitude: data.coords.latitude,
+                longitude: data.coords.longitude,
+                radio: $scope.radioSelected
+              },
+              function (vets) {
+                $scope.vets = vets;
+                $scope.searching = '';
+              });
+          });
+      }
+    };
 
 		// Find existing Vet
 		$scope.findOne = function() {

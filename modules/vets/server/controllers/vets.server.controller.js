@@ -74,14 +74,16 @@ exports.delete = function(req, res) {
  * List of Vets
  */
 exports.list = function(req, res) {
-	Vet.find({coords:
-  {
-    $near: [
-      req.query.latitude,
-      req.query.longitude
-    ],
-    $maxDistance: req.query.radio
-  }}).sort('-created').populate('user', 'displayName').exec(function(err, vets) {
+	Vet.find({coords: {
+    $near: {
+      $geometry: {
+        type: "Point",
+        coordinates: [ req.query.latitude, req.query.longitude ]
+      },
+      $maxDistance: req.query.radio
+    }
+  }
+  }).sort('-created').populate('user', 'displayName').exec(function(err, vets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
