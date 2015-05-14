@@ -114,8 +114,7 @@ module.exports = function(db) {
 	app.use(helmet.xssFilter());
 	app.use(helmet.nosniff());
 	app.use(helmet.ienoopen());
-	app.use(helmet.xframe('allow-from', 'http://*.facebook.com'));
-	app.use(helmet.xframe('allow-from', 'https://*.facebook.com'));
+	app.use(helmet.xframe('allow-from', 'https://apps.facebook.com/mascoterosapp/'));
 	app.disable('x-powered-by');
 
 	// Setting the app router and static folder
