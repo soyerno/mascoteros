@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<h3>Dirección:</h3>
-	{{vet}}
+	{{vet.coords}}
 	<p>{{vet.address}}</p>
 	<ui-gmap-google-map center="vet.coords" zoom="18" draggable="false" options="options">
 		<ui-gmap-marker coords="vet.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>

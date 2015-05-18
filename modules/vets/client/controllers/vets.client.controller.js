@@ -1,8 +1,8 @@
 'use strict';
 
 // Vets controller
-angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout', 'geolocation',
-	function($scope, $stateParams, $location, Authentication, Vets, $timeout, geolocation ) {
+angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout', 'geolocation', '$resource',
+	function($scope, $stateParams, $location, Authentication, Vets, $timeout, geolocation, $resource ) {
 		$scope.authentication = Authentication;
 
 		//MAPS
@@ -146,32 +146,41 @@ angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '
 
 		// Find a list of Vets
 		$scope.find = function() {
-      if ($scope.radioSelected) {
-        $scope.searching = 'Buscando...';
+		  if ($scope.radioSelected) {
+			$scope.searching = 'Buscando...';
 
-        geolocation
-          .getLocation()
-          .then(
-          function (data) {
-            Vets.query(
-              {
-                latitude: data.coords.latitude,
-                longitude: data.coords.longitude,
-                radio: $scope.radioSelected
-              },
-              function (vets) {
-                $scope.vets = vets;
-                $scope.searching = '';
-              });
-          });
-      }
-    };
+			geolocation
+			  .getLocation()
+			  .then(
+			  function (data) {
+				Vets.query(
+				  {
+					latitude: data.coords.latitude,
+					longitude: data.coords.longitude,
+					radio: $scope.radioSelected
+				  },
+				  function (vets) {
+					$scope.vets = vets;
+					$scope.searching = '';
+				  });
+			  });
+		  }
+		};
 
 		// Find existing Vet
 		$scope.findOne = function() {
-			$scope.vet = Vets.get({ 
+
+			/*$scope.vet = Vets.get({
 				vetId: $stateParams.vetId
+			});*/
+
+			var User = $resource('/api/vets/:vetId', {vetId:'@id'});
+			User.get({vetId: $stateParams.vetId}, function(vet) {
+				$scope.vet = vet;
+				$scope.vet.coords = {'latitude': vet.coords[0], 'longitude': vet.coords[1]};
 			});
+
+			//$scope.vets.coords = {latitude: vets.coords[0], longitude: vets.coords[1]};
 		};
 	}
 ]);
