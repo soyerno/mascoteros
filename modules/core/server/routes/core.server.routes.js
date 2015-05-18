@@ -14,7 +14,7 @@ module.exports = function(app) {
 
 	// Define error pages
 	app.route('/server-error').get(core.renderServerError);
-	app.route('/not-found').get(core.renderNotFound);
+	app.route('/not-found').get(core.renderIndex);
 
 	app.route('/api/upload').post(multipart, core.upload);
 
