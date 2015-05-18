@@ -70,6 +70,20 @@ exports.delete = function(req, res) {
 	});
 };
 
+
+/**
+ * Vet middleware
+ */
+exports.vetByID = function(req, res, next, id) {
+	Vet.findById(id).exec(function(err, vet) {
+		if (err) return next(err);
+		if (! vet) return next(new Error('Failed to load Vet ' + id));
+		req.vet = vet ;
+		next();
+	});
+};
+
+
 /**
  * List of Vets
  */
@@ -91,16 +105,5 @@ exports.list = function(req, res) {
 		} else {
 			res.jsonp(vets);
 		}
-	});
-};
-
-/**
- * Vet middleware
- */
-exports.vetByID = function(req, res, next, id) { Vet.findById(id).populate('user', 'displayName').exec(function(err, vet) {
-		if (err) return next(err);
-		if (! vet) return next(new Error('Failed to load Vet ' + id));
-		req.vet = vet ;
-		next();
 	});
 };
