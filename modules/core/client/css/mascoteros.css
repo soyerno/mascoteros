@@ -1,5 +1,5 @@
 body {
-  background-image: url('/modules/core/img/bg-page.png');
+  background-color: #8dcdec;
   background-size: cover;
 }
 .content {
@@ -41,7 +41,6 @@ section.container {
   color: #fff;
 }
 .navbar-header .navbar-brand {
-  padding: 0;
   padding-top: 5px;
 }
 .navbar-header .navbar-brand img {
