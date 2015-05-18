@@ -38,39 +38,39 @@ angular.module('pets').run(['Menus',
 		});
 
 		// Add the dropdown list item
-		Menus.addSubMenuItem('topbar', 'pets', {
+		/*Menus.addSubMenuItem('topbar', 'pets', {
 			title: 'Listar Generos',
 			state: 'petgenres.list'
-		});
+		});*/
 
 		// Add the dropdown create item
-		Menus.addSubMenuItem('topbar', 'pets', {
+		/*Menus.addSubMenuItem('topbar', 'pets', {
 			title: 'Crear Genero',
 			state: 'petgenres.create'
-		});
+		});*/
 
 		// Add the dropdown list item
-		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Listar Typos',
+		/*Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Listar Tipos',
 			state: 'pettypes.list'
-		});
+		});*/
 
 		// Add the dropdown create item
-		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Crear Typo',
+		/*Menus.addSubMenuItem('topbar', 'pets', {
+			title: 'Crear Tipo',
 			state: 'pettypes.create'
-		});
+		});*/
 
 		// Add the dropdown list item
-		Menus.addSubMenuItem('topbar', 'pets', {
+		/*Menus.addSubMenuItem('topbar', 'pets', {
 			title: 'Listar Razas',
 			state: 'petbreeds.list'
-		});
+		});*/
 
 		// Add the dropdown create item
-		Menus.addSubMenuItem('topbar', 'pets', {
+		/*Menus.addSubMenuItem('topbar', 'pets', {
 			title: 'Crear Raza',
 			state: 'petbreeds.create'
-		});
+		});*/
 	}
 ]);
