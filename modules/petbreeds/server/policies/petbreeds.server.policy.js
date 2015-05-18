@@ -20,6 +20,12 @@ exports.invokeRolesPolicies = function() {
 		}, {
 			resources: '/api/petbreeds/:petbreedId',
 			permissions: '*'
+		}, {
+			resources: '/private/petbreeds/caninos',
+			permissions: '*'
+		}, {
+			resources: '/private/petbreeds/felinos',
+			permissions: '*'
 		}]
 	}, {
 		roles: ['user'],

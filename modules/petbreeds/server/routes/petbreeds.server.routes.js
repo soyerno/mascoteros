@@ -14,6 +14,12 @@ module.exports = function(app) {
 		.put(petbreeds.update)
 		.delete(petbreeds.delete);
 
+	app.route('/private/petbreeds/caninos').all(petbreedsPolicy.isAllowed)
+		.get(petbreeds.caninosFromArrays);
+
+	app.route('/private/petbreeds/felinos').all(petbreedsPolicy.isAllowed)
+		.get(petbreeds.felinosFromArrays);
+
 	// Finish by binding the Petbreed middleware
 	app.param('petbreedId', petbreeds.petbreedByID);
 	app.param('typeId', petbreeds.list);
