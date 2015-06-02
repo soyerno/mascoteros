@@ -1,7 +1,8 @@
 'use strict';
 
 // Vets controller
-angular.module('vets').controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout', 'geolocation', '$resource',
+angular.module('vets')
+		.controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout', 'geolocation', '$resource',
 	function($scope, $stateParams, $location, Authentication, Vets, $timeout, geolocation, $resource ) {
 		$scope.authentication = Authentication;
 
