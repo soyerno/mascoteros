@@ -1,5 +1,5 @@
 <main>
-  <h3 data-ng-show="authentication.user._id == pet.user._id && pet.name">
+  <h3 data-ng-show="authentication.user._id === pet.user._id && pet.name">
     <div class="pull-right">
       <a class="btn btn-primary" href="/pets/{{pet._id}}/edit">
         <i class="fa fa-edit"></i>
@@ -7,7 +7,7 @@
     </div>
     {{pet.name}}
   </h3>
-  <div class="content-wrapper" ng-if="!pet.isPrivate || authentication.user._id == pet.user._id">
+  <div class="content-wrapper" ng-if="!pet.isPrivate || authentication.user._id === pet.user._id">
     <div class="unwrap">
       <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
         <div class="p-xl text-center text-white">
@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <section ng-if="!pet.isPrivate || authentication.user._id == pet.user._id">
+  <section ng-if="!pet.isPrivate || authentication.user._id === pet.user._id">
     <!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
     <!--<div class="panel">
         {{coords}}
@@ -61,7 +61,7 @@
               </div>
               <div class="row" align="center">
                 <div class="col-md-12 pet-actions-container">
-                  <button ng-show="authentication.user._id != pet.user._id" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
+                  <button ng-show="authentication.user._id !== pet.user._id" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
                   <!--<button class="btn btn-lg btn-success" ng-click="sendScanNotif();"><i class="icon-like"></i> Notificar</button>-->
                   <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
                   <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Notificar encuentro</button>
@@ -122,7 +122,7 @@
                   <tr>
                     <td>Email de contacto</td>
                     <td>
-                      <a ng-if="pet.email" href="mailto:{{pet.email}}">{{pet.email}}</a>
+                      <a ng-if="pet.email && authentication.user._id === pet.user._id" href="mailto:{{pet.email}}">{{pet.email}}</a>
                     </td>
                   </tr>
                   <tr>
@@ -133,11 +133,11 @@
                     <td>Dirección</td>
                     <td>{{pet.address}}</td>
                   </tr>
-                  <tr>
+                  <tr ng-if="authentication.user._id === pet.user._id">
                     <td>Telefono</td>
-                    <td>{{pet.tel1}}</td>
+                    <td >{{pet.tel1}}</td>
                   </tr>
-                  <tr>
+                  <tr ng-if="authentication.user._id === pet.user._id">
                     <td>Celular</td>
                     <td>{{pet.tel2}}</td>
                   </tr>
