@@ -68,10 +68,8 @@ var PetSchema = new Schema({
 		ref: 'Petgenre'
 	},
 	breed: {
-		type: String,
-		default: '',
-		required: 'Por favor, ingrese la raza',
-		trim: true
+		type: Schema.ObjectId,
+		ref: 'Petbreed'
 	},
 	yearOfBirth: {
 		type: Date,

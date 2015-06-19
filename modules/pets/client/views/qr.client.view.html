@@ -1,32 +1,32 @@
 <div>
 	<style>
-		.id-container section.a {
+		#id-container section.a {
 			clear: both;
 			border: 0.05cm gray dashed;
 			height: 4cm;
 			width: 6.4cm;
 			margin-bottom: 0.5cm;
 		}
-		.id-container .id-front, .id-container .id-back{
+		#id-container .id-front, #id-container .id-back{
 			width: 2.8cm;
 			height: 3.6cm;
 			background-color: #76c5f0;
 			border: 0.2cm solid black;
 			float: left;
 		}
-		.id-container .id-front-2, .id-container .id-back-2{
+		#id-container .id-front-2, #id-container .id-back-2{
 			width: 2.8cm;
 			height: 3.6cm;
 			background-color: #dea5a4;
 			border: 0.2cm solid black;
 			float: left;
 		}
-		.id-container .pin {
+		#id-container .pin {
 			height: 0.6cm;
 			width: 100%
 		}
 
-		.id-container .pin .circle {
+		#id-container .pin .circle {
 			width: 0.3cm;
 			height: 0.3cm;
 			background: white;
@@ -35,19 +35,19 @@
 			margin: 0.2cm auto 0;
 		}
 
-		.id-container .qr {
+		#id-container .qr {
 			width: 100%;
 			height: 2cm;
 			background-color: white;
 			text-align: center;
 		}
 
-		.id-container .qr img {
+		#id-container .qr img {
 			height: 2cm;
 			width: 2cm;
 		}
 
-		.id-container .name {
+		#id-container .name {
 			width: 100%;
 			height: 0.6cm;
 			font-size: 0.5cm;
@@ -61,7 +61,7 @@
 			text-transform: uppercase;
 		}
 
-		.id-container .page, .id-container .id-container .tel {
+		#id-container .page, #id-container .tel {
 			width: 90%;
 			height: 1.5cm;
 			font-size: 0.25cm;
@@ -72,16 +72,16 @@
 			line-height: 0.4cm;
 		}
 
-		.id-container .page span {
+		#id-container .page span {
 			font-weight: bold;
 			text-decoration: underline;
 		}
 
-		.id-container .tel {
+		#id-container .tel {
 			font-weight: bold;
 		}
 
-		.id-container section.b {
+		#id-container section.b {
 			clear: both;
 			border: 0.05cm gray dashed;
 			height: 4cm;
@@ -89,11 +89,11 @@
 			margin-bottom: 0.5cm;
 		}
 
-		.id-container section.b .page, .id-container section.b .tel {
+		#id-container section.b .page, #id-container section.b .tel {
 			color: black;
 		}
 
-		.id-container section.b .name {
+		#id-container section.b .name {
 			width: 100%;
 			height: 0.6cm;
 			font-size: 0.5cm;
@@ -106,7 +106,7 @@
 			font-weight: 400;
 		}
 
-		.id-container section.c {
+		#id-container section.c {
 			clear: both;
 			border: 0.05cm gray dashed;
 			height: 3.2cm;
@@ -114,7 +114,7 @@
 			margin-bottom: 0.5cm;
 		}
 
-		.id-container section.c .id-front-2, .id-container section.c .id-back-2{
+		#id-container section.c .id-front-2, #id-container section.c .id-back-2{
 			width: 2cm;
 			height: 2.8cm;
 			background-color: #76c5f0;
@@ -122,19 +122,19 @@
 			float: left;
 		}
 
-		.id-container section.c .qr {
+		#id-container section.c .qr {
 			width: 100%;
 			height: 1.5cm;
 			background-color: white;
 			text-align: center;
 		}
 
-		.id-container section.c .qr img {
+		#id-container section.c .qr img {
 			height: 1.5cm;
 			width: 1.5cm;
 		}
 
-		.id-container section.c .page, .id-container section.c .tel {
+		#id-container section.c .page, #id-container section.c .tel {
 			width: 90%;
 			height: 1.5cm;
 			font-size: 0.25cm;
@@ -145,12 +145,12 @@
 			line-height: 0.4cm;
 		}
 
-		.id-container section.c .page span {
+		#id-container section.c .page span {
 			font-weight: bold;
 			text-decoration: underline;
 		}
 
-		.id-container section.c .name {
+		#id-container section.c .name {
 			width: 100%;
 			height: 0.3cm;
 			font-size: 0.3cm;
@@ -328,13 +328,13 @@
 			}
 		}
 	</style>
-	<section id="id-container" class="c">
+	<section id="id-container" class="c" style="  margin-left: 40px;margin-bottom: 20px;">
 		<article class="id-front-2" ng-class="{'female': pet.genre.name == 'Hembra'}">
 			<div class="pin">
 				<div class="circle"></div>
 			</div>
 			<div class="qr-container">
-				<img class="qr" ng-src="/qr/{{pet.slug}}" alt=""/>
+				<img class="qr" ng-src="/api/qr/{{pet.slug}}" alt=""/>
 			</div>
 			<!--<div class="qr" ng-bind-html="svg"></div>-->
 			<div class="name" ng-bind="pet.name"></div>

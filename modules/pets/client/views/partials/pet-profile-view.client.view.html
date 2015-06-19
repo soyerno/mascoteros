@@ -100,7 +100,7 @@
                   <h2>Detalles</h2>
                   <tr>
                     <td>Raza</td>
-                    <td>{{pet.breed}}</td>
+                    <td>{{pet.breed.name}}</td>
                   </tr>
                   <tr>
                     <td>Color</td>
@@ -119,12 +119,12 @@
                     <td>Castrado</td>
                     <td><i class="fa" ng-class="pet.neutered ? 'fa-check' : 'fa-times'"></i></td>
                   </tr>
-                  <tr>
+                  <!--<tr>
                     <td>Email de contacto</td>
                     <td>
                       <a ng-if="pet.email && authentication.user._id === pet.user._id" href="mailto:{{pet.email}}">{{pet.email}}</a>
                     </td>
-                  </tr>
+                  </tr>-->
                   <tr>
                     <td>Descripcion o Rasgos de la mascota</td>
                     <td>{{pet.description}}</td>
@@ -133,14 +133,14 @@
                     <td>Dirección</td>
                     <td>{{pet.address}}</td>
                   </tr>
-                  <tr ng-if="authentication.user._id === pet.user._id">
+                  <!--<tr ng-if="authentication.user._id === pet.user._id">
                     <td>Telefono</td>
                     <td >{{pet.tel1}}</td>
                   </tr>
                   <tr ng-if="authentication.user._id === pet.user._id">
                     <td>Celular</td>
                     <td>{{pet.tel2}}</td>
-                  </tr>
+                  </tr>-->
                   </tbody>
                 </table>
               </div>
