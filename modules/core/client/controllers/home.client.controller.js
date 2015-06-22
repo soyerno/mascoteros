@@ -81,7 +81,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
     getVets();
 
 
-    /*$scope.founds.foundCounter = 1000.00;
+    $scope.founds.foundCounter = 1000.00;
 
      $scope.increaseCounter = function(){
      setInterval(function(){
@@ -90,7 +90,7 @@ angular.module('core').controller('HomeController', ['$scope', 'Authentication',
      }, 1000);
      };
 
-     $scope.increaseCounter();*/
+     $scope.increaseCounter();
 
   }
 ]);
