@@ -2,7 +2,9 @@
     <div class="col-md-12">
         <h2>{{title}}</h2>
     </div>
-    <div class="col-xs-3 list-item" ng-repeat="item in items">
-        <img ng-src="{{item.picture}}" class="img-thumbnail" alt="140x140" data-holder-rendered="true" style="width: 100%; height: auto;">
-    </div>
+    <a ng-repeat="item in items" data-ng-href="{{item.url}}">
+        <div class="col-md-3 list-item" >
+            <img ng-src="{{item.picture}}" class="img-thumbnail" alt="140x140" data-holder-rendered="true" style="width: 100%; height: auto;">
+        </div>
+    </a>
 </div>
