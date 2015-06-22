@@ -2,6 +2,10 @@ body {
   background-color: #8dcdec;
   background-size: cover;
 }
+h2 {
+  font-weight: 300;
+  font-size: 28px;
+}
 .content {
   color: black;
 }
@@ -35,6 +39,7 @@ section.container {
 .navbar-inverse .navbar-inverse .navbar-link {
   color: #fff;
   padding-top: 20px;
+  font-weight: 300;
 }
 .navbar-inverse .navbar-nav > li > a,
 .navbar-inverse .navbar-inverse .navbar-text {
