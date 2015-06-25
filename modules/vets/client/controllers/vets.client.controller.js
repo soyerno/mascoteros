@@ -147,7 +147,7 @@ angular.module('vets')
 
 		// Find a list of Vets
 		$scope.find = function() {
-		  if ($scope.radioSelected) {
+
 			$scope.searching = 'Buscando...';
 
 			geolocation
@@ -158,14 +158,14 @@ angular.module('vets')
 				  {
 					latitude: data.coords.latitude,
 					longitude: data.coords.longitude,
-					radio: $scope.radioSelected
+					radio: $scope.radioSelected || '1000'
 				  },
 				  function (vets) {
 					$scope.vets = vets;
 					$scope.searching = '';
 				  });
 			  });
-		  }
+
 		};
 
 		// Find existing Vet
