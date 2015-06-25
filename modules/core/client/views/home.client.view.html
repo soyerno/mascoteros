@@ -1,118 +1,7 @@
 <div data-ng-controller="HomeController" class="landing" data-ng-init="checkAuthentication()" >
-	<header class="header landing" ng-if="!authentication.user">
-		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInRight animated">
-			<div class="row">
-				<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
-					<div class="phone">
-						<img class="img-responsive img-rounded" src="/modules/core/img/cel2.png">
-					</div>
-				</div>
-				<div class="col-md-5">
-					<div class="content">
-						<div class="pull-middle">
-							<h2 class="h1 page-header">Descubrí la nueva forma de cuidar a tu mascota.</h2>
-							<ul class="media-list">
-								<li class="media">
-									<div class="media-body">
-										<h3 class="media-heading">Id para tu mascota.</h3>
-										<p>Registrate, imprimí y listo. Desde un celular escanea el codigo QR y podes ver el perfil de tu mascota, totalmente gratis.</p>
-									</div>
-								</li>
-								<li class="media">
-									<div class="media-body">
-										<h3 class="media-heading">Privacidad.</h3>
-										<p>Si no queres que tus datos sean publicos, podés activar el perfíl cuando lo necesites.</p>
-									</div>
-								</li>
-								<li class="media">
-									<div class="media-body">
-										<h3 class="media-heading">Geo Localization.</h3>
-										<p>Si tu perro es escaneado te enviamos un alerta con la posición.</p>
-									</div>
-								</li>
-								<li class="media">
-									<div class="media-body">
-										<h3 class="media-heading">Directorio.</h3>
-										<p>Buscas entrenadores, veterinarias, amigos, eventos... encontralo acá. </p>
-									</div>
-								</li>
-								<li class="media">
-									<div class="media-body">
-										<h3 class="media-heading">Y más.</h3>
-										<p>Estamos en desarrollo constantemente, para ofrecerte siempre algo nuevo para vos y tus mascotas. </p>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<!-- START DOWNLOAD-->
-	<section id="download" class="download landing" ng-if="!authentication.user">
-		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow zoomIn animated">
-			<h2 class="h1 page-header">Bajate la app mascotera!</h2>
-			<p class="lead">Scanea a tu mascota, subí las mascotas de tus amigos y más!</p>
-			<div class="row">
-				<div class="col-md-3">
-					<center>
-						<a href="https://play.google.com/store/apps/details?id=la.droid.qr&amp;hl=es_419" style="padding:10px;">
-							<img src="https://lh6.ggpht.com/sRD-KnIiknzGuUITit7pvoav79AIDjkO0l54aol9Qm8ayWeq-bEmPemTQF-IzuHY-Bs=w300-rw" style="width:50px;" alt="android">
-						</a>
-						<br>
-						<a href="https://play.google.com/store/apps/details?id=la.droid.qr&amp;hl=es_419" style="padding:10px; color: #fff;">
-							Android
-						</a>
-					</center>
-				</div>
-
-
-				<div class="col-md-3">
-					<center>
-						<a href="https://itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8" style="padding:10px;">
-							<img src="http://a3.mzstatic.com/us/r30/Purple/v4/f2/ee/15/f2ee15bd-9c88-0ebf-742b-84f917bc8410/mzl.ruupbbha.175x175-75.jpg" style="width:50px;" alt="ios">
-							<br>
-						</a>
-						<a href="https://itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8" style="padding:10px; color: #fff;">
-							IOS
-						</a>
-					</center>
-				</div>
-
-
-				<div class="col-md-3">
-					<center>
-						<a href="http://www.windowsphone.com/es-ar/store/app/qr-code-reader/e21dee2d-9c1c-4f25-916f-c93d25da8768" style="padding:10px;">
-							<img src="http://cdn.marketplaceimages.windowsphone.com/v8/images/ed5b64c8-ec05-4e7a-8e91-0dd7960f0975?imageType=ws_icon_large" style="width:50px;" alt="windows phone">
-						</a>
-						<br>
-						<a href="http://www.windowsphone.com/es-ar/store/app/qr-code-reader/e21dee2d-9c1c-4f25-916f-c93d25da8768" style="padding:10px; color: #fff;">
-							Windows Phone
-						</a>
-					</center>
-				</div>
-
-
-				<div class="col-md-3">
-					<center>
-						<a href="http://appworld.blackberry.com/webstore/content/13962/?lang=es&amp;countrycode=AR" style="padding:10px;">
-							<img src="http://appworld.blackberry.com/webstore/servedimages/1153576.png/?t=7" style="width:50px;" alt="blackberry">
-						</a>
-						<br>
-						<a href="http://appworld.blackberry.com/webstore/content/13962/?lang=es&amp;countrycode=AR" style="padding:10px; color: #fff;">
-							BlackBerry
-						</a>
-					</center>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- END DOWNLOAD-->
 
 	<header class="header landing" ng-cloak ng-if="!authentication.user">
-		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInLeft animated">
+		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInLeft">
 			<div class="row">
 				<div class="col-md-5">
 					<div class="content">
@@ -146,6 +35,117 @@
 				<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
 					<div class="phone">
 						<img class="img-responsive img-rounded" src="/modules/core/img/cel1.png">
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- START DOWNLOAD-->
+	<section id="download" class="download landing" ng-if="!authentication.user">
+		<div data-wow-offset="100" data-wow-duration="1.2s" class="container">
+			<h2 class="h1 page-header">Ningun dispositivo queda afuera!</h2>
+			<!--<p class="lead">Descargá el lector del ID!</p>-->
+			<div class="row">
+				<div class="col-xs-3">
+					<center>
+						<a href="https://play.google.com/store/apps/details?id=la.droid.qr&amp;hl=es_419" style="padding:10px;">
+							<img src="https://lh6.ggpht.com/sRD-KnIiknzGuUITit7pvoav79AIDjkO0l54aol9Qm8ayWeq-bEmPemTQF-IzuHY-Bs=w300-rw" style="width:50px;" alt="android">
+						</a>
+						<br>
+						<a href="https://play.google.com/store/apps/details?id=la.droid.qr&amp;hl=es_419" style="padding:10px; color: #fff;">
+							Android
+						</a>
+					</center>
+				</div>
+
+
+				<div class="col-xs-3">
+					<center>
+						<a href="https://itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8" style="padding:10px;">
+							<img src="http://a3.mzstatic.com/us/r30/Purple/v4/f2/ee/15/f2ee15bd-9c88-0ebf-742b-84f917bc8410/mzl.ruupbbha.175x175-75.jpg" style="width:50px;" alt="ios">
+							<br>
+						</a>
+						<a href="https://itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8" style="padding:10px; color: #fff;">
+							IOS
+						</a>
+					</center>
+				</div>
+
+
+				<div class="col-xs-3">
+					<center>
+						<a href="http://www.windowsphone.com/es-ar/store/app/qr-code-reader/e21dee2d-9c1c-4f25-916f-c93d25da8768" style="padding:10px;">
+							<img src="http://cdn.marketplaceimages.windowsphone.com/v8/images/ed5b64c8-ec05-4e7a-8e91-0dd7960f0975?imageType=ws_icon_large" style="width:50px;" alt="windows phone">
+						</a>
+						<br>
+						<a href="http://www.windowsphone.com/es-ar/store/app/qr-code-reader/e21dee2d-9c1c-4f25-916f-c93d25da8768" style="padding:10px; color: #fff;">
+							Windows Phone
+						</a>
+					</center>
+				</div>
+
+
+				<div class="col-xs-3">
+					<center>
+						<a href="http://appworld.blackberry.com/webstore/content/13962/?lang=es&amp;countrycode=AR" style="padding:10px;">
+							<img src="http://appworld.blackberry.com/webstore/servedimages/1153576.png/?t=7" style="width:50px;" alt="blackberry">
+						</a>
+						<br>
+						<a href="http://appworld.blackberry.com/webstore/content/13962/?lang=es&amp;countrycode=AR" style="padding:10px; color: #fff;">
+							BlackBerry
+						</a>
+					</center>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END DOWNLOAD-->
+
+	<header class="header landing" ng-if="!authentication.user">
+		<div data-wow-offset="100" data-wow-duration="1.2s" class="container wow fadeInRight">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-1 text-center mt-100 mb-100">
+					<div class="phone">
+						<img class="img-responsive img-rounded" src="/modules/core/img/cel2.png">
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="content">
+						<div class="pull-middle">
+							<h2 class="h1 page-header">Descubrí la nueva forma de cuidar a tu mascota.</h2>
+							<ul class="media-list">
+								<li class="media">
+									<div class="media-body">
+										<h3 class="media-heading">Id para tu mascota.</h3>
+										<p>Con codigo unico de tu mascota  accedé a los servicios de mascoteros.</p>
+									</div>
+								</li>
+								<li class="media">
+									<div class="media-body">
+										<h3 class="media-heading">Encontrale pareja a tu mascota.</h3>
+										<p>Encontrá pareja para tu mascota de la manera mas simple.</p>
+									</div>
+								</li>
+								<li class="media">
+									<div class="media-body">
+										<h3 class="media-heading">Directorio de Veterinarias.</h3>
+										<p>Encontra la lista más completa de veterinarias cercanas.</p>
+									</div>
+								</li>
+								<li class="media">
+									<div class="media-body">
+										<h3 class="media-heading">Adopciones.</h3>
+										<p>Tenes una mascota para dar en adopción, cargá el perfíl y encontrale un hogar rapidamente.</p>
+									</div>
+								</li>
+								<li class="media">
+									<div class="media-body">
+										<h3 class="media-heading">Y más.</h3>
+										<p>Estamos en desarrollo constantemente, para ofrecerte siempre algo nuevo para vos y tus mascotas. </p>
+									</div>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
