@@ -17,10 +17,10 @@ angular.module('pets').run(['Menus',
 		});
 
 		// Add the dropdown create item
-		Menus.addSubMenuItem('topbar', 'pets', {
+		/*Menus.addSubMenuItem('topbar', 'pets', {
 			title: 'Nueva mascota',
 			state: 'pets.create'
-		});
+		});*/
 
 		Menus.addSubMenuItem('topbar', 'pets', {
 			title: 'Perdidas',

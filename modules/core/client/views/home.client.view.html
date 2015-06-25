@@ -154,15 +154,15 @@
 
 	<section class="section" ng-if="authentication.user">
 		<div class="container">
-			<home-list title="'Busca Novi@s'" items="dates"></home-list>
-			<div class="widget founds-banner text-center">
+			<home-list entity-url="'/pet/'" title="'Busca Novi@s'" items="dates"></home-list>
+			<!--<div class="widget founds-banner text-center">
 				<hr/>
 				<h2>TIENES UN DESCUENTO CERCA DE TU UBICACION ACTUAL</h2>
 				<p>Suma puntos y conseguí descuentos</p>
 				<hr/>
-			</div>
-			<home-list title="'Perdidos en la zona'" items="missing"></home-list>
-			<div class="widget founds-banner text-center">
+			</div>-->
+			<home-list entity-url="'/pet/'" title="'Perdidos en la zona'" items="missing"></home-list>
+			<!--<div class="widget founds-banner text-center">
 				<h2 class="text-center">Fondo actual</h2>
 				<h2 class="text-center">$ <strong>{{founds.foundCounter}}</strong></h2>
 				<hr/>
@@ -176,16 +176,17 @@
 				<h4>Vos tambien podes ganar!</h4>
 				<button class="btn btn-info btn-large">Participar</button>
 				<button class="btn btn-info btn-large">Términos y Condiciones</button>
-			</div>
-			<home-list title="'Adopción'" items="adoption"></home-list>
-			<div class="widget founds-banner text-center">
-				<h2>Royal canin 50% off</h2>
-			</div>
-			<home-list title="'Veterinarias en tu zona'" items="vets"></home-list>
-			<div class="widget founds-banner text-center">
+			</div>-->
+			<home-list entity-url="'/pet/'" title="'Adopción'" items="adoption"></home-list>
+			<a target="_blank" href="http://www.soplodevida.org/">
+				<div class="widget founds-banner text-center" style="  min-height: 300px; background-position: center center; background-size: 60%;background-repeat: no-repeat;
+				background-color: #000; background-image: url('https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xfa1/t31.0-8/11169601_819482288101195_3187343376673467976_o.jpg')"></div>
+			</a>
+			<home-list entity-url="'/vets/'" title="'Veterinarias en tu zona'" items="vets"></home-list>
+			<!--<div class="widget founds-banner text-center">
 				<h2>BAÑOS 2 x 1</h2>
-			</div>
-			<home-list title="'Paseadores en tu zona'" items="[1,2,3,4]"></home-list>
+			</div>-->
+			<!--<home-list entity-url="'/trainer/'" title="'Paseadores en tu zona'" items="[1,2,3,4]"></home-list>-->
 			<br/>
 		</div>
 	</section>

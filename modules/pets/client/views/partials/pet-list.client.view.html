@@ -1,7 +1,6 @@
 <section class="row">
     <!--<a data-ng-repeat="pet in pets" data-ng-href="#!/pets/{{pet._id}}">-->
     <div class="col-md-4" data-ng-repeat="pet in pets">
-      <!-- START widget-->
       <div class="wow bounceInUp animated panel widget" data-wow-offset="120" data-wow-duration="1.5s" >
         <div class="panel-body text-center bg-center" style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')">
           <div class="row row-table">
@@ -70,7 +69,60 @@
             </div>
         </div>-->
       </div>
-      <!-- END widget-->
     </div>
+    <a data-ng-href="/pets/create" style="font-size: 48px;">
+        <div class="col-md-4">
+            <div class="wow bounceInUp animated panel widget" data-wow-offset="120" data-wow-duration="1.5s" >
+                <div class="panel-body text-center bg-center" style="background-color: #00aeef">
+                    <div class="row row-table">
+                        <div class="col-xs-12 text-white">
+                            <h3 class="m0">Nueva Mascota + </h3>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="panel-body text-center bg-gray-darker">
+                    <div class="row row-table">
+                        <div class="col-xs-3">
+                            <a href="#" class="text-white">
+                                <em class="fa fa-twitter fa-2x"></em>
+                            </a>
+                        </div>
+                        <div class="col-xs-3">
+                            <a href="#" class="text-white">
+                                <em class="fa fa-facebook fa-2x"></em>
+                            </a>
+                        </div>
+                        <div class="col-xs-3">
+                            <a href="#" class="text-white">
+                                <em class="fa fa-google-plus fa-2x"></em>
+                            </a>
+                        </div>
+                        <div class="col-xs-3">
+                            <a href="#" class="text-white">
+                                <em class="fa fa-comments fa-2x"></em>
+                            </a>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="list-group">
+                    <!--<a href="#" class="list-group-item">
+                        <span class="pull-right">Saliendo a pasear</span>
+                        <em class="fa fa-fw fa-clock-o text-muted"></em>Ultima Actividad</a>-->
+
+                </div>
+                <!--<div class="widget bg-success">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center pv-lg">
+                            <em class="icon-star fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 pv-lg">
+                            <div class="h1 m0 text-bold">7000</div>
+                            <div class="text-uppercase">likes totales</div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </a>
     <!--</a>-->
 </section>

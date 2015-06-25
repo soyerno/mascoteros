@@ -1,5 +1,5 @@
 body{
-  background-color: #8dcdec;
+  background-color: #f2f2f2;
   background-size: cover;
 }
 
@@ -19,8 +19,6 @@ h2 {
 }
 
 section.container {
-  background: #f5f7fa;
-  border-radius: 4px;
 }
 
 #map_canvas {
@@ -85,7 +83,9 @@ section.container {
 }
 .home-list {
   .list-item {
-      margin-bottom: 15px;
+    margin-bottom: 15px;
+    margin: 0.5%;
+    width: 24%;
   }
 }
 
@@ -121,8 +121,14 @@ section.container {
 
 .footer {
   padding-top: 1em !important;
+  border-radius: 0 !important;
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  border-radius: 0 !important;;
+
+  > .row {
+    margin: 0 auto;
+  }
 }
 
 ul.dropdown {
@@ -135,3 +141,5 @@ ul.dropdown {
     margin-bottom: 15px;
   }
 }
+
+

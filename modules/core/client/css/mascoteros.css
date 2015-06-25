@@ -1,5 +1,5 @@
 body {
-  background-color: #8dcdec;
+  background-color: #f2f2f2;
   background-size: cover;
 }
 h2 {
@@ -11,10 +11,6 @@ h2 {
 }
 .content > section {
   padding-top: 0em;
-}
-section.container {
-  background: #f5f7fa;
-  border-radius: 4px;
 }
 #map_canvas {
   height: 100%;
@@ -70,6 +66,8 @@ section.container {
 }
 .home-list .list-item {
   margin-bottom: 15px;
+  margin: 0.5%;
+  width: 24%;
 }
 .founds-banner {
   padding: 15px 0;
@@ -100,8 +98,13 @@ section.container {
 */
 .footer {
   padding-top: 1em !important;
-  width: 100%;
   border-radius: 0 !important;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer > .row {
+  margin: 0 auto;
 }
 ul.dropdown {
   position: fixed;
