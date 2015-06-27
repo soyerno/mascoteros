@@ -14,7 +14,8 @@ var _ = require('lodash'),
  */
 exports.create = function(req, res) {
 	var pet = new Pet(req.body);
-	pet.user = req.user;
+	pet.owners = [];
+	pet.owners.push(req.user);
 
 	pet.save(function(err) {
 		if (err) {
@@ -76,7 +77,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
 	console.log('pet list');
-	Pet.find({user: req.user._id}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+	Pet.find({owners: req.user._id}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -92,7 +93,7 @@ exports.list = function(req, res) {
  * Pet middleware
  */
 exports.petByID = function(req, res, next, id) {
-	Pet.findById(id).populate('user', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pet) {
+	Pet.findById(id).populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pet) {
 		if (err) return next(err);
 		if (!pet) return next(new Error('Failed to load pet ' + id));
 		req.pet = pet;
@@ -101,7 +102,7 @@ exports.petByID = function(req, res, next, id) {
 };
 
 exports.petBySlug = function(req, res, next, slug) {
-	Pet.findOne({slug: slug}).populate('user', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pet) {
+	Pet.findOne({slug: slug}).populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pet) {
 		if (err) return next(err);
 		if (! pet) return next(new Error('Failed to load Pet ' + slug));
 		req.pet = pet;
@@ -115,7 +116,7 @@ exports.petBySlug = function(req, res, next, slug) {
 
 exports.listMissing = function(req, res) {
 
-	Pet.find({isMissing: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pets) {
+	Pet.find({isMissing: true}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -131,7 +132,7 @@ exports.listMissing = function(req, res) {
  */
 exports.listDates = function(req, res) {
 
-	Pet.find({isFindingDate: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pets) {
+	Pet.find({isFindingDate: true}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -193,7 +194,7 @@ exports.updateFindingDate = function(req, res) {
 
 exports.listAdoption = function(req, res) {
 
-	Pet.find({isAdoption: true}).sort('-created').populate('user', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+	Pet.find({isAdoption: true}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

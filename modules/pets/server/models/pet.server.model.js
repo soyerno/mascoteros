@@ -21,10 +21,10 @@ var PetSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	user: {
-		type: Schema.ObjectId,
+	owners: [{
+		type: Schema.Types.ObjectId,
 		ref: 'User'
-	},
+	}],
 	type: {
 		type: Schema.ObjectId,
 		ref: 'Pettype',
