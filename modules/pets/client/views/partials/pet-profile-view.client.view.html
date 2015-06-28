@@ -69,6 +69,8 @@
                   <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
                   <button ng-click="" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Solicitar Adopción</button>
 
+                  <button ng-click="" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Castrado On/Off</button>
+
                   <button ng-click="setFindingDate(true);" ng-show="!pet.isFindingDate && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Buscar pareja</button>
                   <button ng-click="setFindingDate(false);" ng-show="pet.isFindingDate && pet.isOwner" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Dejar de buscar pareja</button>
 
@@ -95,7 +97,7 @@
                 <div gplus class="g-plus" data-size="tall" data-annotation="bubble" data-ng-href='http://www.mascoteros.net/pet/{{pet.slug}}' data-action='share'></div>
               </div>
             </div>
-            <div class=" col-md-4 col-lg-4 ">
+            <div class=" col-md-8 col-lg-8 ">
               <div class="">
                 <table class="table table-user-information">
                   <tbody>
@@ -135,6 +137,16 @@
                     <td>Dirección</td>
                     <td>{{pet.address}}</td>
                   </tr>
+                  <tr>
+                    <td colspan="2">
+                      <div class="panel widget" ng-if="map">
+                        <ui-gmap-google-map center="pet.coords" zoom="18" draggable="false" options="options">
+                          <ui-gmap-marker coords="pet.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                          </ui-gmap-marker>
+                        </ui-gmap-google-map>
+                      </div>
+                    </td>
+                  </tr>
                   <!--<tr ng-if="pet.owners[authentication.user._id]">
                     <td>Telefono</td>
                     <td >{{pet.tel1}}</td>
@@ -147,14 +159,14 @@
                 </table>
               </div>
             </div>
-            <div class="col-md-4 col-lg-4">
+            <!--<div class="col-md-4 col-lg-4">
               <div class="panel widget" ng-if="map">
                 <ui-gmap-google-map center="pet.coords" zoom="18" draggable="false" options="options">
                   <ui-gmap-marker coords="pet.coords" options="marker.options" events="marker.events" idkey="marker.id">
                   </ui-gmap-marker>
                 </ui-gmap-google-map>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
         <!--<div class="panel-footer"></div>-->
