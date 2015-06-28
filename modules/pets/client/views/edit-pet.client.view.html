@@ -20,7 +20,7 @@
                 <div class=" col-md-9 col-lg-9 ">
                     <table class="table table-user-information">
                         <tbody>
-                        <tr>
+                        <tr ng-hide="true">
                             <td>
                                 <label class="control-label" for="isPrivate">Perfil Privado?</label>
                             </td>
@@ -30,7 +30,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr ng-hide="true">
                             <td>
                                 <label class="control-label" for="isAdoption">En adopción?</label>
                             </td>
@@ -60,7 +60,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr ng-hide="true">
                             <td>
                                 <label class="control-label" for="color">Color</label>
                             </td>
@@ -70,11 +70,12 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td><label class="control-label" for="yearOfBirth">Nació</label></td>
+                        <tr ng-hide="true">
+                            <td><label class="control-label" for="yearOfBirth">Fecha de nacimiento</label></td>
                             <td>
                                 <div class="controls">
-                                    <input type="text" ng-if="pet.yearOfBirth" disabled data-ng-model="pet.yearOfBirth | date:'fullDate'" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
+                                    <!--<input disabled type="datetime" min-view="date" date-time ng-model="start" class="form-control" data-ng-model="pet.yearOfBirth">-->
+                                    <input type="text" ng-if="pet.yearOfBirth" disabled data-ng-model="pet.yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
                                 </div>
                             </td>
                         </tr>
@@ -109,18 +110,21 @@
                         <td><label class="control-label" for="description">Descripcion o Rasgos de la mascota</label></td>
                         <td>
                             <div class="controls">
-                                <input type="text" data-ng-model="pet.description" id="description" class="form-control" placeholder="Mancha pata derecha" required>
+                                <textarea type="text" data-ng-model="pet.description" id="description" class="form-control" placeholder="Mancha pata derecha" required></textarea>
                             </div>
                         </td>
 
                         </tr>
                         <tr>
-                            <td>
-                                <iframe ng-if="pet.address" width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com.ar/maps/place/"{{pet.address + '&output=embed'}}></iframe>
-                            </td>
-                            <td>
-                                <label class="control-label" for="description">Dirección</label>
-                                <input type="text" data-ng-model="pet.address" id="address" class="form-control" placeholder="Calle 123 - PB" required>
+                            <td colspan="2">
+                                <script type="text/ng-template" id="searchbox.tpl.html">
+                                    <input type="text" class="google-map-search-box" data-ng-model="pet.address" id="address" class="form-control" placeholder="" required>
+                                </script>
+                                <ui-gmap-google-map center="pet.coords" zoom="18" draggable="false" options="options">
+                                    <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+                                    <ui-gmap-marker coords="pet.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                    </ui-gmap-marker>
+                                </ui-gmap-google-map>
                             </td>
                         </tr>
                         <tr>
