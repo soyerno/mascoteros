@@ -1,12 +1,12 @@
 <main>
-  <h3 data-ng-show="authentication.user._id === pet.user._id && pet.name">
+  <h3 data-ng-show="pet.isOwner && pet.name">
     <div class="pull-right">
       <a class="btn btn-primary" href="/pets/{{pet._id}}/edit">
         <i class="fa fa-edit"></i>
       </a>
     </div>
   </h3>
-  <div class="content-wrapper" ng-if="!pet.isPrivate || authentication.user._id === pet.user._id">
+  <div class="content-wrapper" ng-if="!pet.isPrivate || pet.isOwner">
     <div class="unwrap">
       <div style="background-image: url('{{pet.picture | cloudinaryProfileBlured}}')" class="bg-cover">
         <div class="p-xl text-left text-white">
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <section ng-if="!pet.isPrivate || authentication.user._id === pet.user._id">
+  <section ng-if="!pet.isPrivate || pet.isOwner">
     <!--<div class="" data-ng-show="((authentication.user) && (authentication.user._id == pet.user._id))">-->
     <!--<div class="panel">
         {{coords}}
@@ -60,14 +60,14 @@
               </div>
               <div class="row" align="center">
                 <div class="col-md-12 pet-actions-container">
-                  <button ng-show="authentication.user._id !== pet.user._id" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
+                  <button ng-show="!pet.isOwner" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
                   <!--<button class="btn btn-lg btn-success" ng-click="sendScanNotif();"><i class="icon-like"></i> Notificar</button>-->
                   <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
-                  <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Notificar encuentro</button>
-                  <button ng-click="setPetMissing(true);" ng-show="!pet.isMissing && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Alertar perdida</button>
+                  <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Notificar encuentro</button>
+                  <button ng-click="setPetMissing(true);" ng-show="!pet.isMissing && pet.isOwner" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Alertar perdida</button>
 
-                  <button ng-click="setFindingDate(true);" ng-show="!pet.isFindingDate && authentication.user._id == pet.user._id" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Buscar pareja</button>
-                  <button ng-click="setFindingDate(false);" ng-show="pet.isFindingDate && authentication.user._id == pet.user._id" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Dejar de buscar pareja</button>
+                  <button ng-click="setFindingDate(true);" ng-show="!pet.isFindingDate && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Buscar pareja</button>
+                  <button ng-click="setFindingDate(false);" ng-show="pet.isFindingDate && pet.isOwner" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Dejar de buscar pareja</button>
 
                   <!--MAKE A LIKE DIRECTIVE-->
                   <!--<button class="btn btn-lg btn-success"><i class="icon-like"></i> Likes: 120</button>
@@ -81,7 +81,7 @@
                   <!--<button class="btn btn-lg btn-primary" ng-show="authentication.user._id == pet.user._id"><i class="icon-printer"></i> Imprimir ID</button>-->
                 </div>
               </div>
-              <div class="row" ng-show="authentication.user._id == pet.user._id" align="center">
+              <div class="row" ng-show="pet.isOwner" align="center">
                 <p>Hacé click sobre la imagen para imprimir tu collar!</p>
                 <qr ng-if="pet" pet="pet"></qr>
               </div>
@@ -121,7 +121,7 @@
                   <!--<tr>
                     <td>Email de contacto</td>
                     <td>
-                      <a ng-if="pet.email && authentication.user._id === pet.user._id" href="mailto:{{pet.email}}">{{pet.email}}</a>
+                      <a ng-if="pet.email && pet.isOwner" href="mailto:{{pet.email}}">{{pet.email}}</a>
                     </td>
                   </tr>-->
                   <tr>
@@ -132,11 +132,11 @@
                     <td>Dirección</td>
                     <td>{{pet.address}}</td>
                   </tr>
-                  <!--<tr ng-if="authentication.user._id === pet.user._id">
+                  <!--<tr ng-if="pet.owners[authentication.user._id]">
                     <td>Telefono</td>
                     <td >{{pet.tel1}}</td>
                   </tr>
-                  <tr ng-if="authentication.user._id === pet.user._id">
+                  <tr ng-if="pet.owners[authentication.user._id]">
                     <td>Celular</td>
                     <td>{{pet.tel2}}</td>
                   </tr>-->
@@ -164,7 +164,7 @@
     <a ng-href="/pets" class="btn btn-primary btn-lg">Volver al listado de mascotas</a>
   </section>
 
-  <section ng-show="pet.isPrivate && authentication.user._id != pet.user._id">
+  <section ng-show="pet.isPrivate && !pet.isOwner">
     <h2>El perfíl de la mascota es privado!</h2>
     <a ng-href="/pets" class="btn btn-primary btn-lg">Volver al listado de mascotas</a>
   </section>

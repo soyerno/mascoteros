@@ -21,6 +21,10 @@ var PetSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	isOwner: {
+		type: Boolean,
+		default: ''
+	},
 	owners: [{
 		type: Schema.Types.ObjectId,
 		ref: 'User'

@@ -89,6 +89,20 @@ exports.list = function(req, res) {
 	});
 };
 
+
+var checkIfOwner = function(pet, userId, cb){
+	var newPet = pet;
+	pet.owners.forEach(function(element, index, array){
+		var elementID = element._id.toString();
+		console.log(elementID, userId);
+		if(elementID === userId){
+			newPet.isOwner = true;
+			console.log(newPet.isOwner, newPet);
+		}
+	});
+	return newPet;
+};
+
 /**
  * Pet middleware
  */
@@ -96,7 +110,14 @@ exports.petByID = function(req, res, next, id) {
 	Pet.findById(id).populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pet) {
 		if (err) return next(err);
 		if (!pet) return next(new Error('Failed to load pet ' + id));
-		req.pet = pet;
+
+		if (pet){
+			pet.isOwner = false;
+			pet = checkIfOwner(pet, req.user.id);
+			req.pet = pet;
+			console.log(pet.isOwner, req.pet, req.pet.isOwner);
+		}
+
 		next();
 	});
 };
@@ -105,7 +126,14 @@ exports.petBySlug = function(req, res, next, slug) {
 	Pet.findOne({slug: slug}).populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pet) {
 		if (err) return next(err);
 		if (! pet) return next(new Error('Failed to load Pet ' + slug));
-		req.pet = pet;
+
+		if (pet){
+			pet.isOwner = false;
+			pet = checkIfOwner(pet, req.user.id);
+			req.pet = pet;
+			console.log(pet.isOwner, req.pet, req.pet.isOwner);
+		}
+
 		next();
 	});
 };
