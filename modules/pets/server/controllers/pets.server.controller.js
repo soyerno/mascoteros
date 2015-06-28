@@ -76,14 +76,12 @@ exports.delete = function(req, res) {
  * List of Pet
  */
 exports.list = function(req, res) {
-	console.log('pet list');
 	Pet.find({owners: req.user._id}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			console.log(pets);
 			res.jsonp(pets);
 		}
 	});
@@ -94,10 +92,8 @@ var checkIfOwner = function(pet, userId, cb){
 	var newPet = pet;
 	pet.owners.forEach(function(element, index, array){
 		var elementID = element._id.toString();
-		console.log(elementID, userId);
 		if(elementID === userId){
 			newPet.isOwner = true;
-			console.log(newPet.isOwner, newPet);
 		}
 	});
 	return newPet;
@@ -115,7 +111,6 @@ exports.petByID = function(req, res, next, id) {
 			pet.isOwner = false;
 			pet = checkIfOwner(pet, req.user.id);
 			req.pet = pet;
-			console.log(pet.isOwner, req.pet, req.pet.isOwner);
 		}
 
 		next();
@@ -131,7 +126,6 @@ exports.petBySlug = function(req, res, next, slug) {
 			pet.isOwner = false;
 			pet = checkIfOwner(pet, req.user.id);
 			req.pet = pet;
-			console.log(pet.isOwner, req.pet, req.pet.isOwner);
 		}
 
 		next();
