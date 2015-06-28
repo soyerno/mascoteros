@@ -120,12 +120,14 @@ exports.invokeRolesPolicies = function() {
 
 var checkIfOwner = function(pet, userId, cb){
 	var newPet = pet;
-	pet.owners.forEach(function(element, index, array){
-		var elementID = element._id.toString();
-		if(elementID === userId){
-			newPet.isOwner = true;
-		}
-	});
+	if(pet && userId){
+		pet.owners.forEach(function(element, index, array){
+			var elementID = element._id.toString();
+			if(elementID === userId){
+				newPet.isOwner = true;
+			}
+		});
+	}
 	return newPet;
 };
 
@@ -134,7 +136,6 @@ exports.isAllowed = function(req, res, next) {
 	var roles = (req.user) ? req.user.roles : ['guest'];
 
 	var isOwner = checkIfOwner(req.pet, req.user._id);
-	console.log(isOwner);
 	// If an pet is being processed and the current user created it then allow any manipulation
 	if (req.pet && req.user && isOwner) {
 		return next();
