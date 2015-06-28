@@ -95,3 +95,17 @@ exports.changeProfilePicture = function (req, res) {
 exports.me = function (req, res) {
 	res.json(req.user || null);
 };
+
+exports.exists = function(req, res) {
+  User
+    .findOne({ email: req.query.email })
+    .exec(function(err, user) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.jsonp(user);
+      }
+    });
+};
