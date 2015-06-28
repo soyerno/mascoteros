@@ -5,6 +5,7 @@ angular.module('core').directive("homeList", [function () {
         scope: {
             title: "=",
             items: "=",
+            limit: "=?",
             entityUrl: "="
         },
         templateUrl: 'modules/core/views/partials/home-list-directive-client-view.html',
@@ -12,6 +13,10 @@ angular.module('core').directive("homeList", [function () {
         replace: true,
         link: function (scope, element, attributes) {
 
+            if(!scope.limit){
+                scope.limit = 4;
+            }
+            console.log(scope.limit);
         }
     };
 }]);

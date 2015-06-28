@@ -154,6 +154,7 @@
 
 	<section class="section" ng-if="authentication.user">
 		<div class="container">
+			<home-list entity-url="'/event/'" title="'Próximos eventos'" items="[1,2,3,4]"></home-list>
 			<home-list entity-url="'/pet/'" title="'Busca Novi@s'" items="dates"></home-list>
 			<!--<div class="widget founds-banner text-center">
 				<hr/>
@@ -177,11 +178,21 @@
 				<button class="btn btn-info btn-large">Participar</button>
 				<button class="btn btn-info btn-large">Términos y Condiciones</button>
 			</div>-->
-			<home-list entity-url="'/pet/'" title="'Adopción'" items="adoption"></home-list>
-			<a target="_blank" href="http://www.soplodevida.org/">
-				<div class="widget founds-banner text-center" style="  min-height: 300px; background-position: center center; background-size: 60%;background-repeat: no-repeat;
+			<div class="row">
+				<div class="col-sm-9">
+					<home-list entity-url="'/pet/'" title="'Adopción'" items="adoption" limit="3"></home-list>
+				</div>
+				<a class="col-md-3 list-item" target="_blank" href="http://www.soplodevida.org/">
+					<div class="widget founds-banner text-center" style="  min-height: 190px;
+  margin-top: 53px;
+  background-position: center center;
+  background-size: 100%;
+background-repeat: no-repeat;
 				background-color: #000; background-image: url('https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xfa1/t31.0-8/11169601_819482288101195_3187343376673467976_o.jpg')"></div>
-			</a>
+				</a>
+			</div>
+
+
 			<home-list entity-url="'/vets/'" title="'Veterinarias en tu zona'" items="vets"></home-list>
 			<!--<div class="widget founds-banner text-center">
 				<h2>BAÑOS 2 x 1</h2>

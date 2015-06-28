@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h2 style="font-weight: 400;">{{title}}</h2>
     </div>
-    <a ng-repeat="item in items" data-ng-href="{{entityUrl}}{{item.slug || item._id}}">
+    <a ng-repeat="item in items | limitTo: limit" data-ng-href="{{entityUrl}}{{item.slug || item._id}}">
         <div class="col-md-3 list-item" style="padding: 10px;background-color: white;border: 1px solid transparent;" >
             <img ng-src="{{item.picture || '/modules/core/img/vet-profile.png'}}" class="img-thumbnail" alt="140x140" data-holder-rendered="true" style="width: 100%; height: auto; background-color: none; border: 0px;">
             <h3 style="color: #000; font-weight: 300; margin: 10px 0 0 0;  font-size: 18px;">{{item.name}}</h3>
