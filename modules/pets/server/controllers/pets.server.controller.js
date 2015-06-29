@@ -39,7 +39,7 @@ exports.read = function(req, res) {
  * Update a pet
  */
 exports.update = function(req, res) {
-	var pet = req.pet;
+	var pet = req.body;
 
 	pet.title = req.body.title;
 	pet.content = req.body.content;
