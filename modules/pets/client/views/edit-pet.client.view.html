@@ -20,146 +20,139 @@
                 <div class=" col-md-9 col-lg-9 ">
                     <table class="table table-user-information">
                         <tbody>
-                        <tr>
-                            <td style="vertical-align: top;">
-                                <label class="control-label" for="isPrivate">Familia de {{pet.name}}</label>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li ng-repeat="owner in pet.owners">
-                                        {{owner.displayName}}
-                                    </li>
-                                </ul>
-                                <div class="controls">
-                                    <input type="text" data-ng-model="newOwnerEmail" id="" class="form-control" placeholder="usuario@email.com">
-                                </div>
-                                <button ng-click="addOwner();">Agregar</button>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td>
-                                <label class="control-label" for="isPrivate">Perfil Privado?</label>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    <input type="checkbox" data-ng-model="pet.isPrivate" id="isPrivate" class="form-control">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td>
-                                <label class="control-label" for="isAdoption">En adopción?</label>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    <input type="checkbox" data-ng-model="pet.isAdoption" id="isAdoption" class="form-control">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td>
-                                <label class="control-label" for="name">Nombre</label>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    <input type="hidden" data-ng-model="name" id="name" class="form-control" placeholder="nombre de la mascota" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td>
-                                <label class="control-label" for="breed">Raza</label>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    <input type="hidden" data-ng-model="pet.breed" id="breed" class="form-control" placeholder="Raza" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td>
-                                <label class="control-label" for="color">Color</label>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    <input type="text" data-ng-model="pet.color" id="color" class="form-control" placeholder="Color" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td><label class="control-label" for="yearOfBirth">Fecha de nacimiento</label></td>
-                            <td>
-                                <div class="controls">
-                                    <!--<input disabled type="datetime" min-view="date" date-time ng-model="start" class="form-control" data-ng-model="pet.yearOfBirth">-->
-                                    <input type="text" ng-if="pet.yearOfBirth" disabled data-ng-model="pet.yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
-                                </div>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td style="vertical-align: top;">
+                                    <label class="control-label" for="isPrivate">Familia de {{pet.name}}</label>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li ng-repeat="owner in pet.owners">
+                                            {{owner.displayName}}
+                                        </li>
+                                    </ul>
+                                    <div class="controls">
+                                        <input type="text" data-ng-model="newOwnerEmail" id="" class="form-control" placeholder="usuario@email.com">
+                                    </div>
+                                    <button ng-click="addOwner();">Agregar</button>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="isPrivate">Perfil Privado?</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="checkbox" data-ng-model="pet.isPrivate" id="isPrivate" class="form-control">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="isAdoption">En adopción?</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="checkbox" data-ng-model="pet.isAdoption" id="isAdoption" class="form-control">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="name">Nombre</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="hidden" data-ng-model="name" id="name" class="form-control" placeholder="nombre de la mascota" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="breed">Raza</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="hidden" data-ng-model="pet.breed" id="breed" class="form-control" placeholder="Raza" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="color">Color</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="text" data-ng-model="pet.color" id="color" class="form-control" placeholder="Color" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td><label class="control-label" for="yearOfBirth">Fecha de nacimiento</label></td>
+                                <td>
+                                    <div class="controls">
+                                        <!--<input disabled type="datetime" min-view="date" date-time ng-model="start" class="form-control" data-ng-model="pet.yearOfBirth">-->
+                                        <input type="text" ng-if="pet.yearOfBirth" disabled data-ng-model="pet.yearOfBirth" id="yearOfBirth" class="form-control" placeholder="Fecha de Nac" required>
+                                    </div>
+                                </td>
+                            </tr>
 
-                        <tr>
-                        <tr ng-hide="true">
-                            <td>
-                                <label class="control-label" for="color">Genero</label>
-                            </td>
+                            <tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="color">Genero</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="hidden" data-ng-model="pet.genre" id="genre" class="form-control" placeholder="" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>
+                                    <label class="control-label" for="neutered">Castrado</label>
+                                </td>
+                                <td>
+                                    <div class="controls">
+                                        <input type="checkbox" data-ng-model="pet.neutered" id="neutered" class="form-control" placeholder="Si/ No" required>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr ng-hide="true">
+                                <td>Email de contacto</td>
+                                <td>
+                                    <input ng-if="pet.email" type="text" data-ng-model="pet.email" id="email" class="form-control" placeholder="usuario@email.com" required>
+                                </td>
+                            </tr>
+                            <td><label class="control-label" for="description">Descripcion o Rasgos de la mascota</label></td>
                             <td>
                                 <div class="controls">
-                                    <input type="hidden" data-ng-model="pet.genre" id="genre" class="form-control" placeholder="" required>
+                                    <textarea type="text" data-ng-model="pet.description" id="description" class="form-control" placeholder="Mancha pata derecha" required></textarea>
                                 </div>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="control-label" for="neutered">Castrado</label>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    <input type="checkbox" data-ng-model="pet.neutered" id="neutered" class="form-control" placeholder="Si/ No" required>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr ng-hide="true">
-                            <td>Email de contacto</td>
-                            <td>
-                                <input ng-if="pet.email" type="text" data-ng-model="pet.email" id="email" class="form-control" placeholder="usuario@email.com" required>
-                            </td>
-                        </tr>
-                        <td><label class="control-label" for="description">Descripcion o Rasgos de la mascota</label></td>
-                        <td>
-                            <div class="controls">
-                                <textarea type="text" data-ng-model="pet.description" id="description" class="form-control" placeholder="Mancha pata derecha" required></textarea>
-                            </div>
-                        </td>
 
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <script type="text/ng-template" id="searchbox.tpl.html">
-                                    <input type="text" class="google-map-search-box" data-ng-model="pet.address" id="address" class="form-control" placeholder="" required>
-                                </script>
-                                <ui-gmap-google-map center="pet.coords" zoom="18" draggable="false" options="options">
-                                    <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
-                                    <ui-gmap-marker coords="pet.coords" options="marker.options" events="marker.events" idkey="marker.id">
-                                    </ui-gmap-marker>
-                                </ui-gmap-google-map>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                                <label class="control-label" for="tel1">Teléfono de contacto</label>
-                                <input type="text" data-ng-model="pet.tel1" id="tel1" class="form-control" placeholder="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                                <label class="control-label" for="tel2">Celular de contacto</label>
-                                <input type="text" data-ng-model="pet.tel2" id="tel2" class="form-control" placeholder="">
-                            </td>
-                        </tr>
-
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <script type="text/ng-template" id="searchbox.tpl.html">
+                                        <input type="text" class="google-map-search-box" data-ng-model="pet.address" id="address" class="form-control" placeholder="" required>
+                                    </script>
+                                    <ui-gmap-google-map center="pet.coords" zoom="18" draggable="false" options="options">
+                                        <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+                                        <ui-gmap-marker coords="pet.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                                        </ui-gmap-marker>
+                                    </ui-gmap-google-map>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="control-label" for="tel2">Celular de contacto</label>
+                                    <input type="text" data-ng-model="pet.tel2" id="tel2" class="form-control" placeholder="">
+                                </td>
+                                <td>
+                                    <label class="control-label" for="tel1">Teléfono de contacto</label>
+                                    <input type="text" data-ng-model="pet.tel1" id="tel1" class="form-control" placeholder="">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
