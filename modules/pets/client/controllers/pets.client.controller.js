@@ -211,9 +211,7 @@ angular.module('pets').controller('PetsController', [
 			});
 		};
 
-
 		//END MAPS
-
 		/*$scope.sendScanNotif = function () {
 			/!* @todo: add this to pet profile options*!/
 			var petSendNotification = true;
@@ -263,8 +261,7 @@ angular.module('pets').controller('PetsController', [
 					console.log(data);
 					$scope.error = data;
 				});
-		}
-
+		};
 
 		$scope.findMissing = function() {
 			console.log('missing');
@@ -287,5 +284,41 @@ angular.module('pets').controller('PetsController', [
 					console.log('error loading missing pets');
 				});
 		};
+
+		$scope.addOwner = function($event) {
+		  $event.preventDefault();
+		  $http.get('/api/users/exists', {
+			params: {
+			  email: $scope.newOwnerEmail
+			}
+		  }).
+			success(function (data, status, headers, config) {
+			  if (data && $scope.pet) {
+
+				$scope.pet.owners.push(data);
+
+				saveOwenerId($scope.pet._id, data._id);
+
+				//$scope.update();
+			  }
+			}).
+			error(function (data, status, headers, config) {
+			});
+		  };
+
+		var saveOwenerId = function(petId, newOwenerId){
+			$http.get('/api/pets/' + petId + '/addOwner', {
+				params: {
+					newOwnerId: newOwenerId
+				}
+			}).
+				success(function (data, status, headers, config) {
+					if (data) {
+						console.log(data);
+					}
+				}).
+				error(function (data, status, headers, config) {
+				});
+		}
 	}
 ]);

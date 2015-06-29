@@ -135,7 +135,6 @@ exports.petBySlug = function(req, res, next, slug) {
 /**
  * Pet Missing
  */
-
 exports.listMissing = function(req, res) {
 
 	Pet.find({isMissing: true}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').populate('breed').exec(function(err, pets) {
@@ -168,7 +167,6 @@ exports.listDates = function(req, res) {
 /**
  * Pet Update Missing
  */
-
 exports.updateMissing = function(req, res) {
 
 	var query = { _id: req.pet._id };
@@ -189,9 +187,30 @@ exports.updateMissing = function(req, res) {
 };
 
 /**
+ * Pet Update Missing
+ */
+exports.addOwner = function(req, res) {
+
+	var query = { _id: req.pet._id };
+
+	Pet.findOne(query, function (err, doc){
+		doc.owners.push(req.query.newOwnerId);
+		doc.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				console.log(doc);
+				res.jsonp(doc);
+			}
+		});
+	});
+};
+
+/**
  * Pet Update Date
  */
-
 exports.updateFindingDate = function(req, res) {
 
 	var query = { _id: req.pet._id };
@@ -213,10 +232,13 @@ exports.updateFindingDate = function(req, res) {
 /**
  * Pet Adoption
  */
-
 exports.listAdoption = function(req, res) {
 
-	Pet.find({isAdoption: true}).sort('-created').populate('owners', 'displayName').populate('genre').populate('type').exec(function(err, pets) {
+	Pet.find({isAdoption: true}).sort('-created')
+    .populate('owners', 'displayName')
+    .populate('genre')
+    .populate('type')
+    .exec(function(err, pets) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -226,3 +248,4 @@ exports.listAdoption = function(req, res) {
 		}
 	});
 };
+

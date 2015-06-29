@@ -39,7 +39,8 @@ var PetSchema = new Schema({
 		default: ''
 	},
 	isMissing: {
-		type: Boolean
+		type: Boolean,
+    default: false
 	},
 	picture: {
 		type: String,
@@ -80,19 +81,23 @@ var PetSchema = new Schema({
 		default: Date.now
 	},
 	neutered: {
-		type: Boolean
+		type: Boolean,
+    default: false
 	},
 	profileViews: {
 		type: Number
 	},
 	isPrivate: {
-		type: Boolean
+		type: Boolean,
+    default: true
 	},
 	isAdoption: {
-		type: Boolean
+		type: Boolean,
+    default: false
 	},
 	isFindingDate: {
-		type: Boolean
+		type: Boolean,
+    default: false
 	},
 	registered: {
 		type: Date,

@@ -32,6 +32,9 @@ module.exports = function(app) {
 	app.route('/api/pets/:petId/missing').all(petsPolicy.isAllowed)
 		.put(pets.updateMissing);
 
+	app.route('/api/pets/:petId/addOwner').all(petsPolicy.isAllowed)
+		.get(pets.addOwner);
+
 	app.route('/api/pets/:petId/date').all(petsPolicy.isAllowed)
 		.put(pets.updateFindingDate)
 
