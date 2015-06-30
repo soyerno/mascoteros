@@ -19,7 +19,7 @@ var ApplicationConfiguration = (function() {
 		'textAngular',
 		'angularMoment',
 		'ui.checkbox',
-		'djds4rce.angular-socialshare',
+		'djds4rce.angular-socialshare'
 	];
 
 	// Add a new vertical module
