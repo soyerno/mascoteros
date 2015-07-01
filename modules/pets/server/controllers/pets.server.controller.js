@@ -187,6 +187,50 @@ exports.updateMissing = function(req, res) {
 };
 
 /**
+ * Pet Update Neutered
+ */
+exports.updateNeutered = function(req, res) {
+
+	var query = { _id: req.pet._id };
+
+	Pet.findOne(query, function (err, doc){
+		doc.neutered = req.body.neutered;
+		doc.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				console.log(doc);
+				res.jsonp(doc);
+			}
+		});
+	});
+};
+
+/**
+ * Pet Update Adopt
+ */
+exports.updateAdopt = function(req, res) {
+
+	var query = { _id: req.pet._id };
+
+	Pet.findOne(query, function (err, doc){
+		doc.isAdoption = req.body.isAdoption;
+		doc.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				console.log(doc);
+				res.jsonp(doc);
+			}
+		});
+	});
+};
+
+/**
  * Pet Update Missing
  */
 exports.addOwner = function(req, res) {

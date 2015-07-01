@@ -32,6 +32,12 @@ module.exports = function(app) {
 	app.route('/api/pets/:petId/missing').all(petsPolicy.isAllowed)
 		.put(pets.updateMissing);
 
+	app.route('/api/pets/:petId/adoption').all(petsPolicy.isAllowed)
+		.put(pets.updateAdopt);
+
+	app.route('/api/pets/:petId/neutered').all(petsPolicy.isAllowed)
+		.put(pets.updateNeutered);
+
 	app.route('/api/pets/:petId/addOwner').all(petsPolicy.isAllowed)
 		.get(pets.addOwner);
 

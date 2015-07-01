@@ -66,10 +66,11 @@
                   <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
                   <button ng-click="setPetMissing(true);" ng-show="!pet.isMissing && pet.isOwner" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Alertar perdida</button>
 
-                  <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Adoptar</button>
+                  <button ng-show="pet.isAdoption" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i>Poner en Adopción</button>
                   <button ng-click="" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Solicitar Adopción</button>
 
-                  <button ng-click="" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Castrado On/Off</button>
+                  <button ng-click="setPetNeutered(true);" ng-show="!pet.neutered && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Castrado</button>
+                  <button ng-click="setPetNeutered(false);" ng-show="pet.neutered && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-remove"></i> No Castrado</button>
 
                   <button ng-click="setFindingDate(true);" ng-show="!pet.isFindingDate && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Buscar pareja</button>
                   <button ng-click="setFindingDate(false);" ng-show="pet.isFindingDate && pet.isOwner" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Dejar de buscar pareja</button>
