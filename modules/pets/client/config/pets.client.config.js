@@ -28,7 +28,7 @@ angular.module('pets').run(['Menus',
 		});
 
 		Menus.addSubMenuItem('topbar', 'pets', {
-			title: 'Adoccion',
+			title: 'Adopcion',
 			state: 'pets.list-adoption'
 		});
 
