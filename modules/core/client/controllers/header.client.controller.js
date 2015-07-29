@@ -18,6 +18,12 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 		// Collapsing the menu after navigation
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.isCollapsed = false;
+			FB.init({
+				appId      : '1414293935539684',
+				status     : true,
+				xfbml      : true,
+				version    : 'v2.3' // or v2.0, v2.1, v2.0
+			});
 		});
 	}
 ]);

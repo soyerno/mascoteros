@@ -47,9 +47,17 @@
 </head>
 
 <body class="ng-cloak">
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4&appId=1414293935539684";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
 	<section class="content">
 		{% block content %}{% endblock %}
+		<div id="serverTour" ng-joy-ride="startServerTour" config="serverTourConfig"></div>
 		<footer></footer>
 	</section>
 
@@ -102,7 +110,14 @@
 		);
 		wow.init();
 	</script>
-
+	<script>
+		FB.init({
+			appId      : '1414293935539684',
+			status     : true,
+			xfbml      : true,
+			version    : 'v2.3' // or v2.0, v2.1, v2.0
+		});
+	</script>
 </body>
 
 </html>

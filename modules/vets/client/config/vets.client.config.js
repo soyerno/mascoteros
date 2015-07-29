@@ -6,20 +6,26 @@ angular.module('vets').run(['Menus',
 		// Add the Vets dropdown item
 		Menus.addMenuItem('topbar', {
 			title: 'Veterinarias',
-			state: 'vets.list'
-			//type: 'dropdown'
+			state: 'vets',
+			type: 'dropdown'
 		});
 
 		// Add the dropdown list item
-		/*Menus.addSubMenuItem('topbar', 'vets', {
-			title: 'Buscar',
+		Menus.addSubMenuItem('topbar', 'vets', {
+			title: 'Cercanas',
 			state: 'vets.list'
-		});*/
+		});
+
+		// Add the dropdown list item
+		Menus.addSubMenuItem('topbar', 'vets', {
+			title: 'Dejar una consulta',
+			state: 'vets.list'
+		});
 
 		// Add the dropdown create item
-		/*Menus.addSubMenuItem('topbar', 'vets', {
-			title: 'Create Vet',
+		Menus.addSubMenuItem('topbar', 'vets', {
+			title: 'Llamar un Veterinario',
 			state: 'vets.create'
-		});*/
+		});
 	}
 ]);

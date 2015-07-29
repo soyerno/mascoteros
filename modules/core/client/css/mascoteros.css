@@ -78,6 +78,12 @@ h2 {
   border-radius: 4px;
   border-color: black;
 }
+.level-container {
+  position: absolute;
+  left: 51px;
+  top: 30px;
+  font-size: 11px;
+}
 .m-results-business-expanded-section .dayCol,
 .m-results-business-expanded-section .divCol,
 .m-results-business-expanded-section .hourCol {
