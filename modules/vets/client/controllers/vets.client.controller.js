@@ -3,7 +3,7 @@
 // Vets controller
 angular.module('vets')
 		.controller('VetsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Vets', '$timeout', 'geolocation', '$resource',
-	function($scope, $stateParams, $location, Authentication, Vets, $timeout, geolocation, $resource ) {
+	function($scope, $stateParams, $location, Authentication, Vets, $timeout, geolocation, $resource, $http ) {
 		$scope.authentication = Authentication;
 
 		//MAPS
@@ -192,10 +192,11 @@ angular.module('vets')
 		};*/
 
 		$scope.findOneBySlug = function () {
-			var Vet = $resource('/api/vet/:petSlug', {vetSlug: '@slug'});
-			$scope.vet = Vet.get({vetSlug: $stateParams.vetSlug});
-			console.log($scope.vet);
-			$scope.currentCoords = $scope.vet.coords;
+			var Vet = $resource('/api/vet/:vetSlug', {vetSlug: '@slug'});
+			$scope.vet = Vet.get({vetSlug: $stateParams.vetId}, function(vet) {
+				$scope.vet = vet;
+				$scope.vet.coords = {'latitude': vet.coords[0], 'longitude': vet.coords[1]};
+			});
 		};
 	}
 ]);

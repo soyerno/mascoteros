@@ -84,10 +84,12 @@ exports.vetByID = function(req, res, next, id) {
 };
 
 exports.vetBySlug = function(req, res, next, slug) {
-	Vet.findOne({slug: slug}).exec(function(err, pet) {
+	console.log(slug);
+	Vet.findOne({slug: slug}).exec(function(err, vet) {
+		console.log(vet);
 		if (err) return next(err);
-		if (! pet) return next(new Error('Failed to load Vet ' + slug));
-
+		if (! vet) return next(new Error('Failed to load Vet ' + slug));
+		req.vet = vet ;
 		next();
 	});
 };
