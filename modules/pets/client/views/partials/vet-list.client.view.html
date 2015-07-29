@@ -1,6 +1,6 @@
 <section class="row">
     <!--<a data-ng-repeat="vet in vets" data-ng-href="#!/vets/{{vet._id}}">-->
-    <div class="col-sm-4" style="min-height: 410px;" data-ng-repeat="vet in vets" ng-click="goToVet(vet._id)">
+    <div class="col-sm-4" style="min-height: 410px;" data-ng-repeat="vet in vets" ng-click="goToVet(vet.slug)">
       <!-- START widget-->
       <div class="wow bounceInUp panel widget" data-wow-offset="0" data-wow-duration="1.0s" >
         <div class="panel-body text-center bg-center" style="background-image: url('/modules/core/img/vet-profile.png')">
