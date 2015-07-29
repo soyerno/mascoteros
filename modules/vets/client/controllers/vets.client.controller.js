@@ -183,5 +183,19 @@ angular.module('vets')
 
 			//$scope.vets.coords = {latitude: vets.coords[0], longitude: vets.coords[1]};
 		};
+
+		// Find existing Pet
+		/*$scope.findOne = function () {
+			$scope.pet = Pets.get({
+				petId: $stateParams.petId
+			});
+		};*/
+
+		$scope.findOneBySlug = function () {
+			var Vet = $resource('/api/vet/:petSlug', {vetSlug: '@slug'});
+			$scope.vet = Vet.get({vetSlug: $stateParams.vetSlug});
+			console.log($scope.vet);
+			$scope.currentCoords = $scope.vet.coords;
+		};
 	}
 ]);

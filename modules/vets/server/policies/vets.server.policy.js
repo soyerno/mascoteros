@@ -15,6 +15,9 @@ exports.invokeRolesPolicies = function() {
 	acl.allow([{
 		roles: ['admin'],
 		allows: [{
+			resources: '/api/vet/:vetSlug',
+			permissions: '*'
+		},{
 			resources: '/api/vets',
 			permissions: '*'
 		}, {
@@ -24,6 +27,9 @@ exports.invokeRolesPolicies = function() {
 	}, {
 		roles: ['user'],
 		allows: [{
+			resources: '/api/vet/:vetSlug',
+			permissions: '*'
+		},{
 			resources: '/api/vets',
 			permissions: ['get', 'post']
 		}, {
@@ -33,6 +39,9 @@ exports.invokeRolesPolicies = function() {
 	}, {
 		roles: ['guest'],
 		allows: [{
+			resources: '/api/vet/:vetSlug',
+			permissions: '*'
+		},{
 			resources: '/api/vets',
 			permissions: ['get']
 		}, {
