@@ -1,9 +1,11 @@
 'use strict';
 
-//Vets service used to communicate Vets REST endpoints
+//Pets service used for communicating with the pets REST endpoints
 angular.module('vets').factory('Vets', ['$resource',
 	function($resource) {
-		return $resource('api/vets/:vetId', { vetId: '@_id'
+		return $resource('/api/vets/:vetId', {
+			vetId: '@_id',
+			vetSlug: '@_slug'
 		}, {
 			update: {
 				method: 'PUT'
@@ -11,3 +13,4 @@ angular.module('vets').factory('Vets', ['$resource',
 		});
 	}
 ]);
+

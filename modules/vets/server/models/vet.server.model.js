@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+	URLSlugs = require('mongoose-url-slugs'),
 	Schema = mongoose.Schema;
 
 /**
@@ -50,10 +51,16 @@ var VetSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
+	slug: {
+		type: String,
+		required: 'Please fill slug name'
+	},
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
 	}
 });
+
+VetSchema.plugin(new URLSlugs('name', {field: 'slug'}));
 
 mongoose.model('Vet', VetSchema);
