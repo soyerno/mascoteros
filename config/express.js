@@ -41,9 +41,9 @@ module.exports = function(db) {
 	app.locals.cssFiles = config.getCSSAssets();
 
   app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	  res.header("Access-Control-Allow-Headers", "*");
+    res.header('Access-Control-Allow-Origin', '*');
+    //res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	  res.header('Access-Control-Allow-Headers', '*');
     next();
   });
 
@@ -62,7 +62,7 @@ module.exports = function(db) {
 	}));
 
 	// Showing stack errors
-	app.set('showStackError', true);s
+	app.set('showStackError', true);
 
 	// Set swig as the template engine
 	app.engine('server.view.html', consolidate[config.templateEngine]);

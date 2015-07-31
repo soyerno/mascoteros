@@ -50,7 +50,7 @@ exports.caninosFromArrays = function(req, res) {
 				} else {
 					console.log(petbreed);
 					pushed.push(petbreed);
-					if(i == caninos.length - 1){
+					if(i === caninos.length - 1){
 						res.jsonp(pushed);
 					}
 				}
@@ -84,7 +84,7 @@ exports.felinosFromArrays = function(req, res) {
 				} else {
 					console.log(petbreed);
 					pushed.push(petbreed);
-					if(i == felinos.length - 1){
+					if(i === felinos.length - 1){
 						res.jsonp(pushed);
 					}
 				}
