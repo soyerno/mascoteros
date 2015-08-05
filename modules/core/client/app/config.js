@@ -10,7 +10,7 @@ var ApplicationConfiguration = (function() {
 		'ui.router',
 		'ui.bootstrap',
 		'ui.utils',
-		'angularFileUpload',
+		//'angularFileUpload',
 		'geolocation',
 		'restangular',
 		'uiGmapgoogle-maps',
