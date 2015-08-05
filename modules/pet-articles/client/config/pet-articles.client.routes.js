@@ -7,7 +7,7 @@ angular.module('pet-articles').config(['$stateProvider',
 		$stateProvider.
 		state('pet-articles', {
 			abstract: true,
-			url: '/pet-articles',
+			url: 'pet/:petId/pet-articles',
 			template: '<ui-view/>'
 		}).
 		state('pet-articles.list', {

@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 // Configuring the Pet articles module
@@ -22,4 +23,4 @@ angular.module('pet-articles').run(['Menus',
 			state: 'pet-articles.create'
 		});
 	}
-]);
+]);*/

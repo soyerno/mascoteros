@@ -62,6 +62,8 @@
                 <div class="col-md-12 pet-actions-container">
                   <button ng-show="!pet.isOwner" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
                   <!--<button class="btn btn-lg btn-success" ng-click="sendScanNotif();"><i class="icon-like"></i> Notificar</button>-->
+                  <button ng-click="goToPetArticleList(pet._id);" ng-show="pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Lista de fichas</button>
+                  <button ng-click="goToAddPetArticle(pet._id);" ng-show="pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Cargar Ficha</button>
 
                   <button ng-click="setPetMissing(false);" ng-show="pet.isMissing && pet.isOwner" class="btn btn-lg btn-success"><i class="icon-magnifier-add"></i> Encontrado</button>
                   <button ng-click="setPetMissing(true);" ng-show="!pet.isMissing && pet.isOwner" class="btn btn-lg btn-danger"><i class="icon-magnifier-remove"></i> Alertar perdida</button>

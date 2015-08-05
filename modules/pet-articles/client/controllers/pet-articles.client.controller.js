@@ -9,7 +9,9 @@ angular.module('pet-articles').controller('PetArticlesController', ['$scope', '$
 		$scope.create = function() {
 			// Create new Pet article object
 			var petArticle = new PetArticles ({
-				name: this.name
+				name: this.name,
+				content: this.content,
+				pet: $stateParams.petId
 			});
 
 			// Redirect after save
@@ -18,6 +20,7 @@ angular.module('pet-articles').controller('PetArticlesController', ['$scope', '$
 
 				// Clear form fields
 				$scope.name = '';
+				$scope.content = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

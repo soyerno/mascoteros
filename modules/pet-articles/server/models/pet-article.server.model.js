@@ -19,7 +19,7 @@ var PetArticleSchema = new Schema({
 	content: {
 		type: String,
 		default: '',
-		required: 'Please fill Event content'
+		required: 'Please fill article content'
 	},
 	pet: {
 		type: Schema.ObjectId,

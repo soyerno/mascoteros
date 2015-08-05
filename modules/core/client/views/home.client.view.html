@@ -154,9 +154,12 @@
 
 	<section class="section" ng-if="authentication.user">
 		<div class="container">
+			<br/><br/><br/>
 			<div class="fb-like"></div>
 			<!--<div width="100%" class="fb-page" data-href="https://www.facebook.com/mascoterosapp" data-width="100%" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mascoterosapp"><a href="https://www.facebook.com/mascoterosapp">Mascoteros</a></blockquote></div></div>-->
 			<!--<home-list entity-url="'/event/'" title="'Próximos eventos'" items="[1,2,3,4]"></home-list>-->
+			<home-list entity-url="'/vets/'" title="'Veterinarias en tu zona'" items="vets"></home-list>
+
 			<home-list entity-url="'/pet/'" title="'Busca Novi@s'" items="dates"></home-list>
 
 			<div class="row">
@@ -236,8 +239,6 @@ background-repeat: no-repeat;
 					</a>
 				</div>
 			</div>
-
-			<home-list entity-url="'/vets/'" title="'Veterinarias en tu zona'" items="vets"></home-list>
 			<!--<div class="widget founds-banner text-center">
 				<h2>BAÑOS 2 x 1</h2>
 			</div>-->

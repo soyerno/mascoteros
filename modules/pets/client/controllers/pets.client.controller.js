@@ -10,10 +10,11 @@ angular.module('pets').controller('PetsController', [
 	'Pets',
 	'Upload',
 	'geolocation',
+	'$window',
 	/*'Notifications',*/
 	'$http',
 	'$timeout',
-	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, /*Notifications,*/ $http, $timeout) {
+	function($scope, $resource, $stateParams, $location, Authentication, Pets, Upload, geolocation, $window, /*Notifications,*/ $http, $timeout) {
 		$scope.authentication = Authentication;
 
 		// Create new Pet
@@ -232,6 +233,15 @@ angular.module('pets').controller('PetsController', [
 				});
 			}
 		};*/
+
+		$scope.goToAddPetArticle = function(petId){
+			$location.path('/pet/' + petId +  '/pet-articles/create');
+		};
+
+		$scope.goToPetArticleList = function(petId){
+			$location.path('/pet/' + petId +  '/pet-articles')
+		};
+
 
 		$scope.setPetMissing = function (value) {
 			$http.put('/api/pets/' + $scope.pet._id + '/missing', {isMissing: value}).

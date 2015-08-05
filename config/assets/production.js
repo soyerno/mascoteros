@@ -11,16 +11,18 @@ module.exports = {
 				'public/lib/angular-socialshare/angular-socialshare.css',
 				'public/lib/textAngular/src/textAngular.css',
 				'public/lib/font-awesome/css/font-awesome.css',
-				'public/lib/animate.css/animate.min.css'
+				'public/lib/animate.css/animate.min.css',
+				'public/lib/ng-joyride/ng-joyride.css'
 			],
 			js: [
 				'public/lib/lodash/lodash.min.js',
-				'public/lib/angular/angular.min.js',
-				'public/lib/wowjs/dist/wow.min.js',
-				'public/lib/angular-resource/angular-resource.min.js',
-				'public/lib/angular-animate/angular-animate.min.js',
-				'public/lib/angular-ui-router/release/angular-ui-router.min.js',
-				'public/lib/angular-ui-utils/ui-utils.min.js',
+				'public/lib/angular/angular.js',
+				'public/lib/wowjs/dist/wow.js',
+				'public/lib/jquery/dist/jquery.min.js',
+				'public/lib/angular-resource/angular-resource.js',
+				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-ui-router/release/angular-ui-router.js',
+				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
 				'public/lib/restangular/dist/restangular.js',
@@ -36,7 +38,8 @@ module.exports = {
 				'public/lib/moment/locale/es.js',
 				'http://platform.twitter.com/widgets.js',
 				'public/lib/angular-socialshare/angular-socialshare.js',
-				'public/lib/angular-bootstrap-checkbox-fa/angular-bootstrap-checkbox.js'
+				'public/lib/angular-bootstrap-checkbox-fa/angular-bootstrap-checkbox.js',
+				'public/lib/ng-joyride/ng-joyride.js'
 			]
 		},
 		css: 'public/dist/application.min.css',
