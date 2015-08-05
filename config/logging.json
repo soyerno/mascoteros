@@ -7,7 +7,7 @@
       "level": "ERROR",
       "appender": {
         "type": "smtp",
-        "recipients": ["info@mascoteros.net", "grimaldi.gerardo@gmail.com", "desouza030689@gmail.com"],
+        "recipients": ["info@mascoteros.net", "desouza030689@gmail.com"],
         "sender": "info@mascoteros.net",
         "sendInterval": 60,
         "transport": "SMTP",
