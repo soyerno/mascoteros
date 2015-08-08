@@ -16,7 +16,29 @@ angular.module(ApplicationConfiguration.applicationModuleName)
 			v: '3.17',
 			libraries: 'places' // Required for SearchBox.
 		});
-	});
+	})
+	.run(['$rootScope',
+		function($rootScope) {
+			$rootScope.IS_DESKTOP = device.desktop();
+			$rootScope.IS_TABLET = device.tablet();
+			$rootScope.IS_MOBILE = device.mobile();
+
+			function detectViewportOrientation() {
+				$rootScope.IS_PORTRAIT = device.portrait();
+			}
+
+			detectViewportOrientation();
+
+			if (!$rootScope.IS_DESKTOP || location.href.indexOf('localhost') !== -1) {
+				window.addEventListener('orientationchange', function() {
+					setTimeout(function() {
+						detectViewportOrientation();
+						$rootScope.$broadcast('WINDOW:orientation:change');
+					});
+				}, false);
+			}
+		}
+	]);
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {

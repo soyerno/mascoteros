@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 					livereload: true
 				}
 			},
-			clientViews: {
+			/*clientViews: {
 				files: defaultAssets.client.views,
 				options: {
 					livereload: true
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 				options: {
 					livereload: true
 				}
-			},
+			},*/
 			clientLESS: {
 				files: defaultAssets.client.less,
 				tasks: ['less', 'csslint'],

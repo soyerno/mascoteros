@@ -15,6 +15,7 @@ module.exports = {
 				'public/lib/ng-joyride/ng-joyride.css'
 			],
 			js: [
+				'public/lib/devicejs/lib/device.min.js',
 				'public/lib/lodash/lodash.min.js',
 				'public/lib/angular/angular.js',
 				'public/lib/wowjs/dist/wow.js',

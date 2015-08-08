@@ -1,71 +1,73 @@
-<div class="container" data-ng-controller="HeaderController">
-	<div class="navbar-header">
-		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a data-ui-sref="home" class="navbar-brand"><img src="/modules/core/img/brand/logo_l_t.png"></a>
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container" data-ng-controller="HeaderController">
+		<div class="navbar-header">
+			<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a data-ui-sref="home" class="navbar-brand"><img src="/modules/core/img/brand/logo_l_t.png"></a>
+		</div>
+		<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+			<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
+				<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" data-ng-class="{active: $state.includes(item.state)}" class="{{item.class}}" dropdown="item.type === 'dropdown'">
+					<a ng-switch-when="dropdown" class="dropdown-toggle">
+						<span data-ng-bind="item.title"></span>
+						<b class="caret"></b>
+					</a>
+					<ul ng-switch-when="dropdown" class="dropdown-menu">
+						<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" data-ui-sref-active="active">
+							<a data-ui-sref="{{subitem.state}}" data-ng-bind="subitem.title"></a>
+						</li>
+					</ul>
+					<a ng-switch-default data-ui-sref="{{item.state}}" data-ng-bind="item.title"></a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
+				<li data-ui-sref-active="active">
+					<a data-ui-sref="authentication.signup" target="_self">Registrarse</a>
+				</li>
+				<li class="divider-vertical"></li>
+				<li data-ui-sref-active="active">
+					<a data-ui-sref="authentication.signin" target="_self">Entrar</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle user-header-dropdown-toggle" data-toggle="dropdown" style="padding-top: 16px !important;">
+						<img data-ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image"/>
+						<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+						<span class="level-container">Nivel: 1</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li data-ui-sref-active="active">
+							<a data-ui-sref="settings.profile">Editar Perfil</a>
+						</li>
+						<li data-ui-sref-active="active" data-ng-show="authentication.user.provider === 'local'">
+							<a data-ui-sref="settings.password">Cambiar contraseña</a>
+						</li>
+						<li data-ui-sref-active="active">
+							<a data-ui-sref="settings.accounts">Administrar cuentas</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="/api/auth/signout" target="_self">Salir</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+					</a>
+					<!--<ul class="dropdown-menu dropdown-alerts">
+						<li> <a href="#"> <div> <i class="fa fa-comment fa-fw"></i> New Comment <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-twitter fa-fw"></i> 3 New Followers <span class="pull-right text-muted small">12 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-envelope fa-fw"></i> Message Sent <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-tasks fa-fw"></i> New Task <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-upload fa-fw"></i> Server Rebooted <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a class="text-center" href="#"> <strong>See All Alerts</strong> <i class="fa fa-angle-right"></i> </a> </li>
+					</ul>-->
+					<!-- /.dropdown-alerts -->
+				</li>
+			</ul>
+		</nav>
 	</div>
-	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
-		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
-			<li data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" data-ng-class="{active: $state.includes(item.state)}" class="{{item.class}}" dropdown="item.type === 'dropdown'">
-				<a ng-switch-when="dropdown" class="dropdown-toggle">
-					<span data-ng-bind="item.title"></span>
-					<b class="caret"></b>
-				</a>
-				<ul ng-switch-when="dropdown" class="dropdown-menu">
-					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" data-ui-sref-active="active">
-						<a data-ui-sref="{{subitem.state}}" data-ng-bind="subitem.title"></a>
-					</li>
-				</ul>
-				<a ng-switch-default data-ui-sref="{{item.state}}" data-ng-bind="item.title"></a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
-			<li data-ui-sref-active="active">
-				<a data-ui-sref="authentication.signup" target="_self">Registrarse</a>
-			</li>
-			<li class="divider-vertical"></li>
-			<li data-ui-sref-active="active">
-				<a data-ui-sref="authentication.signin" target="_self">Entrar</a>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle user-header-dropdown-toggle" data-toggle="dropdown" style="padding-top: 16px !important;">
-					<img data-ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image"/>
-					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
-					<span class="level-container">Nivel: 1</span>
-				</a>
-				<ul class="dropdown-menu">
-					<li data-ui-sref-active="active">
-						<a data-ui-sref="settings.profile">Editar Perfil</a>
-					</li>
-					<li data-ui-sref-active="active" data-ng-show="authentication.user.provider === 'local'">
-						<a data-ui-sref="settings.password">Cambiar contraseña</a>
-					</li>
-					<li data-ui-sref-active="active">
-						<a data-ui-sref="settings.accounts">Administrar cuentas</a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="/api/auth/signout" target="_self">Salir</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown">
-					<i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-				<!--<ul class="dropdown-menu dropdown-alerts">
-					<li> <a href="#"> <div> <i class="fa fa-comment fa-fw"></i> New Comment <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-twitter fa-fw"></i> 3 New Followers <span class="pull-right text-muted small">12 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-envelope fa-fw"></i> Message Sent <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-tasks fa-fw"></i> New Task <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a href="#"> <div> <i class="fa fa-upload fa-fw"></i> Server Rebooted <span class="pull-right text-muted small">4 minutes ago</span> </div> </a> </li> <li class="divider"></li> <li> <a class="text-center" href="#"> <strong>See All Alerts</strong> <i class="fa fa-angle-right"></i> </a> </li>
-				</ul>-->
-				<!-- /.dropdown-alerts -->
-			</li>
-		</ul>
-	</nav>
-</div>
+</header>
