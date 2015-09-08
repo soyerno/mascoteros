@@ -119,6 +119,7 @@ module.exports = function(db) {
 	app.disable('x-powered-by');
 
 	// Setting the app router and static folder
+	app.use(require('prerender-node').set('prerenderToken', 'cvprMyyAXA7bbk91h1Bn'));
 	app.use(express.static(path.resolve('./public')));
 
 	// Globbing routing files
