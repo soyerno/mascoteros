@@ -190,7 +190,9 @@
     <h2>El perfíl de la mascota es privado!</h2>
     <div class="row">
       <div class="col-sm-8">
-        <button ng-show="!pet.isOwner" ng-click="sendScanNotif();" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
+        <button ng-show="!pet.isOwner" ng-click="isContactUserFormActive = true;" class="btn btn-lg btn-warning"><i class="icon-envelope"></i> Notificar familia</button>
+        <br/><br/>
+        <div class="notif-form-container" ng-show="isContactUserFormActive" ng-include="'/modules/pet-articles/views/create-pet-article.client.view.html'"></div>
       </div>
     </div>
     <a ng-href="/pets" class="btn btn-primary">Volver al listado de mascotas</a>

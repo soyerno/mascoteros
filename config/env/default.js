@@ -7,7 +7,7 @@ module.exports = {
 		keywords: 'mascotas, veterinarias, qr, entrenadores, paseadores, hogares, refugios, tiendas, shops, accesorios, comida, perro, gatos, loro, hamster',
 		googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'UA-61665891-1'
 	},
-	port: process.env.PORT || 3000,
+	port: process.env.PORT || 4040,
 	templateEngine: 'swig',
 	sessionSecret: 'MEAN',
 	sessionCollection: 'sessions'
