@@ -141,6 +141,10 @@ form.signup input.form-control:focus {
 
 #wrapper > .container{
   padding-top: 50px;
+  transition: 2s;
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  opacity: 0;
 }
 
 
@@ -155,12 +159,12 @@ form.signup input.form-control:focus {
 }
 
 h2.subtitle {
-	padding: 20px;
+  padding: 0;
   border-radius: 20px;
   color: #fff;
   font-size: 2em;
+  text-align: left;
 }
-
 /* countdown */
 #countdown {
 	font-size: 48px;
@@ -172,9 +176,9 @@ h2.subtitle {
 
 /* footer */
 p.copyright {
-	margin-top: 50px;
-	color: #fff;
-	text-align: center;
+	margin-top: 20px;
+  color: #fff;
+  text-align: left;
 }	
 
 .cloud{
@@ -268,13 +272,22 @@ and (max-device-width : 480px) {
   text-align: center;
 }
 
+.image-container {
+  text-align: left;
+}
+
 .info{
- margin: 100px auto 0;
- text-align: center;
- background: rgba(66,139,202,0.55);
- border-radius: 3px;
- transition: 2s;
- -webkit-transition: 2s;
- -moz-transition: 2s;
- opacity: 0;
+ margin: 20px auto 0;
+ text-align: left;
+ background: rgba(0,0,0,0.3);
+ margin-left: 70px;
+ padding: 20px 30px;
+ border: 1px solid white;
+ border-radius: 4px;
+}
+
+ul.social-network {
+  padding: 0px 0;
+  margin-top: 20px;
+  display: block;
 }
