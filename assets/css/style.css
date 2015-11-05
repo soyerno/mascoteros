@@ -273,5 +273,8 @@ and (max-device-width : 480px) {
  text-align: center;
  background: rgba(66,139,202,0.55);
  border-radius: 3px;
-
+ transition: 2s;
+ -webkit-transition: 2s;
+ -moz-transition: 2s;
+ opacity: 0;
 }

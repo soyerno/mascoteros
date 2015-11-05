@@ -85,6 +85,9 @@
 
     $(document).ready( function () {
         $('#wrapper').height($(document).height());
+        setTimeout(function(){
+            $('.info').css({'opacity': 1});    
+        }, 500);
     // I only have one form on the page but you can be more specific if need be.
     var $form = $('form');
 
