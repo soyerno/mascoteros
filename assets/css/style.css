@@ -269,7 +269,9 @@ and (max-device-width : 480px) {
 }
 
 .info{
-  margin: 100px auto 0;
-  text-align: center;
+ margin: 100px auto 0;
+ text-align: center;
+ background: rgba(66,139,202,0.55);
+ border-radius: 3px;
 
 }
