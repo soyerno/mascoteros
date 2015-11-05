@@ -40,15 +40,15 @@
     </div>
 
     <div class="cloud pos1 fliped floating">
-        <img src="assets/img/cloud.png" alt=""">
+        <img src="assets/img/cloud.png" alt="">
     </div>
 
     <div class="cloud pos2 floating">
-        <img src="assets/img/cloud.png" alt=""">
+        <img src="assets/img/cloud.png" alt="">
     </div>
 
     <div class="cloud pos3 fliped floating">
-        <img src="assets/img/cloud.png" alt=""">
+        <img src="assets/img/cloud.png" alt="">
     </div>
 
 
@@ -56,19 +56,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                    <img src="assets/img/logo.png" alt="" Logo">
-                    <br/>
-                    <br/>
+                    <img src="assets/img/logo.png" alt="Logo">
+                </div>
+            </div>
+            <div class="row info">
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <h2 class="subtitle">Mascoteros estará online muy pronto.  <br/>Dale <strong>"Me Gusta"</strong> en <strong>Facebook</strong> y <strong>"Seguinos"</strong> en <strong>Twitter</strong> y participá por los <strong>premios</strong> del lanzamiento</h2>
-                    <br/>
-
-                    <!-- <form class="form-inline validate signup" action="" method="get" role="form">
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="EMAIL" id="exampleInputEmail1" placeholder="Enter your email address">
-                        </div>
-                        <input type="submit" name="subscribe" value="Get notified!" class="btn btn-theme">
-                    </form>
-                    <br/> -->
                 </div>
                 <div class="col-sm-12 align-center">
                     <ul class="social-network social-circle">
@@ -78,8 +71,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="row footer">
                 <div class="col-lg-12">
                     <br/><br/><br/><br/>
                     <p class="copyright">Copyright &copy; 2015 - <a href="http://mascoteros.net">mascoteros.net</a>
@@ -102,39 +93,39 @@
     if ( $form.length > 0 ) {
         $('form input[type="submit"]').bind('click', function ( event ) {
             if ( event ) event.preventDefault();
-            // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
-            if ( $form.validate() ) { register($form); }
-        });
+    // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
+    if ( $form.validate() ) { register($form); }
+});
     }
 });
 
     function appendResult(userText , className, iconClass){
-      var resultHTML = "<div class='stretchLeft result "+ className + "'>" + userText + " <span class='fa fa-" + iconClass + "'></span>" + "</div>";
-      $('body').append(resultHTML);
-      $('.result').delay(10000).fadeOut('1000');
-  }
+        var resultHTML = "<div class='stretchLeft result "+ className + "'>" + userText + " <span class='fa fa-" + iconClass + "'></span>" + "</div>";
+        $('body').append(resultHTML);
+        $('.result').delay(10000).fadeOut('1000');
+    }
 
 
-  function register($form) {
-    $.ajax({
-        type: $form.attr('method'),
-        url: $form.attr('action'),
-        data: $form.serialize(),
-        cache       : false,
-        dataType    : 'json',
-        contentType: "application/json; charset=utf-8",
-        error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
-        success     : function(data) {
-            if (data.result != "success") {
-                appendResult('Wrong Email Or You Are Already Registered, Try Again', 'error', 'exclamation');
-            } else {
-                // It worked, carry on...
-                appendResult('Successful, Check Your Email For Confirmation ', 'success', 'check');
-            }
-        }
-    });
+    function register($form) {
+        $.ajax({
+            type: $form.attr('method'),
+            url: $form.attr('action'),
+            data: $form.serialize(),
+            cache       : false,
+            dataType    : 'json',
+            contentType: "application/json; charset=utf-8",
+            error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
+            success     : function(data) {
+                if (data.result != "success") {
+                    appendResult('Wrong Email Or You Are Already Registered, Try Again', 'error', 'exclamation');
+                } else {
+// It worked, carry on...
+appendResult('Successful, Check Your Email For Confirmation ', 'success', 'check');
 }
-</script>
+}
+});
+    }
+    </script>
 
 </body>
 

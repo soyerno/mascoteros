@@ -256,11 +256,20 @@ and (max-device-width : 480px) {
   border-radius: 50%;
   text-align: center;
   width: 70px;
-  height: 50px;
+  height: 70px;
   font-size: 40px;
 }
 
+.social-circle li a i{
+  line-height: 70px;
+}
 .footer {
   width: 100%;
   text-align: center;
+}
+
+.info{
+  margin: 100px auto 0;
+  text-align: center;
+
 }
