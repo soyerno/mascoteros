@@ -281,6 +281,7 @@ and (max-device-width : 480px) {
  border: 1px solid white;
  border-radius: 4px;
  box-shadow: black 0px 0px 20px;
+ background: rgba(255, 255, 255,0.3);
 }
 
 ul.social-network {
