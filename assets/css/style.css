@@ -161,9 +161,10 @@ form.signup input.form-control:focus {
 h2.subtitle {
   padding: 0;
   border-radius: 20px;
-  color: #fff;
+  color: #444;
   font-size: 2em;
   text-align: left;
+  font-weight: 300;
 }
 /* countdown */
 #countdown {
