@@ -49,7 +49,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #4F92AF;
+  color: #333;
   text-decoration: none;
   outline: 0;
 }
@@ -178,7 +178,7 @@ h2.subtitle {
 /* footer */
 p.copyright {
 	margin-top: 20px;
-  color: #fff;
+  color: #444;
   text-align: left;
 }	
 
@@ -280,7 +280,7 @@ and (max-device-width : 480px) {
  border: 1px solid white;
  border-radius: 4px;
  box-shadow: black 0px 0px 20px;
- background: rgba(255, 255, 255,0.3);
+ background: rgba(255, 255, 255,0.9);
 }
 
 ul.social-network {
