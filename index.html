@@ -81,8 +81,7 @@
                                     <input type="text" class="form-control" placeholder="Código de la mascota" aria-describedby="sizing-addon1">
                                 </div>
                                 <br/>
-                                <button type="button" class="btn btn-large btn-warning">Contactár familia</button>
-                                <br/><br/>
+                                <button type="button" class="btn btn-large btn-warning btn-id-contact">Contactár familia</button>
                                 <!--{{'No soy un robot'}}-->
                                 <!--<div class="g-recaptcha" data-sitekey="6LdjcRATAAAAALVclu5kGG8SICRy1rOLR0sTL_wX"></div>-->
                             </div>
@@ -98,7 +97,7 @@
                                         <div class="fb-page" data-href="https://www.facebook.com/mascoterosapp" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mascoterosapp"><a href="https://www.facebook.com/mascoterosapp">Mascoteros</a></blockquote></div></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-12">
-                                        <br/><br/>
+                                        <br/>
                                         <a href="https://twitter.com/MascoterosApp" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @MascoterosApp</a>
                                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                                     </div>
@@ -110,9 +109,7 @@
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <div class="info">
                                 <h2>Registrá a tus mascotras</h2><br/>
-                                <button type="button" class="btn btn-info">Entrar</button>
-                                <br/><br/><span> (Beta Privada)</span>
-                                <br/><br/>
+                                <button type="button" class="btn btn-info btn-login">Entrar</button>
                             </div>
                         </div>
                     </div>
@@ -133,6 +130,14 @@
             setTimeout(function(){
                 $('.container').css({'opacity': 1});    
             }, 500);
+
+            $('.btn-login').click(function(){
+                alert('Proximamente - Seguinos en facebook o twitter para recibir noticias del lanzamiento!')
+            });
+
+            $('.btn-id-contact').click(function(){
+                alert('Proximamente - Seguinos en facebook o twitter para recibir noticias del lanzamiento!')
+            });
     // I only have one form on the page but you can be more specific if need be.
     var $form = $('form');
 
