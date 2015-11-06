@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 
 <head>
     <meta charset="utf-8">
@@ -23,6 +23,7 @@
     <link href="assets/css/font-awesome.css" rel="stylesheet">
     <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css"/>
 
     <!-- siimple style -->
     <link href="assets/css/style.css" rel="stylesheet">
@@ -34,7 +35,7 @@
       <![endif]-->
   </head>
 
-  <body>
+  <body ng-cloak>
       <div id="fb-root"></div>
       <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
@@ -113,6 +114,46 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row" ng-hide="true">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="info">
+                                <h3>Mis mascotras</h3>
+                                <p>No tienes mascotas deseas agregar una...</p>
+                                <div class="spinner-container">
+                                    <i class="fa-li fa fa-spinner fa-spin"></i>
+                                </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <span class="badge">ID: a2jEps2ld</span>
+                                        Nombre: Marta
+                                    </li>
+                                </ul>
+                                <button type="button" class="btn btn-info btn-login">Agregar +1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-hide="true">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="info add-pet-form">
+                                <h3>Agregar Mascota</h3>
+                                <form action="">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="form-firstname">Nombre:</span>
+                                        <input type="text" class="form-control" placeholder="nombre de las mascota" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="form-lastname">Apellido:</span>
+                                        <input type="text" class="form-control" placeholder="apellido de las mascota" aria-describedby="basic-addon1">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="form-pic">PhotoUrl:</span>
+                                        <input type="text" class="form-control" placeholder="http://foto.com" aria-describedby="basic-addon1">
+                                    </div>
+                                </form>
+                                <button type="button" class="btn btn-info btn-login">Agregar +1</button>
+                            </div>
+                        </div>
+                    </div>
                     <hr/>
                     </div>
                 </div>
@@ -123,6 +164,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="http://downloads.mailchimp.com/js/jquery.form-n-validate.js"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script src="assets/js/angular.min.js"></script>
         <script>
 
         $(document).ready( function () {
