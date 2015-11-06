@@ -89,128 +89,157 @@
                                     <span class="input-group-addon" id="sizing-addon1">@ID: #</span>
                                     <input type="text" class="form-control" placeholder="Código de la mascota" aria-describedby="sizing-addon1">
                                 </div>
-                                <button type="button" class="btn btn-large btn-warning btn-id-contact">Contactar familia</button>
-                                <!--{{'No soy un robot'}}-->
-                                <!--<div class="g-recaptcha" data-sitekey="6LdjcRATAAAAALVclu5kGG8SICRy1rOLR0sTL_wX"></div>-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="info">
-                                <h3 class="subtitle">Mascoteros estará online muy pronto.</h3>
-                                <p>Dale me gusta en Facebook y seguinos en Twitter para participar de la beta de lanzamiento.</p>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6 col-lg-12">
-                                        <div class="fb-page" data-href="https://www.facebook.com/mascoterosapp" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mascoterosapp"><a href="https://www.facebook.com/mascoterosapp">Mascoteros</a></blockquote></div></div>
+                                <button type="button" class="btn btn-large btn-warning btn-id-contact" data-toggle="modal" data-target="#myModal">Contactar familia</button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                                     </div>
-                                    <div class="col-sm-12 col-md-6 col-lg-12">
-                                        <br/>
-                                        <a href="https://twitter.com/MascoterosApp" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @MascoterosApp</a>
-                                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                    <div class="modal-body">
+                                        ...
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="info">
-                                <h3>Registrá a tus mascotras</h3>
-                                <button type="button" class="btn btn-info btn-login">Entrar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-hide="false">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="info">
-                                <h3>Mis mascotras</h3>
-                                <p>No tienes mascotas deseas agregar una...</p>
-                                <button type="button" class="btn btn-info btn-login">Agregar +1</button>
 
-                                <div class="spinner-container loading">
-                                    <p><i class="fa-li fa icon-pets14 fa-spin"></i> Cargando...</p>
-                                </div>
-
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <h4>Nombre: Marta </h4>
-                                        <button class="btn btn-success bt-lg">Imprimir id</button></a>
-                                        <button class="btn btn-success bt-lg">Ver perfíl</button></a>
-                                        <span class="badge">ID: a2jEps2ld</span>
-                                        <span class="badge">Privado</span>
-                                    </li>
-                                </ul>
-                                
-                            </div>
-                        </div>
+                        <!--{{'No soy un robot'}}-->
+                        <!--<div class="g-recaptcha" data-sitekey="6LdjcRATAAAAALVclu5kGG8SICRy1rOLR0sTL_wX"></div>-->
                     </div>
-                    <div class="row" ng-hide="true">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="info add-pet-form">
-                                <h3>Agregar Mascota</h3>
-                                <form action="">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="form-firstname">Nombre:</span>
-                                        <input type="text" class="form-control" placeholder="nombre de las mascota" aria-describedby="basic-addon1">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="form-lastname">Apellido:</span>
-                                        <input type="text" class="form-control" placeholder="apellido de las mascota" aria-describedby="basic-addon1">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="form-pic">PhotoUrl:</span>
-                                        <input type="text" class="form-control" placeholder="http://foto.com" aria-describedby="basic-addon1">
-                                    </div>
-                                </form>
-                                <button type="button" class="btn btn-info btn-login">Agregar +1</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" ng-hide="false">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <div class="info add-pet-form">
-                                <h3>Ingresar</h3>
-                                <p>Para mayor seguridad requerimos sea una cuenta validada.</p>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-facebook"></i>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-google-plus"></i>
-                                </button>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-twitter"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr/>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="info">
+                        <h3 class="subtitle">Mascoteros estará online muy pronto.</h3>
+                        <p>Dale me gusta en Facebook y seguinos en Twitter para participar de la beta de lanzamiento.</p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-12">
+                                <div class="fb-page" data-href="https://www.facebook.com/mascoterosapp" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/mascoterosapp"><a href="https://www.facebook.com/mascoterosapp">Mascoteros</a></blockquote></div></div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-12">
+                                <br/>
+                                <a href="https://twitter.com/MascoterosApp" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @MascoterosApp</a>
+                                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="info">
+                        <h3>Registrá a tus mascotras</h3>
+                        <p>Para mayor seguridad requerimos sea una cuenta validada.</p>
+                        <button class="btn btn-primary btn-login">
+                            <i class="fa fa-facebook"></i>
+                        </button>
+                        <button class="btn btn-primary btn-login">
+                            <i class="fa fa-google-plus"></i>
+                        </button>
+                        <button class="btn btn-primary btn-login">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-hide="true">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="info">
+                        <h3>Mis mascotras</h3>
+                        <p>No tienes mascotas deseas agregar una...</p>
+                        <button type="button" class="btn btn-info btn-login">Agregar +1</button>
+
+                        <div class="spinner-container loading">
+                            <p><i class="fa-li fa icon-pets14 fa-spin"></i> Cargando...</p>
+                        </div>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <h4>Nombre: Marta </h4>
+                                <button class="btn btn-success bt-lg">Imprimir id</button></a>
+                                <button class="btn btn-success bt-lg">Ver perfíl</button></a>
+                                <span class="badge">ID: a2jEps2ld</span>
+                                <span class="badge">Privado</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-hide="true">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="info add-pet-form">
+                        <h3>Agregar Mascota</h3>
+                        <form action="">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="form-firstname">Nombre:</span>
+                                <input type="text" class="form-control" placeholder="nombre de las mascota" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="form-lastname">Apellido:</span>
+                                <input type="text" class="form-control" placeholder="apellido de las mascota" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="form-pic">PhotoUrl:</span>
+                                <input type="text" class="form-control" placeholder="http://foto.com" aria-describedby="basic-addon1">
+                            </div>
+                        </form>
+                        <button type="button" class="btn btn-info btn-login">Agregar +1</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-hide="true">
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="info add-pet-form">
+                        <h3>Ingresar</h3>
+                        <p>Para mayor seguridad requerimos sea una cuenta validada.</p>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-facebook"></i>
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-google-plus"></i>
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
         </div>
     </div>
+</div>
+</div>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="http://downloads.mailchimp.com/js/jquery.form-n-validate.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    <script src="assets/js/angular.min.js"></script>
-    <script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://downloads.mailchimp.com/js/jquery.form-n-validate.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="assets/js/angular.min.js"></script>
+<script>
 
-    $(document).ready( function () {
-        $('#wrapper').height($(document).height());
-        setTimeout(function(){
-            $('.container').css({'opacity': 1});    
-        }, 500);
+$(document).ready( function () {
+    $('#wrapper').height($(document).height());
+    setTimeout(function(){
+        $('.container').css({'opacity': 1});    
+    }, 500);
 
-        $('.btn-login').click(function(){
-            alert('Proximamente - Seguinos en facebook o twitter para recibir noticias del lanzamiento!')
-        });
+    $('.btn-login').click(function(){
+        alert('Proximamente - Seguinos en facebook o twitter para recibir noticias del lanzamiento!')
+    });
 
-        $('.btn-id-contact').click(function(){
-            alert('Proximamente - Seguinos en facebook o twitter para recibir noticias del lanzamiento!')
-        });
+    $('.btn-id-contact').click(function(){
+        alert('Proximamente - Seguinos en facebook o twitter para recibir noticias del lanzamiento!')
+    });
     // I only have one form on the page but you can be more specific if need be.
     var $form = $('form');
 
@@ -223,33 +252,33 @@
     }
 });
 
-    function appendResult(userText , className, iconClass){
-        var resultHTML = "<div class='stretchLeft result "+ className + "'>" + userText + " <span class='fa fa-" + iconClass + "'></span>" + "</div>";
-        $('body').append(resultHTML);
-        $('.result').delay(10000).fadeOut('1000');
-    }
+function appendResult(userText , className, iconClass){
+    var resultHTML = "<div class='stretchLeft result "+ className + "'>" + userText + " <span class='fa fa-" + iconClass + "'></span>" + "</div>";
+    $('body').append(resultHTML);
+    $('.result').delay(10000).fadeOut('1000');
+}
 
 
-    function register($form) {
-        $.ajax({
-            type: $form.attr('method'),
-            url: $form.attr('action'),
-            data: $form.serialize(),
-            cache       : false,
-            dataType    : 'json',
-            contentType: "application/json; charset=utf-8",
-            error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
-            success     : function(data) {
-                if (data.result != "success") {
-                    appendResult('Wrong Email Or You Are Already Registered, Try Again', 'error', 'exclamation');
-                } else {
+function register($form) {
+    $.ajax({
+        type: $form.attr('method'),
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        cache       : false,
+        dataType    : 'json',
+        contentType: "application/json; charset=utf-8",
+        error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
+        success     : function(data) {
+            if (data.result != "success") {
+                appendResult('Wrong Email Or You Are Already Registered, Try Again', 'error', 'exclamation');
+            } else {
 // It worked, carry on...
 appendResult('Successful, Check Your Email For Confirmation ', 'success', 'check');
 }
 }
 });
-    }
-    </script>
+}
+</script>
 
 </body>
 

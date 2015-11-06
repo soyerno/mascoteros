@@ -1,0 +1,18 @@
+{
+  "name": "mascoteros",
+  "homepage": "https://github.com/H3rN4n/mascoteros",
+  "authors": [
+    "H3rN4n <desouza030689@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
