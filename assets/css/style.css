@@ -300,4 +300,7 @@ and (min-device-width : 1025px) {
 
 img{
   width: 100%;
+  max-height: 200px;
+  max-width: 400px;
+  float: left;
 }
