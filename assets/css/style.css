@@ -140,7 +140,7 @@ form.signup input.form-control:focus {
 }
 
 #wrapper > .container{
-  padding-top: 10px;
+  padding-top: 0px;
   transition: 2s;
   -webkit-transition: 2s;
   -moz-transition: 2s;
@@ -274,9 +274,9 @@ and (max-device-width : 480px) {
 }
 
 .info{
-  margin: 30px auto 0;
+  margin: 15px auto 0;
   text-align: left;
-  padding: 30px 30px;
+  padding: 0 15px 15px;
   border: 1px solid white;
   border-radius: 4px;
   box-shadow: black 0px 0px 20px;
