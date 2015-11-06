@@ -1,0 +1,61 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M872.887 151.169c1.617-39.187-12.484-78.836-42.423-108.775-56.757-56.758-148.424-56.412-205.181 0.347-44.851 44.851-54.908 110.971-27.974 165.995l-388.515 388.631c-55.023-26.934-121.144-16.877-165.995 27.974-56.757 56.642-56.988 148.54-0.231 205.297 29.939 29.939 69.473 43.926 108.659 42.309-1.618 39.186 12.484 78.836 42.423 108.659 56.757 56.757 148.424 56.41 205.181-0.347 44.852-44.852 54.792-110.971 27.86-165.996l388.515-388.515c55.024 26.934 121.144 16.877 165.996-27.974 56.757-56.758 56.988-148.656 0.23-205.412-29.94-29.822-69.358-43.811-108.545-42.192z"
+				],
+				"attrs": [],
+				"isMulticolor": false,
+				"grid": 0,
+				"tags": [
+					"pets14"
+				]
+			},
+			"attrs": [],
+			"properties": {
+				"order": 49,
+				"id": 0,
+				"prevSize": 32,
+				"code": 59648,
+				"name": "pets14"
+			},
+			"setIdx": 0,
+			"setId": 6,
+			"iconIdx": 0
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icomoon"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icomoon"
+			},
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"embed": false
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 4473924,
+			"bgColor": 16777215,
+			"classSelector": ".icon"
+		},
+		"historySize": 100,
+		"showCodes": true
+	}
+}
