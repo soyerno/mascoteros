@@ -141,9 +141,9 @@ form.signup input.form-control:focus {
 
 #wrapper > .container{
   padding-top: 0px;
-  transition: 2s;
-  -webkit-transition: 2s;
-  -moz-transition: 2s;
+  transition: opacity 2s;
+  -webkit-transition: opacity 2s;
+  -moz-transition: opacity 2s;
   opacity: 0;
 }
 
@@ -294,7 +294,7 @@ ul.social-network {
 and (min-device-width : 1025px) {
  #wrapper {
    background-position: 300px 0%;
-   background-size: contain;
+   background-size: cover;
  }
 }
 
